@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccBc07CV.s 			page 1
+ARM GAS  /tmp/ccuZJ4Yz.s 			page 1
 
 
    1              		.syntax unified
@@ -57,17 +57,84 @@ ARM GAS  /tmp/ccBc07CV.s 			page 1
   55 0054 4FF0FF30 		mov	r0, #-1
   56 0058 BDE80840 		pop	{r3, lr}
   57 005c FFF7FEBF 		b	HAL_NVIC_SetPriority
-  59              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  /tmp/ccBc07CV.s 			page 2
+  59              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
+ARM GAS  /tmp/ccuZJ4Yz.s 			page 2
 
 
-ARM GAS  /tmp/ccBc07CV.s 			page 3
+  60              		.align	2
+  61              		.global	HAL_TIM_Base_MspInit
+  62              		.thumb
+  63              		.thumb_func
+  65              	HAL_TIM_Base_MspInit:
+  66              		@ args = 0, pretend = 0, frame = 8
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68              		@ link register save eliminated.
+  69 0000 0268     		ldr	r2, [r0]
+  70 0002 0A4B     		ldr	r3, .L10
+  71 0004 9A42     		cmp	r2, r3
+  72 0006 00D0     		beq	.L9
+  73 0008 7047     		bx	lr
+  74              	.L9:
+  75 000a 82B0     		sub	sp, sp, #8
+  76 000c 03F50633 		add	r3, r3, #137216
+  77 0010 0022     		movs	r2, #0
+  78 0012 0192     		str	r2, [sp, #4]
+  79 0014 1A6C     		ldr	r2, [r3, #64]
+  80 0016 42F48072 		orr	r2, r2, #256
+  81 001a 1A64     		str	r2, [r3, #64]
+  82 001c 1B6C     		ldr	r3, [r3, #64]
+  83 001e 03F48073 		and	r3, r3, #256
+  84 0022 0193     		str	r3, [sp, #4]
+  85 0024 019B     		ldr	r3, [sp, #4]
+  86 0026 02B0     		add	sp, sp, #8
+  87              		@ sp needed
+  88 0028 7047     		bx	lr
+  89              	.L11:
+  90 002a 00BF     		.align	2
+  91              	.L10:
+  92 002c 00200040 		.word	1073750016
+  94              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
+  95              		.align	2
+  96              		.global	HAL_TIM_Base_MspDeInit
+  97              		.thumb
+  98              		.thumb_func
+ 100              	HAL_TIM_Base_MspDeInit:
+ 101              		@ args = 0, pretend = 0, frame = 0
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103              		@ link register save eliminated.
+ 104 0000 0268     		ldr	r2, [r0]
+ 105 0002 054B     		ldr	r3, .L15
+ 106 0004 9A42     		cmp	r2, r3
+ 107 0006 00D0     		beq	.L14
+ 108 0008 7047     		bx	lr
+ 109              	.L14:
+ 110 000a 044A     		ldr	r2, .L15+4
+ 111 000c 136C     		ldr	r3, [r2, #64]
+ 112 000e 23F48073 		bic	r3, r3, #256
+ 113 0012 1364     		str	r3, [r2, #64]
+ 114 0014 7047     		bx	lr
+ 115              	.L16:
+ 116 0016 00BF     		.align	2
+ 117              	.L15:
+ 118 0018 00200040 		.word	1073750016
+ 119 001c 00380240 		.word	1073887232
+ARM GAS  /tmp/ccuZJ4Yz.s 			page 3
+
+
+ 121              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
+ARM GAS  /tmp/ccuZJ4Yz.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_msp.c
-     /tmp/ccBc07CV.s:18     .text.HAL_MspInit:00000000 $t
-     /tmp/ccBc07CV.s:23     .text.HAL_MspInit:00000000 HAL_MspInit
+     /tmp/ccuZJ4Yz.s:18     .text.HAL_MspInit:00000000 $t
+     /tmp/ccuZJ4Yz.s:23     .text.HAL_MspInit:00000000 HAL_MspInit
+     /tmp/ccuZJ4Yz.s:60     .text.HAL_TIM_Base_MspInit:00000000 $t
+     /tmp/ccuZJ4Yz.s:65     .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
+     /tmp/ccuZJ4Yz.s:92     .text.HAL_TIM_Base_MspInit:0000002c $d
+     /tmp/ccuZJ4Yz.s:95     .text.HAL_TIM_Base_MspDeInit:00000000 $t
+     /tmp/ccuZJ4Yz.s:100    .text.HAL_TIM_Base_MspDeInit:00000000 HAL_TIM_Base_MspDeInit
+     /tmp/ccuZJ4Yz.s:118    .text.HAL_TIM_Base_MspDeInit:00000018 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_SetPriorityGrouping
