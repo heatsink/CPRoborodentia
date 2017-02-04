@@ -1,0 +1,170 @@
+ARM GAS  /tmp/ccTUhwOC.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 2
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.syntax unified
+  16              		.file	"stm32f4xx_hal_flash_ramfunc.c"
+  17              		.section	.RamFunc,"ax",%progbits
+  18              		.align	2
+  19              		.global	HAL_FLASHEx_StopFlashInterfaceClk
+  20              		.thumb
+  21              		.thumb_func
+  23              	HAL_FLASHEx_StopFlashInterfaceClk:
+  24              		@ args = 0, pretend = 0, frame = 8
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 82B0     		sub	sp, sp, #8
+  28 0002 0020     		movs	r0, #0
+  29 0004 084B     		ldr	r3, .L3
+  30 0006 0190     		str	r0, [sp, #4]
+  31 0008 1A6C     		ldr	r2, [r3, #64]
+  32 000a 0849     		ldr	r1, .L3+4
+  33 000c 42F08052 		orr	r2, r2, #268435456
+  34 0010 1A64     		str	r2, [r3, #64]
+  35 0012 1B6C     		ldr	r3, [r3, #64]
+  36 0014 03F08053 		and	r3, r3, #268435456
+  37 0018 0193     		str	r3, [sp, #4]
+  38 001a 019B     		ldr	r3, [sp, #4]
+  39 001c 0B68     		ldr	r3, [r1]
+  40 001e 43F40013 		orr	r3, r3, #2097152
+  41 0022 0B60     		str	r3, [r1]
+  42 0024 02B0     		add	sp, sp, #8
+  43              		@ sp needed
+  44 0026 7047     		bx	lr
+  45              	.L4:
+  46              		.align	2
+  47              	.L3:
+  48 0028 00380240 		.word	1073887232
+  49 002c 00700040 		.word	1073770496
+  51              		.align	2
+  52              		.global	HAL_FLASHEx_StartFlashInterfaceClk
+  53              		.thumb
+  54              		.thumb_func
+  56              	HAL_FLASHEx_StartFlashInterfaceClk:
+  57              		@ args = 0, pretend = 0, frame = 8
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              		@ link register save eliminated.
+  60 0030 82B0     		sub	sp, sp, #8
+ARM GAS  /tmp/ccTUhwOC.s 			page 2
+
+
+  61 0032 0020     		movs	r0, #0
+  62 0034 084B     		ldr	r3, .L7
+  63 0036 0190     		str	r0, [sp, #4]
+  64 0038 1A6C     		ldr	r2, [r3, #64]
+  65 003a 0849     		ldr	r1, .L7+4
+  66 003c 42F08052 		orr	r2, r2, #268435456
+  67 0040 1A64     		str	r2, [r3, #64]
+  68 0042 1B6C     		ldr	r3, [r3, #64]
+  69 0044 03F08053 		and	r3, r3, #268435456
+  70 0048 0193     		str	r3, [sp, #4]
+  71 004a 019B     		ldr	r3, [sp, #4]
+  72 004c 0B68     		ldr	r3, [r1]
+  73 004e 23F40013 		bic	r3, r3, #2097152
+  74 0052 0B60     		str	r3, [r1]
+  75 0054 02B0     		add	sp, sp, #8
+  76              		@ sp needed
+  77 0056 7047     		bx	lr
+  78              	.L8:
+  79              		.align	2
+  80              	.L7:
+  81 0058 00380240 		.word	1073887232
+  82 005c 00700040 		.word	1073770496
+  84              		.align	2
+  85              		.global	HAL_FLASHEx_EnableFlashSleepMode
+  86              		.thumb
+  87              		.thumb_func
+  89              	HAL_FLASHEx_EnableFlashSleepMode:
+  90              		@ args = 0, pretend = 0, frame = 8
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92              		@ link register save eliminated.
+  93 0060 82B0     		sub	sp, sp, #8
+  94 0062 0020     		movs	r0, #0
+  95 0064 084B     		ldr	r3, .L11
+  96 0066 0190     		str	r0, [sp, #4]
+  97 0068 1A6C     		ldr	r2, [r3, #64]
+  98 006a 0849     		ldr	r1, .L11+4
+  99 006c 42F08052 		orr	r2, r2, #268435456
+ 100 0070 1A64     		str	r2, [r3, #64]
+ 101 0072 1B6C     		ldr	r3, [r3, #64]
+ 102 0074 03F08053 		and	r3, r3, #268435456
+ 103 0078 0193     		str	r3, [sp, #4]
+ 104 007a 019B     		ldr	r3, [sp, #4]
+ 105 007c 0B68     		ldr	r3, [r1]
+ 106 007e 43F48013 		orr	r3, r3, #1048576
+ 107 0082 0B60     		str	r3, [r1]
+ 108 0084 02B0     		add	sp, sp, #8
+ 109              		@ sp needed
+ 110 0086 7047     		bx	lr
+ 111              	.L12:
+ 112              		.align	2
+ 113              	.L11:
+ 114 0088 00380240 		.word	1073887232
+ 115 008c 00700040 		.word	1073770496
+ 117              		.align	2
+ 118              		.global	HAL_FLASHEx_DisableFlashSleepMode
+ 119              		.thumb
+ 120              		.thumb_func
+ARM GAS  /tmp/ccTUhwOC.s 			page 3
+
+
+ 122              	HAL_FLASHEx_DisableFlashSleepMode:
+ 123              		@ args = 0, pretend = 0, frame = 8
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125              		@ link register save eliminated.
+ 126 0090 82B0     		sub	sp, sp, #8
+ 127 0092 0020     		movs	r0, #0
+ 128 0094 084B     		ldr	r3, .L15
+ 129 0096 0190     		str	r0, [sp, #4]
+ 130 0098 1A6C     		ldr	r2, [r3, #64]
+ 131 009a 0849     		ldr	r1, .L15+4
+ 132 009c 42F08052 		orr	r2, r2, #268435456
+ 133 00a0 1A64     		str	r2, [r3, #64]
+ 134 00a2 1B6C     		ldr	r3, [r3, #64]
+ 135 00a4 03F08053 		and	r3, r3, #268435456
+ 136 00a8 0193     		str	r3, [sp, #4]
+ 137 00aa 019B     		ldr	r3, [sp, #4]
+ 138 00ac 0B68     		ldr	r3, [r1]
+ 139 00ae 23F48013 		bic	r3, r3, #1048576
+ 140 00b2 0B60     		str	r3, [r1]
+ 141 00b4 02B0     		add	sp, sp, #8
+ 142              		@ sp needed
+ 143 00b6 7047     		bx	lr
+ 144              	.L16:
+ 145              		.align	2
+ 146              	.L15:
+ 147 00b8 00380240 		.word	1073887232
+ 148 00bc 00700040 		.word	1073770496
+ 150              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
+ARM GAS  /tmp/ccTUhwOC.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_flash_ramfunc.c
+     /tmp/ccTUhwOC.s:18     .RamFunc:00000000 $t
+     /tmp/ccTUhwOC.s:23     .RamFunc:00000000 HAL_FLASHEx_StopFlashInterfaceClk
+     /tmp/ccTUhwOC.s:48     .RamFunc:00000028 $d
+     /tmp/ccTUhwOC.s:51     .RamFunc:00000030 $t
+     /tmp/ccTUhwOC.s:56     .RamFunc:00000030 HAL_FLASHEx_StartFlashInterfaceClk
+     /tmp/ccTUhwOC.s:81     .RamFunc:00000058 $d
+     /tmp/ccTUhwOC.s:84     .RamFunc:00000060 $t
+     /tmp/ccTUhwOC.s:89     .RamFunc:00000060 HAL_FLASHEx_EnableFlashSleepMode
+     /tmp/ccTUhwOC.s:114    .RamFunc:00000088 $d
+     /tmp/ccTUhwOC.s:117    .RamFunc:00000090 $t
+     /tmp/ccTUhwOC.s:122    .RamFunc:00000090 HAL_FLASHEx_DisableFlashSleepMode
+     /tmp/ccTUhwOC.s:147    .RamFunc:000000b8 $d
+
+NO UNDEFINED SYMBOLS

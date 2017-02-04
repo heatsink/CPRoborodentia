@@ -1,0 +1,74 @@
+ARM GAS  /tmp/ccBc07CV.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 2
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.syntax unified
+  16              		.file	"stm32f4xx_hal_msp.c"
+  17              		.section	.text.HAL_MspInit,"ax",%progbits
+  18              		.align	2
+  19              		.global	HAL_MspInit
+  20              		.thumb
+  21              		.thumb_func
+  23              	HAL_MspInit:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 0720     		movs	r0, #7
+  28 0004 FFF7FEFF 		bl	HAL_NVIC_SetPriorityGrouping
+  29 0008 0022     		movs	r2, #0
+  30 000a 1146     		mov	r1, r2
+  31 000c 6FF00B00 		mvn	r0, #11
+  32 0010 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  33 0014 0022     		movs	r2, #0
+  34 0016 1146     		mov	r1, r2
+  35 0018 6FF00A00 		mvn	r0, #10
+  36 001c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  37 0020 0022     		movs	r2, #0
+  38 0022 1146     		mov	r1, r2
+  39 0024 6FF00900 		mvn	r0, #9
+  40 0028 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  41 002c 0022     		movs	r2, #0
+  42 002e 1146     		mov	r1, r2
+  43 0030 6FF00400 		mvn	r0, #4
+  44 0034 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  45 0038 0022     		movs	r2, #0
+  46 003a 1146     		mov	r1, r2
+  47 003c 6FF00300 		mvn	r0, #3
+  48 0040 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  49 0044 0022     		movs	r2, #0
+  50 0046 1146     		mov	r1, r2
+  51 0048 6FF00100 		mvn	r0, #1
+  52 004c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  53 0050 0022     		movs	r2, #0
+  54 0052 1146     		mov	r1, r2
+  55 0054 4FF0FF30 		mov	r0, #-1
+  56 0058 BDE80840 		pop	{r3, lr}
+  57 005c FFF7FEBF 		b	HAL_NVIC_SetPriority
+  59              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
+ARM GAS  /tmp/ccBc07CV.s 			page 2
+
+
+ARM GAS  /tmp/ccBc07CV.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_msp.c
+     /tmp/ccBc07CV.s:18     .text.HAL_MspInit:00000000 $t
+     /tmp/ccBc07CV.s:23     .text.HAL_MspInit:00000000 HAL_MspInit
+
+UNDEFINED SYMBOLS
+HAL_NVIC_SetPriorityGrouping
+HAL_NVIC_SetPriority
