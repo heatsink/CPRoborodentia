@@ -1,0 +1,722 @@
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 2
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"stm32f4xx_hal_dma_ex.c"
+  16              		.section	.text.HAL_DMAEx_MultiBufferStart,"ax",%progbits
+  17              		.align	2
+  18              		.global	HAL_DMAEx_MultiBufferStart
+  19              		.thumb
+  20              		.thumb_func
+  22              	HAL_DMAEx_MultiBufferStart:
+  23              		@ args = 4, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 70B4     		push	{r4, r5, r6}
+  27 0002 8468     		ldr	r4, [r0, #8]
+  28 0004 802C     		cmp	r4, #128
+  29 0006 0DD0     		beq	.L10
+  30 0008 90F83450 		ldrb	r5, [r0, #52]	@ zero_extendqisi2
+  31 000c 012D     		cmp	r5, #1
+  32 000e 06D0     		beq	.L5
+  33 0010 90F83550 		ldrb	r5, [r0, #53]	@ zero_extendqisi2
+  34 0014 0126     		movs	r6, #1
+  35 0016 B542     		cmp	r5, r6
+  36 0018 80F83460 		strb	r6, [r0, #52]
+  37 001c 08D0     		beq	.L11
+  38              	.L5:
+  39 001e 0220     		movs	r0, #2
+  40 0020 70BC     		pop	{r4, r5, r6}
+  41 0022 7047     		bx	lr
+  42              	.L10:
+  43 0024 4FF48073 		mov	r3, #256
+  44 0028 4365     		str	r3, [r0, #84]
+  45 002a 70BC     		pop	{r4, r5, r6}
+  46 002c 0120     		movs	r0, #1
+  47 002e 7047     		bx	lr
+  48              	.L11:
+  49 0030 0568     		ldr	r5, [r0]
+  50 0032 0226     		movs	r6, #2
+  51 0034 80F83560 		strb	r6, [r0, #53]
+  52 0038 2868     		ldr	r0, [r5]
+  53 003a 40F48020 		orr	r0, r0, #262144
+  54 003e 2860     		str	r0, [r5]
+  55 0040 402C     		cmp	r4, #64
+  56 0042 2B61     		str	r3, [r5, #16]
+  57 0044 039B     		ldr	r3, [sp, #12]
+  58 0046 6B60     		str	r3, [r5, #4]
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 2
+
+
+  59 0048 0BBF     		itete	eq
+  60 004a AA60     		streq	r2, [r5, #8]
+  61 004c A960     		strne	r1, [r5, #8]
+  62 004e E960     		streq	r1, [r5, #12]
+  63 0050 EA60     		strne	r2, [r5, #12]
+  64 0052 2B68     		ldr	r3, [r5]
+  65 0054 43F00103 		orr	r3, r3, #1
+  66 0058 2B60     		str	r3, [r5]
+  67 005a 0020     		movs	r0, #0
+  68 005c 70BC     		pop	{r4, r5, r6}
+  69 005e 7047     		bx	lr
+  71              		.section	.text.HAL_DMAEx_MultiBufferStart_IT,"ax",%progbits
+  72              		.align	2
+  73              		.global	HAL_DMAEx_MultiBufferStart_IT
+  74              		.thumb
+  75              		.thumb_func
+  77              	HAL_DMAEx_MultiBufferStart_IT:
+  78              		@ args = 4, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              		@ link register save eliminated.
+  81 0000 F0B4     		push	{r4, r5, r6, r7}
+  82 0002 8468     		ldr	r4, [r0, #8]
+  83 0004 802C     		cmp	r4, #128
+  84 0006 1ED0     		beq	.L138
+  85 0008 C56B     		ldr	r5, [r0, #60]
+  86 000a BDB1     		cbz	r5, .L15
+  87 000c 456C     		ldr	r5, [r0, #68]
+  88 000e ADB1     		cbz	r5, .L15
+  89 0010 C56C     		ldr	r5, [r0, #76]
+  90 0012 9DB1     		cbz	r5, .L15
+  91 0014 90F83450 		ldrb	r5, [r0, #52]	@ zero_extendqisi2
+  92 0018 012D     		cmp	r5, #1
+  93 001a 0CD0     		beq	.L79
+  94 001c 90F83550 		ldrb	r5, [r0, #53]	@ zero_extendqisi2
+  95 0020 0126     		movs	r6, #1
+  96 0022 B542     		cmp	r5, r6
+  97 0024 80F83460 		strb	r6, [r0, #52]
+  98 0028 13D0     		beq	.L139
+  99 002a 0023     		movs	r3, #0
+ 100 002c 80F83430 		strb	r3, [r0, #52]
+ 101 0030 0220     		movs	r0, #2
+ 102              	.L129:
+ 103 0032 F0BC     		pop	{r4, r5, r6, r7}
+ 104 0034 7047     		bx	lr
+ 105              	.L79:
+ 106 0036 0220     		movs	r0, #2
+ 107 0038 F0BC     		pop	{r4, r5, r6, r7}
+ 108 003a 7047     		bx	lr
+ 109              	.L15:
+ 110 003c 4023     		movs	r3, #64
+ 111 003e 4365     		str	r3, [r0, #84]
+ 112 0040 F0BC     		pop	{r4, r5, r6, r7}
+ 113 0042 0120     		movs	r0, #1
+ 114 0044 7047     		bx	lr
+ 115              	.L138:
+ 116 0046 4FF48073 		mov	r3, #256
+ 117 004a 4365     		str	r3, [r0, #84]
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 3
+
+
+ 118 004c F0BC     		pop	{r4, r5, r6, r7}
+ 119 004e 0120     		movs	r0, #1
+ 120 0050 7047     		bx	lr
+ 121              	.L139:
+ 122 0052 0568     		ldr	r5, [r0]
+ 123 0054 0026     		movs	r6, #0
+ 124 0056 0227     		movs	r7, #2
+ 125 0058 80F83570 		strb	r7, [r0, #53]
+ 126 005c 4665     		str	r6, [r0, #84]
+ 127 005e 2E68     		ldr	r6, [r5]
+ 128 0060 46F48026 		orr	r6, r6, #262144
+ 129 0064 2E60     		str	r6, [r5]
+ 130 0066 2B61     		str	r3, [r5, #16]
+ 131 0068 049B     		ldr	r3, [sp, #16]
+ 132 006a 6B60     		str	r3, [r5, #4]
+ 133 006c 9E4B     		ldr	r3, .L153
+ 134 006e 402C     		cmp	r4, #64
+ 135 0070 0BBF     		itete	eq
+ 136 0072 AA60     		streq	r2, [r5, #8]
+ 137 0074 A960     		strne	r1, [r5, #8]
+ 138 0076 E960     		streq	r1, [r5, #12]
+ 139 0078 EA60     		strne	r2, [r5, #12]
+ 140 007a 9D42     		cmp	r5, r3
+ 141 007c 6FD8     		bhi	.L140
+ 142 007e 9B4B     		ldr	r3, .L153+4
+ 143 0080 9D42     		cmp	r5, r3
+ 144 0082 40F2C480 		bls	.L24
+ 145 0086 03F55673 		add	r3, r3, #856
+ 146 008a 9D42     		cmp	r5, r3
+ 147 008c 00F09B81 		beq	.L25
+ 148 0090 1833     		adds	r3, r3, #24
+ 149 0092 9D42     		cmp	r5, r3
+ 150 0094 00F0CF81 		beq	.L82
+ 151 0098 9549     		ldr	r1, .L153+8
+ 152 009a 8D42     		cmp	r5, r1
+ 153 009c 14BF     		ite	ne
+ 154 009e 4FF00061 		movne	r1, #134217728
+ 155 00a2 4FF40011 		moveq	r1, #2097152
+ 156              	.L26:
+ 157 00a6 934B     		ldr	r3, .L153+12
+ 158 00a8 934A     		ldr	r2, .L153+16
+ 159 00aa 9D42     		cmp	r5, r3
+ 160 00ac 9160     		str	r1, [r2, #8]
+ 161 00ae 00F08D81 		beq	.L133
+ 162 00b2 924B     		ldr	r3, .L153+20
+ 163 00b4 9D42     		cmp	r5, r3
+ 164 00b6 00F0C981 		beq	.L90
+ 165 00ba 8D49     		ldr	r1, .L153+8
+ 166 00bc 8D42     		cmp	r5, r1
+ 167 00be 14BF     		ite	ne
+ 168 00c0 4FF08061 		movne	r1, #67108864
+ 169 00c4 4FF48011 		moveq	r1, #1048576
+ 170              	.L41:
+ 171 00c8 8A4B     		ldr	r3, .L153+12
+ 172 00ca 8B4A     		ldr	r2, .L153+16
+ 173 00cc 9D42     		cmp	r5, r3
+ 174 00ce 9160     		str	r1, [r2, #8]
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 4
+
+
+ 175 00d0 00F0E981 		beq	.L141
+ 176 00d4 894B     		ldr	r3, .L153+20
+ 177 00d6 9D42     		cmp	r5, r3
+ 178 00d8 00F0B581 		beq	.L98
+ 179 00dc 8449     		ldr	r1, .L153+8
+ 180 00de 8D42     		cmp	r5, r1
+ 181 00e0 14BF     		ite	ne
+ 182 00e2 4FF00071 		movne	r1, #33554432
+ 183 00e6 4FF40021 		moveq	r1, #524288
+ 184              	.L53:
+ 185 00ea 824B     		ldr	r3, .L153+12
+ 186 00ec 824A     		ldr	r2, .L153+16
+ 187 00ee 9D42     		cmp	r5, r3
+ 188 00f0 9160     		str	r1, [r2, #8]
+ 189 00f2 00F0CA81 		beq	.L142
+ 190 00f6 814B     		ldr	r3, .L153+20
+ 191 00f8 9D42     		cmp	r5, r3
+ 192 00fa 00F09F81 		beq	.L106
+ 193 00fe 7C49     		ldr	r1, .L153+8
+ 194 0100 8D42     		cmp	r5, r1
+ 195 0102 14BF     		ite	ne
+ 196 0104 4FF08071 		movne	r1, #16777216
+ 197 0108 4FF48021 		moveq	r1, #262144
+ 198              	.L65:
+ 199 010c 794B     		ldr	r3, .L153+12
+ 200 010e 7A4A     		ldr	r2, .L153+16
+ 201 0110 9D42     		cmp	r5, r3
+ 202 0112 9160     		str	r1, [r2, #8]
+ 203 0114 00F0C381 		beq	.L143
+ 204 0118 784B     		ldr	r3, .L153+20
+ 205 011a 9D42     		cmp	r5, r3
+ 206 011c 00F09181 		beq	.L114
+ 207 0120 734A     		ldr	r2, .L153+8
+ 208 0122 9542     		cmp	r5, r2
+ 209 0124 0CBF     		ite	eq
+ 210 0126 4FF48032 		moveq	r2, #65536
+ 211 012a 4FF48002 		movne	r2, #4194304
+ 212              	.L67:
+ 213 012e 724B     		ldr	r3, .L153+16
+ 214 0130 9A60     		str	r2, [r3, #8]
+ 215              	.L74:
+ 216 0132 2B68     		ldr	r3, [r5]
+ 217 0134 026C     		ldr	r2, [r0, #64]
+ 218 0136 43F01603 		orr	r3, r3, #22
+ 219 013a 2B60     		str	r3, [r5]
+ 220 013c 6B69     		ldr	r3, [r5, #20]
+ 221 013e 43F08003 		orr	r3, r3, #128
+ 222 0142 6B61     		str	r3, [r5, #20]
+ 223 0144 002A     		cmp	r2, #0
+ 224 0146 00F0BC80 		beq	.L144
+ 225              	.L75:
+ 226 014a 2B68     		ldr	r3, [r5]
+ 227 014c 43F00803 		orr	r3, r3, #8
+ 228 0150 2B60     		str	r3, [r5]
+ 229              	.L76:
+ 230 0152 2B68     		ldr	r3, [r5]
+ 231 0154 43F00103 		orr	r3, r3, #1
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 5
+
+
+ 232 0158 2B60     		str	r3, [r5]
+ 233 015a 0020     		movs	r0, #0
+ 234 015c 69E7     		b	.L129
+ 235              	.L140:
+ 236 015e 684B     		ldr	r3, .L153+24
+ 237 0160 9D42     		cmp	r5, r3
+ 238 0162 00F0B380 		beq	.L20
+ 239 0166 1833     		adds	r3, r3, #24
+ 240 0168 9D42     		cmp	r5, r3
+ 241 016a 00F05C81 		beq	.L80
+ 242 016e 6549     		ldr	r1, .L153+28
+ 243 0170 8D42     		cmp	r5, r1
+ 244 0172 14BF     		ite	ne
+ 245 0174 4FF00061 		movne	r1, #134217728
+ 246 0178 4FF40011 		moveq	r1, #2097152
+ 247              	.L21:
+ 248 017c 604B     		ldr	r3, .L153+24
+ 249 017e 5E4A     		ldr	r2, .L153+16
+ 250 0180 9D42     		cmp	r5, r3
+ 251 0182 D160     		str	r1, [r2, #12]
+ 252 0184 00F0A580 		beq	.L132
+ 253 0188 5F4B     		ldr	r3, .L153+32
+ 254 018a 9D42     		cmp	r5, r3
+ 255 018c 00F04581 		beq	.L88
+ 256 0190 5C49     		ldr	r1, .L153+28
+ 257 0192 8D42     		cmp	r5, r1
+ 258 0194 14BF     		ite	ne
+ 259 0196 4FF08061 		movne	r1, #67108864
+ 260 019a 4FF48011 		moveq	r1, #1048576
+ 261              	.L38:
+ 262 019e 584B     		ldr	r3, .L153+24
+ 263 01a0 554A     		ldr	r2, .L153+16
+ 264 01a2 9D42     		cmp	r5, r3
+ 265 01a4 D160     		str	r1, [r2, #12]
+ 266 01a6 08BF     		it	eq
+ 267 01a8 0822     		moveq	r2, #8
+ 268 01aa 00F09680 		beq	.L40
+ 269 01ae 564B     		ldr	r3, .L153+32
+ 270 01b0 9D42     		cmp	r5, r3
+ 271 01b2 00F03581 		beq	.L96
+ 272 01b6 5349     		ldr	r1, .L153+28
+ 273 01b8 8D42     		cmp	r5, r1
+ 274 01ba 14BF     		ite	ne
+ 275 01bc 4FF00071 		movne	r1, #33554432
+ 276 01c0 4FF40021 		moveq	r1, #524288
+ 277              	.L50:
+ 278 01c4 4E4B     		ldr	r3, .L153+24
+ 279 01c6 4C4A     		ldr	r2, .L153+16
+ 280 01c8 9D42     		cmp	r5, r3
+ 281 01ca D160     		str	r1, [r2, #12]
+ 282 01cc 00F06F81 		beq	.L145
+ 283 01d0 4D4B     		ldr	r3, .L153+32
+ 284 01d2 9D42     		cmp	r5, r3
+ 285 01d4 00F02A81 		beq	.L104
+ 286 01d8 4A49     		ldr	r1, .L153+28
+ 287 01da 8D42     		cmp	r5, r1
+ 288 01dc 14BF     		ite	ne
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 6
+
+
+ 289 01de 4FF08071 		movne	r1, #16777216
+ 290 01e2 4FF48021 		moveq	r1, #262144
+ 291              	.L62:
+ 292 01e6 464B     		ldr	r3, .L153+24
+ 293 01e8 434A     		ldr	r2, .L153+16
+ 294 01ea 9D42     		cmp	r5, r3
+ 295 01ec D160     		str	r1, [r2, #12]
+ 296 01ee 00F06081 		beq	.L146
+ 297 01f2 454B     		ldr	r3, .L153+32
+ 298 01f4 9D42     		cmp	r5, r3
+ 299 01f6 00F01C81 		beq	.L112
+ 300 01fa 424A     		ldr	r2, .L153+28
+ 301 01fc 9542     		cmp	r5, r2
+ 302 01fe 0CBF     		ite	eq
+ 303 0200 4FF48032 		moveq	r2, #65536
+ 304 0204 4FF48002 		movne	r2, #4194304
+ 305              	.L64:
+ 306 0208 3B4B     		ldr	r3, .L153+16
+ 307 020a DA60     		str	r2, [r3, #12]
+ 308 020c 91E7     		b	.L74
+ 309              	.L24:
+ 310 020e 3F4B     		ldr	r3, .L153+36
+ 311 0210 9D42     		cmp	r5, r3
+ 312 0212 40F28980 		bls	.L29
+ 313 0216 1833     		adds	r3, r3, #24
+ 314 0218 9D42     		cmp	r5, r3
+ 315 021a 00F0E280 		beq	.L30
+ 316 021e 1833     		adds	r3, r3, #24
+ 317 0220 9D42     		cmp	r5, r3
+ 318 0222 00F02481 		beq	.L84
+ 319 0226 3A49     		ldr	r1, .L153+40
+ 320 0228 8D42     		cmp	r5, r1
+ 321 022a 14BF     		ite	ne
+ 322 022c 4FF00061 		movne	r1, #134217728
+ 323 0230 4FF40011 		moveq	r1, #2097152
+ 324              	.L31:
+ 325 0234 374B     		ldr	r3, .L153+44
+ 326 0236 384A     		ldr	r2, .L153+48
+ 327 0238 9D42     		cmp	r5, r3
+ 328 023a D160     		str	r1, [r2, #12]
+ 329 023c 00F0D480 		beq	.L134
+ 330 0240 364B     		ldr	r3, .L153+52
+ 331 0242 9D42     		cmp	r5, r3
+ 332 0244 00F01981 		beq	.L92
+ 333 0248 3149     		ldr	r1, .L153+40
+ 334 024a 8D42     		cmp	r5, r1
+ 335 024c 14BF     		ite	ne
+ 336 024e 4FF08061 		movne	r1, #67108864
+ 337 0252 4FF48011 		moveq	r1, #1048576
+ 338              	.L44:
+ 339 0256 2F4B     		ldr	r3, .L153+44
+ 340 0258 2F4A     		ldr	r2, .L153+48
+ 341 025a 9D42     		cmp	r5, r3
+ 342 025c D160     		str	r1, [r2, #12]
+ 343 025e 00F01681 		beq	.L147
+ 344 0262 2E4B     		ldr	r3, .L153+52
+ 345 0264 9D42     		cmp	r5, r3
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 7
+
+
+ 346 0266 00F00581 		beq	.L100
+ 347 026a 2949     		ldr	r1, .L153+40
+ 348 026c 8D42     		cmp	r5, r1
+ 349 026e 14BF     		ite	ne
+ 350 0270 4FF00071 		movne	r1, #33554432
+ 351 0274 4FF40021 		moveq	r1, #524288
+ 352              	.L56:
+ 353 0278 264B     		ldr	r3, .L153+44
+ 354 027a 274A     		ldr	r2, .L153+48
+ 355 027c 9D42     		cmp	r5, r3
+ 356 027e D160     		str	r1, [r2, #12]
+ 357 0280 00F00F81 		beq	.L148
+ 358 0284 254B     		ldr	r3, .L153+52
+ 359 0286 9D42     		cmp	r5, r3
+ 360 0288 00F0FA80 		beq	.L108
+ 361 028c 2049     		ldr	r1, .L153+40
+ 362 028e 8D42     		cmp	r5, r1
+ 363 0290 14BF     		ite	ne
+ 364 0292 4FF08071 		movne	r1, #16777216
+ 365 0296 4FF48021 		moveq	r1, #262144
+ 366              	.L68:
+ 367 029a 1E4B     		ldr	r3, .L153+44
+ 368 029c 1E4A     		ldr	r2, .L153+48
+ 369 029e 9D42     		cmp	r5, r3
+ 370 02a0 D160     		str	r1, [r2, #12]
+ 371 02a2 00F0F680 		beq	.L149
+ 372 02a6 1D4B     		ldr	r3, .L153+52
+ 373 02a8 9D42     		cmp	r5, r3
+ 374 02aa 00F0EC80 		beq	.L116
+ 375 02ae 184A     		ldr	r2, .L153+40
+ 376 02b0 9542     		cmp	r5, r2
+ 377 02b2 0CBF     		ite	eq
+ 378 02b4 4FF48032 		moveq	r2, #65536
+ 379 02b8 4FF48002 		movne	r2, #4194304
+ 380              	.L70:
+ 381 02bc 164B     		ldr	r3, .L153+48
+ 382 02be DA60     		str	r2, [r3, #12]
+ 383 02c0 37E7     		b	.L74
+ 384              	.L144:
+ 385 02c2 836C     		ldr	r3, [r0, #72]
+ 386 02c4 002B     		cmp	r3, #0
+ 387 02c6 7FF440AF 		bne	.L75
+ 388 02ca 42E7     		b	.L76
+ 389              	.L20:
+ 390 02cc 0A4B     		ldr	r3, .L153+16
+ 391 02ce 2022     		movs	r2, #32
+ 392 02d0 DA60     		str	r2, [r3, #12]
+ 393              	.L132:
+ 394 02d2 094B     		ldr	r3, .L153+16
+ 395 02d4 1021     		movs	r1, #16
+ 396 02d6 0822     		movs	r2, #8
+ 397 02d8 D960     		str	r1, [r3, #12]
+ 398              	.L40:
+ 399 02da 0749     		ldr	r1, .L153+16
+ 400 02dc 104B     		ldr	r3, .L153+56
+ 401 02de CA60     		str	r2, [r1, #12]
+ 402              	.L52:
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 8
+
+
+ 403 02e0 0549     		ldr	r1, .L153+16
+ 404 02e2 104A     		ldr	r2, .L153+60
+ 405 02e4 CB60     		str	r3, [r1, #12]
+ 406 02e6 8FE7     		b	.L64
+ 407              	.L154:
+ 408              		.align	2
+ 409              	.L153:
+ 410 02e8 58640240 		.word	1073898584
+ 411 02ec B8600240 		.word	1073897656
+ 412 02f0 40640240 		.word	1073898560
+ 413 02f4 10640240 		.word	1073898512
+ 414 02f8 00640240 		.word	1073898496
+ 415 02fc 28640240 		.word	1073898536
+ 416 0300 70640240 		.word	1073898608
+ 417 0304 A0640240 		.word	1073898656
+ 418 0308 88640240 		.word	1073898632
+ 419 030c 58600240 		.word	1073897560
+ 420 0310 A0600240 		.word	1073897632
+ 421 0314 70600240 		.word	1073897584
+ 422 0318 00600240 		.word	1073897472
+ 423 031c 88600240 		.word	1073897608
+ 424 0320 04008000 		.word	8388612
+ 425 0324 01008000 		.word	8388609
+ 426              	.L29:
+ 427 0328 634B     		ldr	r3, .L155
+ 428 032a 9D42     		cmp	r5, r3
+ 429 032c 67D0     		beq	.L34
+ 430 032e 1833     		adds	r3, r3, #24
+ 431 0330 9D42     		cmp	r5, r3
+ 432 0332 00F09180 		beq	.L86
+ 433 0336 6149     		ldr	r1, .L155+4
+ 434 0338 8D42     		cmp	r5, r1
+ 435 033a 14BF     		ite	ne
+ 436 033c 4FF00061 		movne	r1, #134217728
+ 437 0340 4FF40011 		moveq	r1, #2097152
+ 438              	.L35:
+ 439 0344 5C4B     		ldr	r3, .L155
+ 440 0346 5E4A     		ldr	r2, .L155+8
+ 441 0348 9D42     		cmp	r5, r3
+ 442 034a 9160     		str	r1, [r2, #8]
+ 443 034c 5AD0     		beq	.L135
+ 444 034e 5D4B     		ldr	r3, .L155+12
+ 445 0350 9D42     		cmp	r5, r3
+ 446 0352 7ED0     		beq	.L94
+ 447 0354 5949     		ldr	r1, .L155+4
+ 448 0356 8D42     		cmp	r5, r1
+ 449 0358 14BF     		ite	ne
+ 450 035a 4FF08061 		movne	r1, #67108864
+ 451 035e 4FF48011 		moveq	r1, #1048576
+ 452              	.L47:
+ 453 0362 554B     		ldr	r3, .L155
+ 454 0364 564A     		ldr	r2, .L155+8
+ 455 0366 9D42     		cmp	r5, r3
+ 456 0368 9160     		str	r1, [r2, #8]
+ 457 036a 00F09680 		beq	.L150
+ 458 036e 554B     		ldr	r3, .L155+12
+ 459 0370 9D42     		cmp	r5, r3
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 9
+
+
+ 460 0372 79D0     		beq	.L102
+ 461 0374 5149     		ldr	r1, .L155+4
+ 462 0376 8D42     		cmp	r5, r1
+ 463 0378 14BF     		ite	ne
+ 464 037a 4FF00071 		movne	r1, #33554432
+ 465 037e 4FF40021 		moveq	r1, #524288
+ 466              	.L59:
+ 467 0382 4D4B     		ldr	r3, .L155
+ 468 0384 4E4A     		ldr	r2, .L155+8
+ 469 0386 9D42     		cmp	r5, r3
+ 470 0388 9160     		str	r1, [r2, #8]
+ 471 038a 00F08480 		beq	.L151
+ 472 038e 4D4B     		ldr	r3, .L155+12
+ 473 0390 9D42     		cmp	r5, r3
+ 474 0392 66D0     		beq	.L110
+ 475 0394 4949     		ldr	r1, .L155+4
+ 476 0396 8D42     		cmp	r5, r1
+ 477 0398 14BF     		ite	ne
+ 478 039a 4FF08071 		movne	r1, #16777216
+ 479 039e 4FF48021 		moveq	r1, #262144
+ 480              	.L71:
+ 481 03a2 454B     		ldr	r3, .L155
+ 482 03a4 464A     		ldr	r2, .L155+8
+ 483 03a6 9D42     		cmp	r5, r3
+ 484 03a8 9160     		str	r1, [r2, #8]
+ 485 03aa 7ED0     		beq	.L152
+ 486 03ac 454B     		ldr	r3, .L155+12
+ 487 03ae 9D42     		cmp	r5, r3
+ 488 03b0 55D0     		beq	.L118
+ 489 03b2 424A     		ldr	r2, .L155+4
+ 490 03b4 9542     		cmp	r5, r2
+ 491 03b6 0CBF     		ite	eq
+ 492 03b8 4FF48032 		moveq	r2, #65536
+ 493 03bc 4FF48002 		movne	r2, #4194304
+ 494              	.L73:
+ 495 03c0 3F4B     		ldr	r3, .L155+8
+ 496 03c2 9A60     		str	r2, [r3, #8]
+ 497 03c4 B5E6     		b	.L74
+ 498              	.L25:
+ 499 03c6 404B     		ldr	r3, .L155+16
+ 500 03c8 2022     		movs	r2, #32
+ 501 03ca 9A60     		str	r2, [r3, #8]
+ 502              	.L133:
+ 503 03cc 3E4B     		ldr	r3, .L155+16
+ 504 03ce 1021     		movs	r1, #16
+ 505 03d0 0822     		movs	r2, #8
+ 506 03d2 9960     		str	r1, [r3, #8]
+ 507              	.L43:
+ 508 03d4 3C49     		ldr	r1, .L155+16
+ 509 03d6 3D4B     		ldr	r3, .L155+20
+ 510 03d8 8A60     		str	r2, [r1, #8]
+ 511              	.L55:
+ 512 03da 3B49     		ldr	r1, .L155+16
+ 513 03dc 3C4A     		ldr	r2, .L155+24
+ 514 03de 8B60     		str	r3, [r1, #8]
+ 515 03e0 A5E6     		b	.L67
+ 516              	.L30:
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 10
+
+
+ 517 03e2 374B     		ldr	r3, .L155+8
+ 518 03e4 2022     		movs	r2, #32
+ 519 03e6 DA60     		str	r2, [r3, #12]
+ 520              	.L134:
+ 521 03e8 354B     		ldr	r3, .L155+8
+ 522 03ea 1021     		movs	r1, #16
+ 523 03ec 0822     		movs	r2, #8
+ 524 03ee D960     		str	r1, [r3, #12]
+ 525              	.L46:
+ 526 03f0 3349     		ldr	r1, .L155+8
+ 527 03f2 364B     		ldr	r3, .L155+20
+ 528 03f4 CA60     		str	r2, [r1, #12]
+ 529              	.L58:
+ 530 03f6 3249     		ldr	r1, .L155+8
+ 531 03f8 354A     		ldr	r2, .L155+24
+ 532 03fa CB60     		str	r3, [r1, #12]
+ 533 03fc 5EE7     		b	.L70
+ 534              	.L34:
+ 535 03fe 304B     		ldr	r3, .L155+8
+ 536 0400 2022     		movs	r2, #32
+ 537 0402 9A60     		str	r2, [r3, #8]
+ 538              	.L135:
+ 539 0404 2E49     		ldr	r1, .L155+8
+ 540 0406 1023     		movs	r3, #16
+ 541 0408 0822     		movs	r2, #8
+ 542 040a 8B60     		str	r3, [r1, #8]
+ 543              	.L49:
+ 544 040c 2C49     		ldr	r1, .L155+8
+ 545 040e 2F4B     		ldr	r3, .L155+20
+ 546 0410 8A60     		str	r2, [r1, #8]
+ 547              	.L61:
+ 548 0412 2B49     		ldr	r1, .L155+8
+ 549 0414 2E4A     		ldr	r2, .L155+24
+ 550 0416 8B60     		str	r3, [r1, #8]
+ 551 0418 D2E7     		b	.L73
+ 552              	.L88:
+ 553 041a 4FF48061 		mov	r1, #1024
+ 554 041e BEE6     		b	.L38
+ 555              	.L96:
+ 556 0420 4FF40071 		mov	r1, #512
+ 557 0424 CEE6     		b	.L50
+ 558              	.L80:
+ 559 0426 4FF40061 		mov	r1, #2048
+ 560 042a A7E6     		b	.L21
+ 561              	.L104:
+ 562 042c 4FF48071 		mov	r1, #256
+ 563 0430 D9E6     		b	.L62
+ 564              	.L112:
+ 565 0432 4022     		movs	r2, #64
+ 566 0434 E8E6     		b	.L64
+ 567              	.L82:
+ 568 0436 4FF40061 		mov	r1, #2048
+ 569 043a 34E6     		b	.L26
+ 570              	.L106:
+ 571 043c 4FF48071 		mov	r1, #256
+ 572 0440 64E6     		b	.L65
+ 573              	.L114:
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 11
+
+
+ 574 0442 4022     		movs	r2, #64
+ 575 0444 73E6     		b	.L67
+ 576              	.L98:
+ 577 0446 4FF40071 		mov	r1, #512
+ 578 044a 4EE6     		b	.L53
+ 579              	.L90:
+ 580 044c 4FF48061 		mov	r1, #1024
+ 581 0450 3AE6     		b	.L41
+ 582              	.L94:
+ 583 0452 4FF48061 		mov	r1, #1024
+ 584 0456 84E7     		b	.L47
+ 585              	.L86:
+ 586 0458 4FF40061 		mov	r1, #2048
+ 587 045c 72E7     		b	.L35
+ 588              	.L118:
+ 589 045e 4022     		movs	r2, #64
+ 590 0460 AEE7     		b	.L73
+ 591              	.L110:
+ 592 0462 4FF48071 		mov	r1, #256
+ 593 0466 9CE7     		b	.L71
+ 594              	.L102:
+ 595 0468 4FF40071 		mov	r1, #512
+ 596 046c 89E7     		b	.L59
+ 597              	.L84:
+ 598 046e 4FF40061 		mov	r1, #2048
+ 599 0472 DFE6     		b	.L31
+ 600              	.L100:
+ 601 0474 4FF40071 		mov	r1, #512
+ 602 0478 FEE6     		b	.L56
+ 603              	.L92:
+ 604 047a 4FF48061 		mov	r1, #1024
+ 605 047e EAE6     		b	.L44
+ 606              	.L108:
+ 607 0480 4FF48071 		mov	r1, #256
+ 608 0484 09E7     		b	.L68
+ 609              	.L116:
+ 610 0486 4022     		movs	r2, #64
+ 611 0488 18E7     		b	.L70
+ 612              	.L142:
+ 613 048a 104B     		ldr	r3, .L155+20
+ 614 048c A5E7     		b	.L55
+ 615              	.L147:
+ 616 048e 0822     		movs	r2, #8
+ 617 0490 AEE7     		b	.L46
+ 618              	.L149:
+ 619 0492 0F4A     		ldr	r2, .L155+24
+ 620 0494 12E7     		b	.L70
+ 621              	.L151:
+ 622 0496 0D4B     		ldr	r3, .L155+20
+ 623 0498 BBE7     		b	.L61
+ 624              	.L150:
+ 625 049a 0822     		movs	r2, #8
+ 626 049c B6E7     		b	.L49
+ 627              	.L143:
+ 628 049e 0C4A     		ldr	r2, .L155+24
+ 629 04a0 45E6     		b	.L67
+ 630              	.L148:
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 12
+
+
+ 631 04a2 0A4B     		ldr	r3, .L155+20
+ 632 04a4 A7E7     		b	.L58
+ 633              	.L141:
+ 634 04a6 0822     		movs	r2, #8
+ 635 04a8 94E7     		b	.L43
+ 636              	.L152:
+ 637 04aa 094A     		ldr	r2, .L155+24
+ 638 04ac 88E7     		b	.L73
+ 639              	.L145:
+ 640 04ae 074B     		ldr	r3, .L155+20
+ 641 04b0 16E7     		b	.L52
+ 642              	.L146:
+ 643 04b2 074A     		ldr	r2, .L155+24
+ 644 04b4 A8E6     		b	.L64
+ 645              	.L156:
+ 646 04b6 00BF     		.align	2
+ 647              	.L155:
+ 648 04b8 10600240 		.word	1073897488
+ 649 04bc 40600240 		.word	1073897536
+ 650 04c0 00600240 		.word	1073897472
+ 651 04c4 28600240 		.word	1073897512
+ 652 04c8 00640240 		.word	1073898496
+ 653 04cc 04008000 		.word	8388612
+ 654 04d0 01008000 		.word	8388609
+ 656              		.section	.text.HAL_DMAEx_ChangeMemory,"ax",%progbits
+ 657              		.align	2
+ 658              		.global	HAL_DMAEx_ChangeMemory
+ 659              		.thumb
+ 660              		.thumb_func
+ 662              	HAL_DMAEx_ChangeMemory:
+ 663              		@ args = 0, pretend = 0, frame = 0
+ 664              		@ frame_needed = 0, uses_anonymous_args = 0
+ 665              		@ link register save eliminated.
+ 666 0000 0368     		ldr	r3, [r0]
+ 667 0002 12B1     		cbz	r2, .L160
+ 668 0004 1961     		str	r1, [r3, #16]
+ 669 0006 0020     		movs	r0, #0
+ 670 0008 7047     		bx	lr
+ 671              	.L160:
+ 672 000a D960     		str	r1, [r3, #12]
+ 673 000c 0020     		movs	r0, #0
+ 674 000e 7047     		bx	lr
+ 676              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150529 (release) [ARM/embedded-4_9-br
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_hal_dma_ex.c
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:17     .text.HAL_DMAEx_MultiBufferStart:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:22     .text.HAL_DMAEx_MultiBufferStart:0000000000000000 HAL_DMAEx_MultiBufferStart
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:72     .text.HAL_DMAEx_MultiBufferStart_IT:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:77     .text.HAL_DMAEx_MultiBufferStart_IT:0000000000000000 HAL_DMAEx_MultiBufferStart_IT
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:410    .text.HAL_DMAEx_MultiBufferStart_IT:00000000000002e8 $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:427    .text.HAL_DMAEx_MultiBufferStart_IT:0000000000000328 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:648    .text.HAL_DMAEx_MultiBufferStart_IT:00000000000004b8 $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:657    .text.HAL_DMAEx_ChangeMemory:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccCetkJ4.s:662    .text.HAL_DMAEx_ChangeMemory:0000000000000000 HAL_DMAEx_ChangeMemory
+
+NO UNDEFINED SYMBOLS

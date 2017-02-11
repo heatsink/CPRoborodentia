@@ -1,0 +1,515 @@
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 2
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"stm32f4xx_hal.c"
+  16              		.section	.text.HAL_MspInit,"ax",%progbits
+  17              		.align	2
+  18              		.weak	HAL_MspInit
+  19              		.thumb
+  20              		.thumb_func
+  22              	HAL_MspInit:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 7047     		bx	lr
+  28 0002 00BF     		.section	.text.HAL_MspDeInit,"ax",%progbits
+  29              		.align	2
+  30              		.weak	HAL_MspDeInit
+  31              		.thumb
+  32              		.thumb_func
+  34              	HAL_MspDeInit:
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 0, uses_anonymous_args = 0
+  37              		@ link register save eliminated.
+  38 0000 7047     		bx	lr
+  40 0002 00BF     		.section	.text.HAL_DeInit,"ax",%progbits
+  41              		.align	2
+  42              		.global	HAL_DeInit
+  43              		.thumb
+  44              		.thumb_func
+  46              	HAL_DeInit:
+  47              		@ args = 0, pretend = 0, frame = 0
+  48              		@ frame_needed = 0, uses_anonymous_args = 0
+  49 0000 10B5     		push	{r4, lr}
+  50 0002 094B     		ldr	r3, .L5
+  51 0004 4FF0FF32 		mov	r2, #-1
+  52 0008 0024     		movs	r4, #0
+  53 000a 1A62     		str	r2, [r3, #32]
+  54 000c 1C62     		str	r4, [r3, #32]
+  55 000e 5A62     		str	r2, [r3, #36]
+  56 0010 5C62     		str	r4, [r3, #36]
+  57 0012 1A61     		str	r2, [r3, #16]
+  58 0014 1C61     		str	r4, [r3, #16]
+  59 0016 5A61     		str	r2, [r3, #20]
+  60 0018 5C61     		str	r4, [r3, #20]
+  61 001a 9A61     		str	r2, [r3, #24]
+  62 001c 9C61     		str	r4, [r3, #24]
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 2
+
+
+  63 001e FFF7FEFF 		bl	HAL_MspDeInit
+  64 0022 2046     		mov	r0, r4
+  65 0024 10BD     		pop	{r4, pc}
+  66              	.L6:
+  67 0026 00BF     		.align	2
+  68              	.L5:
+  69 0028 00380240 		.word	1073887232
+  71              		.section	.text.HAL_InitTick,"ax",%progbits
+  72              		.align	2
+  73              		.weak	HAL_InitTick
+  74              		.thumb
+  75              		.thumb_func
+  77              	HAL_InitTick:
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80 0000 084B     		ldr	r3, .L9
+  81 0002 094A     		ldr	r2, .L9+4
+  82 0004 1B68     		ldr	r3, [r3]
+  83 0006 10B5     		push	{r4, lr}
+  84 0008 A2FB0323 		umull	r2, r3, r2, r3
+  85 000c 0446     		mov	r4, r0
+  86 000e 9809     		lsrs	r0, r3, #6
+  87 0010 FFF7FEFF 		bl	HAL_SYSTICK_Config
+  88 0014 2146     		mov	r1, r4
+  89 0016 4FF0FF30 		mov	r0, #-1
+  90 001a 0022     		movs	r2, #0
+  91 001c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  92 0020 0020     		movs	r0, #0
+  93 0022 10BD     		pop	{r4, pc}
+  94              	.L10:
+  95              		.align	2
+  96              	.L9:
+  97 0024 00000000 		.word	SystemCoreClock
+  98 0028 D34D6210 		.word	274877907
+ 100              		.section	.text.HAL_Init,"ax",%progbits
+ 101              		.align	2
+ 102              		.global	HAL_Init
+ 103              		.thumb
+ 104              		.thumb_func
+ 106              	HAL_Init:
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109 0000 08B5     		push	{r3, lr}
+ 110 0002 0B4B     		ldr	r3, .L13
+ 111 0004 1A68     		ldr	r2, [r3]
+ 112 0006 42F40072 		orr	r2, r2, #512
+ 113 000a 1A60     		str	r2, [r3]
+ 114 000c 1A68     		ldr	r2, [r3]
+ 115 000e 42F48062 		orr	r2, r2, #1024
+ 116 0012 1A60     		str	r2, [r3]
+ 117 0014 1A68     		ldr	r2, [r3]
+ 118 0016 42F48072 		orr	r2, r2, #256
+ 119 001a 1A60     		str	r2, [r3]
+ 120 001c 0320     		movs	r0, #3
+ 121 001e FFF7FEFF 		bl	HAL_NVIC_SetPriorityGrouping
+ 122 0022 0020     		movs	r0, #0
+ 123 0024 FFF7FEFF 		bl	HAL_InitTick
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 3
+
+
+ 124 0028 FFF7FEFF 		bl	HAL_MspInit
+ 125 002c 0020     		movs	r0, #0
+ 126 002e 08BD     		pop	{r3, pc}
+ 127              	.L14:
+ 128              		.align	2
+ 129              	.L13:
+ 130 0030 003C0240 		.word	1073888256
+ 132              		.section	.text.HAL_IncTick,"ax",%progbits
+ 133              		.align	2
+ 134              		.weak	HAL_IncTick
+ 135              		.thumb
+ 136              		.thumb_func
+ 138              	HAL_IncTick:
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141              		@ link register save eliminated.
+ 142 0000 024A     		ldr	r2, .L16
+ 143 0002 1368     		ldr	r3, [r2]
+ 144 0004 0133     		adds	r3, r3, #1
+ 145 0006 1360     		str	r3, [r2]
+ 146 0008 7047     		bx	lr
+ 147              	.L17:
+ 148 000a 00BF     		.align	2
+ 149              	.L16:
+ 150 000c 00000000 		.word	uwTick
+ 152              		.section	.text.HAL_GetTick,"ax",%progbits
+ 153              		.align	2
+ 154              		.weak	HAL_GetTick
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	HAL_GetTick:
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 161              		@ link register save eliminated.
+ 162 0000 014B     		ldr	r3, .L19
+ 163 0002 1868     		ldr	r0, [r3]
+ 164 0004 7047     		bx	lr
+ 165              	.L20:
+ 166 0006 00BF     		.align	2
+ 167              	.L19:
+ 168 0008 00000000 		.word	uwTick
+ 170              		.section	.text.HAL_Delay,"ax",%progbits
+ 171              		.align	2
+ 172              		.weak	HAL_Delay
+ 173              		.thumb
+ 174              		.thumb_func
+ 176              	HAL_Delay:
+ 177              		@ args = 0, pretend = 0, frame = 8
+ 178              		@ frame_needed = 0, uses_anonymous_args = 0
+ 179 0000 10B5     		push	{r4, lr}
+ 180 0002 82B0     		sub	sp, sp, #8
+ 181 0004 0190     		str	r0, [sp, #4]
+ 182 0006 FFF7FEFF 		bl	HAL_GetTick
+ 183 000a 0446     		mov	r4, r0
+ 184              	.L22:
+ 185 000c FFF7FEFF 		bl	HAL_GetTick
+ 186 0010 019B     		ldr	r3, [sp, #4]
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 4
+
+
+ 187 0012 001B     		subs	r0, r0, r4
+ 188 0014 9842     		cmp	r0, r3
+ 189 0016 F9D3     		bcc	.L22
+ 190 0018 02B0     		add	sp, sp, #8
+ 191              		@ sp needed
+ 192 001a 10BD     		pop	{r4, pc}
+ 194              		.section	.text.HAL_SuspendTick,"ax",%progbits
+ 195              		.align	2
+ 196              		.weak	HAL_SuspendTick
+ 197              		.thumb
+ 198              		.thumb_func
+ 200              	HAL_SuspendTick:
+ 201              		@ args = 0, pretend = 0, frame = 0
+ 202              		@ frame_needed = 0, uses_anonymous_args = 0
+ 203              		@ link register save eliminated.
+ 204 0000 024A     		ldr	r2, .L27
+ 205 0002 1368     		ldr	r3, [r2]
+ 206 0004 23F00203 		bic	r3, r3, #2
+ 207 0008 1360     		str	r3, [r2]
+ 208 000a 7047     		bx	lr
+ 209              	.L28:
+ 210              		.align	2
+ 211              	.L27:
+ 212 000c 10E000E0 		.word	-536813552
+ 214              		.section	.text.HAL_ResumeTick,"ax",%progbits
+ 215              		.align	2
+ 216              		.weak	HAL_ResumeTick
+ 217              		.thumb
+ 218              		.thumb_func
+ 220              	HAL_ResumeTick:
+ 221              		@ args = 0, pretend = 0, frame = 0
+ 222              		@ frame_needed = 0, uses_anonymous_args = 0
+ 223              		@ link register save eliminated.
+ 224 0000 024A     		ldr	r2, .L30
+ 225 0002 1368     		ldr	r3, [r2]
+ 226 0004 43F00203 		orr	r3, r3, #2
+ 227 0008 1360     		str	r3, [r2]
+ 228 000a 7047     		bx	lr
+ 229              	.L31:
+ 230              		.align	2
+ 231              	.L30:
+ 232 000c 10E000E0 		.word	-536813552
+ 234              		.section	.text.HAL_GetHalVersion,"ax",%progbits
+ 235              		.align	2
+ 236              		.global	HAL_GetHalVersion
+ 237              		.thumb
+ 238              		.thumb_func
+ 240              	HAL_GetHalVersion:
+ 241              		@ args = 0, pretend = 0, frame = 0
+ 242              		@ frame_needed = 0, uses_anonymous_args = 0
+ 243              		@ link register save eliminated.
+ 244 0000 4FF08370 		mov	r0, #17170432
+ 245 0004 7047     		bx	lr
+ 247 0006 00BF     		.section	.text.HAL_GetREVID,"ax",%progbits
+ 248              		.align	2
+ 249              		.global	HAL_GetREVID
+ 250              		.thumb
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 5
+
+
+ 251              		.thumb_func
+ 253              	HAL_GetREVID:
+ 254              		@ args = 0, pretend = 0, frame = 0
+ 255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256              		@ link register save eliminated.
+ 257 0000 014B     		ldr	r3, .L34
+ 258 0002 1868     		ldr	r0, [r3]
+ 259 0004 000C     		lsrs	r0, r0, #16
+ 260 0006 7047     		bx	lr
+ 261              	.L35:
+ 262              		.align	2
+ 263              	.L34:
+ 264 0008 002004E0 		.word	-536600576
+ 266              		.section	.text.HAL_GetDEVID,"ax",%progbits
+ 267              		.align	2
+ 268              		.global	HAL_GetDEVID
+ 269              		.thumb
+ 270              		.thumb_func
+ 272              	HAL_GetDEVID:
+ 273              		@ args = 0, pretend = 0, frame = 0
+ 274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 275              		@ link register save eliminated.
+ 276 0000 024B     		ldr	r3, .L37
+ 277 0002 1868     		ldr	r0, [r3]
+ 278 0004 C0F30B00 		ubfx	r0, r0, #0, #12
+ 279 0008 7047     		bx	lr
+ 280              	.L38:
+ 281 000a 00BF     		.align	2
+ 282              	.L37:
+ 283 000c 002004E0 		.word	-536600576
+ 285              		.section	.text.HAL_DBGMCU_EnableDBGSleepMode,"ax",%progbits
+ 286              		.align	2
+ 287              		.global	HAL_DBGMCU_EnableDBGSleepMode
+ 288              		.thumb
+ 289              		.thumb_func
+ 291              	HAL_DBGMCU_EnableDBGSleepMode:
+ 292              		@ args = 0, pretend = 0, frame = 0
+ 293              		@ frame_needed = 0, uses_anonymous_args = 0
+ 294              		@ link register save eliminated.
+ 295 0000 024A     		ldr	r2, .L40
+ 296 0002 5368     		ldr	r3, [r2, #4]
+ 297 0004 43F00103 		orr	r3, r3, #1
+ 298 0008 5360     		str	r3, [r2, #4]
+ 299 000a 7047     		bx	lr
+ 300              	.L41:
+ 301              		.align	2
+ 302              	.L40:
+ 303 000c 002004E0 		.word	-536600576
+ 305              		.section	.text.HAL_DBGMCU_DisableDBGSleepMode,"ax",%progbits
+ 306              		.align	2
+ 307              		.global	HAL_DBGMCU_DisableDBGSleepMode
+ 308              		.thumb
+ 309              		.thumb_func
+ 311              	HAL_DBGMCU_DisableDBGSleepMode:
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314              		@ link register save eliminated.
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 6
+
+
+ 315 0000 024A     		ldr	r2, .L43
+ 316 0002 5368     		ldr	r3, [r2, #4]
+ 317 0004 23F00103 		bic	r3, r3, #1
+ 318 0008 5360     		str	r3, [r2, #4]
+ 319 000a 7047     		bx	lr
+ 320              	.L44:
+ 321              		.align	2
+ 322              	.L43:
+ 323 000c 002004E0 		.word	-536600576
+ 325              		.section	.text.HAL_DBGMCU_EnableDBGStopMode,"ax",%progbits
+ 326              		.align	2
+ 327              		.global	HAL_DBGMCU_EnableDBGStopMode
+ 328              		.thumb
+ 329              		.thumb_func
+ 331              	HAL_DBGMCU_EnableDBGStopMode:
+ 332              		@ args = 0, pretend = 0, frame = 0
+ 333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 334              		@ link register save eliminated.
+ 335 0000 024A     		ldr	r2, .L46
+ 336 0002 5368     		ldr	r3, [r2, #4]
+ 337 0004 43F00203 		orr	r3, r3, #2
+ 338 0008 5360     		str	r3, [r2, #4]
+ 339 000a 7047     		bx	lr
+ 340              	.L47:
+ 341              		.align	2
+ 342              	.L46:
+ 343 000c 002004E0 		.word	-536600576
+ 345              		.section	.text.HAL_DBGMCU_DisableDBGStopMode,"ax",%progbits
+ 346              		.align	2
+ 347              		.global	HAL_DBGMCU_DisableDBGStopMode
+ 348              		.thumb
+ 349              		.thumb_func
+ 351              	HAL_DBGMCU_DisableDBGStopMode:
+ 352              		@ args = 0, pretend = 0, frame = 0
+ 353              		@ frame_needed = 0, uses_anonymous_args = 0
+ 354              		@ link register save eliminated.
+ 355 0000 024A     		ldr	r2, .L49
+ 356 0002 5368     		ldr	r3, [r2, #4]
+ 357 0004 23F00203 		bic	r3, r3, #2
+ 358 0008 5360     		str	r3, [r2, #4]
+ 359 000a 7047     		bx	lr
+ 360              	.L50:
+ 361              		.align	2
+ 362              	.L49:
+ 363 000c 002004E0 		.word	-536600576
+ 365              		.section	.text.HAL_DBGMCU_EnableDBGStandbyMode,"ax",%progbits
+ 366              		.align	2
+ 367              		.global	HAL_DBGMCU_EnableDBGStandbyMode
+ 368              		.thumb
+ 369              		.thumb_func
+ 371              	HAL_DBGMCU_EnableDBGStandbyMode:
+ 372              		@ args = 0, pretend = 0, frame = 0
+ 373              		@ frame_needed = 0, uses_anonymous_args = 0
+ 374              		@ link register save eliminated.
+ 375 0000 024A     		ldr	r2, .L52
+ 376 0002 5368     		ldr	r3, [r2, #4]
+ 377 0004 43F00403 		orr	r3, r3, #4
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 7
+
+
+ 378 0008 5360     		str	r3, [r2, #4]
+ 379 000a 7047     		bx	lr
+ 380              	.L53:
+ 381              		.align	2
+ 382              	.L52:
+ 383 000c 002004E0 		.word	-536600576
+ 385              		.section	.text.HAL_DBGMCU_DisableDBGStandbyMode,"ax",%progbits
+ 386              		.align	2
+ 387              		.global	HAL_DBGMCU_DisableDBGStandbyMode
+ 388              		.thumb
+ 389              		.thumb_func
+ 391              	HAL_DBGMCU_DisableDBGStandbyMode:
+ 392              		@ args = 0, pretend = 0, frame = 0
+ 393              		@ frame_needed = 0, uses_anonymous_args = 0
+ 394              		@ link register save eliminated.
+ 395 0000 024A     		ldr	r2, .L55
+ 396 0002 5368     		ldr	r3, [r2, #4]
+ 397 0004 23F00403 		bic	r3, r3, #4
+ 398 0008 5360     		str	r3, [r2, #4]
+ 399 000a 7047     		bx	lr
+ 400              	.L56:
+ 401              		.align	2
+ 402              	.L55:
+ 403 000c 002004E0 		.word	-536600576
+ 405              		.section	.text.HAL_EnableCompensationCell,"ax",%progbits
+ 406              		.align	2
+ 407              		.global	HAL_EnableCompensationCell
+ 408              		.thumb
+ 409              		.thumb_func
+ 411              	HAL_EnableCompensationCell:
+ 412              		@ args = 0, pretend = 0, frame = 0
+ 413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 414              		@ link register save eliminated.
+ 415 0000 0121     		movs	r1, #1
+ 416              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 417 0002 91FAA1F2 		rbit r2, r1
+ 418              	@ 0 "" 2
+ 419              		.thumb
+ 420 0006 034B     		ldr	r3, .L58
+ 421 0008 B2FA82F2 		clz	r2, r2
+ 422 000c 1344     		add	r3, r3, r2
+ 423 000e 9B00     		lsls	r3, r3, #2
+ 424 0010 1960     		str	r1, [r3]
+ 425 0012 7047     		bx	lr
+ 426              	.L59:
+ 427              		.align	2
+ 428              	.L58:
+ 429 0014 00C18910 		.word	277463296
+ 431              		.section	.text.HAL_DisableCompensationCell,"ax",%progbits
+ 432              		.align	2
+ 433              		.global	HAL_DisableCompensationCell
+ 434              		.thumb
+ 435              		.thumb_func
+ 437              	HAL_DisableCompensationCell:
+ 438              		@ args = 0, pretend = 0, frame = 0
+ 439              		@ frame_needed = 0, uses_anonymous_args = 0
+ 440              		@ link register save eliminated.
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 8
+
+
+ 441 0000 0122     		movs	r2, #1
+ 442              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 443 0002 92FAA2F2 		rbit r2, r2
+ 444              	@ 0 "" 2
+ 445              		.thumb
+ 446 0006 044B     		ldr	r3, .L61
+ 447 0008 B2FA82F2 		clz	r2, r2
+ 448 000c 1344     		add	r3, r3, r2
+ 449 000e 9B00     		lsls	r3, r3, #2
+ 450 0010 0022     		movs	r2, #0
+ 451 0012 1A60     		str	r2, [r3]
+ 452 0014 7047     		bx	lr
+ 453              	.L62:
+ 454 0016 00BF     		.align	2
+ 455              	.L61:
+ 456 0018 00C18910 		.word	277463296
+ 458              		.comm	uwTick,4,4
+ 459              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150529 (release) [ARM/embedded-4_9-br
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_hal.c
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:17     .text.HAL_MspInit:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:22     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:29     .text.HAL_MspDeInit:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:34     .text.HAL_MspDeInit:0000000000000000 HAL_MspDeInit
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:41     .text.HAL_DeInit:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:46     .text.HAL_DeInit:0000000000000000 HAL_DeInit
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:69     .text.HAL_DeInit:0000000000000028 $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:72     .text.HAL_InitTick:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:77     .text.HAL_InitTick:0000000000000000 HAL_InitTick
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:97     .text.HAL_InitTick:0000000000000024 $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:101    .text.HAL_Init:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:106    .text.HAL_Init:0000000000000000 HAL_Init
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:130    .text.HAL_Init:0000000000000030 $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:133    .text.HAL_IncTick:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:138    .text.HAL_IncTick:0000000000000000 HAL_IncTick
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:150    .text.HAL_IncTick:000000000000000c $d
+                            *COM*:0000000000000004 uwTick
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:153    .text.HAL_GetTick:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:158    .text.HAL_GetTick:0000000000000000 HAL_GetTick
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:168    .text.HAL_GetTick:0000000000000008 $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:171    .text.HAL_Delay:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:176    .text.HAL_Delay:0000000000000000 HAL_Delay
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:195    .text.HAL_SuspendTick:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:200    .text.HAL_SuspendTick:0000000000000000 HAL_SuspendTick
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:212    .text.HAL_SuspendTick:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:215    .text.HAL_ResumeTick:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:220    .text.HAL_ResumeTick:0000000000000000 HAL_ResumeTick
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:232    .text.HAL_ResumeTick:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:235    .text.HAL_GetHalVersion:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:240    .text.HAL_GetHalVersion:0000000000000000 HAL_GetHalVersion
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:248    .text.HAL_GetREVID:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:253    .text.HAL_GetREVID:0000000000000000 HAL_GetREVID
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:264    .text.HAL_GetREVID:0000000000000008 $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:267    .text.HAL_GetDEVID:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:272    .text.HAL_GetDEVID:0000000000000000 HAL_GetDEVID
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:283    .text.HAL_GetDEVID:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:286    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:291    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000000000000 HAL_DBGMCU_EnableDBGSleepMode
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:303    .text.HAL_DBGMCU_EnableDBGSleepMode:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:306    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:311    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000000000000 HAL_DBGMCU_DisableDBGSleepMode
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:323    .text.HAL_DBGMCU_DisableDBGSleepMode:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:326    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:331    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 HAL_DBGMCU_EnableDBGStopMode
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:343    .text.HAL_DBGMCU_EnableDBGStopMode:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:346    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:351    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 HAL_DBGMCU_DisableDBGStopMode
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:363    .text.HAL_DBGMCU_DisableDBGStopMode:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:366    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:371    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 HAL_DBGMCU_EnableDBGStandbyMode
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:383    .text.HAL_DBGMCU_EnableDBGStandbyMode:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:386    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:391    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 HAL_DBGMCU_DisableDBGStandbyMode
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:403    .text.HAL_DBGMCU_DisableDBGStandbyMode:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:406    .text.HAL_EnableCompensationCell:0000000000000000 $t
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s 			page 10
+
+
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:411    .text.HAL_EnableCompensationCell:0000000000000000 HAL_EnableCompensationCell
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:429    .text.HAL_EnableCompensationCell:0000000000000014 $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:432    .text.HAL_DisableCompensationCell:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:437    .text.HAL_DisableCompensationCell:0000000000000000 HAL_DisableCompensationCell
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc0fUJQL.s:456    .text.HAL_DisableCompensationCell:0000000000000018 $d
+
+UNDEFINED SYMBOLS
+HAL_SYSTICK_Config
+HAL_NVIC_SetPriority
+SystemCoreClock
+HAL_NVIC_SetPriorityGrouping

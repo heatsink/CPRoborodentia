@@ -1,0 +1,85 @@
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 2
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"stm32f4xx_it.c"
+  16              		.section	.text.SysTick_Handler,"ax",%progbits
+  17              		.align	2
+  18              		.global	SysTick_Handler
+  19              		.thumb
+  20              		.thumb_func
+  22              	SysTick_Handler:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25 0000 08B5     		push	{r3, lr}
+  26 0002 FFF7FEFF 		bl	HAL_IncTick
+  27 0006 BDE80840 		pop	{r3, lr}
+  28 000a FFF7FEBF 		b	HAL_SYSTICK_IRQHandler
+  30 000e 00BF     		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+  31              		.align	2
+  32              		.global	EXTI15_10_IRQHandler
+  33              		.thumb
+  34              		.thumb_func
+  36              	EXTI15_10_IRQHandler:
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              		@ link register save eliminated.
+  40 0000 4FF40050 		mov	r0, #8192
+  41 0004 FFF7FEBF 		b	HAL_GPIO_EXTI_IRQHandler
+  43              		.section	.text.TIM8_TRG_COM_TIM14_IRQHandler,"ax",%progbits
+  44              		.align	2
+  45              		.global	TIM8_TRG_COM_TIM14_IRQHandler
+  46              		.thumb
+  47              		.thumb_func
+  49              	TIM8_TRG_COM_TIM14_IRQHandler:
+  50              		@ args = 0, pretend = 0, frame = 0
+  51              		@ frame_needed = 0, uses_anonymous_args = 0
+  52 0000 08B5     		push	{r3, lr}
+  53 0002 0448     		ldr	r0, .L6
+  54 0004 4021     		movs	r1, #64
+  55 0006 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  56 000a 0348     		ldr	r0, .L6+4
+  57 000c BDE80840 		pop	{r3, lr}
+  58 0010 FFF7FEBF 		b	HAL_TIM_IRQHandler
+  59              	.L7:
+  60              		.align	2
+  61              	.L6:
+  62 0014 00080240 		.word	1073874944
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s 			page 2
+
+
+  63 0018 00000000 		.word	htim14
+  65              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150529 (release) [ARM/embedded-4_9-br
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_it.c
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s:17     .text.SysTick_Handler:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s:22     .text.SysTick_Handler:0000000000000000 SysTick_Handler
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s:31     .text.EXTI15_10_IRQHandler:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s:36     .text.EXTI15_10_IRQHandler:0000000000000000 EXTI15_10_IRQHandler
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s:44     .text.TIM8_TRG_COM_TIM14_IRQHandler:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s:49     .text.TIM8_TRG_COM_TIM14_IRQHandler:0000000000000000 TIM8_TRG_COM_TIM14_IRQHandler
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccqn6PtI.s:62     .text.TIM8_TRG_COM_TIM14_IRQHandler:0000000000000014 $d
+
+UNDEFINED SYMBOLS
+HAL_IncTick
+HAL_SYSTICK_IRQHandler
+HAL_GPIO_EXTI_IRQHandler
+HAL_GPIO_TogglePin
+HAL_TIM_IRQHandler
+htim14

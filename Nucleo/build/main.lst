@@ -1,0 +1,275 @@
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 2
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.file	"main.c"
+  16              		.section	.text.Error_Handler,"ax",%progbits
+  17              		.align	2
+  18              		.global	Error_Handler
+  19              		.thumb
+  20              		.thumb_func
+  22              	Error_Handler:
+  23              		@ Volatile: function does not return.
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27              	.L2:
+  28 0002 0248     		ldr	r0, .L5
+  29 0004 4021     		movs	r1, #64
+  30 0006 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  31 000a FAE7     		b	.L2
+  32              	.L6:
+  33              		.align	2
+  34              	.L5:
+  35 000c 00080240 		.word	1073874944
+  37              		.section	.text.SystemClock_Config,"ax",%progbits
+  38              		.align	2
+  39              		.global	SystemClock_Config
+  40              		.thumb
+  41              		.thumb_func
+  43              	SystemClock_Config:
+  44              		@ args = 0, pretend = 0, frame = 80
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46 0000 70B5     		push	{r4, r5, r6, lr}
+  47 0002 94B0     		sub	sp, sp, #80
+  48 0004 0022     		movs	r2, #0
+  49 0006 2949     		ldr	r1, .L11
+  50 0008 0092     		str	r2, [sp]
+  51 000a 086C     		ldr	r0, [r1, #64]
+  52 000c 284B     		ldr	r3, .L11+4
+  53 000e 40F08050 		orr	r0, r0, #268435456
+  54 0012 0864     		str	r0, [r1, #64]
+  55 0014 096C     		ldr	r1, [r1, #64]
+  56 0016 01F08051 		and	r1, r1, #268435456
+  57 001a 0091     		str	r1, [sp]
+  58 001c 0099     		ldr	r1, [sp]
+  59 001e 0192     		str	r2, [sp, #4]
+  60 0020 1968     		ldr	r1, [r3]
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s 			page 2
+
+
+  61 0022 41F44041 		orr	r1, r1, #49152
+  62 0026 1960     		str	r1, [r3]
+  63 0028 1B68     		ldr	r3, [r3]
+  64 002a 0E92     		str	r2, [sp, #56]
+  65 002c 03F44043 		and	r3, r3, #49152
+  66 0030 0224     		movs	r4, #2
+  67 0032 0193     		str	r3, [sp, #4]
+  68 0034 0125     		movs	r5, #1
+  69 0036 1021     		movs	r1, #16
+  70 0038 0822     		movs	r2, #8
+  71 003a B423     		movs	r3, #180
+  72 003c 07A8     		add	r0, sp, #28
+  73 003e 019E     		ldr	r6, [sp, #4]
+  74 0040 0794     		str	r4, [sp, #28]
+  75 0042 0D94     		str	r4, [sp, #52]
+  76 0044 1194     		str	r4, [sp, #68]
+  77 0046 1294     		str	r4, [sp, #72]
+  78 0048 1394     		str	r4, [sp, #76]
+  79 004a 0A95     		str	r5, [sp, #40]
+  80 004c 0B91     		str	r1, [sp, #44]
+  81 004e 0F92     		str	r2, [sp, #60]
+  82 0050 1093     		str	r3, [sp, #64]
+  83 0052 FFF7FEFF 		bl	HAL_RCC_OscConfig
+  84 0056 30BB     		cbnz	r0, .L9
+  85 0058 FFF7FEFF 		bl	HAL_PWREx_EnableOverDrive
+  86 005c 0346     		mov	r3, r0
+  87 005e 10BB     		cbnz	r0, .L9
+  88 0060 4FF48052 		mov	r2, #4096
+  89 0064 0F26     		movs	r6, #15
+  90 0066 4FF4A055 		mov	r5, #5120
+  91 006a 02A8     		add	r0, sp, #8
+  92 006c 0521     		movs	r1, #5
+  93 006e 0394     		str	r4, [sp, #12]
+  94 0070 0493     		str	r3, [sp, #16]
+  95 0072 0296     		str	r6, [sp, #8]
+  96 0074 0595     		str	r5, [sp, #20]
+  97 0076 0692     		str	r2, [sp, #24]
+  98 0078 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+  99 007c 0446     		mov	r4, r0
+ 100 007e 90B9     		cbnz	r0, .L9
+ 101 0080 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 102 0084 0B4B     		ldr	r3, .L11+8
+ 103 0086 A3FB0030 		umull	r3, r0, r3, r0
+ 104 008a 8009     		lsrs	r0, r0, #6
+ 105 008c FFF7FEFF 		bl	HAL_SYSTICK_Config
+ 106 0090 0420     		movs	r0, #4
+ 107 0092 FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
+ 108 0096 4FF0FF30 		mov	r0, #-1
+ 109 009a 2146     		mov	r1, r4
+ 110 009c 2246     		mov	r2, r4
+ 111 009e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 112 00a2 14B0     		add	sp, sp, #80
+ 113              		@ sp needed
+ 114 00a4 70BD     		pop	{r4, r5, r6, pc}
+ 115              	.L9:
+ 116 00a6 FFF7FEFF 		bl	Error_Handler
+ 117              	.L12:
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s 			page 3
+
+
+ 118 00aa 00BF     		.align	2
+ 119              	.L11:
+ 120 00ac 00380240 		.word	1073887232
+ 121 00b0 00700040 		.word	1073770496
+ 122 00b4 D34D6210 		.word	274877907
+ 124              		.section	.text.startup.main,"ax",%progbits
+ 125              		.align	2
+ 126              		.global	main
+ 127              		.thumb
+ 128              		.thumb_func
+ 130              	main:
+ 131              		@ Volatile: function does not return.
+ 132              		@ args = 0, pretend = 0, frame = 32
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134 0000 00B5     		push	{lr}
+ 135 0002 89B0     		sub	sp, sp, #36
+ 136 0004 0024     		movs	r4, #0
+ 137 0006 FFF7FEFF 		bl	HAL_Init
+ 138 000a FFF7FEFF 		bl	SystemClock_Config
+ 139 000e 354B     		ldr	r3, .L18
+ 140 0010 0094     		str	r4, [sp]
+ 141 0012 1A6B     		ldr	r2, [r3, #48]
+ 142 0014 3448     		ldr	r0, .L18+4
+ 143 0016 354D     		ldr	r5, .L18+8
+ 144 0018 42F00402 		orr	r2, r2, #4
+ 145 001c 1A63     		str	r2, [r3, #48]
+ 146 001e 1A6B     		ldr	r2, [r3, #48]
+ 147 0020 02F00402 		and	r2, r2, #4
+ 148 0024 0092     		str	r2, [sp]
+ 149 0026 009A     		ldr	r2, [sp]
+ 150 0028 0194     		str	r4, [sp, #4]
+ 151 002a 1A6B     		ldr	r2, [r3, #48]
+ 152 002c 42F08002 		orr	r2, r2, #128
+ 153 0030 1A63     		str	r2, [r3, #48]
+ 154 0032 1A6B     		ldr	r2, [r3, #48]
+ 155 0034 02F08002 		and	r2, r2, #128
+ 156 0038 0192     		str	r2, [sp, #4]
+ 157 003a 019A     		ldr	r2, [sp, #4]
+ 158 003c 0294     		str	r4, [sp, #8]
+ 159 003e 1A6B     		ldr	r2, [r3, #48]
+ 160 0040 42F00102 		orr	r2, r2, #1
+ 161 0044 1A63     		str	r2, [r3, #48]
+ 162 0046 1B6B     		ldr	r3, [r3, #48]
+ 163 0048 03F00103 		and	r3, r3, #1
+ 164 004c 0293     		str	r3, [sp, #8]
+ 165 004e 2246     		mov	r2, r4
+ 166 0050 2021     		movs	r1, #32
+ 167 0052 029B     		ldr	r3, [sp, #8]
+ 168 0054 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 169 0058 2246     		mov	r2, r4
+ 170 005a 2548     		ldr	r0, .L18+12
+ 171 005c 4FF4A071 		mov	r1, #320
+ 172 0060 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 173 0064 4FF40052 		mov	r2, #8192
+ 174 0068 224B     		ldr	r3, .L18+16
+ 175 006a 2148     		ldr	r0, .L18+12
+ 176 006c 0392     		str	r2, [sp, #12]
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s 			page 4
+
+
+ 177 006e 03A9     		add	r1, sp, #12
+ 178 0070 0493     		str	r3, [sp, #16]
+ 179 0072 0126     		movs	r6, #1
+ 180 0074 0594     		str	r4, [sp, #20]
+ 181 0076 FFF7FEFF 		bl	HAL_GPIO_Init
+ 182 007a 2023     		movs	r3, #32
+ 183 007c 03A9     		add	r1, sp, #12
+ 184 007e 1A48     		ldr	r0, .L18+4
+ 185 0080 0393     		str	r3, [sp, #12]
+ 186 0082 0594     		str	r4, [sp, #20]
+ 187 0084 0694     		str	r4, [sp, #24]
+ 188 0086 0496     		str	r6, [sp, #16]
+ 189 0088 FFF7FEFF 		bl	HAL_GPIO_Init
+ 190 008c 4FF4A073 		mov	r3, #320
+ 191 0090 03A9     		add	r1, sp, #12
+ 192 0092 1748     		ldr	r0, .L18+12
+ 193 0094 0393     		str	r3, [sp, #12]
+ 194 0096 0496     		str	r6, [sp, #16]
+ 195 0098 0594     		str	r4, [sp, #20]
+ 196 009a 0694     		str	r4, [sp, #24]
+ 197 009c FFF7FEFF 		bl	HAL_GPIO_Init
+ 198 00a0 2146     		mov	r1, r4
+ 199 00a2 2246     		mov	r2, r4
+ 200 00a4 2820     		movs	r0, #40
+ 201 00a6 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 202 00aa 2820     		movs	r0, #40
+ 203 00ac FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 204 00b0 1149     		ldr	r1, .L18+20
+ 205 00b2 AC60     		str	r4, [r5, #8]
+ 206 00b4 49F64042 		movw	r2, #40000
+ 207 00b8 41F28833 		movw	r3, #5000
+ 208 00bc 2846     		mov	r0, r5
+ 209 00be 2C61     		str	r4, [r5, #16]
+ 210 00c0 85E80600 		stmia	r5, {r1, r2}
+ 211 00c4 EB60     		str	r3, [r5, #12]
+ 212 00c6 FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 213 00ca 48B9     		cbnz	r0, .L17
+ 214 00cc 2846     		mov	r0, r5
+ 215 00ce FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 216              	.L15:
+ 217 00d2 0748     		ldr	r0, .L18+12
+ 218 00d4 4FF48071 		mov	r1, #256
+ 219 00d8 0122     		movs	r2, #1
+ 220 00da FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 221 00de F8E7     		b	.L15
+ 222              	.L17:
+ 223 00e0 FFF7FEFF 		bl	Error_Handler
+ 224              	.L19:
+ 225              		.align	2
+ 226              	.L18:
+ 227 00e4 00380240 		.word	1073887232
+ 228 00e8 00000240 		.word	1073872896
+ 229 00ec 00000000 		.word	htim14
+ 230 00f0 00080240 		.word	1073874944
+ 231 00f4 00002110 		.word	270598144
+ 232 00f8 00200040 		.word	1073750016
+ 234              		.comm	htim14,60,4
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s 			page 5
+
+
+ 235              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150529 (release) [ARM/embedded-4_9-br
+ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:17     .text.Error_Handler:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:22     .text.Error_Handler:0000000000000000 Error_Handler
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:35     .text.Error_Handler:000000000000000c $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:38     .text.SystemClock_Config:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:43     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:120    .text.SystemClock_Config:00000000000000ac $d
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:125    .text.startup.main:0000000000000000 $t
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:130    .text.startup.main:0000000000000000 main
+/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//cc7M0Big.s:227    .text.startup.main:00000000000000e4 $d
+                            *COM*:000000000000003c htim14
+
+UNDEFINED SYMBOLS
+HAL_GPIO_TogglePin
+HAL_RCC_OscConfig
+HAL_PWREx_EnableOverDrive
+HAL_RCC_ClockConfig
+HAL_RCC_GetHCLKFreq
+HAL_SYSTICK_Config
+HAL_SYSTICK_CLKSourceConfig
+HAL_NVIC_SetPriority
+HAL_Init
+HAL_GPIO_WritePin
+HAL_GPIO_Init
+HAL_NVIC_EnableIRQ
+HAL_TIM_Base_Init
+HAL_TIM_Base_Start_IT
