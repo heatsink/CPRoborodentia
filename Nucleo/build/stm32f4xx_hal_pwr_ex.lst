@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 1
+ARM GAS  /tmp/ccXDD4tW.s 			page 1
 
 
    1              		.syntax unified
@@ -15,548 +15,572 @@ ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 1
   12              		.eabi_attribute 34, 1
   13              		.eabi_attribute 18, 4
   14              		.thumb
-  15              		.file	"stm32f4xx_hal_pwr_ex.c"
-  16              		.section	.text.HAL_PWREx_EnableBkUpReg,"ax",%progbits
-  17              		.align	2
-  18              		.global	HAL_PWREx_EnableBkUpReg
-  19              		.thumb
-  20              		.thumb_func
-  22              	HAL_PWREx_EnableBkUpReg:
-  23              		@ args = 0, pretend = 0, frame = 0
-  24              		@ frame_needed = 0, uses_anonymous_args = 0
-  25 0000 38B5     		push	{r3, r4, r5, lr}
-  26 0002 4FF40072 		mov	r2, #512
-  27              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-  28 0006 92FAA2F2 		rbit r2, r2
-  29              	@ 0 "" 2
-  30              		.thumb
-  31 000a 0C4B     		ldr	r3, .L8
-  32 000c B2FA82F2 		clz	r2, r2
-  33 0010 1344     		add	r3, r3, r2
-  34 0012 9B00     		lsls	r3, r3, #2
-  35 0014 0122     		movs	r2, #1
-  36 0016 1A60     		str	r2, [r3]
-  37 0018 FFF7FEFF 		bl	HAL_GetTick
-  38 001c 084C     		ldr	r4, .L8+4
-  39 001e 0546     		mov	r5, r0
-  40 0020 05E0     		b	.L2
-  41              	.L4:
-  42 0022 FFF7FEFF 		bl	HAL_GetTick
-  43 0026 401B     		subs	r0, r0, r5
-  44 0028 B0F57A7F 		cmp	r0, #1000
-  45 002c 04D8     		bhi	.L5
-  46              	.L2:
-  47 002e 6368     		ldr	r3, [r4, #4]
-  48 0030 1B07     		lsls	r3, r3, #28
-  49 0032 F6D5     		bpl	.L4
-  50 0034 0020     		movs	r0, #0
-  51 0036 38BD     		pop	{r3, r4, r5, pc}
-  52              	.L5:
-  53 0038 0320     		movs	r0, #3
-  54 003a 38BD     		pop	{r3, r4, r5, pc}
-  55              	.L9:
-  56              		.align	2
-  57              	.L8:
-  58 003c 20808310 		.word	277053472
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 2
+  15              		.syntax unified
+  16              		.file	"stm32f4xx_hal_pwr_ex.c"
+  17              		.section	.text.HAL_PWREx_EnableBkUpReg,"ax",%progbits
+  18              		.align	2
+  19              		.global	HAL_PWREx_EnableBkUpReg
+  20              		.thumb
+  21              		.thumb_func
+  23              	HAL_PWREx_EnableBkUpReg:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 38B5     		push	{r3, r4, r5, lr}
+  27 0002 4FF40072 		mov	r2, #512
+  28              		.syntax unified
+  29              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  30 0006 92FAA2F2 		rbit r2, r2
+  31              	@ 0 "" 2
+  32              		.thumb
+  33              		.syntax unified
+  34 000a 0C4B     		ldr	r3, .L8
+  35 000c 0C4C     		ldr	r4, .L8+4
+  36 000e B2FA82F2 		clz	r2, r2
+  37 0012 1344     		add	r3, r3, r2
+  38 0014 9B00     		lsls	r3, r3, #2
+  39 0016 0122     		movs	r2, #1
+  40 0018 1A60     		str	r2, [r3]
+  41 001a FFF7FEFF 		bl	HAL_GetTick
+  42 001e 0546     		mov	r5, r0
+  43 0020 05E0     		b	.L2
+  44              	.L4:
+  45 0022 FFF7FEFF 		bl	HAL_GetTick
+  46 0026 401B     		subs	r0, r0, r5
+  47 0028 B0F57A7F 		cmp	r0, #1000
+  48 002c 04D8     		bhi	.L5
+  49              	.L2:
+  50 002e 6368     		ldr	r3, [r4, #4]
+  51 0030 1B07     		lsls	r3, r3, #28
+  52 0032 F6D5     		bpl	.L4
+  53 0034 0020     		movs	r0, #0
+  54 0036 38BD     		pop	{r3, r4, r5, pc}
+  55              	.L5:
+  56 0038 0320     		movs	r0, #3
+  57 003a 38BD     		pop	{r3, r4, r5, pc}
+  58              	.L9:
+ARM GAS  /tmp/ccXDD4tW.s 			page 2
 
 
-  59 0040 00700040 		.word	1073770496
-  61              		.section	.text.HAL_PWREx_DisableBkUpReg,"ax",%progbits
-  62              		.align	2
-  63              		.global	HAL_PWREx_DisableBkUpReg
-  64              		.thumb
-  65              		.thumb_func
-  67              	HAL_PWREx_DisableBkUpReg:
-  68              		@ args = 0, pretend = 0, frame = 0
-  69              		@ frame_needed = 0, uses_anonymous_args = 0
-  70 0000 38B5     		push	{r3, r4, r5, lr}
-  71 0002 4FF40072 		mov	r2, #512
-  72              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-  73 0006 92FAA2F2 		rbit r2, r2
-  74              	@ 0 "" 2
-  75              		.thumb
-  76 000a 0C4B     		ldr	r3, .L16
-  77 000c B2FA82F2 		clz	r2, r2
-  78 0010 1344     		add	r3, r3, r2
-  79 0012 9B00     		lsls	r3, r3, #2
-  80 0014 0022     		movs	r2, #0
-  81 0016 1A60     		str	r2, [r3]
-  82 0018 FFF7FEFF 		bl	HAL_GetTick
-  83 001c 084C     		ldr	r4, .L16+4
-  84 001e 0546     		mov	r5, r0
-  85 0020 05E0     		b	.L11
-  86              	.L13:
-  87 0022 FFF7FEFF 		bl	HAL_GetTick
-  88 0026 401B     		subs	r0, r0, r5
-  89 0028 B0F57A7F 		cmp	r0, #1000
-  90 002c 04D8     		bhi	.L14
-  91              	.L11:
-  92 002e 6068     		ldr	r0, [r4, #4]
-  93 0030 10F00800 		ands	r0, r0, #8
-  94 0034 F5D1     		bne	.L13
-  95 0036 38BD     		pop	{r3, r4, r5, pc}
-  96              	.L14:
-  97 0038 0320     		movs	r0, #3
-  98 003a 38BD     		pop	{r3, r4, r5, pc}
-  99              	.L17:
- 100              		.align	2
- 101              	.L16:
- 102 003c 20808310 		.word	277053472
- 103 0040 00700040 		.word	1073770496
- 105              		.section	.text.HAL_PWREx_EnableFlashPowerDown,"ax",%progbits
- 106              		.align	2
- 107              		.global	HAL_PWREx_EnableFlashPowerDown
- 108              		.thumb
- 109              		.thumb_func
- 111              	HAL_PWREx_EnableFlashPowerDown:
- 112              		@ args = 0, pretend = 0, frame = 0
- 113              		@ frame_needed = 0, uses_anonymous_args = 0
- 114              		@ link register save eliminated.
- 115 0000 4FF40073 		mov	r3, #512
- 116              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 117 0004 93FAA3F3 		rbit r3, r3
- 118              	@ 0 "" 2
- 119              		.thumb
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 3
+  59              		.align	2
+  60              	.L8:
+  61 003c 20808310 		.word	277053472
+  62 0040 00700040 		.word	1073770496
+  64              		.section	.text.HAL_PWREx_DisableBkUpReg,"ax",%progbits
+  65              		.align	2
+  66              		.global	HAL_PWREx_DisableBkUpReg
+  67              		.thumb
+  68              		.thumb_func
+  70              	HAL_PWREx_DisableBkUpReg:
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73 0000 38B5     		push	{r3, r4, r5, lr}
+  74 0002 4FF40072 		mov	r2, #512
+  75              		.syntax unified
+  76              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  77 0006 92FAA2F2 		rbit r2, r2
+  78              	@ 0 "" 2
+  79              		.thumb
+  80              		.syntax unified
+  81 000a 0C4B     		ldr	r3, .L16
+  82 000c 0C4C     		ldr	r4, .L16+4
+  83 000e B2FA82F2 		clz	r2, r2
+  84 0012 1344     		add	r3, r3, r2
+  85 0014 9B00     		lsls	r3, r3, #2
+  86 0016 0022     		movs	r2, #0
+  87 0018 1A60     		str	r2, [r3]
+  88 001a FFF7FEFF 		bl	HAL_GetTick
+  89 001e 0546     		mov	r5, r0
+  90 0020 05E0     		b	.L11
+  91              	.L13:
+  92 0022 FFF7FEFF 		bl	HAL_GetTick
+  93 0026 401B     		subs	r0, r0, r5
+  94 0028 B0F57A7F 		cmp	r0, #1000
+  95 002c 04D8     		bhi	.L14
+  96              	.L11:
+  97 002e 6068     		ldr	r0, [r4, #4]
+  98 0030 10F00800 		ands	r0, r0, #8
+  99 0034 F5D1     		bne	.L13
+ 100 0036 38BD     		pop	{r3, r4, r5, pc}
+ 101              	.L14:
+ 102 0038 0320     		movs	r0, #3
+ 103 003a 38BD     		pop	{r3, r4, r5, pc}
+ 104              	.L17:
+ 105              		.align	2
+ 106              	.L16:
+ 107 003c 20808310 		.word	277053472
+ 108 0040 00700040 		.word	1073770496
+ 110              		.section	.text.HAL_PWREx_EnableFlashPowerDown,"ax",%progbits
+ 111              		.align	2
+ 112              		.global	HAL_PWREx_EnableFlashPowerDown
+ 113              		.thumb
+ 114              		.thumb_func
+ 116              	HAL_PWREx_EnableFlashPowerDown:
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		@ link register save eliminated.
+ARM GAS  /tmp/ccXDD4tW.s 			page 3
 
 
- 120 0008 B3FA83F3 		clz	r3, r3
- 121 000c 03F18453 		add	r3, r3, #276824064
- 122 0010 03F56033 		add	r3, r3, #229376
- 123 0014 9B00     		lsls	r3, r3, #2
- 124 0016 0122     		movs	r2, #1
- 125 0018 1A60     		str	r2, [r3]
- 126 001a 7047     		bx	lr
- 128              		.section	.text.HAL_PWREx_DisableFlashPowerDown,"ax",%progbits
- 129              		.align	2
- 130              		.global	HAL_PWREx_DisableFlashPowerDown
- 131              		.thumb
- 132              		.thumb_func
- 134              	HAL_PWREx_DisableFlashPowerDown:
- 135              		@ args = 0, pretend = 0, frame = 0
- 136              		@ frame_needed = 0, uses_anonymous_args = 0
- 137              		@ link register save eliminated.
- 138 0000 4FF40073 		mov	r3, #512
- 139              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 140 0004 93FAA3F3 		rbit r3, r3
- 141              	@ 0 "" 2
- 142              		.thumb
- 143 0008 B3FA83F3 		clz	r3, r3
- 144 000c 03F18453 		add	r3, r3, #276824064
- 145 0010 03F56033 		add	r3, r3, #229376
- 146 0014 9B00     		lsls	r3, r3, #2
- 147 0016 0022     		movs	r2, #0
- 148 0018 1A60     		str	r2, [r3]
- 149 001a 7047     		bx	lr
- 151              		.section	.text.HAL_PWREx_GetVoltageRange,"ax",%progbits
- 152              		.align	2
- 153              		.global	HAL_PWREx_GetVoltageRange
- 154              		.thumb
- 155              		.thumb_func
- 157              	HAL_PWREx_GetVoltageRange:
- 158              		@ args = 0, pretend = 0, frame = 0
- 159              		@ frame_needed = 0, uses_anonymous_args = 0
- 160              		@ link register save eliminated.
- 161 0000 024B     		ldr	r3, .L21
- 162 0002 1868     		ldr	r0, [r3]
- 163 0004 00F44040 		and	r0, r0, #49152
- 164 0008 7047     		bx	lr
- 165              	.L22:
- 166 000a 00BF     		.align	2
- 167              	.L21:
- 168 000c 00700040 		.word	1073770496
- 170              		.section	.text.HAL_PWREx_ControlVoltageScaling,"ax",%progbits
- 171              		.align	2
- 172              		.global	HAL_PWREx_ControlVoltageScaling
- 173              		.thumb
- 174              		.thumb_func
- 176              	HAL_PWREx_ControlVoltageScaling:
- 177              		@ args = 0, pretend = 0, frame = 8
- 178              		@ frame_needed = 0, uses_anonymous_args = 0
- 179 0000 70B5     		push	{r4, r5, r6, lr}
- 180 0002 82B0     		sub	sp, sp, #8
- 181 0004 294C     		ldr	r4, .L35
- 182 0006 0022     		movs	r2, #0
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 4
+ 120 0000 4FF40073 		mov	r3, #512
+ 121              		.syntax unified
+ 122              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 123 0004 93FAA3F3 		rbit r3, r3
+ 124              	@ 0 "" 2
+ 125              		.thumb
+ 126              		.syntax unified
+ 127 0008 B3FA83F3 		clz	r3, r3
+ 128 000c 03F18453 		add	r3, r3, #276824064
+ 129 0010 03F56033 		add	r3, r3, #229376
+ 130 0014 9B00     		lsls	r3, r3, #2
+ 131 0016 0122     		movs	r2, #1
+ 132 0018 1A60     		str	r2, [r3]
+ 133 001a 7047     		bx	lr
+ 135              		.section	.text.HAL_PWREx_DisableFlashPowerDown,"ax",%progbits
+ 136              		.align	2
+ 137              		.global	HAL_PWREx_DisableFlashPowerDown
+ 138              		.thumb
+ 139              		.thumb_func
+ 141              	HAL_PWREx_DisableFlashPowerDown:
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144              		@ link register save eliminated.
+ 145 0000 4FF40073 		mov	r3, #512
+ 146              		.syntax unified
+ 147              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 148 0004 93FAA3F3 		rbit r3, r3
+ 149              	@ 0 "" 2
+ 150              		.thumb
+ 151              		.syntax unified
+ 152 0008 B3FA83F3 		clz	r3, r3
+ 153 000c 03F18453 		add	r3, r3, #276824064
+ 154 0010 03F56033 		add	r3, r3, #229376
+ 155 0014 9B00     		lsls	r3, r3, #2
+ 156 0016 0022     		movs	r2, #0
+ 157 0018 1A60     		str	r2, [r3]
+ 158 001a 7047     		bx	lr
+ 160              		.section	.text.HAL_PWREx_GetVoltageRange,"ax",%progbits
+ 161              		.align	2
+ 162              		.global	HAL_PWREx_GetVoltageRange
+ 163              		.thumb
+ 164              		.thumb_func
+ 166              	HAL_PWREx_GetVoltageRange:
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169              		@ link register save eliminated.
+ 170 0000 024B     		ldr	r3, .L21
+ 171 0002 1868     		ldr	r0, [r3]
+ 172 0004 00F44040 		and	r0, r0, #49152
+ 173 0008 7047     		bx	lr
+ 174              	.L22:
+ 175 000a 00BF     		.align	2
+ 176              	.L21:
+ 177 000c 00700040 		.word	1073770496
+ 179              		.section	.text.HAL_PWREx_ControlVoltageScaling,"ax",%progbits
+ 180              		.align	2
+ 181              		.global	HAL_PWREx_ControlVoltageScaling
+ARM GAS  /tmp/ccXDD4tW.s 			page 4
 
 
- 183 0008 0092     		str	r2, [sp]
- 184 000a 236C     		ldr	r3, [r4, #64]
- 185 000c 43F08053 		orr	r3, r3, #268435456
- 186 0010 2364     		str	r3, [r4, #64]
- 187 0012 236C     		ldr	r3, [r4, #64]
- 188 0014 03F08053 		and	r3, r3, #268435456
- 189 0018 0093     		str	r3, [sp]
- 190 001a 009B     		ldr	r3, [sp]
- 191 001c A368     		ldr	r3, [r4, #8]
- 192 001e 03F00C03 		and	r3, r3, #12
- 193 0022 082B     		cmp	r3, #8
- 194 0024 3ED0     		beq	.L32
- 195 0026 224B     		ldr	r3, .L35+4
- 196 0028 1A60     		str	r2, [r3]
- 197 002a 0646     		mov	r6, r0
- 198 002c FFF7FEFF 		bl	HAL_GetTick
- 199 0030 0546     		mov	r5, r0
- 200 0032 04E0     		b	.L25
- 201              	.L26:
- 202 0034 FFF7FEFF 		bl	HAL_GetTick
- 203 0038 401B     		subs	r0, r0, r5
- 204 003a 0228     		cmp	r0, #2
- 205 003c 2FD8     		bhi	.L28
- 206              	.L25:
- 207 003e 2368     		ldr	r3, [r4]
- 208 0040 13F00073 		ands	r3, r3, #33554432
- 209 0044 F6D1     		bne	.L26
- 210 0046 1B4A     		ldr	r2, .L35+8
- 211 0048 0193     		str	r3, [sp, #4]
- 212 004a 1368     		ldr	r3, [r2]
- 213 004c 1849     		ldr	r1, .L35+4
- 214 004e 174C     		ldr	r4, .L35
- 215 0050 23F44043 		bic	r3, r3, #49152
- 216 0054 1E43     		orrs	r6, r6, r3
- 217 0056 1660     		str	r6, [r2]
- 218 0058 1368     		ldr	r3, [r2]
- 219 005a 03F44043 		and	r3, r3, #49152
- 220 005e 0193     		str	r3, [sp, #4]
- 221 0060 0123     		movs	r3, #1
- 222 0062 019A     		ldr	r2, [sp, #4]
- 223 0064 0B60     		str	r3, [r1]
- 224 0066 FFF7FEFF 		bl	HAL_GetTick
- 225 006a 0546     		mov	r5, r0
- 226 006c 04E0     		b	.L27
- 227              	.L29:
- 228 006e FFF7FEFF 		bl	HAL_GetTick
- 229 0072 401B     		subs	r0, r0, r5
- 230 0074 0228     		cmp	r0, #2
- 231 0076 12D8     		bhi	.L28
- 232              	.L27:
- 233 0078 2368     		ldr	r3, [r4]
- 234 007a 9A01     		lsls	r2, r3, #6
- 235 007c F7D5     		bpl	.L29
- 236 007e FFF7FEFF 		bl	HAL_GetTick
- 237 0082 0C4C     		ldr	r4, .L35+8
- 238 0084 0546     		mov	r5, r0
- 239 0086 05E0     		b	.L30
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 5
+ 182              		.thumb
+ 183              		.thumb_func
+ 185              	HAL_PWREx_ControlVoltageScaling:
+ 186              		@ args = 0, pretend = 0, frame = 8
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188 0000 70B5     		push	{r4, r5, r6, lr}
+ 189 0002 82B0     		sub	sp, sp, #8
+ 190 0004 294C     		ldr	r4, .L35
+ 191 0006 0022     		movs	r2, #0
+ 192 0008 0092     		str	r2, [sp]
+ 193 000a 236C     		ldr	r3, [r4, #64]
+ 194 000c 43F08053 		orr	r3, r3, #268435456
+ 195 0010 2364     		str	r3, [r4, #64]
+ 196 0012 236C     		ldr	r3, [r4, #64]
+ 197 0014 03F08053 		and	r3, r3, #268435456
+ 198 0018 0093     		str	r3, [sp]
+ 199 001a 009B     		ldr	r3, [sp]
+ 200 001c A368     		ldr	r3, [r4, #8]
+ 201 001e 03F00C03 		and	r3, r3, #12
+ 202 0022 082B     		cmp	r3, #8
+ 203 0024 3ED0     		beq	.L32
+ 204 0026 224B     		ldr	r3, .L35+4
+ 205 0028 1A60     		str	r2, [r3]
+ 206 002a 0646     		mov	r6, r0
+ 207 002c FFF7FEFF 		bl	HAL_GetTick
+ 208 0030 0546     		mov	r5, r0
+ 209 0032 04E0     		b	.L25
+ 210              	.L26:
+ 211 0034 FFF7FEFF 		bl	HAL_GetTick
+ 212 0038 401B     		subs	r0, r0, r5
+ 213 003a 0228     		cmp	r0, #2
+ 214 003c 2FD8     		bhi	.L28
+ 215              	.L25:
+ 216 003e 2368     		ldr	r3, [r4]
+ 217 0040 13F00073 		ands	r3, r3, #33554432
+ 218 0044 F6D1     		bne	.L26
+ 219 0046 1B4A     		ldr	r2, .L35+8
+ 220 0048 0193     		str	r3, [sp, #4]
+ 221 004a 1368     		ldr	r3, [r2]
+ 222 004c 1849     		ldr	r1, .L35+4
+ 223 004e 174C     		ldr	r4, .L35
+ 224 0050 23F44043 		bic	r3, r3, #49152
+ 225 0054 1E43     		orrs	r6, r6, r3
+ 226 0056 1660     		str	r6, [r2]
+ 227 0058 1368     		ldr	r3, [r2]
+ 228 005a 03F44043 		and	r3, r3, #49152
+ 229 005e 0193     		str	r3, [sp, #4]
+ 230 0060 0123     		movs	r3, #1
+ 231 0062 019A     		ldr	r2, [sp, #4]
+ 232 0064 0B60     		str	r3, [r1]
+ 233 0066 FFF7FEFF 		bl	HAL_GetTick
+ 234 006a 0546     		mov	r5, r0
+ 235 006c 04E0     		b	.L27
+ 236              	.L29:
+ 237 006e FFF7FEFF 		bl	HAL_GetTick
+ 238 0072 401B     		subs	r0, r0, r5
+ 239 0074 0228     		cmp	r0, #2
+ARM GAS  /tmp/ccXDD4tW.s 			page 5
 
 
- 240              	.L31:
- 241 0088 FFF7FEFF 		bl	HAL_GetTick
- 242 008c 401B     		subs	r0, r0, r5
- 243 008e B0F57A7F 		cmp	r0, #1000
- 244 0092 04D8     		bhi	.L28
- 245              	.L30:
- 246 0094 6368     		ldr	r3, [r4, #4]
- 247 0096 5B04     		lsls	r3, r3, #17
- 248 0098 F6D5     		bpl	.L31
- 249 009a 0020     		movs	r0, #0
- 250 009c 00E0     		b	.L24
- 251              	.L28:
- 252 009e 0320     		movs	r0, #3
- 253              	.L24:
- 254 00a0 02B0     		add	sp, sp, #8
- 255              		@ sp needed
- 256 00a2 70BD     		pop	{r4, r5, r6, pc}
- 257              	.L32:
- 258 00a4 0120     		movs	r0, #1
- 259 00a6 02B0     		add	sp, sp, #8
- 260              		@ sp needed
- 261 00a8 70BD     		pop	{r4, r5, r6, pc}
- 262              	.L36:
- 263 00aa 00BF     		.align	2
- 264              	.L35:
- 265 00ac 00380240 		.word	1073887232
- 266 00b0 60004742 		.word	1111949408
- 267 00b4 00700040 		.word	1073770496
- 269              		.section	.text.HAL_PWREx_EnableOverDrive,"ax",%progbits
- 270              		.align	2
- 271              		.global	HAL_PWREx_EnableOverDrive
- 272              		.thumb
- 273              		.thumb_func
- 275              	HAL_PWREx_EnableOverDrive:
- 276              		@ args = 0, pretend = 0, frame = 8
- 277              		@ frame_needed = 0, uses_anonymous_args = 0
- 278 0000 30B5     		push	{r4, r5, lr}
- 279 0002 83B0     		sub	sp, sp, #12
- 280 0004 234B     		ldr	r3, .L46
- 281 0006 0022     		movs	r2, #0
- 282 0008 0192     		str	r2, [sp, #4]
- 283 000a 1A6C     		ldr	r2, [r3, #64]
- 284 000c 42F08052 		orr	r2, r2, #268435456
- 285 0010 1A64     		str	r2, [r3, #64]
- 286 0012 1B6C     		ldr	r3, [r3, #64]
- 287 0014 03F08053 		and	r3, r3, #268435456
- 288 0018 0193     		str	r3, [sp, #4]
- 289 001a 019B     		ldr	r3, [sp, #4]
- 290 001c 4FF48033 		mov	r3, #65536
- 291              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 292 0020 93FAA3F3 		rbit r3, r3
- 293              	@ 0 "" 2
- 294              		.thumb
- 295 0024 B3FA83F3 		clz	r3, r3
- 296 0028 03F18453 		add	r3, r3, #276824064
- 297 002c 03F56033 		add	r3, r3, #229376
- 298 0030 9B00     		lsls	r3, r3, #2
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 6
+ 240 0076 12D8     		bhi	.L28
+ 241              	.L27:
+ 242 0078 2368     		ldr	r3, [r4]
+ 243 007a 9A01     		lsls	r2, r3, #6
+ 244 007c F7D5     		bpl	.L29
+ 245 007e FFF7FEFF 		bl	HAL_GetTick
+ 246 0082 0C4C     		ldr	r4, .L35+8
+ 247 0084 0546     		mov	r5, r0
+ 248 0086 05E0     		b	.L30
+ 249              	.L31:
+ 250 0088 FFF7FEFF 		bl	HAL_GetTick
+ 251 008c 401B     		subs	r0, r0, r5
+ 252 008e B0F57A7F 		cmp	r0, #1000
+ 253 0092 04D8     		bhi	.L28
+ 254              	.L30:
+ 255 0094 6368     		ldr	r3, [r4, #4]
+ 256 0096 5B04     		lsls	r3, r3, #17
+ 257 0098 F6D5     		bpl	.L31
+ 258 009a 0020     		movs	r0, #0
+ 259 009c 00E0     		b	.L24
+ 260              	.L28:
+ 261 009e 0320     		movs	r0, #3
+ 262              	.L24:
+ 263 00a0 02B0     		add	sp, sp, #8
+ 264              		@ sp needed
+ 265 00a2 70BD     		pop	{r4, r5, r6, pc}
+ 266              	.L32:
+ 267 00a4 0120     		movs	r0, #1
+ 268 00a6 02B0     		add	sp, sp, #8
+ 269              		@ sp needed
+ 270 00a8 70BD     		pop	{r4, r5, r6, pc}
+ 271              	.L36:
+ 272 00aa 00BF     		.align	2
+ 273              	.L35:
+ 274 00ac 00380240 		.word	1073887232
+ 275 00b0 60004742 		.word	1111949408
+ 276 00b4 00700040 		.word	1073770496
+ 278              		.section	.text.HAL_PWREx_EnableOverDrive,"ax",%progbits
+ 279              		.align	2
+ 280              		.global	HAL_PWREx_EnableOverDrive
+ 281              		.thumb
+ 282              		.thumb_func
+ 284              	HAL_PWREx_EnableOverDrive:
+ 285              		@ args = 0, pretend = 0, frame = 8
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287 0000 30B5     		push	{r4, r5, lr}
+ 288 0002 83B0     		sub	sp, sp, #12
+ 289 0004 234B     		ldr	r3, .L46
+ 290 0006 0022     		movs	r2, #0
+ 291 0008 0192     		str	r2, [sp, #4]
+ 292 000a 1A6C     		ldr	r2, [r3, #64]
+ 293 000c 42F08052 		orr	r2, r2, #268435456
+ 294 0010 1A64     		str	r2, [r3, #64]
+ 295 0012 1B6C     		ldr	r3, [r3, #64]
+ 296 0014 03F08053 		and	r3, r3, #268435456
+ 297 0018 0193     		str	r3, [sp, #4]
+ 298 001a 019B     		ldr	r3, [sp, #4]
+ARM GAS  /tmp/ccXDD4tW.s 			page 6
 
 
- 299 0032 0122     		movs	r2, #1
- 300 0034 1A60     		str	r2, [r3]
- 301 0036 FFF7FEFF 		bl	HAL_GetTick
- 302 003a 174C     		ldr	r4, .L46+4
- 303 003c 0546     		mov	r5, r0
- 304 003e 05E0     		b	.L38
- 305              	.L40:
- 306 0040 FFF7FEFF 		bl	HAL_GetTick
- 307 0044 401B     		subs	r0, r0, r5
- 308 0046 B0F57A7F 		cmp	r0, #1000
- 309 004a 20D8     		bhi	.L42
- 310              	.L38:
- 311 004c 6368     		ldr	r3, [r4, #4]
- 312 004e DA03     		lsls	r2, r3, #15
- 313 0050 F6D5     		bpl	.L40
- 314 0052 4FF40033 		mov	r3, #131072
- 315              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 316 0056 93FAA3F3 		rbit r3, r3
- 317              	@ 0 "" 2
- 318              		.thumb
- 319 005a B3FA83F3 		clz	r3, r3
- 320 005e 03F18453 		add	r3, r3, #276824064
- 321 0062 03F56033 		add	r3, r3, #229376
- 322 0066 9B00     		lsls	r3, r3, #2
- 323 0068 0122     		movs	r2, #1
- 324 006a 1A60     		str	r2, [r3]
- 325 006c FFF7FEFF 		bl	HAL_GetTick
- 326 0070 094C     		ldr	r4, .L46+4
- 327 0072 0546     		mov	r5, r0
- 328 0074 05E0     		b	.L41
- 329              	.L43:
- 330 0076 FFF7FEFF 		bl	HAL_GetTick
- 331 007a 401B     		subs	r0, r0, r5
- 332 007c B0F57A7F 		cmp	r0, #1000
- 333 0080 05D8     		bhi	.L42
- 334              	.L41:
- 335 0082 6368     		ldr	r3, [r4, #4]
- 336 0084 9B03     		lsls	r3, r3, #14
- 337 0086 F6D5     		bpl	.L43
- 338 0088 0020     		movs	r0, #0
- 339 008a 03B0     		add	sp, sp, #12
- 340              		@ sp needed
- 341 008c 30BD     		pop	{r4, r5, pc}
- 342              	.L42:
- 343 008e 0320     		movs	r0, #3
- 344 0090 03B0     		add	sp, sp, #12
- 345              		@ sp needed
- 346 0092 30BD     		pop	{r4, r5, pc}
- 347              	.L47:
- 348              		.align	2
- 349              	.L46:
- 350 0094 00380240 		.word	1073887232
- 351 0098 00700040 		.word	1073770496
- 353              		.section	.text.HAL_PWREx_DisableOverDrive,"ax",%progbits
- 354              		.align	2
- 355              		.global	HAL_PWREx_DisableOverDrive
- 356              		.thumb
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 7
+ 299 001c 4FF48033 		mov	r3, #65536
+ 300              		.syntax unified
+ 301              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 302 0020 93FAA3F3 		rbit r3, r3
+ 303              	@ 0 "" 2
+ 304              		.thumb
+ 305              		.syntax unified
+ 306 0024 B3FA83F3 		clz	r3, r3
+ 307 0028 03F18453 		add	r3, r3, #276824064
+ 308 002c 03F56033 		add	r3, r3, #229376
+ 309 0030 9B00     		lsls	r3, r3, #2
+ 310 0032 0122     		movs	r2, #1
+ 311 0034 1A60     		str	r2, [r3]
+ 312 0036 FFF7FEFF 		bl	HAL_GetTick
+ 313 003a 174C     		ldr	r4, .L46+4
+ 314 003c 0546     		mov	r5, r0
+ 315 003e 05E0     		b	.L38
+ 316              	.L40:
+ 317 0040 FFF7FEFF 		bl	HAL_GetTick
+ 318 0044 401B     		subs	r0, r0, r5
+ 319 0046 B0F57A7F 		cmp	r0, #1000
+ 320 004a 20D8     		bhi	.L42
+ 321              	.L38:
+ 322 004c 6368     		ldr	r3, [r4, #4]
+ 323 004e DA03     		lsls	r2, r3, #15
+ 324 0050 F6D5     		bpl	.L40
+ 325 0052 4FF40033 		mov	r3, #131072
+ 326              		.syntax unified
+ 327              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 328 0056 93FAA3F3 		rbit r3, r3
+ 329              	@ 0 "" 2
+ 330              		.thumb
+ 331              		.syntax unified
+ 332 005a B3FA83F3 		clz	r3, r3
+ 333 005e 03F18453 		add	r3, r3, #276824064
+ 334 0062 03F56033 		add	r3, r3, #229376
+ 335 0066 9B00     		lsls	r3, r3, #2
+ 336 0068 0122     		movs	r2, #1
+ 337 006a 1A60     		str	r2, [r3]
+ 338 006c FFF7FEFF 		bl	HAL_GetTick
+ 339 0070 094C     		ldr	r4, .L46+4
+ 340 0072 0546     		mov	r5, r0
+ 341 0074 05E0     		b	.L41
+ 342              	.L43:
+ 343 0076 FFF7FEFF 		bl	HAL_GetTick
+ 344 007a 401B     		subs	r0, r0, r5
+ 345 007c B0F57A7F 		cmp	r0, #1000
+ 346 0080 05D8     		bhi	.L42
+ 347              	.L41:
+ 348 0082 6368     		ldr	r3, [r4, #4]
+ 349 0084 9B03     		lsls	r3, r3, #14
+ 350 0086 F6D5     		bpl	.L43
+ 351 0088 0020     		movs	r0, #0
+ 352 008a 03B0     		add	sp, sp, #12
+ 353              		@ sp needed
+ 354 008c 30BD     		pop	{r4, r5, pc}
+ 355              	.L42:
+ARM GAS  /tmp/ccXDD4tW.s 			page 7
 
 
- 357              		.thumb_func
- 359              	HAL_PWREx_DisableOverDrive:
- 360              		@ args = 0, pretend = 0, frame = 8
- 361              		@ frame_needed = 0, uses_anonymous_args = 0
- 362 0000 30B5     		push	{r4, r5, lr}
- 363 0002 83B0     		sub	sp, sp, #12
- 364 0004 234B     		ldr	r3, .L57
- 365 0006 0021     		movs	r1, #0
- 366 0008 0191     		str	r1, [sp, #4]
- 367 000a 1A6C     		ldr	r2, [r3, #64]
- 368 000c 42F08052 		orr	r2, r2, #268435456
- 369 0010 1A64     		str	r2, [r3, #64]
- 370 0012 1B6C     		ldr	r3, [r3, #64]
- 371 0014 03F08053 		and	r3, r3, #268435456
- 372 0018 0193     		str	r3, [sp, #4]
- 373 001a 019B     		ldr	r3, [sp, #4]
- 374 001c 4FF40033 		mov	r3, #131072
- 375              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 376 0020 93FAA3F3 		rbit r3, r3
- 377              	@ 0 "" 2
- 378              		.thumb
- 379 0024 B3FA83F3 		clz	r3, r3
- 380 0028 03F18453 		add	r3, r3, #276824064
- 381 002c 03F56033 		add	r3, r3, #229376
- 382 0030 9B00     		lsls	r3, r3, #2
- 383 0032 194C     		ldr	r4, .L57+4
- 384 0034 1960     		str	r1, [r3]
- 385 0036 FFF7FEFF 		bl	HAL_GetTick
- 386 003a 0546     		mov	r5, r0
- 387 003c 05E0     		b	.L49
- 388              	.L51:
- 389 003e FFF7FEFF 		bl	HAL_GetTick
- 390 0042 401B     		subs	r0, r0, r5
- 391 0044 B0F57A7F 		cmp	r0, #1000
- 392 0048 20D8     		bhi	.L53
- 393              	.L49:
- 394 004a 6368     		ldr	r3, [r4, #4]
- 395 004c 13F40033 		ands	r3, r3, #131072
- 396 0050 F5D1     		bne	.L51
- 397 0052 4FF48032 		mov	r2, #65536
- 398              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 399 0056 92FAA2F2 		rbit r2, r2
- 400              	@ 0 "" 2
- 401              		.thumb
- 402 005a B2FA82F2 		clz	r2, r2
- 403 005e 02F18452 		add	r2, r2, #276824064
- 404 0062 02F56032 		add	r2, r2, #229376
- 405 0066 9200     		lsls	r2, r2, #2
- 406 0068 0B4C     		ldr	r4, .L57+4
- 407 006a 1360     		str	r3, [r2]
- 408 006c FFF7FEFF 		bl	HAL_GetTick
- 409 0070 0546     		mov	r5, r0
- 410 0072 05E0     		b	.L52
- 411              	.L54:
- 412 0074 FFF7FEFF 		bl	HAL_GetTick
- 413 0078 401B     		subs	r0, r0, r5
- 414 007a B0F57A7F 		cmp	r0, #1000
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 8
+ 356 008e 0320     		movs	r0, #3
+ 357 0090 03B0     		add	sp, sp, #12
+ 358              		@ sp needed
+ 359 0092 30BD     		pop	{r4, r5, pc}
+ 360              	.L47:
+ 361              		.align	2
+ 362              	.L46:
+ 363 0094 00380240 		.word	1073887232
+ 364 0098 00700040 		.word	1073770496
+ 366              		.section	.text.HAL_PWREx_DisableOverDrive,"ax",%progbits
+ 367              		.align	2
+ 368              		.global	HAL_PWREx_DisableOverDrive
+ 369              		.thumb
+ 370              		.thumb_func
+ 372              	HAL_PWREx_DisableOverDrive:
+ 373              		@ args = 0, pretend = 0, frame = 8
+ 374              		@ frame_needed = 0, uses_anonymous_args = 0
+ 375 0000 30B5     		push	{r4, r5, lr}
+ 376 0002 83B0     		sub	sp, sp, #12
+ 377 0004 234B     		ldr	r3, .L57
+ 378 0006 0021     		movs	r1, #0
+ 379 0008 0191     		str	r1, [sp, #4]
+ 380 000a 1A6C     		ldr	r2, [r3, #64]
+ 381 000c 42F08052 		orr	r2, r2, #268435456
+ 382 0010 1A64     		str	r2, [r3, #64]
+ 383 0012 1B6C     		ldr	r3, [r3, #64]
+ 384 0014 03F08053 		and	r3, r3, #268435456
+ 385 0018 0193     		str	r3, [sp, #4]
+ 386 001a 019B     		ldr	r3, [sp, #4]
+ 387 001c 4FF40033 		mov	r3, #131072
+ 388              		.syntax unified
+ 389              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 390 0020 93FAA3F3 		rbit r3, r3
+ 391              	@ 0 "" 2
+ 392              		.thumb
+ 393              		.syntax unified
+ 394 0024 B3FA83F3 		clz	r3, r3
+ 395 0028 03F18453 		add	r3, r3, #276824064
+ 396 002c 03F56033 		add	r3, r3, #229376
+ 397 0030 9B00     		lsls	r3, r3, #2
+ 398 0032 194C     		ldr	r4, .L57+4
+ 399 0034 1960     		str	r1, [r3]
+ 400 0036 FFF7FEFF 		bl	HAL_GetTick
+ 401 003a 0546     		mov	r5, r0
+ 402 003c 05E0     		b	.L49
+ 403              	.L51:
+ 404 003e FFF7FEFF 		bl	HAL_GetTick
+ 405 0042 401B     		subs	r0, r0, r5
+ 406 0044 B0F57A7F 		cmp	r0, #1000
+ 407 0048 20D8     		bhi	.L53
+ 408              	.L49:
+ 409 004a 6368     		ldr	r3, [r4, #4]
+ 410 004c 13F40033 		ands	r3, r3, #131072
+ 411 0050 F5D1     		bne	.L51
+ 412 0052 4FF48032 		mov	r2, #65536
+ 413              		.syntax unified
+ 414              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ARM GAS  /tmp/ccXDD4tW.s 			page 8
 
 
- 415 007e 05D8     		bhi	.L53
- 416              	.L52:
- 417 0080 6068     		ldr	r0, [r4, #4]
- 418 0082 10F48030 		ands	r0, r0, #65536
- 419 0086 F5D1     		bne	.L54
- 420 0088 03B0     		add	sp, sp, #12
- 421              		@ sp needed
- 422 008a 30BD     		pop	{r4, r5, pc}
- 423              	.L53:
- 424 008c 0320     		movs	r0, #3
- 425 008e 03B0     		add	sp, sp, #12
- 426              		@ sp needed
- 427 0090 30BD     		pop	{r4, r5, pc}
- 428              	.L58:
- 429 0092 00BF     		.align	2
- 430              	.L57:
- 431 0094 00380240 		.word	1073887232
- 432 0098 00700040 		.word	1073770496
- 434              		.section	.text.HAL_PWREx_EnterUnderDriveSTOPMode,"ax",%progbits
- 435              		.align	2
- 436              		.global	HAL_PWREx_EnterUnderDriveSTOPMode
- 437              		.thumb
- 438              		.thumb_func
- 440              	HAL_PWREx_EnterUnderDriveSTOPMode:
- 441              		@ args = 0, pretend = 0, frame = 8
- 442              		@ frame_needed = 0, uses_anonymous_args = 0
- 443 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 444 0002 83B0     		sub	sp, sp, #12
- 445 0004 214B     		ldr	r3, .L68
- 446 0006 224C     		ldr	r4, .L68+4
- 447 0008 0022     		movs	r2, #0
- 448 000a 0192     		str	r2, [sp, #4]
- 449 000c 1A6C     		ldr	r2, [r3, #64]
- 450 000e 42F08052 		orr	r2, r2, #268435456
- 451 0012 1A64     		str	r2, [r3, #64]
- 452 0014 1B6C     		ldr	r3, [r3, #64]
- 453 0016 03F08053 		and	r3, r3, #268435456
- 454 001a 0193     		str	r3, [sp, #4]
- 455 001c 019B     		ldr	r3, [sp, #4]
- 456 001e 6368     		ldr	r3, [r4, #4]
- 457 0020 43F44023 		orr	r3, r3, #786432
- 458 0024 6360     		str	r3, [r4, #4]
- 459 0026 2368     		ldr	r3, [r4]
- 460 0028 43F44023 		orr	r3, r3, #786432
- 461 002c 2360     		str	r3, [r4]
- 462 002e 0646     		mov	r6, r0
- 463 0030 0D46     		mov	r5, r1
- 464 0032 FFF7FEFF 		bl	HAL_GetTick
- 465 0036 0746     		mov	r7, r0
- 466 0038 05E0     		b	.L60
- 467              	.L62:
- 468 003a FFF7FEFF 		bl	HAL_GetTick
- 469 003e C01B     		subs	r0, r0, r7
- 470 0040 B0F57A7F 		cmp	r0, #1000
- 471 0044 1DD8     		bhi	.L65
- 472              	.L60:
- 473 0046 6368     		ldr	r3, [r4, #4]
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 9
+ 415 0056 92FAA2F2 		rbit r2, r2
+ 416              	@ 0 "" 2
+ 417              		.thumb
+ 418              		.syntax unified
+ 419 005a B2FA82F2 		clz	r2, r2
+ 420 005e 02F18452 		add	r2, r2, #276824064
+ 421 0062 02F56032 		add	r2, r2, #229376
+ 422 0066 9200     		lsls	r2, r2, #2
+ 423 0068 0B4C     		ldr	r4, .L57+4
+ 424 006a 1360     		str	r3, [r2]
+ 425 006c FFF7FEFF 		bl	HAL_GetTick
+ 426 0070 0546     		mov	r5, r0
+ 427 0072 05E0     		b	.L52
+ 428              	.L54:
+ 429 0074 FFF7FEFF 		bl	HAL_GetTick
+ 430 0078 401B     		subs	r0, r0, r5
+ 431 007a B0F57A7F 		cmp	r0, #1000
+ 432 007e 05D8     		bhi	.L53
+ 433              	.L52:
+ 434 0080 6068     		ldr	r0, [r4, #4]
+ 435 0082 10F48030 		ands	r0, r0, #65536
+ 436 0086 F5D1     		bne	.L54
+ 437 0088 03B0     		add	sp, sp, #12
+ 438              		@ sp needed
+ 439 008a 30BD     		pop	{r4, r5, pc}
+ 440              	.L53:
+ 441 008c 0320     		movs	r0, #3
+ 442 008e 03B0     		add	sp, sp, #12
+ 443              		@ sp needed
+ 444 0090 30BD     		pop	{r4, r5, pc}
+ 445              	.L58:
+ 446 0092 00BF     		.align	2
+ 447              	.L57:
+ 448 0094 00380240 		.word	1073887232
+ 449 0098 00700040 		.word	1073770496
+ 451              		.section	.text.HAL_PWREx_EnterUnderDriveSTOPMode,"ax",%progbits
+ 452              		.align	2
+ 453              		.global	HAL_PWREx_EnterUnderDriveSTOPMode
+ 454              		.thumb
+ 455              		.thumb_func
+ 457              	HAL_PWREx_EnterUnderDriveSTOPMode:
+ 458              		@ args = 0, pretend = 0, frame = 8
+ 459              		@ frame_needed = 0, uses_anonymous_args = 0
+ 460 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 461 0002 83B0     		sub	sp, sp, #12
+ 462 0004 214B     		ldr	r3, .L68
+ 463 0006 224C     		ldr	r4, .L68+4
+ 464 0008 0022     		movs	r2, #0
+ 465 000a 0192     		str	r2, [sp, #4]
+ 466 000c 1A6C     		ldr	r2, [r3, #64]
+ 467 000e 42F08052 		orr	r2, r2, #268435456
+ 468 0012 1A64     		str	r2, [r3, #64]
+ 469 0014 1B6C     		ldr	r3, [r3, #64]
+ 470 0016 03F08053 		and	r3, r3, #268435456
+ 471 001a 0193     		str	r3, [sp, #4]
+ 472 001c 019B     		ldr	r3, [sp, #4]
+ 473 001e 6368     		ldr	r3, [r4, #4]
+ARM GAS  /tmp/ccXDD4tW.s 			page 9
 
 
- 474 0048 114A     		ldr	r2, .L68+4
- 475 004a 03F44023 		and	r3, r3, #786432
- 476 004e B3F5402F 		cmp	r3, #786432
- 477 0052 F2D0     		beq	.L62
- 478 0054 1368     		ldr	r3, [r2]
- 479 0056 0F49     		ldr	r1, .L68+8
- 480 0058 23F44063 		bic	r3, r3, #3072
- 481 005c 23F00303 		bic	r3, r3, #3
- 482 0060 1E43     		orrs	r6, r6, r3
- 483 0062 1660     		str	r6, [r2]
- 484 0064 0B69     		ldr	r3, [r1, #16]
- 485 0066 012D     		cmp	r5, #1
- 486 0068 43F00403 		orr	r3, r3, #4
- 487 006c 0B61     		str	r3, [r1, #16]
- 488 006e 0BD0     		beq	.L67
- 489              	@ 396 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 490 0070 20BF     		wfe
- 491              	@ 0 "" 2
- 492              		.thumb
- 493              	.L64:
- 494 0072 084A     		ldr	r2, .L68+8
- 495 0074 1369     		ldr	r3, [r2, #16]
- 496 0076 0020     		movs	r0, #0
- 497 0078 23F00403 		bic	r3, r3, #4
- 498 007c 1361     		str	r3, [r2, #16]
- 499 007e 03B0     		add	sp, sp, #12
- 500              		@ sp needed
- 501 0080 F0BD     		pop	{r4, r5, r6, r7, pc}
- 502              	.L65:
- 503 0082 0320     		movs	r0, #3
- 504 0084 03B0     		add	sp, sp, #12
- 505              		@ sp needed
- 506 0086 F0BD     		pop	{r4, r5, r6, r7, pc}
- 507              	.L67:
- 508              	@ 385 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 509 0088 30BF     		wfi
- 510              	@ 0 "" 2
- 511              		.thumb
- 512 008a F2E7     		b	.L64
- 513              	.L69:
- 514              		.align	2
- 515              	.L68:
- 516 008c 00380240 		.word	1073887232
- 517 0090 00700040 		.word	1073770496
- 518 0094 00ED00E0 		.word	-536810240
- 520              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150529 (release) [ARM/embedded-4_9-br
-ARM GAS  /var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s 			page 10
+ 474 0020 43F44023 		orr	r3, r3, #786432
+ 475 0024 6360     		str	r3, [r4, #4]
+ 476 0026 2368     		ldr	r3, [r4]
+ 477 0028 43F44023 		orr	r3, r3, #786432
+ 478 002c 2360     		str	r3, [r4]
+ 479 002e 0546     		mov	r5, r0
+ 480 0030 0E46     		mov	r6, r1
+ 481 0032 FFF7FEFF 		bl	HAL_GetTick
+ 482 0036 0746     		mov	r7, r0
+ 483 0038 05E0     		b	.L60
+ 484              	.L62:
+ 485 003a FFF7FEFF 		bl	HAL_GetTick
+ 486 003e C01B     		subs	r0, r0, r7
+ 487 0040 B0F57A7F 		cmp	r0, #1000
+ 488 0044 1DD8     		bhi	.L65
+ 489              	.L60:
+ 490 0046 6368     		ldr	r3, [r4, #4]
+ 491 0048 114A     		ldr	r2, .L68+4
+ 492 004a 03F44023 		and	r3, r3, #786432
+ 493 004e B3F5402F 		cmp	r3, #786432
+ 494 0052 F2D0     		beq	.L62
+ 495 0054 1368     		ldr	r3, [r2]
+ 496 0056 0F49     		ldr	r1, .L68+8
+ 497 0058 23F44063 		bic	r3, r3, #3072
+ 498 005c 23F00303 		bic	r3, r3, #3
+ 499 0060 1D43     		orrs	r5, r5, r3
+ 500 0062 1560     		str	r5, [r2]
+ 501 0064 0B69     		ldr	r3, [r1, #16]
+ 502 0066 012E     		cmp	r6, #1
+ 503 0068 43F00403 		orr	r3, r3, #4
+ 504 006c 0B61     		str	r3, [r1, #16]
+ 505 006e 0BD0     		beq	.L67
+ 506              		.syntax unified
+ 507              	@ 396 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 508 0070 20BF     		wfe
+ 509              	@ 0 "" 2
+ 510              		.thumb
+ 511              		.syntax unified
+ 512              	.L64:
+ 513 0072 084A     		ldr	r2, .L68+8
+ 514 0074 1369     		ldr	r3, [r2, #16]
+ 515 0076 0020     		movs	r0, #0
+ 516 0078 23F00403 		bic	r3, r3, #4
+ 517 007c 1361     		str	r3, [r2, #16]
+ 518 007e 03B0     		add	sp, sp, #12
+ 519              		@ sp needed
+ 520 0080 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 521              	.L65:
+ 522 0082 0320     		movs	r0, #3
+ 523 0084 03B0     		add	sp, sp, #12
+ 524              		@ sp needed
+ 525 0086 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 526              	.L67:
+ 527              		.syntax unified
+ 528              	@ 385 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 529 0088 30BF     		wfi
+ 530              	@ 0 "" 2
+ARM GAS  /tmp/ccXDD4tW.s 			page 10
+
+
+ 531              		.thumb
+ 532              		.syntax unified
+ 533 008a F2E7     		b	.L64
+ 534              	.L69:
+ 535              		.align	2
+ 536              	.L68:
+ 537 008c 00380240 		.word	1073887232
+ 538 0090 00700040 		.word	1073770496
+ 539 0094 00ED00E0 		.word	-536810240
+ 541              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
+ARM GAS  /tmp/ccXDD4tW.s 			page 11
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 stm32f4xx_hal_pwr_ex.c
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:17     .text.HAL_PWREx_EnableBkUpReg:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:22     .text.HAL_PWREx_EnableBkUpReg:0000000000000000 HAL_PWREx_EnableBkUpReg
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:58     .text.HAL_PWREx_EnableBkUpReg:000000000000003c $d
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:62     .text.HAL_PWREx_DisableBkUpReg:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:67     .text.HAL_PWREx_DisableBkUpReg:0000000000000000 HAL_PWREx_DisableBkUpReg
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:102    .text.HAL_PWREx_DisableBkUpReg:000000000000003c $d
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:106    .text.HAL_PWREx_EnableFlashPowerDown:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:111    .text.HAL_PWREx_EnableFlashPowerDown:0000000000000000 HAL_PWREx_EnableFlashPowerDown
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:129    .text.HAL_PWREx_DisableFlashPowerDown:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:134    .text.HAL_PWREx_DisableFlashPowerDown:0000000000000000 HAL_PWREx_DisableFlashPowerDown
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:152    .text.HAL_PWREx_GetVoltageRange:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:157    .text.HAL_PWREx_GetVoltageRange:0000000000000000 HAL_PWREx_GetVoltageRange
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:168    .text.HAL_PWREx_GetVoltageRange:000000000000000c $d
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:171    .text.HAL_PWREx_ControlVoltageScaling:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:176    .text.HAL_PWREx_ControlVoltageScaling:0000000000000000 HAL_PWREx_ControlVoltageScaling
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:265    .text.HAL_PWREx_ControlVoltageScaling:00000000000000ac $d
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:270    .text.HAL_PWREx_EnableOverDrive:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:275    .text.HAL_PWREx_EnableOverDrive:0000000000000000 HAL_PWREx_EnableOverDrive
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:350    .text.HAL_PWREx_EnableOverDrive:0000000000000094 $d
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:354    .text.HAL_PWREx_DisableOverDrive:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:359    .text.HAL_PWREx_DisableOverDrive:0000000000000000 HAL_PWREx_DisableOverDrive
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:431    .text.HAL_PWREx_DisableOverDrive:0000000000000094 $d
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:435    .text.HAL_PWREx_EnterUnderDriveSTOPMode:0000000000000000 $t
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:440    .text.HAL_PWREx_EnterUnderDriveSTOPMode:0000000000000000 HAL_PWREx_EnterUnderDriveSTOPMode
-/var/folders/_j/px34bss161g6w2_6fxy_byhh0000gn/T//ccJJXPG3.s:516    .text.HAL_PWREx_EnterUnderDriveSTOPMode:000000000000008c $d
+                            *ABS*:00000000 stm32f4xx_hal_pwr_ex.c
+     /tmp/ccXDD4tW.s:18     .text.HAL_PWREx_EnableBkUpReg:00000000 $t
+     /tmp/ccXDD4tW.s:23     .text.HAL_PWREx_EnableBkUpReg:00000000 HAL_PWREx_EnableBkUpReg
+     /tmp/ccXDD4tW.s:61     .text.HAL_PWREx_EnableBkUpReg:0000003c $d
+     /tmp/ccXDD4tW.s:65     .text.HAL_PWREx_DisableBkUpReg:00000000 $t
+     /tmp/ccXDD4tW.s:70     .text.HAL_PWREx_DisableBkUpReg:00000000 HAL_PWREx_DisableBkUpReg
+     /tmp/ccXDD4tW.s:107    .text.HAL_PWREx_DisableBkUpReg:0000003c $d
+     /tmp/ccXDD4tW.s:111    .text.HAL_PWREx_EnableFlashPowerDown:00000000 $t
+     /tmp/ccXDD4tW.s:116    .text.HAL_PWREx_EnableFlashPowerDown:00000000 HAL_PWREx_EnableFlashPowerDown
+     /tmp/ccXDD4tW.s:136    .text.HAL_PWREx_DisableFlashPowerDown:00000000 $t
+     /tmp/ccXDD4tW.s:141    .text.HAL_PWREx_DisableFlashPowerDown:00000000 HAL_PWREx_DisableFlashPowerDown
+     /tmp/ccXDD4tW.s:161    .text.HAL_PWREx_GetVoltageRange:00000000 $t
+     /tmp/ccXDD4tW.s:166    .text.HAL_PWREx_GetVoltageRange:00000000 HAL_PWREx_GetVoltageRange
+     /tmp/ccXDD4tW.s:177    .text.HAL_PWREx_GetVoltageRange:0000000c $d
+     /tmp/ccXDD4tW.s:180    .text.HAL_PWREx_ControlVoltageScaling:00000000 $t
+     /tmp/ccXDD4tW.s:185    .text.HAL_PWREx_ControlVoltageScaling:00000000 HAL_PWREx_ControlVoltageScaling
+     /tmp/ccXDD4tW.s:274    .text.HAL_PWREx_ControlVoltageScaling:000000ac $d
+     /tmp/ccXDD4tW.s:279    .text.HAL_PWREx_EnableOverDrive:00000000 $t
+     /tmp/ccXDD4tW.s:284    .text.HAL_PWREx_EnableOverDrive:00000000 HAL_PWREx_EnableOverDrive
+     /tmp/ccXDD4tW.s:363    .text.HAL_PWREx_EnableOverDrive:00000094 $d
+     /tmp/ccXDD4tW.s:367    .text.HAL_PWREx_DisableOverDrive:00000000 $t
+     /tmp/ccXDD4tW.s:372    .text.HAL_PWREx_DisableOverDrive:00000000 HAL_PWREx_DisableOverDrive
+     /tmp/ccXDD4tW.s:448    .text.HAL_PWREx_DisableOverDrive:00000094 $d
+     /tmp/ccXDD4tW.s:452    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 $t
+     /tmp/ccXDD4tW.s:457    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 HAL_PWREx_EnterUnderDriveSTOPMode
+     /tmp/ccXDD4tW.s:537    .text.HAL_PWREx_EnterUnderDriveSTOPMode:0000008c $d
 
 UNDEFINED SYMBOLS
 HAL_GetTick
