@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccXDD4tW.s 			page 1
+ARM GAS  /tmp/ccIfgvaT.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
   56 0038 0320     		movs	r0, #3
   57 003a 38BD     		pop	{r3, r4, r5, pc}
   58              	.L9:
-ARM GAS  /tmp/ccXDD4tW.s 			page 2
+ARM GAS  /tmp/ccIfgvaT.s 			page 2
 
 
   59              		.align	2
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  117              		@ args = 0, pretend = 0, frame = 0
  118              		@ frame_needed = 0, uses_anonymous_args = 0
  119              		@ link register save eliminated.
-ARM GAS  /tmp/ccXDD4tW.s 			page 3
+ARM GAS  /tmp/ccIfgvaT.s 			page 3
 
 
  120 0000 4FF40073 		mov	r3, #512
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  179              		.section	.text.HAL_PWREx_ControlVoltageScaling,"ax",%progbits
  180              		.align	2
  181              		.global	HAL_PWREx_ControlVoltageScaling
-ARM GAS  /tmp/ccXDD4tW.s 			page 4
+ARM GAS  /tmp/ccIfgvaT.s 			page 4
 
 
  182              		.thumb
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  237 006e FFF7FEFF 		bl	HAL_GetTick
  238 0072 401B     		subs	r0, r0, r5
  239 0074 0228     		cmp	r0, #2
-ARM GAS  /tmp/ccXDD4tW.s 			page 5
+ARM GAS  /tmp/ccIfgvaT.s 			page 5
 
 
  240 0076 12D8     		bhi	.L28
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  296 0014 03F08053 		and	r3, r3, #268435456
  297 0018 0193     		str	r3, [sp, #4]
  298 001a 019B     		ldr	r3, [sp, #4]
-ARM GAS  /tmp/ccXDD4tW.s 			page 6
+ARM GAS  /tmp/ccIfgvaT.s 			page 6
 
 
  299 001c 4FF48033 		mov	r3, #65536
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  353              		@ sp needed
  354 008c 30BD     		pop	{r4, r5, pc}
  355              	.L42:
-ARM GAS  /tmp/ccXDD4tW.s 			page 7
+ARM GAS  /tmp/ccIfgvaT.s 			page 7
 
 
  356 008e 0320     		movs	r0, #3
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  412 0052 4FF48032 		mov	r2, #65536
  413              		.syntax unified
  414              	@ 531 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-ARM GAS  /tmp/ccXDD4tW.s 			page 8
+ARM GAS  /tmp/ccIfgvaT.s 			page 8
 
 
  415 0056 92FAA2F2 		rbit r2, r2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  471 001a 0193     		str	r3, [sp, #4]
  472 001c 019B     		ldr	r3, [sp, #4]
  473 001e 6368     		ldr	r3, [r4, #4]
-ARM GAS  /tmp/ccXDD4tW.s 			page 9
+ARM GAS  /tmp/ccIfgvaT.s 			page 9
 
 
  474 0020 43F44023 		orr	r3, r3, #786432
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  528              	@ 385 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
  529 0088 30BF     		wfi
  530              	@ 0 "" 2
-ARM GAS  /tmp/ccXDD4tW.s 			page 10
+ARM GAS  /tmp/ccIfgvaT.s 			page 10
 
 
  531              		.thumb
@@ -551,36 +551,36 @@ ARM GAS  /tmp/ccXDD4tW.s 			page 1
  538 0090 00700040 		.word	1073770496
  539 0094 00ED00E0 		.word	-536810240
  541              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  /tmp/ccXDD4tW.s 			page 11
+ARM GAS  /tmp/ccIfgvaT.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_pwr_ex.c
-     /tmp/ccXDD4tW.s:18     .text.HAL_PWREx_EnableBkUpReg:00000000 $t
-     /tmp/ccXDD4tW.s:23     .text.HAL_PWREx_EnableBkUpReg:00000000 HAL_PWREx_EnableBkUpReg
-     /tmp/ccXDD4tW.s:61     .text.HAL_PWREx_EnableBkUpReg:0000003c $d
-     /tmp/ccXDD4tW.s:65     .text.HAL_PWREx_DisableBkUpReg:00000000 $t
-     /tmp/ccXDD4tW.s:70     .text.HAL_PWREx_DisableBkUpReg:00000000 HAL_PWREx_DisableBkUpReg
-     /tmp/ccXDD4tW.s:107    .text.HAL_PWREx_DisableBkUpReg:0000003c $d
-     /tmp/ccXDD4tW.s:111    .text.HAL_PWREx_EnableFlashPowerDown:00000000 $t
-     /tmp/ccXDD4tW.s:116    .text.HAL_PWREx_EnableFlashPowerDown:00000000 HAL_PWREx_EnableFlashPowerDown
-     /tmp/ccXDD4tW.s:136    .text.HAL_PWREx_DisableFlashPowerDown:00000000 $t
-     /tmp/ccXDD4tW.s:141    .text.HAL_PWREx_DisableFlashPowerDown:00000000 HAL_PWREx_DisableFlashPowerDown
-     /tmp/ccXDD4tW.s:161    .text.HAL_PWREx_GetVoltageRange:00000000 $t
-     /tmp/ccXDD4tW.s:166    .text.HAL_PWREx_GetVoltageRange:00000000 HAL_PWREx_GetVoltageRange
-     /tmp/ccXDD4tW.s:177    .text.HAL_PWREx_GetVoltageRange:0000000c $d
-     /tmp/ccXDD4tW.s:180    .text.HAL_PWREx_ControlVoltageScaling:00000000 $t
-     /tmp/ccXDD4tW.s:185    .text.HAL_PWREx_ControlVoltageScaling:00000000 HAL_PWREx_ControlVoltageScaling
-     /tmp/ccXDD4tW.s:274    .text.HAL_PWREx_ControlVoltageScaling:000000ac $d
-     /tmp/ccXDD4tW.s:279    .text.HAL_PWREx_EnableOverDrive:00000000 $t
-     /tmp/ccXDD4tW.s:284    .text.HAL_PWREx_EnableOverDrive:00000000 HAL_PWREx_EnableOverDrive
-     /tmp/ccXDD4tW.s:363    .text.HAL_PWREx_EnableOverDrive:00000094 $d
-     /tmp/ccXDD4tW.s:367    .text.HAL_PWREx_DisableOverDrive:00000000 $t
-     /tmp/ccXDD4tW.s:372    .text.HAL_PWREx_DisableOverDrive:00000000 HAL_PWREx_DisableOverDrive
-     /tmp/ccXDD4tW.s:448    .text.HAL_PWREx_DisableOverDrive:00000094 $d
-     /tmp/ccXDD4tW.s:452    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 $t
-     /tmp/ccXDD4tW.s:457    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 HAL_PWREx_EnterUnderDriveSTOPMode
-     /tmp/ccXDD4tW.s:537    .text.HAL_PWREx_EnterUnderDriveSTOPMode:0000008c $d
+     /tmp/ccIfgvaT.s:18     .text.HAL_PWREx_EnableBkUpReg:00000000 $t
+     /tmp/ccIfgvaT.s:23     .text.HAL_PWREx_EnableBkUpReg:00000000 HAL_PWREx_EnableBkUpReg
+     /tmp/ccIfgvaT.s:61     .text.HAL_PWREx_EnableBkUpReg:0000003c $d
+     /tmp/ccIfgvaT.s:65     .text.HAL_PWREx_DisableBkUpReg:00000000 $t
+     /tmp/ccIfgvaT.s:70     .text.HAL_PWREx_DisableBkUpReg:00000000 HAL_PWREx_DisableBkUpReg
+     /tmp/ccIfgvaT.s:107    .text.HAL_PWREx_DisableBkUpReg:0000003c $d
+     /tmp/ccIfgvaT.s:111    .text.HAL_PWREx_EnableFlashPowerDown:00000000 $t
+     /tmp/ccIfgvaT.s:116    .text.HAL_PWREx_EnableFlashPowerDown:00000000 HAL_PWREx_EnableFlashPowerDown
+     /tmp/ccIfgvaT.s:136    .text.HAL_PWREx_DisableFlashPowerDown:00000000 $t
+     /tmp/ccIfgvaT.s:141    .text.HAL_PWREx_DisableFlashPowerDown:00000000 HAL_PWREx_DisableFlashPowerDown
+     /tmp/ccIfgvaT.s:161    .text.HAL_PWREx_GetVoltageRange:00000000 $t
+     /tmp/ccIfgvaT.s:166    .text.HAL_PWREx_GetVoltageRange:00000000 HAL_PWREx_GetVoltageRange
+     /tmp/ccIfgvaT.s:177    .text.HAL_PWREx_GetVoltageRange:0000000c $d
+     /tmp/ccIfgvaT.s:180    .text.HAL_PWREx_ControlVoltageScaling:00000000 $t
+     /tmp/ccIfgvaT.s:185    .text.HAL_PWREx_ControlVoltageScaling:00000000 HAL_PWREx_ControlVoltageScaling
+     /tmp/ccIfgvaT.s:274    .text.HAL_PWREx_ControlVoltageScaling:000000ac $d
+     /tmp/ccIfgvaT.s:279    .text.HAL_PWREx_EnableOverDrive:00000000 $t
+     /tmp/ccIfgvaT.s:284    .text.HAL_PWREx_EnableOverDrive:00000000 HAL_PWREx_EnableOverDrive
+     /tmp/ccIfgvaT.s:363    .text.HAL_PWREx_EnableOverDrive:00000094 $d
+     /tmp/ccIfgvaT.s:367    .text.HAL_PWREx_DisableOverDrive:00000000 $t
+     /tmp/ccIfgvaT.s:372    .text.HAL_PWREx_DisableOverDrive:00000000 HAL_PWREx_DisableOverDrive
+     /tmp/ccIfgvaT.s:448    .text.HAL_PWREx_DisableOverDrive:00000094 $d
+     /tmp/ccIfgvaT.s:452    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 $t
+     /tmp/ccIfgvaT.s:457    .text.HAL_PWREx_EnterUnderDriveSTOPMode:00000000 HAL_PWREx_EnterUnderDriveSTOPMode
+     /tmp/ccIfgvaT.s:537    .text.HAL_PWREx_EnterUnderDriveSTOPMode:0000008c $d
 
 UNDEFINED SYMBOLS
 HAL_GetTick

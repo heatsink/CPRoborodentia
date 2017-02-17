@@ -5609,12 +5609,10 @@ DIEPTXF0_HNPTXFSIZ	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  _
 DIER	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DIER;        \/*!< TIM DMA\/interrupt enable register,   Address offset: 0x0C *\/$/;"	m	struct:__anon210
 DINEP1MSK	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DINEP1MSK;       \/*!< dedicated EP mask            844h *\/$/;"	m	struct:__anon214
 DIR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^   __IO uint32_t  DIR;          \/*!< Debug Information register,         Address offset: 0x18 *\/$/;"	m	struct:__anon209
-DIR_1_GPIO_Port	Inc/main.h	51;"	d
-DIR_1_New_GPIO_Port	Inc/main.h	49;"	d
-DIR_1_New_Pin	Inc/main.h	48;"	d
-DIR_1_Pin	Inc/main.h	50;"	d
-DIR_2_GPIO_Port	Inc/main.h	53;"	d
-DIR_2_Pin	Inc/main.h	52;"	d
+DIR_1_GPIO_Port	Inc/main.h	49;"	d
+DIR_1_Pin	Inc/main.h	48;"	d
+DIR_2_GPIO_Port	Inc/main.h	51;"	d
+DIR_2_Pin	Inc/main.h	50;"	d
 DISABLE	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	/^  DISABLE = 0U, $/;"	e	enum:__anon174
 DLEN	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DLEN;                  \/*!< SDIO data length register,      Address offset: 0x28 *\/$/;"	m	struct:__anon206
 DLR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DLR;      \/*!< QUADSPI Data Length register,                       Address offset: 0x10 *\/$/;"	m	struct:__anon208
@@ -6434,6 +6432,7 @@ Dfsdm2ClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h	/^ 
 DfsdmClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	2758;"	d
 Direction	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h	/^  uint32_t Direction;            \/*!< Specifies if the data will be transferred from memory to peripheral, $/;"	m	struct:__anon260
 DisableExec	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h	/^  uint8_t                DisableExec;           \/*!< Specifies the instruction access status. $/;"	m	struct:__anon226
+Drive_All_Motors	Src/main.c	/^void Drive_All_Motors(uint16_t speed){$/;"	f
 ECCR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t ECCR;      \/*!< NAND Flash ECC result registers,                   Address offset: 0x94 *\/$/;"	m	struct:__anon194
 EGR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t EGR;         \/*!< TIM event generation register,       Address offset: 0x14 *\/$/;"	m	struct:__anon210
 EMR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t EMR;    \/*!< EXTI Event mask register,                Address offset: 0x04 *\/$/;"	m	struct:__anon190
@@ -10693,9 +10692,7 @@ HAL_TIM_Base_DeInit	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c	/^HAL_S
 HAL_TIM_Base_GetState	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c	/^HAL_TIM_StateTypeDef HAL_TIM_Base_GetState(TIM_HandleTypeDef *htim)$/;"	f
 HAL_TIM_Base_Init	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c	/^HAL_StatusTypeDef HAL_TIM_Base_Init(TIM_HandleTypeDef *htim)$/;"	f
 HAL_TIM_Base_MspDeInit	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c	/^__weak void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef *htim)$/;"	f
-HAL_TIM_Base_MspDeInit	Src/stm32f4xx_hal_msp.c	/^void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)$/;"	f
 HAL_TIM_Base_MspInit	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c	/^__weak void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)$/;"	f
-HAL_TIM_Base_MspInit	Src/stm32f4xx_hal_msp.c	/^void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)$/;"	f
 HAL_TIM_Base_Start	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c	/^HAL_StatusTypeDef HAL_TIM_Base_Start(TIM_HandleTypeDef *htim)$/;"	f
 HAL_TIM_Base_Start_DMA	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c	/^HAL_StatusTypeDef HAL_TIM_Base_Start_DMA(TIM_HandleTypeDef *htim, uint32_t *pData, uint16_t Length)$/;"	f
 HAL_TIM_Base_Start_IT	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c	/^HAL_StatusTypeDef HAL_TIM_Base_Start_IT(TIM_HandleTypeDef *htim)$/;"	f
@@ -12264,8 +12261,6 @@ MVFR1	Drivers/CMSIS/Include/core_cm7.h	/^  __IM  uint32_t MVFR1;                
 MVFR2	Drivers/CMSIS/Include/core_cm7.h	/^  __IM  uint32_t MVFR2;                  \/*!< Offset: 0x018 (R\/ )  Media and FP Feature Register 2 *\/$/;"	m	struct:__anon141
 MVFR2	Drivers/CMSIS/Include/core_cm7.h	/^  __IM  uint32_t MVFR2;                  \/*!< Offset: 0x248 (R\/ )  Media and VFP Feature Register 1 *\/$/;"	m	struct:__anon133
 MX_GPIO_Init	Src/main.c	/^static void MX_GPIO_Init(void)$/;"	f	file:
-MX_TIM13_Init	Src/main.c	/^static void MX_TIM13_Init(void)$/;"	f	file:
-MX_TIM14_Init	Src/main.c	/^static void MX_TIM14_Init(void)$/;"	f	file:
 MX_TIM4_Init	Src/main.c	/^static void MX_TIM4_Init(void)$/;"	f	file:
 MasterOutputTrigger	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h	/^  uint32_t  MasterOutputTrigger;   \/*!< Trigger output (TRGO) selection. $/;"	m	struct:__anon231
 MasterSlaveMode	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h	/^  uint32_t  MasterSlaveMode;       \/*!< Master\/slave mode selection. $/;"	m	struct:__anon231
@@ -17806,7 +17801,6 @@ TIM8	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	1114;"	d
 TIM8_BASE	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	992;"	d
 TIM8_BRK_TIM12_IRQn	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  TIM8_BRK_TIM12_IRQn         = 43,     \/*!< TIM8 Break Interrupt and TIM12 global interrupt                   *\/$/;"	e	enum:__anon176
 TIM8_CC_IRQn	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  TIM8_CC_IRQn                = 46,     \/*!< TIM8 Capture Compare global interrupt                             *\/$/;"	e	enum:__anon176
-TIM8_TRG_COM_TIM14_IRQHandler	Src/stm32f4xx_it.c	/^void TIM8_TRG_COM_TIM14_IRQHandler(void)$/;"	f
 TIM8_TRG_COM_TIM14_IRQn	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  TIM8_TRG_COM_TIM14_IRQn     = 45,     \/*!< TIM8 Trigger and Commutation Interrupt and TIM14 global interrupt *\/$/;"	e	enum:__anon176
 TIM8_UP_TIM13_IRQn	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  TIM8_UP_TIM13_IRQn          = 44,     \/*!< TIM8 Update Interrupt and TIM13 global interrupt                  *\/$/;"	e	enum:__anon176
 TIM9	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	1126;"	d
@@ -25024,8 +25018,6 @@ float64_t	Drivers/CMSIS/Include/arm_math.h	/^  typedef double float64_t;$/;"	t
 g_pfnVectors	Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f446xx.s	/^g_pfnVectors:$/;"	l
 g_pfnVectors	SW4STM32/startup_stm32f446xx.s	/^g_pfnVectors:$/;"	l
 hdma	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^  DMA_HandleTypeDef           *hdma[7];      \/*!< DMA Handlers array$/;"	m	struct:__anon257
-htim13	Src/main.c	/^TIM_HandleTypeDef htim13;$/;"	v
-htim14	Src/main.c	/^TIM_HandleTypeDef htim14;$/;"	v
 htim4	Src/main.c	/^TIM_HandleTypeDef htim4;$/;"	v
 ifftFlag	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlag;                  \/**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. *\/$/;"	m	struct:__anon86
 ifftFlag	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlag;                  \/**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. *\/$/;"	m	struct:__anon87
@@ -25041,6 +25033,7 @@ maxDelay	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t maxDelay;            \/
 maxDelay	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t maxDelay;            \/**< maximum offset specified by the pTapDelay array. *\/$/;"	m	struct:__anon121
 maxDelay	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t maxDelay;            \/**< maximum offset specified by the pTapDelay array. *\/$/;"	m	struct:__anon122
 maxDelay	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t maxDelay;            \/**< maximum offset specified by the pTapDelay array. *\/$/;"	m	struct:__anon123
+motorTimer	Src/main.c	/^TIM_HandleTypeDef * motorTimer = &htim4;$/;"	v
 mu	Drivers/CMSIS/Include/arm_math.h	/^    float32_t mu;         \/**< step size that control filter coefficient updates. *\/$/;"	m	struct:__anon117
 mu	Drivers/CMSIS/Include/arm_math.h	/^    float32_t mu;        \/**< step size that controls filter coefficient updates. *\/$/;"	m	struct:__anon114
 mu	Drivers/CMSIS/Include/arm_math.h	/^    q15_t mu;             \/**< step size that controls filter coefficient updates. *\/$/;"	m	struct:__anon119
