@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cclj1f8h.s 			page 1
+ARM GAS  /tmp/cc4saIBB.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
   56 003e 10D4     		bmi	.L30
   57              	.L9:
   58 0040 1B07     		lsls	r3, r3, #28
-ARM GAS  /tmp/cclj1f8h.s 			page 2
+ARM GAS  /tmp/cc4saIBB.s 			page 2
 
 
   59 0042 09D5     		bpl	.L11
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  113 00ac EBE7     		b	.L29
  114              	.L32:
  115 00ae 0549     		ldr	r1, .L33+4
-ARM GAS  /tmp/cclj1f8h.s 			page 3
+ARM GAS  /tmp/cc4saIBB.s 			page 3
 
 
  116 00b0 2368     		ldr	r3, [r4]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  173              		.section	.text.HAL_FLASHEx_AdvOBProgram,"ax",%progbits
  174              		.align	2
  175              		.global	HAL_FLASHEx_AdvOBProgram
-ARM GAS  /tmp/cclj1f8h.s 			page 4
+ARM GAS  /tmp/cc4saIBB.s 			page 4
 
 
  176              		.thumb
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  233 0006 7047     		bx	lr
  234              	.L52:
  235              		.align	2
-ARM GAS  /tmp/cclj1f8h.s 			page 5
+ARM GAS  /tmp/cc4saIBB.s 			page 5
 
 
  236              	.L51:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  296 000a 4FF40071 		moveq	r1, #512
  297 000e 4FF44071 		movne	r1, #768
  298              	.L60:
-ARM GAS  /tmp/cclj1f8h.s 			page 6
+ARM GAS  /tmp/cc4saIBB.s 			page 6
 
 
  299 0012 0F4B     		ldr	r3, .L64
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  355 001c 1961     		str	r1, [r3, #16]
  356 001e DC60     		str	r4, [r3, #12]
  357 0020 0168     		ldr	r1, [r0]
-ARM GAS  /tmp/cclj1f8h.s 			page 7
+ARM GAS  /tmp/cc4saIBB.s 			page 7
 
 
  358 0022 0124     		movs	r4, #1
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  414 0004 9105     		lsls	r1, r2, #22
  415 0006 0FD5     		bpl	.L75
  416 0008 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/cclj1f8h.s 			page 8
+ARM GAS  /tmp/cc4saIBB.s 			page 8
 
 
  417 000a 22F40072 		bic	r2, r2, #512
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  473 001c 3B76     		strb	r3, [r7, #24]
  474 001e FFF7FEFF 		bl	FLASH_WaitForLastOperation
  475 0022 0646     		mov	r6, r0
-ARM GAS  /tmp/cclj1f8h.s 			page 9
+ARM GAS  /tmp/cc4saIBB.s 			page 9
 
 
  476 0024 48BB     		cbnz	r0, .L87
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  530 00a6 2B61     		str	r3, [r5, #16]
  531 00a8 4CF25030 		movw	r0, #50000
  532 00ac FFF7FEFF 		bl	FLASH_WaitForLastOperation
-ARM GAS  /tmp/cclj1f8h.s 			page 10
+ARM GAS  /tmp/cc4saIBB.s 			page 10
 
 
  533 00b0 2B69     		ldr	r3, [r5, #16]
@@ -552,41 +552,41 @@ ARM GAS  /tmp/cclj1f8h.s 			page 1
  541 00bc 00000000 		.word	pFlash
  542 00c0 003C0240 		.word	1073888256
  544              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  /tmp/cclj1f8h.s 			page 11
+ARM GAS  /tmp/cc4saIBB.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_flash_ex.c
-     /tmp/cclj1f8h.s:18     .text.HAL_FLASHEx_OBProgram:00000000 $t
-     /tmp/cclj1f8h.s:23     .text.HAL_FLASHEx_OBProgram:00000000 HAL_FLASHEx_OBProgram
-     /tmp/cclj1f8h.s:125    .text.HAL_FLASHEx_OBProgram:000000c0 $d
-     /tmp/cclj1f8h.s:131    .text.HAL_FLASHEx_OBGetConfig:00000000 $t
-     /tmp/cclj1f8h.s:136    .text.HAL_FLASHEx_OBGetConfig:00000000 HAL_FLASHEx_OBGetConfig
-     /tmp/cclj1f8h.s:169    .text.HAL_FLASHEx_OBGetConfig:00000038 $d
-     /tmp/cclj1f8h.s:174    .text.HAL_FLASHEx_AdvOBProgram:00000000 $t
-     /tmp/cclj1f8h.s:179    .text.HAL_FLASHEx_AdvOBProgram:00000000 HAL_FLASHEx_AdvOBProgram
-     /tmp/cclj1f8h.s:218    .text.HAL_FLASHEx_AdvOBProgram:00000044 $d
-     /tmp/cclj1f8h.s:221    .text.HAL_FLASHEx_AdvOBGetConfig:00000000 $t
-     /tmp/cclj1f8h.s:226    .text.HAL_FLASHEx_AdvOBGetConfig:00000000 HAL_FLASHEx_AdvOBGetConfig
-     /tmp/cclj1f8h.s:237    .text.HAL_FLASHEx_AdvOBGetConfig:00000008 $d
-     /tmp/cclj1f8h.s:240    .text.HAL_FLASHEx_OB_SelectPCROP:00000000 $t
-     /tmp/cclj1f8h.s:245    .text.HAL_FLASHEx_OB_SelectPCROP:00000000 HAL_FLASHEx_OB_SelectPCROP
-     /tmp/cclj1f8h.s:258    .text.HAL_FLASHEx_OB_SelectPCROP:00000010 $d
-     /tmp/cclj1f8h.s:261    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000000 $t
-     /tmp/cclj1f8h.s:266    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000000 HAL_FLASHEx_OB_DeSelectPCROP
-     /tmp/cclj1f8h.s:279    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000010 $d
-     /tmp/cclj1f8h.s:282    .text.FLASH_Erase_Sector:00000000 $t
-     /tmp/cclj1f8h.s:287    .text.FLASH_Erase_Sector:00000000 FLASH_Erase_Sector
-     /tmp/cclj1f8h.s:332    .text.FLASH_Erase_Sector:00000050 $d
-     /tmp/cclj1f8h.s:335    .text.HAL_FLASHEx_Erase_IT:00000000 $t
-     /tmp/cclj1f8h.s:340    .text.HAL_FLASHEx_Erase_IT:00000000 HAL_FLASHEx_Erase_IT
-     /tmp/cclj1f8h.s:399    .text.HAL_FLASHEx_Erase_IT:00000074 $d
-     /tmp/cclj1f8h.s:403    .text.FLASH_FlushCaches:00000000 $t
-     /tmp/cclj1f8h.s:408    .text.FLASH_FlushCaches:00000000 FLASH_FlushCaches
-     /tmp/cclj1f8h.s:450    .text.FLASH_FlushCaches:00000054 $d
-     /tmp/cclj1f8h.s:453    .text.HAL_FLASHEx_Erase:00000000 $t
-     /tmp/cclj1f8h.s:458    .text.HAL_FLASHEx_Erase:00000000 HAL_FLASHEx_Erase
-     /tmp/cclj1f8h.s:541    .text.HAL_FLASHEx_Erase:000000bc $d
+     /tmp/cc4saIBB.s:18     .text.HAL_FLASHEx_OBProgram:00000000 $t
+     /tmp/cc4saIBB.s:23     .text.HAL_FLASHEx_OBProgram:00000000 HAL_FLASHEx_OBProgram
+     /tmp/cc4saIBB.s:125    .text.HAL_FLASHEx_OBProgram:000000c0 $d
+     /tmp/cc4saIBB.s:131    .text.HAL_FLASHEx_OBGetConfig:00000000 $t
+     /tmp/cc4saIBB.s:136    .text.HAL_FLASHEx_OBGetConfig:00000000 HAL_FLASHEx_OBGetConfig
+     /tmp/cc4saIBB.s:169    .text.HAL_FLASHEx_OBGetConfig:00000038 $d
+     /tmp/cc4saIBB.s:174    .text.HAL_FLASHEx_AdvOBProgram:00000000 $t
+     /tmp/cc4saIBB.s:179    .text.HAL_FLASHEx_AdvOBProgram:00000000 HAL_FLASHEx_AdvOBProgram
+     /tmp/cc4saIBB.s:218    .text.HAL_FLASHEx_AdvOBProgram:00000044 $d
+     /tmp/cc4saIBB.s:221    .text.HAL_FLASHEx_AdvOBGetConfig:00000000 $t
+     /tmp/cc4saIBB.s:226    .text.HAL_FLASHEx_AdvOBGetConfig:00000000 HAL_FLASHEx_AdvOBGetConfig
+     /tmp/cc4saIBB.s:237    .text.HAL_FLASHEx_AdvOBGetConfig:00000008 $d
+     /tmp/cc4saIBB.s:240    .text.HAL_FLASHEx_OB_SelectPCROP:00000000 $t
+     /tmp/cc4saIBB.s:245    .text.HAL_FLASHEx_OB_SelectPCROP:00000000 HAL_FLASHEx_OB_SelectPCROP
+     /tmp/cc4saIBB.s:258    .text.HAL_FLASHEx_OB_SelectPCROP:00000010 $d
+     /tmp/cc4saIBB.s:261    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000000 $t
+     /tmp/cc4saIBB.s:266    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000000 HAL_FLASHEx_OB_DeSelectPCROP
+     /tmp/cc4saIBB.s:279    .text.HAL_FLASHEx_OB_DeSelectPCROP:00000010 $d
+     /tmp/cc4saIBB.s:282    .text.FLASH_Erase_Sector:00000000 $t
+     /tmp/cc4saIBB.s:287    .text.FLASH_Erase_Sector:00000000 FLASH_Erase_Sector
+     /tmp/cc4saIBB.s:332    .text.FLASH_Erase_Sector:00000050 $d
+     /tmp/cc4saIBB.s:335    .text.HAL_FLASHEx_Erase_IT:00000000 $t
+     /tmp/cc4saIBB.s:340    .text.HAL_FLASHEx_Erase_IT:00000000 HAL_FLASHEx_Erase_IT
+     /tmp/cc4saIBB.s:399    .text.HAL_FLASHEx_Erase_IT:00000074 $d
+     /tmp/cc4saIBB.s:403    .text.FLASH_FlushCaches:00000000 $t
+     /tmp/cc4saIBB.s:408    .text.FLASH_FlushCaches:00000000 FLASH_FlushCaches
+     /tmp/cc4saIBB.s:450    .text.FLASH_FlushCaches:00000054 $d
+     /tmp/cc4saIBB.s:453    .text.HAL_FLASHEx_Erase:00000000 $t
+     /tmp/cc4saIBB.s:458    .text.HAL_FLASHEx_Erase:00000000 HAL_FLASHEx_Erase
+     /tmp/cc4saIBB.s:541    .text.HAL_FLASHEx_Erase:000000bc $d
 
 UNDEFINED SYMBOLS
 FLASH_WaitForLastOperation
