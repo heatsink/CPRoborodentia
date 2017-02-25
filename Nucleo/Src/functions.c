@@ -55,3 +55,6 @@ void Drive_Back(uint16_t speed){
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speed); // Set new Pulse to Channel
 }
 
+void getLineData(void) {
+}
+
