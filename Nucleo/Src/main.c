@@ -35,7 +35,7 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "functions.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -59,7 +59,6 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-void Drive_All_Motors(uint16_t speed);
 
 /* USER CODE END PFP */
 
@@ -93,6 +92,10 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+  // Set Direction Pins
+  // // --Setting or Resetting changes Direction
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);         // DIR Pin 1 for Motor Driver
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);         // DIR Pin 2 for Motor Driver
 
   /* USER CODE END 2 */
 
@@ -106,11 +109,6 @@ int main(void)
     // Toggle LED
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);                      // Toggle LED
 
-    // Set Direction Pins
-    // --Setting or Resetting changes Direction
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);         // DIR Pin 1 for Motor Driver
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);         // DIR Pin 2 for Motor Driver
-
     //--Test Timer 4-----------------------------------------
     // Steps through PWM signals in increments of 10
     oldDutyCycle = __HAL_TIM_GET_COMPARE(&htim4, TIM_CHANNEL_1); // Get CC Reg value from CH. 1
@@ -120,9 +118,21 @@ int main(void)
         newDutyCycle = 10;
     }
     
-    Drive_All_Motors(newDutyCycle);
+    Drive_Forward(newDutyCycle);
 
-    HAL_Delay(1000);        // Delay 1 second
+    HAL_Delay(3000);        // Delay 3 second
+
+    Drive_Left(newDutyCycle);
+
+    HAL_Delay(3000);        // Delay 3 second
+
+    Drive_Right(newDutyCycle);
+
+    HAL_Delay(3000);        // Delay 3 seconds
+
+    Drive_Back(newDutyCycle);
+
+    HAL_Delay(3000);        // Delay 3 seconds
   }
   /* USER CODE END 3 */
 
@@ -298,7 +308,7 @@ static void MX_GPIO_Init(void)
 
 //---------------Robot Private Functions-----------------------------------------------
 
-void Drive_All_Motors(uint16_t speed){
+/*void Drive_All_Motors(uint16_t speed){
 //---Example for using Timer 13---------------------------
     // oldDutyCycle = __HAL_TIM_GET_AUTORELOAD(&htim13);         // Gets the Period set for PWm
     // oldDutyCycle = __HAL_TIM_GET_COMPARE(&htim13, TIM_CHANNEL_1); // Get reading for Timer 13
@@ -308,12 +318,7 @@ void Drive_All_Motors(uint16_t speed){
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_2, speed); // Set new Pulse to Channel
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speed); // Set new Pulse to Channel
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speed); // Set new Pulse to Channel
-}
-
-
-
-
-
+}*/
 
 /* USER CODE END 4 */
 

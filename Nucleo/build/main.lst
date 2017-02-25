@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccvXD7mc.s 			page 1
+ARM GAS  /tmp/ccpXEJkV.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccvXD7mc.s 			page 1
   56 0044 1194     		str	r4, [sp, #68]
   57 0046 1294     		str	r4, [sp, #72]
   58 0048 1394     		str	r4, [sp, #76]
-ARM GAS  /tmp/ccvXD7mc.s 			page 2
+ARM GAS  /tmp/ccpXEJkV.s 			page 2
 
 
   59 004a 0A95     		str	r5, [sp, #40]
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccvXD7mc.s 			page 1
  114              		.thumb
  115              		.thumb_func
  117              	main:
-ARM GAS  /tmp/ccvXD7mc.s 			page 3
+ARM GAS  /tmp/ccpXEJkV.s 			page 3
 
 
  118              		@ Volatile: function does not return.
@@ -129,11 +129,11 @@ ARM GAS  /tmp/ccvXD7mc.s 			page 1
  123 0004 0025     		movs	r5, #0
  124 0006 FFF7FEFF 		bl	HAL_Init
  125 000a FFF7FEFF 		bl	SystemClock_Config
- 126 000e 684B     		ldr	r3, .L39
+ 126 000e 704B     		ldr	r3, .L39
  127 0010 0195     		str	r5, [sp, #4]
  128 0012 1A6B     		ldr	r2, [r3, #48]
- 129 0014 6748     		ldr	r0, .L39+4
- 130 0016 684C     		ldr	r4, .L39+8
+ 129 0014 6F48     		ldr	r0, .L39+4
+ 130 0016 704C     		ldr	r4, .L39+8
  131 0018 42F00402 		orr	r2, r2, #4
  132 001c 1A63     		str	r2, [r3, #48]
  133 001e 1A6B     		ldr	r2, [r3, #48]
@@ -169,33 +169,33 @@ ARM GAS  /tmp/ccvXD7mc.s 			page 1
  163 0068 FFF7FEFF 		bl	HAL_GPIO_WritePin
  164 006c 2A46     		mov	r2, r5
  165 006e 4FF44071 		mov	r1, #768
- 166 0072 5248     		ldr	r0, .L39+12
+ 166 0072 5A48     		ldr	r0, .L39+12
  167 0074 FFF7FEFF 		bl	HAL_GPIO_WritePin
  168 0078 4FF40052 		mov	r2, #8192
- 169 007c 504B     		ldr	r3, .L39+16
- 170 007e 4F48     		ldr	r0, .L39+12
+ 169 007c 584B     		ldr	r3, .L39+16
+ 170 007e 5748     		ldr	r0, .L39+12
  171 0080 0792     		str	r2, [sp, #28]
  172 0082 07A9     		add	r1, sp, #28
  173 0084 0893     		str	r3, [sp, #32]
- 174 0086 0126     		movs	r6, #1
-ARM GAS  /tmp/ccvXD7mc.s 			page 4
+ 174 0086 0127     		movs	r7, #1
+ARM GAS  /tmp/ccpXEJkV.s 			page 4
 
 
  175 0088 0995     		str	r5, [sp, #36]
  176 008a FFF7FEFF 		bl	HAL_GPIO_Init
  177 008e 2023     		movs	r3, #32
  178 0090 07A9     		add	r1, sp, #28
- 179 0092 4848     		ldr	r0, .L39+4
+ 179 0092 5048     		ldr	r0, .L39+4
  180 0094 0793     		str	r3, [sp, #28]
  181 0096 0995     		str	r5, [sp, #36]
  182 0098 0A95     		str	r5, [sp, #40]
- 183 009a 0896     		str	r6, [sp, #32]
+ 183 009a 0897     		str	r7, [sp, #32]
  184 009c FFF7FEFF 		bl	HAL_GPIO_Init
  185 00a0 4FF44073 		mov	r3, #768
  186 00a4 07A9     		add	r1, sp, #28
- 187 00a6 4548     		ldr	r0, .L39+12
+ 187 00a6 4D48     		ldr	r0, .L39+12
  188 00a8 0793     		str	r3, [sp, #28]
- 189 00aa 0896     		str	r6, [sp, #32]
+ 189 00aa 0897     		str	r7, [sp, #32]
  190 00ac 0995     		str	r5, [sp, #36]
  191 00ae 0A95     		str	r5, [sp, #40]
  192 00b0 FFF7FEFF 		bl	HAL_GPIO_Init
@@ -205,7 +205,7 @@ ARM GAS  /tmp/ccvXD7mc.s 			page 1
  196 00ba FFF7FEFF 		bl	HAL_NVIC_SetPriority
  197 00be 2820     		movs	r0, #40
  198 00c0 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 199 00c4 3F49     		ldr	r1, .L39+20
+ 199 00c4 4749     		ldr	r1, .L39+20
  200 00c6 A560     		str	r5, [r4, #8]
  201 00c8 B422     		movs	r2, #180
  202 00ca 6423     		movs	r3, #100
@@ -224,183 +224,162 @@ ARM GAS  /tmp/ccvXD7mc.s 			page 1
  215 00e4 0593     		str	r3, [sp, #20]
  216 00e6 0693     		str	r3, [sp, #24]
  217 00e8 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
- 218 00ec 0346     		mov	r3, r0
- 219 00ee 00B1     		cbz	r0, .L18
- 220              	.L32:
- 221 00f0 FEE7     		b	.L32
- 222              	.L18:
- 223 00f2 0246     		mov	r2, r0
- 224 00f4 6026     		movs	r6, #96
- 225 00f6 3225     		movs	r5, #50
- 226 00f8 07A9     		add	r1, sp, #28
- 227 00fa 2046     		mov	r0, r4
- 228 00fc 0993     		str	r3, [sp, #36]
- 229 00fe 0B93     		str	r3, [sp, #44]
- 230 0100 0796     		str	r6, [sp, #28]
- 231 0102 0895     		str	r5, [sp, #32]
-ARM GAS  /tmp/ccvXD7mc.s 			page 5
+ 218 00ec 00B1     		cbz	r0, .L18
+ 219              	.L32:
+ 220 00ee FEE7     		b	.L32
+ 221              	.L18:
+ 222 00f0 0246     		mov	r2, r0
+ 223 00f2 6025     		movs	r5, #96
+ 224 00f4 3223     		movs	r3, #50
+ 225 00f6 0990     		str	r0, [sp, #36]
+ 226 00f8 0B90     		str	r0, [sp, #44]
+ 227 00fa 07A9     		add	r1, sp, #28
+ 228 00fc 2046     		mov	r0, r4
+ 229 00fe 0795     		str	r5, [sp, #28]
+ 230 0100 0893     		str	r3, [sp, #32]
+ 231 0102 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ARM GAS  /tmp/ccpXEJkV.s 			page 5
 
 
- 232 0104 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
- 233 0108 00B1     		cbz	r0, .L20
- 234              	.L33:
- 235 010a FEE7     		b	.L33
- 236              	.L20:
- 237 010c 0422     		movs	r2, #4
- 238 010e 07A9     		add	r1, sp, #28
- 239 0110 2046     		mov	r0, r4
- 240 0112 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
- 241 0116 00B1     		cbz	r0, .L22
- 242              	.L34:
- 243 0118 FEE7     		b	.L34
- 244              	.L22:
- 245 011a 0822     		movs	r2, #8
- 246 011c 07A9     		add	r1, sp, #28
- 247 011e 2046     		mov	r0, r4
- 248 0120 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
- 249 0124 00B1     		cbz	r0, .L24
- 250              	.L35:
- 251 0126 FEE7     		b	.L35
- 252              	.L24:
- 253 0128 07A9     		add	r1, sp, #28
- 254 012a 0C22     		movs	r2, #12
- 255 012c 2046     		mov	r0, r4
- 256 012e FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
- 257 0132 0546     		mov	r5, r0
- 258 0134 00B1     		cbz	r0, .L26
- 259              	.L36:
- 260 0136 FEE7     		b	.L36
- 261              	.L26:
- 262 0138 2046     		mov	r0, r4
- 263 013a FFF7FEFF 		bl	HAL_TIM_MspPostInit
- 264 013e 2946     		mov	r1, r5
- 265 0140 2046     		mov	r0, r4
- 266 0142 FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 267 0146 0421     		movs	r1, #4
- 268 0148 2046     		mov	r0, r4
- 269 014a FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 270 014e 0821     		movs	r1, #8
- 271 0150 2046     		mov	r0, r4
- 272 0152 FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 273 0156 0C21     		movs	r1, #12
- 274 0158 2046     		mov	r0, r4
- 275 015a FFF7FEFF 		bl	HAL_TIM_PWM_Start
- 276 015e 1A4F     		ldr	r7, .L39+24
- 277 0160 1A4D     		ldr	r5, .L39+28
- 278 0162 1B4E     		ldr	r6, .L39+32
- 279              	.L30:
- 280 0164 1348     		ldr	r0, .L39+4
- 281 0166 2021     		movs	r1, #32
- 282 0168 FFF7FEFF 		bl	HAL_GPIO_TogglePin
- 283 016c 0122     		movs	r2, #1
- 284 016e 4FF48071 		mov	r1, #256
- 285 0172 1248     		ldr	r0, .L39+12
- 286 0174 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 287 0178 0122     		movs	r2, #1
- 288 017a 4FF40071 		mov	r1, #512
-ARM GAS  /tmp/ccvXD7mc.s 			page 6
+ 232 0106 00B1     		cbz	r0, .L20
+ 233              	.L33:
+ 234 0108 FEE7     		b	.L33
+ 235              	.L20:
+ 236 010a 0422     		movs	r2, #4
+ 237 010c 07A9     		add	r1, sp, #28
+ 238 010e 2046     		mov	r0, r4
+ 239 0110 FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 240 0114 00B1     		cbz	r0, .L22
+ 241              	.L34:
+ 242 0116 FEE7     		b	.L34
+ 243              	.L22:
+ 244 0118 0822     		movs	r2, #8
+ 245 011a 07A9     		add	r1, sp, #28
+ 246 011c 2046     		mov	r0, r4
+ 247 011e FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 248 0122 00B1     		cbz	r0, .L24
+ 249              	.L35:
+ 250 0124 FEE7     		b	.L35
+ 251              	.L24:
+ 252 0126 07A9     		add	r1, sp, #28
+ 253 0128 0C22     		movs	r2, #12
+ 254 012a 2046     		mov	r0, r4
+ 255 012c FFF7FEFF 		bl	HAL_TIM_PWM_ConfigChannel
+ 256 0130 0546     		mov	r5, r0
+ 257 0132 00B1     		cbz	r0, .L26
+ 258              	.L36:
+ 259 0134 FEE7     		b	.L36
+ 260              	.L26:
+ 261 0136 2046     		mov	r0, r4
+ 262 0138 FFF7FEFF 		bl	HAL_TIM_MspPostInit
+ 263 013c 2946     		mov	r1, r5
+ 264 013e 2046     		mov	r0, r4
+ 265 0140 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 266 0144 0421     		movs	r1, #4
+ 267 0146 2046     		mov	r0, r4
+ 268 0148 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 269 014c 0821     		movs	r1, #8
+ 270 014e 2046     		mov	r0, r4
+ 271 0150 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 272 0154 0C21     		movs	r1, #12
+ 273 0156 2046     		mov	r0, r4
+ 274 0158 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 275 015c 3A46     		mov	r2, r7
+ 276 015e 4FF48071 		mov	r1, #256
+ 277 0162 1E48     		ldr	r0, .L39+12
+ 278 0164 204E     		ldr	r6, .L39+24
+ 279 0166 214D     		ldr	r5, .L39+28
+ 280 0168 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 281 016c 3A46     		mov	r2, r7
+ 282 016e 4FF40071 		mov	r1, #512
+ 283 0172 1A48     		ldr	r0, .L39+12
+ 284 0174 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 285              	.L30:
+ 286 0178 2021     		movs	r1, #32
+ 287 017a 1648     		ldr	r0, .L39+4
+ 288 017c FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ARM GAS  /tmp/ccpXEJkV.s 			page 6
 
 
- 289 017e 0F48     		ldr	r0, .L39+12
- 290 0180 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 291 0184 2368     		ldr	r3, [r4]
- 292 0186 5A6B     		ldr	r2, [r3, #52]
- 293 0188 92B2     		uxth	r2, r2
- 294 018a 632A     		cmp	r2, #99
- 295 018c 02F10A03 		add	r3, r2, #10
- 296 0190 3A80     		strh	r2, [r7]	@ movhi
- 297 0192 3268     		ldr	r2, [r6]
- 298 0194 1268     		ldr	r2, [r2]
- 299 0196 9BB2     		uxth	r3, r3
- 300 0198 88BF     		it	hi
- 301 019a 0A23     		movhi	r3, #10
- 302 019c 5363     		str	r3, [r2, #52]
- 303 019e 4FF47A70 		mov	r0, #1000
- 304 01a2 9363     		str	r3, [r2, #56]
- 305 01a4 D363     		str	r3, [r2, #60]
- 306 01a6 1364     		str	r3, [r2, #64]
- 307 01a8 2B80     		strh	r3, [r5]	@ movhi
- 308 01aa FFF7FEFF 		bl	HAL_Delay
- 309 01ae D9E7     		b	.L30
- 310              	.L40:
- 311              		.align	2
- 312              	.L39:
- 313 01b0 00380240 		.word	1073887232
- 314 01b4 00000240 		.word	1073872896
- 315 01b8 00000000 		.word	htim4
- 316 01bc 00080240 		.word	1073874944
- 317 01c0 00002110 		.word	270598144
- 318 01c4 00080040 		.word	1073743872
- 319 01c8 00000000 		.word	oldDutyCycle
- 320 01cc 00000000 		.word	newDutyCycle
- 321 01d0 00000000 		.word	.LANCHOR0
- 323              		.section	.text.Drive_All_Motors,"ax",%progbits
- 324              		.align	2
- 325              		.global	Drive_All_Motors
- 326              		.thumb
- 327              		.thumb_func
- 329              	Drive_All_Motors:
- 330              		@ args = 0, pretend = 0, frame = 0
- 331              		@ frame_needed = 0, uses_anonymous_args = 0
- 332              		@ link register save eliminated.
- 333 0000 034B     		ldr	r3, .L42
- 334 0002 1B68     		ldr	r3, [r3]
- 335 0004 1B68     		ldr	r3, [r3]
- 336 0006 5863     		str	r0, [r3, #52]
- 337 0008 9863     		str	r0, [r3, #56]
- 338 000a D863     		str	r0, [r3, #60]
- 339 000c 1864     		str	r0, [r3, #64]
- 340 000e 7047     		bx	lr
- 341              	.L43:
- 342              		.align	2
- 343              	.L42:
- 344 0010 00000000 		.word	.LANCHOR0
- 346              		.section	.text.Error_Handler,"ax",%progbits
- 347              		.align	2
- 348              		.global	Error_Handler
-ARM GAS  /tmp/ccvXD7mc.s 			page 7
+ 289 0180 2368     		ldr	r3, [r4]
+ 290 0182 5B6B     		ldr	r3, [r3, #52]
+ 291 0184 9BB2     		uxth	r3, r3
+ 292 0186 03F10A00 		add	r0, r3, #10
+ 293 018a 632B     		cmp	r3, #99
+ 294 018c 80B2     		uxth	r0, r0
+ 295 018e 88BF     		it	hi
+ 296 0190 0A20     		movhi	r0, #10
+ 297 0192 3380     		strh	r3, [r6]	@ movhi
+ 298 0194 2880     		strh	r0, [r5]	@ movhi
+ 299 0196 FFF7FEFF 		bl	Drive_Forward
+ 300 019a 40F6B830 		movw	r0, #3000
+ 301 019e FFF7FEFF 		bl	HAL_Delay
+ 302 01a2 2888     		ldrh	r0, [r5]
+ 303 01a4 FFF7FEFF 		bl	Drive_Left
+ 304 01a8 40F6B830 		movw	r0, #3000
+ 305 01ac FFF7FEFF 		bl	HAL_Delay
+ 306 01b0 2888     		ldrh	r0, [r5]
+ 307 01b2 FFF7FEFF 		bl	Drive_Right
+ 308 01b6 40F6B830 		movw	r0, #3000
+ 309 01ba FFF7FEFF 		bl	HAL_Delay
+ 310 01be 2888     		ldrh	r0, [r5]
+ 311 01c0 FFF7FEFF 		bl	Drive_Back
+ 312 01c4 40F6B830 		movw	r0, #3000
+ 313 01c8 FFF7FEFF 		bl	HAL_Delay
+ 314 01cc D4E7     		b	.L30
+ 315              	.L40:
+ 316 01ce 00BF     		.align	2
+ 317              	.L39:
+ 318 01d0 00380240 		.word	1073887232
+ 319 01d4 00000240 		.word	1073872896
+ 320 01d8 00000000 		.word	htim4
+ 321 01dc 00080240 		.word	1073874944
+ 322 01e0 00002110 		.word	270598144
+ 323 01e4 00080040 		.word	1073743872
+ 324 01e8 00000000 		.word	oldDutyCycle
+ 325 01ec 00000000 		.word	newDutyCycle
+ 327              		.section	.text.Error_Handler,"ax",%progbits
+ 328              		.align	2
+ 329              		.global	Error_Handler
+ 330              		.thumb
+ 331              		.thumb_func
+ 333              	Error_Handler:
+ 334              		@ Volatile: function does not return.
+ 335              		@ args = 0, pretend = 0, frame = 0
+ 336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 337              		@ link register save eliminated.
+ 338              	.L42:
+ 339 0000 FEE7     		b	.L42
+ 341              		.global	motorTimer
+ 342              		.comm	newDutyCycle,2,2
+ 343              		.comm	oldDutyCycle,2,2
+ 344              		.comm	htim4,60,4
+ 345 0002 00BF     		.section	.data.motorTimer,"aw",%progbits
+ 346              		.align	2
+ 349              	motorTimer:
+ 350 0000 00000000 		.word	htim4
+ARM GAS  /tmp/ccpXEJkV.s 			page 7
 
 
- 349              		.thumb
- 350              		.thumb_func
- 352              	Error_Handler:
- 353              		@ Volatile: function does not return.
- 354              		@ args = 0, pretend = 0, frame = 0
- 355              		@ frame_needed = 0, uses_anonymous_args = 0
- 356              		@ link register save eliminated.
- 357              	.L45:
- 358 0000 FEE7     		b	.L45
- 360              		.global	motorTimer
- 361              		.comm	newDutyCycle,2,2
- 362              		.comm	oldDutyCycle,2,2
- 363              		.comm	htim4,60,4
- 364 0002 00BF     		.section	.data.motorTimer,"aw",%progbits
- 365              		.align	2
- 366              		.set	.LANCHOR0,. + 0
- 369              	motorTimer:
- 370 0000 00000000 		.word	htim4
- 371              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  /tmp/ccvXD7mc.s 			page 8
+ 351              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
+ARM GAS  /tmp/ccpXEJkV.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccvXD7mc.s:18     .text.SystemClock_Config:00000000 $t
-     /tmp/ccvXD7mc.s:23     .text.SystemClock_Config:00000000 SystemClock_Config
-     /tmp/ccvXD7mc.s:107    .text.SystemClock_Config:000000ac $d
-     /tmp/ccvXD7mc.s:112    .text.startup.main:00000000 $t
-     /tmp/ccvXD7mc.s:117    .text.startup.main:00000000 main
-     /tmp/ccvXD7mc.s:313    .text.startup.main:000001b0 $d
+     /tmp/ccpXEJkV.s:18     .text.SystemClock_Config:00000000 $t
+     /tmp/ccpXEJkV.s:23     .text.SystemClock_Config:00000000 SystemClock_Config
+     /tmp/ccpXEJkV.s:107    .text.SystemClock_Config:000000ac $d
+     /tmp/ccpXEJkV.s:112    .text.startup.main:00000000 $t
+     /tmp/ccpXEJkV.s:117    .text.startup.main:00000000 main
+     /tmp/ccpXEJkV.s:318    .text.startup.main:000001d0 $d
                             *COM*:0000003c htim4
                             *COM*:00000002 oldDutyCycle
                             *COM*:00000002 newDutyCycle
-     /tmp/ccvXD7mc.s:324    .text.Drive_All_Motors:00000000 $t
-     /tmp/ccvXD7mc.s:329    .text.Drive_All_Motors:00000000 Drive_All_Motors
-     /tmp/ccvXD7mc.s:344    .text.Drive_All_Motors:00000010 $d
-     /tmp/ccvXD7mc.s:347    .text.Error_Handler:00000000 $t
-     /tmp/ccvXD7mc.s:352    .text.Error_Handler:00000000 Error_Handler
-     /tmp/ccvXD7mc.s:369    .data.motorTimer:00000000 motorTimer
-     /tmp/ccvXD7mc.s:365    .data.motorTimer:00000000 $d
+     /tmp/ccpXEJkV.s:328    .text.Error_Handler:00000000 $t
+     /tmp/ccpXEJkV.s:333    .text.Error_Handler:00000000 Error_Handler
+     /tmp/ccpXEJkV.s:349    .data.motorTimer:00000000 motorTimer
+     /tmp/ccpXEJkV.s:346    .data.motorTimer:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_RCC_OscConfig
@@ -420,4 +399,8 @@ HAL_TIM_PWM_ConfigChannel
 HAL_TIM_MspPostInit
 HAL_TIM_PWM_Start
 HAL_GPIO_TogglePin
+Drive_Forward
 HAL_Delay
+Drive_Left
+Drive_Right
+Drive_Back

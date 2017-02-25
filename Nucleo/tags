@@ -6432,7 +6432,7 @@ Dfsdm2ClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h	/^ 
 DfsdmClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	2758;"	d
 Direction	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h	/^  uint32_t Direction;            \/*!< Specifies if the data will be transferred from memory to peripheral, $/;"	m	struct:__anon260
 DisableExec	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h	/^  uint8_t                DisableExec;           \/*!< Specifies the instruction access status. $/;"	m	struct:__anon226
-Drive_All_Motors	Src/main.c	/^void Drive_All_Motors(uint16_t speed){$/;"	f
+Drive_All_Motors	Src/functions.c	/^void Drive_All_Motors(uint16_t speed){$/;"	f
 ECCR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t ECCR;      \/*!< NAND Flash ECC result registers,                   Address offset: 0x94 *\/$/;"	m	struct:__anon194
 EGR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t EGR;         \/*!< TIM event generation register,       Address offset: 0x14 *\/$/;"	m	struct:__anon210
 EMR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t EMR;    \/*!< EXTI Event mask register,                Address offset: 0x04 *\/$/;"	m	struct:__anon190
@@ -8692,6 +8692,7 @@ FUNCTION3	Drivers/CMSIS/Include/core_cm3.h	/^  __IOM uint32_t FUNCTION3;        
 FUNCTION3	Drivers/CMSIS/Include/core_cm4.h	/^  __IOM uint32_t FUNCTION3;              \/*!< Offset: 0x058 (R\/W)  Function Register 3 *\/$/;"	m	struct:__anon168
 FUNCTION3	Drivers/CMSIS/Include/core_cm7.h	/^  __IOM uint32_t FUNCTION3;              \/*!< Offset: 0x058 (R\/W)  Function Register 3 *\/$/;"	m	struct:__anon138
 FUNCTION3	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t FUNCTION3;              \/*!< Offset: 0x058 (R\/W)  Function Register 3 *\/$/;"	m	struct:__anon58
+FUNCTIONS_H	Src/functions.h	2;"	d
 FillZerobss	Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f446xx.s	/^FillZerobss:$/;"	l
 FillZerobss	SW4STM32/startup_stm32f446xx.s	/^FillZerobss:$/;"	l
 FlagStatus	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	/^} FlagStatus, ITStatus;$/;"	t	typeref:enum:__anon173

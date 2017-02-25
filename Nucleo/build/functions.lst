@@ -1,0 +1,175 @@
+ARM GAS  /tmp/ccoGg3n9.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 2
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.syntax unified
+  16              		.file	"functions.c"
+  17              		.section	.text.Drive_Forward,"ax",%progbits
+  18              		.align	2
+  19              		.global	Drive_Forward
+  20              		.thumb
+  21              		.thumb_func
+  23              	Drive_Forward:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 38B5     		push	{r3, r4, r5, lr}
+  27 0002 0B4D     		ldr	r5, .L3
+  28 0004 0446     		mov	r4, r0
+  29 0006 0022     		movs	r2, #0
+  30 0008 2846     		mov	r0, r5
+  31 000a 4FF48071 		mov	r1, #256
+  32 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  33 0012 2846     		mov	r0, r5
+  34 0014 0022     		movs	r2, #0
+  35 0016 4FF40071 		mov	r1, #512
+  36 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  37 001e 054B     		ldr	r3, .L3+4
+  38 0020 1B68     		ldr	r3, [r3]
+  39 0022 1B68     		ldr	r3, [r3]
+  40 0024 5C63     		str	r4, [r3, #52]
+  41 0026 9C63     		str	r4, [r3, #56]
+  42 0028 DC63     		str	r4, [r3, #60]
+  43 002a 1C64     		str	r4, [r3, #64]
+  44 002c 38BD     		pop	{r3, r4, r5, pc}
+  45              	.L4:
+  46 002e 00BF     		.align	2
+  47              	.L3:
+  48 0030 00080240 		.word	1073874944
+  49 0034 00000000 		.word	motorTimer
+  51              		.section	.text.Drive_Left,"ax",%progbits
+  52              		.align	2
+  53              		.global	Drive_Left
+  54              		.thumb
+  55              		.thumb_func
+  57              	Drive_Left:
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  /tmp/ccoGg3n9.s 			page 2
+
+
+  61 0002 0B4D     		ldr	r5, .L7
+  62 0004 0446     		mov	r4, r0
+  63 0006 0122     		movs	r2, #1
+  64 0008 2846     		mov	r0, r5
+  65 000a 4FF48071 		mov	r1, #256
+  66 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  67 0012 2846     		mov	r0, r5
+  68 0014 0022     		movs	r2, #0
+  69 0016 4FF40071 		mov	r1, #512
+  70 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  71 001e 054B     		ldr	r3, .L7+4
+  72 0020 1B68     		ldr	r3, [r3]
+  73 0022 1B68     		ldr	r3, [r3]
+  74 0024 5C63     		str	r4, [r3, #52]
+  75 0026 9C63     		str	r4, [r3, #56]
+  76 0028 DC63     		str	r4, [r3, #60]
+  77 002a 1C64     		str	r4, [r3, #64]
+  78 002c 38BD     		pop	{r3, r4, r5, pc}
+  79              	.L8:
+  80 002e 00BF     		.align	2
+  81              	.L7:
+  82 0030 00080240 		.word	1073874944
+  83 0034 00000000 		.word	motorTimer
+  85              		.section	.text.Drive_Right,"ax",%progbits
+  86              		.align	2
+  87              		.global	Drive_Right
+  88              		.thumb
+  89              		.thumb_func
+  91              	Drive_Right:
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94 0000 38B5     		push	{r3, r4, r5, lr}
+  95 0002 0B4D     		ldr	r5, .L11
+  96 0004 0446     		mov	r4, r0
+  97 0006 0022     		movs	r2, #0
+  98 0008 2846     		mov	r0, r5
+  99 000a 4FF48071 		mov	r1, #256
+ 100 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 101 0012 2846     		mov	r0, r5
+ 102 0014 0122     		movs	r2, #1
+ 103 0016 4FF40071 		mov	r1, #512
+ 104 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 105 001e 054B     		ldr	r3, .L11+4
+ 106 0020 1B68     		ldr	r3, [r3]
+ 107 0022 1B68     		ldr	r3, [r3]
+ 108 0024 5C63     		str	r4, [r3, #52]
+ 109 0026 9C63     		str	r4, [r3, #56]
+ 110 0028 DC63     		str	r4, [r3, #60]
+ 111 002a 1C64     		str	r4, [r3, #64]
+ 112 002c 38BD     		pop	{r3, r4, r5, pc}
+ 113              	.L12:
+ 114 002e 00BF     		.align	2
+ 115              	.L11:
+ 116 0030 00080240 		.word	1073874944
+ 117 0034 00000000 		.word	motorTimer
+ 119              		.section	.text.Drive_Back,"ax",%progbits
+ 120              		.align	2
+ARM GAS  /tmp/ccoGg3n9.s 			page 3
+
+
+ 121              		.global	Drive_Back
+ 122              		.thumb
+ 123              		.thumb_func
+ 125              	Drive_Back:
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128 0000 38B5     		push	{r3, r4, r5, lr}
+ 129 0002 0B4D     		ldr	r5, .L15
+ 130 0004 0446     		mov	r4, r0
+ 131 0006 0122     		movs	r2, #1
+ 132 0008 2846     		mov	r0, r5
+ 133 000a 4FF48071 		mov	r1, #256
+ 134 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 135 0012 2846     		mov	r0, r5
+ 136 0014 0122     		movs	r2, #1
+ 137 0016 4FF40071 		mov	r1, #512
+ 138 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 139 001e 054B     		ldr	r3, .L15+4
+ 140 0020 1B68     		ldr	r3, [r3]
+ 141 0022 1B68     		ldr	r3, [r3]
+ 142 0024 5C63     		str	r4, [r3, #52]
+ 143 0026 9C63     		str	r4, [r3, #56]
+ 144 0028 DC63     		str	r4, [r3, #60]
+ 145 002a 1C64     		str	r4, [r3, #64]
+ 146 002c 38BD     		pop	{r3, r4, r5, pc}
+ 147              	.L16:
+ 148 002e 00BF     		.align	2
+ 149              	.L15:
+ 150 0030 00080240 		.word	1073874944
+ 151 0034 00000000 		.word	motorTimer
+ 153              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
+ARM GAS  /tmp/ccoGg3n9.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 functions.c
+     /tmp/ccoGg3n9.s:18     .text.Drive_Forward:00000000 $t
+     /tmp/ccoGg3n9.s:23     .text.Drive_Forward:00000000 Drive_Forward
+     /tmp/ccoGg3n9.s:48     .text.Drive_Forward:00000030 $d
+     /tmp/ccoGg3n9.s:52     .text.Drive_Left:00000000 $t
+     /tmp/ccoGg3n9.s:57     .text.Drive_Left:00000000 Drive_Left
+     /tmp/ccoGg3n9.s:82     .text.Drive_Left:00000030 $d
+     /tmp/ccoGg3n9.s:86     .text.Drive_Right:00000000 $t
+     /tmp/ccoGg3n9.s:91     .text.Drive_Right:00000000 Drive_Right
+     /tmp/ccoGg3n9.s:116    .text.Drive_Right:00000030 $d
+     /tmp/ccoGg3n9.s:120    .text.Drive_Back:00000000 $t
+     /tmp/ccoGg3n9.s:125    .text.Drive_Back:00000000 Drive_Back
+     /tmp/ccoGg3n9.s:150    .text.Drive_Back:00000030 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+motorTimer
