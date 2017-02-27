@@ -45,10 +45,10 @@
 #define B1_GPIO_Port GPIOC
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
-#define DIR_1_Pin GPIO_PIN_8
-#define DIR_1_GPIO_Port GPIOC
-#define DIR_2_Pin GPIO_PIN_9
-#define DIR_2_GPIO_Port GPIOC
+#define DIR_1_LEFT_Pin GPIO_PIN_8
+#define DIR_1_LEFT_GPIO_Port GPIOC
+#define DIR_2_RIGHT_Pin GPIO_PIN_9
+#define DIR_2_RIGHT_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -2,13 +2,21 @@
 #include "stm32f4xx_hal.h"
 #include "functions.h"
 
+typedef int bool;
+enum bool { false, true };
 extern TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+struct lineStatus {
+    //int16_t line1[] = int16_t[7];
+};
 extern uint16_t oldDutyCycle;
 extern uint16_t newDutyCycle;
 extern TIM_HandleTypeDef * motorTimer;
+void updateLED(bool on);
+//bool lineDetected(void);
+//bool lineDetected(ADC_HandleTypeDef *hadc1);
 
 void Drive_Forward(uint16_t speed){
 //---Example for using Timer 13---------------------------
@@ -54,7 +62,20 @@ void Drive_Back(uint16_t speed){
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speed); // Set new Pulse to Channel
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speed); // Set new Pulse to Channel
 }
+//bool lineDetected(ADC_HandleTypeDef *hadc1) {
+bool lineDetected(void) {
+    // if (linesense value > Trigger) {
+    //    return true;
+    // }
+    return false;
+}
 
-void getLineData(void) {
+void updateLED(bool on) {
+    if (on) {
+        // Set board LED GPIO on
+    }
+    else {
+        // Set board LED GPIO off
+    }
 }
 

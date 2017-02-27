@@ -39,6 +39,9 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
+uint16_t adcVal = 0;
+ADC_HandleTypeDef hadc1;
+
 TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN PV */
@@ -53,7 +56,9 @@ TIM_HandleTypeDef * motorTimer = &htim4;
 void SystemClock_Config(void);
 void Error_Handler(void);
 static void MX_GPIO_Init(void);
-static void MX_TIM4_Init(void);                                    
+static void MX_TIM4_Init(void);
+static void MX_ADC1_Init(void);
+                                    
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                                 
 
@@ -63,6 +68,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+//MX_ADC_1_Init();
 
 /* USER CODE END 0 */
 
@@ -84,6 +90,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM4_Init();
+  MX_ADC1_Init();
 
   /* USER CODE BEGIN 2 */
 
@@ -107,10 +114,21 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
     // Toggle LED
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);                      // Toggle LED
+    //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);                      // Toggle LED
+    HAL_ADC_Start(&hadc1);
+    HAL_ADC_PollForConversion(&hadc1, 100);
+    adcVal = HAL_ADC_GetValue(&hadc1);
+    if (adcVal > 2000) {
+        // We are on the line
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);                      // Toggle LED
+    }
+    else {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);                      // Toggle LED
+    }
 
     //--Test Timer 4-----------------------------------------
     // Steps through PWM signals in increments of 10
+    /*
     oldDutyCycle = __HAL_TIM_GET_COMPARE(&htim4, TIM_CHANNEL_1); // Get CC Reg value from CH. 1
     if (oldDutyCycle < 100){
         newDutyCycle = oldDutyCycle + 10;
@@ -133,7 +151,9 @@ int main(void)
     Drive_Back(newDutyCycle);
 
     HAL_Delay(3000);        // Delay 3 seconds
+    */
   }
+  return 0;
   /* USER CODE END 3 */
 
 }
@@ -200,6 +220,43 @@ void SystemClock_Config(void)
 
   /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+}
+
+/* ADC1 init function */
+static void MX_ADC1_Init(void)
+{
+
+  ADC_ChannelConfTypeDef sConfig;
+
+    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
+    */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_0;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
 }
 
 /* TIM4 init function */
@@ -276,7 +333,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, DIR_1_Pin|DIR_2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, DIR_1_LEFT_Pin|DIR_2_RIGHT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -291,8 +348,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DIR_1_Pin DIR_2_Pin */
-  GPIO_InitStruct.Pin = DIR_1_Pin|DIR_2_Pin;
+  /*Configure GPIO pins : DIR_1_LEFT_Pin DIR_2_RIGHT_Pin */
+  GPIO_InitStruct.Pin = DIR_1_LEFT_Pin|DIR_2_RIGHT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -321,18 +378,6 @@ static void MX_GPIO_Init(void)
 }*/
 
 /* USER CODE END 4 */
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
   * @brief  This function is executed in case of error occurrence.
