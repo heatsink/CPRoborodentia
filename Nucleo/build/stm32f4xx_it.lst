@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc8PXZxD.s 			page 1
+ARM GAS  /tmp/ccVEPrVH.s 			page 1
 
 
    1              		.syntax unified
@@ -29,29 +29,49 @@ ARM GAS  /tmp/cc8PXZxD.s 			page 1
   27 0002 FFF7FEFF 		bl	HAL_IncTick
   28 0006 BDE80840 		pop	{r3, lr}
   29 000a FFF7FEBF 		b	HAL_SYSTICK_IRQHandler
-  31 000e 00BF     		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+  31 000e 00BF     		.section	.text.ADC_IRQHandler,"ax",%progbits
   32              		.align	2
-  33              		.global	EXTI15_10_IRQHandler
+  33              		.global	ADC_IRQHandler
   34              		.thumb
   35              		.thumb_func
-  37              	EXTI15_10_IRQHandler:
+  37              	ADC_IRQHandler:
   38              		@ args = 0, pretend = 0, frame = 0
   39              		@ frame_needed = 0, uses_anonymous_args = 0
   40              		@ link register save eliminated.
-  41 0000 4FF40050 		mov	r0, #8192
-  42 0004 FFF7FEBF 		b	HAL_GPIO_EXTI_IRQHandler
-  44              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  /tmp/cc8PXZxD.s 			page 2
+  41 0000 0148     		ldr	r0, .L4
+  42 0002 FFF7FEBF 		b	HAL_ADC_IRQHandler
+  43              	.L5:
+  44 0006 00BF     		.align	2
+  45              	.L4:
+  46 0008 00000000 		.word	hadc1
+  48              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+  49              		.align	2
+  50              		.global	EXTI15_10_IRQHandler
+  51              		.thumb
+  52              		.thumb_func
+  54              	EXTI15_10_IRQHandler:
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		@ link register save eliminated.
+  58 0000 4FF40050 		mov	r0, #8192
+  59 0004 FFF7FEBF 		b	HAL_GPIO_EXTI_IRQHandler
+  61              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
+ARM GAS  /tmp/ccVEPrVH.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_it.c
-     /tmp/cc8PXZxD.s:18     .text.SysTick_Handler:00000000 $t
-     /tmp/cc8PXZxD.s:23     .text.SysTick_Handler:00000000 SysTick_Handler
-     /tmp/cc8PXZxD.s:32     .text.EXTI15_10_IRQHandler:00000000 $t
-     /tmp/cc8PXZxD.s:37     .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
+     /tmp/ccVEPrVH.s:18     .text.SysTick_Handler:00000000 $t
+     /tmp/ccVEPrVH.s:23     .text.SysTick_Handler:00000000 SysTick_Handler
+     /tmp/ccVEPrVH.s:32     .text.ADC_IRQHandler:00000000 $t
+     /tmp/ccVEPrVH.s:37     .text.ADC_IRQHandler:00000000 ADC_IRQHandler
+     /tmp/ccVEPrVH.s:46     .text.ADC_IRQHandler:00000008 $d
+     /tmp/ccVEPrVH.s:49     .text.EXTI15_10_IRQHandler:00000000 $t
+     /tmp/ccVEPrVH.s:54     .text.EXTI15_10_IRQHandler:00000000 EXTI15_10_IRQHandler
 
 UNDEFINED SYMBOLS
 HAL_IncTick
 HAL_SYSTICK_IRQHandler
+HAL_ADC_IRQHandler
+hadc1
 HAL_GPIO_EXTI_IRQHandler

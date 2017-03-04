@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccuQ9rgp.s 			page 1
+ARM GAS  /tmp/ccLmupKq.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccuQ9rgp.s 			page 1
   58              		@ args = 0, pretend = 0, frame = 0
   59              		@ frame_needed = 0, uses_anonymous_args = 0
   60 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  /tmp/ccuQ9rgp.s 			page 2
+ARM GAS  /tmp/ccLmupKq.s 			page 2
 
 
   61 0002 0B4D     		ldr	r5, .L7
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccuQ9rgp.s 			page 1
  117 0034 00000000 		.word	motorTimer
  119              		.section	.text.Drive_Back,"ax",%progbits
  120              		.align	2
-ARM GAS  /tmp/ccuQ9rgp.s 			page 3
+ARM GAS  /tmp/ccLmupKq.s 			page 3
 
 
  121              		.global	Drive_Back
@@ -151,25 +151,224 @@ ARM GAS  /tmp/ccuQ9rgp.s 			page 1
  149              	.L15:
  150 0030 00080240 		.word	1073874944
  151 0034 00000000 		.word	motorTimer
- 153              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  /tmp/ccuQ9rgp.s 			page 4
+ 153              		.section	.text.initialize_ADC,"ax",%progbits
+ 154              		.align	2
+ 155              		.global	initialize_ADC
+ 156              		.thumb
+ 157              		.thumb_func
+ 159              	initialize_ADC:
+ 160              		@ args = 72, pretend = 16, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162 0000 84B0     		sub	sp, sp, #16
+ 163 0002 08B5     		push	{r3, lr}
+ 164 0004 0DF1080E 		add	lr, sp, #8
+ 165 0008 8EE80F00 		stmia	lr, {r0, r1, r2, r3}
+ 166 000c 7046     		mov	r0, lr
+ 167 000e FFF7FEFF 		bl	HAL_ADC_Start
+ 168 0012 02A8     		add	r0, sp, #8
+ 169 0014 6421     		movs	r1, #100
+ 170 0016 FFF7FEFF 		bl	HAL_ADC_PollForConversion
+ 171 001a BDE80840 		pop	{r3, lr}
+ 172 001e 04B0     		add	sp, sp, #16
+ 173 0020 7047     		bx	lr
+ 175 0022 00BF     		.section	.text.lineDetected,"ax",%progbits
+ 176              		.align	2
+ 177              		.global	lineDetected
+ 178              		.thumb
+ 179              		.thumb_func
+ 181              	lineDetected:
+ 182              		@ args = 76, pretend = 16, frame = 72
+ARM GAS  /tmp/ccLmupKq.s 			page 4
+
+
+ 183              		@ frame_needed = 0, uses_anonymous_args = 0
+ 184 0000 84B0     		sub	sp, sp, #16
+ 185 0002 10B5     		push	{r4, lr}
+ 186 0004 92B0     		sub	sp, sp, #72
+ 187 0006 14AC     		add	r4, sp, #80
+ 188 0008 84E80F00 		stmia	r4, {r0, r1, r2, r3}
+ 189 000c 4822     		movs	r2, #72
+ 190 000e 2146     		mov	r1, r4
+ 191 0010 6846     		mov	r0, sp
+ 192 0012 BDF89840 		ldrh	r4, [sp, #152]
+ 193 0016 FFF7FEFF 		bl	memcpy
+ 194 001a 6846     		mov	r0, sp
+ 195 001c FFF7FEFF 		bl	HAL_ADC_Start
+ 196 0020 6421     		movs	r1, #100
+ 197 0022 6846     		mov	r0, sp
+ 198 0024 FFF7FEFF 		bl	HAL_ADC_PollForConversion
+ 199 0028 14A8     		add	r0, sp, #80
+ 200 002a FFF7FEFF 		bl	HAL_ADC_GetValue
+ 201 002e A042     		cmp	r0, r4
+ 202 0030 2CBF     		ite	cs
+ 203 0032 0020     		movcs	r0, #0
+ 204 0034 0120     		movcc	r0, #1
+ 205 0036 12B0     		add	sp, sp, #72
+ 206              		@ sp needed
+ 207 0038 BDE81040 		pop	{r4, lr}
+ 208 003c 04B0     		add	sp, sp, #16
+ 209 003e 7047     		bx	lr
+ 211              		.section	.text.lineFollowerCallback,"ax",%progbits
+ 212              		.align	2
+ 213              		.global	lineFollowerCallback
+ 214              		.thumb
+ 215              		.thumb_func
+ 217              	lineFollowerCallback:
+ 218              		@ args = 148, pretend = 16, frame = 0
+ 219              		@ frame_needed = 0, uses_anonymous_args = 0
+ 220 0000 84B0     		sub	sp, sp, #16
+ 221 0002 70B5     		push	{r4, r5, r6, lr}
+ 222 0004 90B0     		sub	sp, sp, #64
+ 223 0006 14AC     		add	r4, sp, #80
+ 224 0008 18AD     		add	r5, sp, #96
+ 225 000a 84E80F00 		stmia	r4, {r0, r1, r2, r3}
+ 226 000e 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 227 0010 40F6B836 		movw	r6, #3000
+ 228 0014 6C46     		mov	r4, sp
+ 229 0016 0E96     		str	r6, [sp, #56]
+ 230 0018 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 231 001a 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 232 001c 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 233 001e 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 234 0020 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 235 0022 95E80300 		ldmia	r5, {r0, r1}
+ 236 0026 84E80300 		stmia	r4, {r0, r1}
+ 237 002a 14AB     		add	r3, sp, #80
+ 238 002c 0FCB     		ldmia	r3, {r0, r1, r2, r3}
+ 239 002e FFF7FEFF 		bl	lineDetected
+ 240 0032 90B1     		cbz	r0, .L22
+ 241 0034 2AAD     		add	r5, sp, #168
+ARM GAS  /tmp/ccLmupKq.s 			page 5
+
+
+ 242 0036 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 243 0038 6C46     		mov	r4, sp
+ 244 003a 0E96     		str	r6, [sp, #56]
+ 245 003c 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 246 003e 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 247 0040 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 248 0042 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 249 0044 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 250 0046 95E80300 		ldmia	r5, {r0, r1}
+ 251 004a 84E80300 		stmia	r4, {r0, r1}
+ 252 004e 26AB     		add	r3, sp, #152
+ 253 0050 0FCB     		ldmia	r3, {r0, r1, r2, r3}
+ 254 0052 FFF7FEFF 		bl	lineDetected
+ 255 0056 0028     		cmp	r0, #0
+ 256 0058 4AD1     		bne	.L34
+ 257              	.L22:
+ 258 005a 18AC     		add	r4, sp, #96
+ 259 005c 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 260 005e 40F6B836 		movw	r6, #3000
+ 261 0062 6D46     		mov	r5, sp
+ 262 0064 0E96     		str	r6, [sp, #56]
+ 263 0066 0FC5     		stmia	r5!, {r0, r1, r2, r3}
+ 264 0068 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 265 006a 0FC5     		stmia	r5!, {r0, r1, r2, r3}
+ 266 006c 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 267 006e 0FC5     		stmia	r5!, {r0, r1, r2, r3}
+ 268 0070 94E80300 		ldmia	r4, {r0, r1}
+ 269 0074 85E80300 		stmia	r5, {r0, r1}
+ 270 0078 14AB     		add	r3, sp, #80
+ 271 007a 0FCB     		ldmia	r3, {r0, r1, r2, r3}
+ 272 007c FFF7FEFF 		bl	lineDetected
+ 273 0080 50BB     		cbnz	r0, .L35
+ 274 0082 2AAD     		add	r5, sp, #168
+ 275 0084 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 276 0086 6C46     		mov	r4, sp
+ 277 0088 0E96     		str	r6, [sp, #56]
+ 278 008a 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 279 008c 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 280 008e 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 281 0090 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 282 0092 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 283 0094 95E80300 		ldmia	r5, {r0, r1}
+ 284 0098 84E80300 		stmia	r4, {r0, r1}
+ 285 009c 26AB     		add	r3, sp, #152
+ 286 009e 0FCB     		ldmia	r3, {r0, r1, r2, r3}
+ 287 00a0 FFF7FEFF 		bl	lineDetected
+ 288 00a4 0446     		mov	r4, r0
+ 289 00a6 58B9     		cbnz	r0, .L36
+ 290 00a8 0246     		mov	r2, r0
+ 291 00aa 2021     		movs	r1, #32
+ 292 00ac 1648     		ldr	r0, .L37
+ 293 00ae FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 294 00b2 2046     		mov	r0, r4
+ 295 00b4 10B0     		add	sp, sp, #64
+ 296              		@ sp needed
+ 297 00b6 BDE87040 		pop	{r4, r5, r6, lr}
+ 298 00ba 04B0     		add	sp, sp, #16
+ARM GAS  /tmp/ccLmupKq.s 			page 6
+
+
+ 299 00bc FFF7FEBF 		b	Drive_Forward
+ 300              	.L36:
+ 301 00c0 0122     		movs	r2, #1
+ 302 00c2 2021     		movs	r1, #32
+ 303 00c4 1048     		ldr	r0, .L37
+ 304 00c6 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 305 00ca 1920     		movs	r0, #25
+ 306 00cc 10B0     		add	sp, sp, #64
+ 307              		@ sp needed
+ 308 00ce BDE87040 		pop	{r4, r5, r6, lr}
+ 309 00d2 04B0     		add	sp, sp, #16
+ 310 00d4 FFF7FEBF 		b	Drive_Right
+ 311              	.L35:
+ 312 00d8 0122     		movs	r2, #1
+ 313 00da 2021     		movs	r1, #32
+ 314 00dc 0A48     		ldr	r0, .L37
+ 315 00de FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 316 00e2 1920     		movs	r0, #25
+ 317 00e4 10B0     		add	sp, sp, #64
+ 318              		@ sp needed
+ 319 00e6 BDE87040 		pop	{r4, r5, r6, lr}
+ 320 00ea 04B0     		add	sp, sp, #16
+ 321 00ec FFF7FEBF 		b	Drive_Left
+ 322              	.L34:
+ 323 00f0 0122     		movs	r2, #1
+ 324 00f2 2021     		movs	r1, #32
+ 325 00f4 0448     		ldr	r0, .L37
+ 326 00f6 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 327 00fa 1920     		movs	r0, #25
+ 328 00fc 10B0     		add	sp, sp, #64
+ 329              		@ sp needed
+ 330 00fe BDE87040 		pop	{r4, r5, r6, lr}
+ 331 0102 04B0     		add	sp, sp, #16
+ 332 0104 FFF7FEBF 		b	Drive_Forward
+ 333              	.L38:
+ 334              		.align	2
+ 335              	.L37:
+ 336 0108 00000240 		.word	1073872896
+ 338              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
+ARM GAS  /tmp/ccLmupKq.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 functions.c
-     /tmp/ccuQ9rgp.s:18     .text.Drive_Forward:00000000 $t
-     /tmp/ccuQ9rgp.s:23     .text.Drive_Forward:00000000 Drive_Forward
-     /tmp/ccuQ9rgp.s:48     .text.Drive_Forward:00000030 $d
-     /tmp/ccuQ9rgp.s:52     .text.Drive_Left:00000000 $t
-     /tmp/ccuQ9rgp.s:57     .text.Drive_Left:00000000 Drive_Left
-     /tmp/ccuQ9rgp.s:82     .text.Drive_Left:00000030 $d
-     /tmp/ccuQ9rgp.s:86     .text.Drive_Right:00000000 $t
-     /tmp/ccuQ9rgp.s:91     .text.Drive_Right:00000000 Drive_Right
-     /tmp/ccuQ9rgp.s:116    .text.Drive_Right:00000030 $d
-     /tmp/ccuQ9rgp.s:120    .text.Drive_Back:00000000 $t
-     /tmp/ccuQ9rgp.s:125    .text.Drive_Back:00000000 Drive_Back
-     /tmp/ccuQ9rgp.s:150    .text.Drive_Back:00000030 $d
+     /tmp/ccLmupKq.s:18     .text.Drive_Forward:00000000 $t
+     /tmp/ccLmupKq.s:23     .text.Drive_Forward:00000000 Drive_Forward
+     /tmp/ccLmupKq.s:48     .text.Drive_Forward:00000030 $d
+     /tmp/ccLmupKq.s:52     .text.Drive_Left:00000000 $t
+     /tmp/ccLmupKq.s:57     .text.Drive_Left:00000000 Drive_Left
+     /tmp/ccLmupKq.s:82     .text.Drive_Left:00000030 $d
+     /tmp/ccLmupKq.s:86     .text.Drive_Right:00000000 $t
+     /tmp/ccLmupKq.s:91     .text.Drive_Right:00000000 Drive_Right
+     /tmp/ccLmupKq.s:116    .text.Drive_Right:00000030 $d
+     /tmp/ccLmupKq.s:120    .text.Drive_Back:00000000 $t
+     /tmp/ccLmupKq.s:125    .text.Drive_Back:00000000 Drive_Back
+     /tmp/ccLmupKq.s:150    .text.Drive_Back:00000030 $d
+     /tmp/ccLmupKq.s:154    .text.initialize_ADC:00000000 $t
+     /tmp/ccLmupKq.s:159    .text.initialize_ADC:00000000 initialize_ADC
+     /tmp/ccLmupKq.s:176    .text.lineDetected:00000000 $t
+     /tmp/ccLmupKq.s:181    .text.lineDetected:00000000 lineDetected
+     /tmp/ccLmupKq.s:212    .text.lineFollowerCallback:00000000 $t
+     /tmp/ccLmupKq.s:217    .text.lineFollowerCallback:00000000 lineFollowerCallback
+     /tmp/ccLmupKq.s:336    .text.lineFollowerCallback:00000108 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
 motorTimer
+HAL_ADC_Start
+HAL_ADC_PollForConversion
+memcpy
+HAL_ADC_GetValue

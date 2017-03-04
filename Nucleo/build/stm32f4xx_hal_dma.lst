@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccQsmyZ6.s 			page 1
+ARM GAS  /tmp/ccfQsuRL.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
   56 0044 3043     		orrs	r0, r0, r6
   57 0046 0143     		orrs	r1, r1, r0
   58 0048 1143     		orrs	r1, r1, r2
-ARM GAS  /tmp/ccQsmyZ6.s 			page 2
+ARM GAS  /tmp/ccfQsuRL.s 			page 2
 
 
   59 004a E669     		ldr	r6, [r4, #28]
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  113 00be 1A60     		str	r2, [r3]
  114 00c0 5A69     		ldr	r2, [r3, #20]
  115 00c2 40F00401 		orr	r1, r0, #4
-ARM GAS  /tmp/ccQsmyZ6.s 			page 3
+ARM GAS  /tmp/ccfQsuRL.s 			page 3
 
 
  116 00c6 22F00702 		bic	r2, r2, #7
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  171              		.thumb
  172              		.thumb_func
  174              	HAL_DMA_DeInit:
-ARM GAS  /tmp/ccQsmyZ6.s 			page 4
+ARM GAS  /tmp/ccfQsuRL.s 			page 4
 
 
  175              		@ args = 0, pretend = 0, frame = 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  229 006c ABAAAAAA 		.word	-1431655765
  230 0070 00000000 		.word	.LANCHOR0
  232              		.section	.text.HAL_DMA_Start,"ax",%progbits
-ARM GAS  /tmp/ccQsmyZ6.s 			page 5
+ARM GAS  /tmp/ccfQsuRL.s 			page 5
 
 
  233              		.align	2
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  290              	HAL_DMA_Start_IT:
  291              		@ args = 0, pretend = 0, frame = 0
  292              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccQsmyZ6.s 			page 6
+ARM GAS  /tmp/ccfQsuRL.s 			page 6
 
 
  293              		@ link register save eliminated.
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  347              	.L63:
  348 0076 2368     		ldr	r3, [r4]
  349 0078 43F00103 		orr	r3, r3, #1
-ARM GAS  /tmp/ccQsmyZ6.s 			page 7
+ARM GAS  /tmp/ccfQsuRL.s 			page 7
 
 
  350 007c 2360     		str	r3, [r4]
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  406 005e E16D     		ldr	r1, [r4, #92]
  407 0060 3F22     		movs	r2, #63
  408 0062 8A40     		lsls	r2, r2, r1
-ARM GAS  /tmp/ccQsmyZ6.s 			page 8
+ARM GAS  /tmp/ccfQsuRL.s 			page 8
 
 
  409 0064 0121     		movs	r1, #1
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  467 0006 83B0     		sub	sp, sp, #12
  468 0008 9346     		mov	fp, r2
  469 000a 0191     		str	r1, [sp, #4]
-ARM GAS  /tmp/ccQsmyZ6.s 			page 9
+ARM GAS  /tmp/ccfQsuRL.s 			page 9
 
 
  470 000c FFF7FEFF 		bl	HAL_GetTick
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  524 0086 6265     		str	r2, [r4, #84]
  525 0088 CAF80800 		str	r0, [r10, #8]
  526              	.L97:
-ARM GAS  /tmp/ccQsmyZ6.s 			page 10
+ARM GAS  /tmp/ccfQsuRL.s 			page 10
 
 
  527 008c 08FA01F0 		lsl	r0, r8, r1
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  581 0100 03FA01F1 		lsl	r1, r3, r1
  582 0104 0123     		movs	r3, #1
  583 0106 CAF80810 		str	r1, [r10, #8]
-ARM GAS  /tmp/ccQsmyZ6.s 			page 11
+ARM GAS  /tmp/ccfQsuRL.s 			page 11
 
 
  584 010a 1046     		mov	r0, r2
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  640 002e 4969     		ldr	r1, [r1, #20]
  641 0030 0806     		lsls	r0, r1, #24
  642 0032 68D4     		bmi	.L217
-ARM GAS  /tmp/ccQsmyZ6.s 			page 12
+ARM GAS  /tmp/ccfQsuRL.s 			page 12
 
 
  643              	.L132:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  697 0098 0022     		movs	r2, #0
  698 009a 0123     		movs	r3, #1
  699 009c 84F83420 		strb	r2, [r4, #52]
-ARM GAS  /tmp/ccQsmyZ6.s 			page 13
+ARM GAS  /tmp/ccfQsuRL.s 			page 13
 
 
  700 00a0 84F83530 		strb	r3, [r4, #53]
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  754 0104 9EE7     		b	.L133
  755              	.L217:
  756 0106 BA60     		str	r2, [r7, #8]
-ARM GAS  /tmp/ccQsmyZ6.s 			page 14
+ARM GAS  /tmp/ccfQsuRL.s 			page 14
 
 
  757 0108 626D     		ldr	r2, [r4, #84]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  811 017e 84F83430 		strb	r3, [r4, #52]
  812 0182 84F83500 		strb	r0, [r4, #53]
  813 0186 9FE7     		b	.L148
-ARM GAS  /tmp/ccQsmyZ6.s 			page 15
+ARM GAS  /tmp/ccfQsuRL.s 			page 15
 
 
  814              	.L223:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  870 0038 06       		.byte	(.L236-.L232)/2
  871 0039 03       		.byte	(.L237-.L232)/2
  872              		.p2align 1
-ARM GAS  /tmp/ccQsmyZ6.s 			page 16
+ARM GAS  /tmp/ccfQsuRL.s 			page 16
 
 
  873              	.L237:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  929 0026 0629     		cmp	r1, #6
  930 0028 1FD8     		bhi	.L257
  931 002a DFE801F0 		tbb	[pc, r1]
-ARM GAS  /tmp/ccQsmyZ6.s 			page 17
+ARM GAS  /tmp/ccfQsuRL.s 			page 17
 
 
  932              	.L248:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  988 0000 90F83500 		ldrb	r0, [r0, #53]	@ zero_extendqisi2
  989 0004 7047     		bx	lr
  991 0006 00BF     		.section	.text.HAL_DMA_GetError,"ax",%progbits
-ARM GAS  /tmp/ccQsmyZ6.s 			page 18
+ARM GAS  /tmp/ccfQsuRL.s 			page 18
 
 
  992              		.align	2
@@ -1031,10 +1031,10 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  1000              		@ link register save eliminated.
  1001 0000 406D     		ldr	r0, [r0, #84]
  1002 0002 7047     		bx	lr
- 1004              		.section	.rodata.flagBitshiftOffset.7649,"a",%progbits
+ 1004              		.section	.rodata.flagBitshiftOffset.7783,"a",%progbits
  1005              		.align	2
  1006              		.set	.LANCHOR0,. + 0
- 1009              	flagBitshiftOffset.7649:
+ 1009              	flagBitshiftOffset.7783:
  1010 0000 00       		.byte	0
  1011 0001 06       		.byte	6
  1012 0002 10       		.byte	16
@@ -1044,48 +1044,48 @@ ARM GAS  /tmp/ccQsmyZ6.s 			page 1
  1016 0006 10       		.byte	16
  1017 0007 16       		.byte	22
  1018              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  /tmp/ccQsmyZ6.s 			page 19
+ARM GAS  /tmp/ccfQsuRL.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_hal_dma.c
-     /tmp/ccQsmyZ6.s:18     .text.HAL_DMA_Init:00000000 $t
-     /tmp/ccQsmyZ6.s:23     .text.HAL_DMA_Init:00000000 HAL_DMA_Init
-     /tmp/ccQsmyZ6.s:152    .text.HAL_DMA_Init:00000108 $d
-     /tmp/ccQsmyZ6.s:156    .text.HAL_DMA_Init:00000118 $t
-     /tmp/ccQsmyZ6.s:164    .text.HAL_DMA_Init:00000120 $d
-     /tmp/ccQsmyZ6.s:169    .text.HAL_DMA_DeInit:00000000 $t
-     /tmp/ccQsmyZ6.s:174    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
-     /tmp/ccQsmyZ6.s:229    .text.HAL_DMA_DeInit:0000006c $d
-     /tmp/ccQsmyZ6.s:233    .text.HAL_DMA_Start:00000000 $t
-     /tmp/ccQsmyZ6.s:238    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
-     /tmp/ccQsmyZ6.s:285    .text.HAL_DMA_Start_IT:00000000 $t
-     /tmp/ccQsmyZ6.s:290    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
-     /tmp/ccQsmyZ6.s:355    .text.HAL_DMA_Abort:00000000 $t
-     /tmp/ccQsmyZ6.s:360    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
-     /tmp/ccQsmyZ6.s:430    .text.HAL_DMA_Abort_IT:00000000 $t
-     /tmp/ccQsmyZ6.s:435    .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
-     /tmp/ccQsmyZ6.s:457    .text.HAL_DMA_PollForTransfer:00000000 $t
-     /tmp/ccQsmyZ6.s:462    .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
-     /tmp/ccQsmyZ6.s:604    .text.HAL_DMA_PollForTransfer:00000138 $d
-     /tmp/ccQsmyZ6.s:608    .text.HAL_DMA_IRQHandler:00000000 $t
-     /tmp/ccQsmyZ6.s:613    .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
-     /tmp/ccQsmyZ6.s:827    .text.HAL_DMA_IRQHandler:00000198 $d
-     /tmp/ccQsmyZ6.s:833    .text.HAL_DMA_RegisterCallback:00000000 $t
-     /tmp/ccQsmyZ6.s:838    .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
-     /tmp/ccQsmyZ6.s:866    .text.HAL_DMA_RegisterCallback:00000034 $d
-     /tmp/ccQsmyZ6.s:872    .text.HAL_DMA_RegisterCallback:0000003a $t
-     /tmp/ccQsmyZ6.s:902    .text.HAL_DMA_UnRegisterCallback:00000000 $t
-     /tmp/ccQsmyZ6.s:907    .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
-     /tmp/ccQsmyZ6.s:933    .text.HAL_DMA_UnRegisterCallback:0000002e $d
-     /tmp/ccQsmyZ6.s:979    .text.HAL_DMA_GetState:00000000 $t
-     /tmp/ccQsmyZ6.s:984    .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
-     /tmp/ccQsmyZ6.s:992    .text.HAL_DMA_GetError:00000000 $t
-     /tmp/ccQsmyZ6.s:997    .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
-     /tmp/ccQsmyZ6.s:1005   .rodata.flagBitshiftOffset.7649:00000000 $d
-     /tmp/ccQsmyZ6.s:1009   .rodata.flagBitshiftOffset.7649:00000000 flagBitshiftOffset.7649
-     /tmp/ccQsmyZ6.s:940    .text.HAL_DMA_UnRegisterCallback:00000035 $d
-     /tmp/ccQsmyZ6.s:940    .text.HAL_DMA_UnRegisterCallback:00000036 $t
+     /tmp/ccfQsuRL.s:18     .text.HAL_DMA_Init:00000000 $t
+     /tmp/ccfQsuRL.s:23     .text.HAL_DMA_Init:00000000 HAL_DMA_Init
+     /tmp/ccfQsuRL.s:152    .text.HAL_DMA_Init:00000108 $d
+     /tmp/ccfQsuRL.s:156    .text.HAL_DMA_Init:00000118 $t
+     /tmp/ccfQsuRL.s:164    .text.HAL_DMA_Init:00000120 $d
+     /tmp/ccfQsuRL.s:169    .text.HAL_DMA_DeInit:00000000 $t
+     /tmp/ccfQsuRL.s:174    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
+     /tmp/ccfQsuRL.s:229    .text.HAL_DMA_DeInit:0000006c $d
+     /tmp/ccfQsuRL.s:233    .text.HAL_DMA_Start:00000000 $t
+     /tmp/ccfQsuRL.s:238    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
+     /tmp/ccfQsuRL.s:285    .text.HAL_DMA_Start_IT:00000000 $t
+     /tmp/ccfQsuRL.s:290    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
+     /tmp/ccfQsuRL.s:355    .text.HAL_DMA_Abort:00000000 $t
+     /tmp/ccfQsuRL.s:360    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
+     /tmp/ccfQsuRL.s:430    .text.HAL_DMA_Abort_IT:00000000 $t
+     /tmp/ccfQsuRL.s:435    .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
+     /tmp/ccfQsuRL.s:457    .text.HAL_DMA_PollForTransfer:00000000 $t
+     /tmp/ccfQsuRL.s:462    .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
+     /tmp/ccfQsuRL.s:604    .text.HAL_DMA_PollForTransfer:00000138 $d
+     /tmp/ccfQsuRL.s:608    .text.HAL_DMA_IRQHandler:00000000 $t
+     /tmp/ccfQsuRL.s:613    .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
+     /tmp/ccfQsuRL.s:827    .text.HAL_DMA_IRQHandler:00000198 $d
+     /tmp/ccfQsuRL.s:833    .text.HAL_DMA_RegisterCallback:00000000 $t
+     /tmp/ccfQsuRL.s:838    .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
+     /tmp/ccfQsuRL.s:866    .text.HAL_DMA_RegisterCallback:00000034 $d
+     /tmp/ccfQsuRL.s:872    .text.HAL_DMA_RegisterCallback:0000003a $t
+     /tmp/ccfQsuRL.s:902    .text.HAL_DMA_UnRegisterCallback:00000000 $t
+     /tmp/ccfQsuRL.s:907    .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
+     /tmp/ccfQsuRL.s:933    .text.HAL_DMA_UnRegisterCallback:0000002e $d
+     /tmp/ccfQsuRL.s:979    .text.HAL_DMA_GetState:00000000 $t
+     /tmp/ccfQsuRL.s:984    .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
+     /tmp/ccfQsuRL.s:992    .text.HAL_DMA_GetError:00000000 $t
+     /tmp/ccfQsuRL.s:997    .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
+     /tmp/ccfQsuRL.s:1005   .rodata.flagBitshiftOffset.7783:00000000 $d
+     /tmp/ccfQsuRL.s:1009   .rodata.flagBitshiftOffset.7783:00000000 flagBitshiftOffset.7783
+     /tmp/ccfQsuRL.s:940    .text.HAL_DMA_UnRegisterCallback:00000035 $d
+     /tmp/ccfQsuRL.s:940    .text.HAL_DMA_UnRegisterCallback:00000036 $t
 
 UNDEFINED SYMBOLS
 HAL_GetTick
