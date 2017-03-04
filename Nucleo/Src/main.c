@@ -75,16 +75,17 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc);
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
      
   if (__HAL_ADC_GET_FLAG(hadc, ADC_FLAG_EOC)) {
-		ADC_raw[adcIndex] = HAL_ADC_GetValue(&hadc1);
+		ADC_raw[adcIndex] = HAL_ADC_GetValue(hadc);
 		adcIndex++;
    }
  
-  if (ADC_raw[0] > 3000) {
+  if (ADC_raw[0] < 3000) {
       HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
   }
-  if (ADC_raw[0] < 3000) {
+  else {
       HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-  }
+  } 
+ 
 
   if (adcIndex == 8) {
 		adcIndex=0;
@@ -239,7 +240,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   hadc1.Init.NbrOfConversion = 8;
   hadc1.Init.DMAContinuousRequests = DISABLE;
-  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc1.Init.EOCSelection = ADC_EOC_SEQ_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
