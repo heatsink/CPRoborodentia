@@ -2,9 +2,7 @@
 #include "stm32f4xx_hal.h"
 #include "functions.h"
 
-typedef int bool;
-enum bool { false, true };
-extern TIM_HandleTypeDef htim4;
+//extern TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -14,9 +12,6 @@ struct lineStatus {
 extern uint16_t oldDutyCycle;
 extern uint16_t newDutyCycle;
 extern TIM_HandleTypeDef * motorTimer;
-void updateLED(bool on);
-//bool lineDetected(void);
-//bool lineDetected(ADC_HandleTypeDef *hadc1);
 
 void Drive_Forward(uint16_t speed){
 //---Example for using Timer 13---------------------------
@@ -62,20 +57,36 @@ void Drive_Back(uint16_t speed){
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speed); // Set new Pulse to Channel
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speed); // Set new Pulse to Channel
 }
-//bool lineDetected(ADC_HandleTypeDef *hadc1) {
-bool lineDetected(void) {
-    // if (linesense value > Trigger) {
-    //    return true;
-    // }
+void initialize_ADC(ADC_HandleTypeDef hadc) {
+    HAL_ADC_Start(&hadc);
+    HAL_ADC_PollForConversion(&hadc, 100);
+}
+
+bool lineDetected(ADC_HandleTypeDef hadc, uint16_t logicLevel) {
+    initialize_ADC(hadc);
+    //if (HAL_ADC_GetValue(&hadc) > logicLevel) {
+    if (HAL_ADC_GetValue(&hadc) < logicLevel) {
+        return true;
+    }
     return false;
 }
 
-void updateLED(bool on) {
-    if (on) {
-        // Set board LED GPIO on
+void lineFollowerCallback(ADC_HandleTypeDef hadc1, ADC_HandleTypeDef hadc2, uint16_t logicLevel) {
+    if (lineDetected(hadc1, LINE_LOGIC_LEVEL) && lineDetected(hadc2, LINE_LOGIC_LEVEL)) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+        Drive_Forward(DEFAULT_SPEED);
+    }
+    else if (lineDetected(hadc1, LINE_LOGIC_LEVEL)) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+        Drive_Left(DEFAULT_SPEED);
+    }
+    else if (lineDetected(hadc2, LINE_LOGIC_LEVEL)) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+        Drive_Right(DEFAULT_SPEED);
     }
     else {
-        // Set board LED GPIO off
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+        Drive_Forward(0);
     }
-}
 
+}

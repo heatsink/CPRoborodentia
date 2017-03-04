@@ -39,8 +39,8 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-uint16_t adcVal = 0;
 ADC_HandleTypeDef hadc1;
+ADC_HandleTypeDef hadc2;
 
 TIM_HandleTypeDef htim4;
 
@@ -58,7 +58,8 @@ void Error_Handler(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_ADC1_Init(void);
-                                    
+static void MX_ADC2_Init(void);
+
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                                 
 
@@ -91,6 +92,7 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM4_Init();
   MX_ADC1_Init();
+  MX_ADC2_Init();
 
   /* USER CODE BEGIN 2 */
 
@@ -101,8 +103,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
   // Set Direction Pins
   // // --Setting or Resetting changes Direction
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);         // DIR Pin 1 for Motor Driver
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);         // DIR Pin 2 for Motor Driver
+  //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);         // DIR Pin 1 for Motor Driver
+  //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);         // DIR Pin 2 for Motor Driver
 
   /* USER CODE END 2 */
 
@@ -113,18 +115,37 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-    // Toggle LED
-    //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);                      // Toggle LED
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 100);
-    adcVal = HAL_ADC_GetValue(&hadc1);
-    if (adcVal > 2000) {
-        // We are on the line
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);                      // Toggle LED
+    // Toggle LED Based on 
+    lineFollowerCallback(hadc1, hadc2, LINE_LOGIC_LEVEL);
+    /*
+    if (lineDetected(hadc1, LINE_LOGIC_LEVEL)) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+        Drive_Left(DEFAULT_SPEED);
+    }
+    else if (lineDetected(hadc2, LINE_LOGIC_LEVEL)) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+        Drive_Right(DEFAULT_SPEED);
     }
     else {
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);                      // Toggle LED
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+        Drive_Forward(0);
     }
+    */
+    /*
+    if (enable) {
+        Drive_Right(25);
+    }
+    else {
+        Drive_Right(25);
+    }
+    */
+    //Drive_Forward(50);
+    /*
+    Drive_Forward(0);
+    Drive_Left(0);
+    Drive_Right(0);
+    Drive_Back(0);
+    */
 
     //--Test Timer 4-----------------------------------------
     // Steps through PWM signals in increments of 10
@@ -253,6 +274,43 @@ static void MX_ADC1_Init(void)
   sConfig.Rank = 1;
   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
+/* ADC2 init function */
+static void MX_ADC2_Init(void)
+{
+
+  ADC_ChannelConfTypeDef sConfig;
+
+    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
+    */
+  hadc2.Instance = ADC2;
+  hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc2.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc2.Init.ScanConvMode = DISABLE;
+  hadc2.Init.ContinuousConvMode = DISABLE;
+  hadc2.Init.DiscontinuousConvMode = DISABLE;
+  hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc2.Init.NbrOfConversion = 1;
+  hadc2.Init.DMAContinuousRequests = DISABLE;
+  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
   {
     Error_Handler();
   }
