@@ -115,64 +115,7 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-    // Toggle LED Based on 
-    lineFollowerCallback(hadc1, hadc2, LINE_LOGIC_LEVEL);
-    /*
-    if (lineDetected(hadc1, LINE_LOGIC_LEVEL)) {
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
-        Drive_Left(DEFAULT_SPEED);
-    }
-    else if (lineDetected(hadc2, LINE_LOGIC_LEVEL)) {
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
-        Drive_Right(DEFAULT_SPEED);
-    }
-    else {
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
-        Drive_Forward(0);
-    }
-    */
-    /*
-    if (enable) {
-        Drive_Right(25);
-    }
-    else {
-        Drive_Right(25);
-    }
-    */
-    //Drive_Forward(50);
-    /*
-    Drive_Forward(0);
-    Drive_Left(0);
-    Drive_Right(0);
-    Drive_Back(0);
-    */
-
-    //--Test Timer 4-----------------------------------------
-    // Steps through PWM signals in increments of 10
-    /*
-    oldDutyCycle = __HAL_TIM_GET_COMPARE(&htim4, TIM_CHANNEL_1); // Get CC Reg value from CH. 1
-    if (oldDutyCycle < 100){
-        newDutyCycle = oldDutyCycle + 10;
-    } else {
-        newDutyCycle = 10;
-    }
-    
-    Drive_Forward(newDutyCycle);
-
-    HAL_Delay(3000);        // Delay 3 second
-
-    Drive_Left(newDutyCycle);
-
-    HAL_Delay(3000);        // Delay 3 second
-
-    Drive_Right(newDutyCycle);
-
-    HAL_Delay(3000);        // Delay 3 seconds
-
-    Drive_Back(newDutyCycle);
-
-    HAL_Delay(3000);        // Delay 3 seconds
-    */
+    lineFollowerCallback(hadc1, hadc2, LINE_LOGIC_LEVEL); // Attempt to follow a line
   }
   return 0;
   /* USER CODE END 3 */
