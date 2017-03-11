@@ -45,12 +45,36 @@
 #define B1_GPIO_Port GPIOC
 #define INPUT_LINETEST1_Pin GPIO_PIN_3
 #define INPUT_LINETEST1_GPIO_Port GPIOC
+#define LSENS2_Pin GPIO_PIN_2
+#define LSENS2_GPIO_Port GPIOA
+#define LSENS1_Pin GPIO_PIN_3
+#define LSENS1_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
+#define LSENS7_Pin GPIO_PIN_10
+#define LSENS7_GPIO_Port GPIOB
 #define DIR_1_LEFT_Pin GPIO_PIN_8
 #define DIR_1_LEFT_GPIO_Port GPIOC
 #define DIR_2_RIGHT_Pin GPIO_PIN_9
 #define DIR_2_RIGHT_GPIO_Port GPIOC
+#define LSENS8_Pin GPIO_PIN_8
+#define LSENS8_GPIO_Port GPIOA
+#define LSENS3_Pin GPIO_PIN_10
+#define LSENS3_GPIO_Port GPIOA
+#define LSENS4_Pin GPIO_PIN_3
+#define LSENS4_GPIO_Port GPIOB
+#define LSENS6_Pin GPIO_PIN_4
+#define LSENS6_GPIO_Port GPIOB
+#define LSENS5_Pin GPIO_PIN_5
+#define LSENS5_GPIO_Port GPIOB
+#define TIM_LEFT_1_CH1_Pin GPIO_PIN_6
+#define TIM_LEFT_1_CH1_GPIO_Port GPIOB
+#define TIM_RIGHT_1_CH2_Pin GPIO_PIN_7
+#define TIM_RIGHT_1_CH2_GPIO_Port GPIOB
+#define TIM_RIGHT_2_CH3_Pin GPIO_PIN_8
+#define TIM_RIGHT_2_CH3_GPIO_Port GPIOB
+#define TIM_LEFT_2_Ch4_Pin GPIO_PIN_9
+#define TIM_LEFT_2_Ch4_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

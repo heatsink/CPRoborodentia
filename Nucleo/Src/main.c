@@ -189,6 +189,7 @@ int main(void)
   }
   return 0;
   /* USER CODE END 3 */
+
 }
 
 /** System Clock Configuration
@@ -343,12 +344,24 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(INPUT_LINETEST1_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : LSENS2_Pin LSENS1_Pin LSENS8_Pin LSENS3_Pin */
+  GPIO_InitStruct.Pin = LSENS2_Pin|LSENS1_Pin|LSENS8_Pin|LSENS3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
   /*Configure GPIO pin : LD2_Pin */
   GPIO_InitStruct.Pin = LD2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LSENS7_Pin LSENS4_Pin LSENS6_Pin LSENS5_Pin */
+  GPIO_InitStruct.Pin = LSENS7_Pin|LSENS4_Pin|LSENS6_Pin|LSENS5_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : DIR_1_LEFT_Pin DIR_2_RIGHT_Pin */
   GPIO_InitStruct.Pin = DIR_1_LEFT_Pin|DIR_2_RIGHT_Pin;
