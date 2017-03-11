@@ -95,14 +95,14 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   struct lineData *lineData = checked_malloc(sizeof(struct lineData));
-  initLineSensor(lineData, GPIOC, GPIO_PIN_1,
-                           GPIOC, GPIO_PIN_1,
-                           GPIOC, GPIO_PIN_1,
-                           GPIOC, GPIO_PIN_1,
-                           GPIOC, GPIO_PIN_1,
-                           GPIOC, GPIO_PIN_1,
-                           GPIOC, GPIO_PIN_1,
-                           GPIOC, GPIO_PIN_1);
+  initLineSensor(lineData, GPIOA, GPIO_PIN_3,
+                           GPIOA, GPIO_PIN_2,
+                           GPIOA, GPIO_PIN_10,
+                           GPIOB, GPIO_PIN_3,
+                           GPIOB, GPIO_PIN_5,
+                           GPIOB, GPIO_PIN_4,
+                           GPIOB, GPIO_PIN_10,
+                           GPIOA, GPIO_PIN_8);
 
   // Start Timers after initialization
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
@@ -144,29 +144,31 @@ int main(void)
         continue;
     }
     while (INIT_STATE == 0) {
-        if (lineData->status[3] == true && lineData->status[4] == true){
-            lineState = cont;
+        /*
+        if (lineData->status[5] == true) {
+            lState = shallowL;
         }
-        while (lState == hardL) {
-            driveLeft(15);
+        else if (lineData->status[1] == true) {
+            lState = hardR;
         }
-        while (lState == shallowL) {
-            driveRight(10);
+        else if (lineData->status[3] == true && lineData->status[4] == true) {
+            lState = cont;
         }
-        while (lState == cont) {
+
+        if (lState == shallowL) {
+            driveShallow(10, 20);
+        }
+        else if (lState == cont) {
             driveForward(10);
         }
-        while (lState == shallowR) {
-            driveRight(10);
+        else if (lState == shallowR) {
+            driveShallow(20, 10);
         }
-        while (lState == hardR) {
-            driveRight(15);
-        }
-        //if (lineData->status[3] == true && lineData->status[4] == true){
+        */
 
-        if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_3)) {
+        if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3)) {
             //driveForward(25);
-            driveLeftShallow(15,0);
+            driveShallow(20, 10);
             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
         }
         else {

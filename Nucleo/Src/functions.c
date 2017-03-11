@@ -108,20 +108,14 @@ void driveLeft(uint16_t speed){
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speed); // Set new Pulse to Channel
 }
 
-void driveLeftShallow(uint16_t speedL, uint16_t speedR){
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
+void driveShallow(uint16_t speedL, uint16_t speedR){
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
             
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_1, speedL); // Set new Pulse to Channel
-    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_2, speedL); // Set new Pulse to Channel
-    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speedL); // Set new Pulse to Channel
-    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speedL); // Set new Pulse to Channel
-    //__HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_2, speedR); // Set new Pulse to Channel
-    /*
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_2, speedR); // Set new Pulse to Channel
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speedR); // Set new Pulse to Channel
-    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speedR); // Set new Pulse to Channel
-    */
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speedL); // Set new Pulse to Channel
 }
 
 void driveRight(uint16_t speed){
