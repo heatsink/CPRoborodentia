@@ -15,6 +15,7 @@ void driveBack(uint16_t speed);
 void driveLeft(uint16_t speed);
 void driveRight(uint16_t speed);
 void driveShallow(uint16_t speedL, uint16_t speedR);
+void driveShallowBack(uint16_t speedL, uint16_t speedR);
 /*
 void initialize_ADC(ADC_HandleTypeDef hadc);
 bool lineDetected(ADC_HandleTypeDef hadc, uint16_t logicLevel);
@@ -34,4 +35,5 @@ void initLineSensor(struct lineData *lineData,
        GPIO_TypeDef *pName8, uint16_t pNum8
         );
 void updateLineData(struct lineData *lineData);
+int lineOnCount(struct lineData *lineData);
 #endif

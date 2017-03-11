@@ -83,6 +83,16 @@ void updateLineData(struct lineData *lineData) {
     }
 }
 
+int lineOnCount(struct lineData *lineData) {
+    int onCount = 0;
+    for (int i = 0; i < LSENSOR_COUNT; i++) {
+        if (lineData->status[i] == true) {
+            onCount++;
+        }
+    }
+    return onCount;
+}
+
 void driveForward(uint16_t speed){
 //---Example for using Timer 13---------------------------
     // oldDutyCycle = __HAL_TIM_GET_AUTORELOAD(&htim13);         // Gets the Period set for PWm
@@ -117,6 +127,17 @@ void driveShallow(uint16_t speedL, uint16_t speedR){
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speedR); // Set new Pulse to Channel
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speedL); // Set new Pulse to Channel
 }
+
+void driveShallowBack(uint16_t speedL, uint16_t speedR){
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
+            
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_1, speedR); // Set new Pulse to Channel
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_2, speedL); // Set new Pulse to Channel
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speedL); // Set new Pulse to Channel
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speedR); // Set new Pulse to Channel
+}
+
 
 void driveRight(uint16_t speed){
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);

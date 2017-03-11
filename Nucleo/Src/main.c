@@ -95,14 +95,14 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   struct lineData *lineData = checked_malloc(sizeof(struct lineData));
-  initLineSensor(lineData, GPIOA, GPIO_PIN_3,
-                           GPIOA, GPIO_PIN_2,
-                           GPIOA, GPIO_PIN_10,
+  initLineSensor(lineData, GPIOA, GPIO_PIN_10,
                            GPIOB, GPIO_PIN_3,
                            GPIOB, GPIO_PIN_5,
                            GPIOB, GPIO_PIN_4,
                            GPIOB, GPIO_PIN_10,
-                           GPIOA, GPIO_PIN_8);
+                           GPIOA, GPIO_PIN_8,
+                           GPIOA, GPIO_PIN_9,
+                           GPIOC, GPIO_PIN_7);
 
   // Start Timers after initialization
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
@@ -135,7 +135,7 @@ int main(void)
   }
   */
   // Update all the sensors
-    updateLineData(lineData);
+    //updateLineData(lineData);
     //updateIRData(IRData);
     if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
         INIT_STATE = 0;
@@ -144,36 +144,79 @@ int main(void)
         continue;
     }
     while (INIT_STATE == 0) {
-        /*
-        if (lineData->status[5] == true) {
+        updateLineData(lineData);
+        if (lineData->status[7] == true && (lineData->status[3] == false && lineData->status[4] == false)) {
+            //lState = shallowR;
             lState = shallowL;
         }
-        else if (lineData->status[1] == true) {
-            lState = hardR;
+        else if (lineData->status[0] == true && (lineData->status[3] == false && lineData->status[4] == false)) {
+            //lState = shallowL;
+            lState = shallowR;
         }
         else if (lineData->status[3] == true && lineData->status[4] == true) {
             lState = cont;
         }
 
         if (lState == shallowL) {
-            driveShallow(10, 20);
+            //driveShallow(10, 20);
+            driveShallowBack(10, 20);
         }
         else if (lState == cont) {
-            driveForward(10);
+            driveBack(10);
         }
         else if (lState == shallowR) {
-            driveShallow(20, 10);
+            //driveShallow(20, 10);
+            driveShallowBack(20, 10);
         }
-        */
+        if (lineOnCount(lineData) >= 6) {
+            INIT_STATE = 2;
+        }
+        /*
 
-        if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3)) {
-            //driveForward(25);
+        if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_7) == GPIO_PIN_SET) {
             driveShallow(20, 10);
             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
         }
         else {
             driveForward(0);
             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+        }
+        */
+    }
+    while (INIT_STATE == 2) {
+        updateLineData(lineData);
+        driveRight(20);
+        if (lineOnCount(lineData) <= 2) {
+            if (lineData->status[3] == true && lineData->status[4] == true) {
+                INIT_STATE = 3;
+            }
+        }
+    }
+    while (INIT_STATE == 3) {
+        updateLineData(lineData);
+        if (lineData->status[7] == true && (lineData->status[3] == false && lineData->status[4] == false)) {
+            lState = shallowR;
+        }
+        else if (lineData->status[0] == true && (lineData->status[3] == false && lineData->status[4] == false)) {
+            lState = shallowL;
+        }
+        else if (lineData->status[3] == true && lineData->status[4] == true) {
+            lState = cont;
+        }
+
+        if (lState == shallowL) {
+            //driveShallow(10, 20);
+            driveShallow(10, 20);
+        }
+        else if (lState == cont) {
+            driveForward(10);
+        }
+        else if (lState == shallowR) {
+            //driveShallow(20, 10);
+            driveShallow(20, 10);
+        }
+        if (lineOnCount(lineData) >= 6) {
+            return 0;
         }
     }
     /*
@@ -338,18 +381,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : INPUT_LINETEST1_Pin */
-  GPIO_InitStruct.Pin = INPUT_LINETEST1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(INPUT_LINETEST1_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : LSENS2_Pin LSENS1_Pin LSENS8_Pin LSENS3_Pin */
-  GPIO_InitStruct.Pin = LSENS2_Pin|LSENS1_Pin|LSENS8_Pin|LSENS3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
   /*Configure GPIO pin : LD2_Pin */
   GPIO_InitStruct.Pin = LD2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -357,11 +388,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LSENS7_Pin LSENS4_Pin LSENS6_Pin LSENS5_Pin */
-  GPIO_InitStruct.Pin = LSENS7_Pin|LSENS4_Pin|LSENS6_Pin|LSENS5_Pin;
+  /*Configure GPIO pins : LS5_Pin LS2_Pin LS4_Pin LS3_Pin */
+  GPIO_InitStruct.Pin = LS5_Pin|LS2_Pin|LS4_Pin|LS3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : LS7_Pin */
+  GPIO_InitStruct.Pin = LS7_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(LS7_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : DIR_1_LEFT_Pin DIR_2_RIGHT_Pin */
   GPIO_InitStruct.Pin = DIR_1_LEFT_Pin|DIR_2_RIGHT_Pin;
@@ -369,6 +406,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LS6_Pin LS8_Pin LS1_Pin */
+  GPIO_InitStruct.Pin = LS6_Pin|LS8_Pin|LS1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
