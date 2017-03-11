@@ -43,6 +43,8 @@
 
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define INPUT_LINETEST1_Pin GPIO_PIN_3
+#define INPUT_LINETEST1_GPIO_Port GPIOC
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
 #define DIR_1_LEFT_Pin GPIO_PIN_8

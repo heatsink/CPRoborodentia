@@ -36,19 +36,23 @@
 
 /* USER CODE BEGIN Includes */
 #include "functions.h"
+#include <stdlib.h>
+typedef int lineState;
+enum lineState { hardL, shallowL, cont, shallowR, hardR };
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc1;
-ADC_HandleTypeDef hadc2;
-
 TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 uint16_t oldDutyCycle;
 uint16_t newDutyCycle;
-TIM_HandleTypeDef * motorTimer = &htim4;
+volatile TIM_HandleTypeDef * motorTimer = &htim4;
+uint16_t INIT_STATE = 1;
+uint16_t LINE_SENSE_F = 1;
+lineState lState = cont;
 
 /* USER CODE END PV */
 
@@ -56,10 +60,7 @@ TIM_HandleTypeDef * motorTimer = &htim4;
 void SystemClock_Config(void);
 void Error_Handler(void);
 static void MX_GPIO_Init(void);
-static void MX_TIM4_Init(void);
-static void MX_ADC1_Init(void);
-static void MX_ADC2_Init(void);
-
+static void MX_TIM4_Init(void);                                    
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                                 
 
@@ -91,10 +92,17 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM4_Init();
-  MX_ADC1_Init();
-  MX_ADC2_Init();
 
   /* USER CODE BEGIN 2 */
+  struct lineData *lineData = checked_malloc(sizeof(struct lineData));
+  initLineSensor(lineData, GPIOC, GPIO_PIN_1,
+                           GPIOC, GPIO_PIN_1,
+                           GPIOC, GPIO_PIN_1,
+                           GPIOC, GPIO_PIN_1,
+                           GPIOC, GPIO_PIN_1,
+                           GPIOC, GPIO_PIN_1,
+                           GPIOC, GPIO_PIN_1,
+                           GPIOC, GPIO_PIN_1);
 
   // Start Timers after initialization
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
@@ -115,11 +123,70 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-    lineFollowerCallback(hadc1, hadc2, LINE_LOGIC_LEVEL); // Attempt to follow a line
+  /*
+  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_3)) {
+    Drive_Forward(25);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+  }
+  else {
+    INIT_STATE = 0;
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+    Drive_Forward(0);
+  }
+  */
+  // Update all the sensors
+    updateLineData(lineData);
+    //updateIRData(IRData);
+    if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+        INIT_STATE = 0;
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+        driveForward(0);
+        continue;
+    }
+    while (INIT_STATE == 0) {
+        if (lineData->status[3] == true && lineData->status[4] == true){
+            lineState = cont;
+        }
+        while (lState == hardL) {
+            driveLeft(15);
+        }
+        while (lState == shallowL) {
+            driveRight(10);
+        }
+        while (lState == cont) {
+            driveForward(10);
+        }
+        while (lState == shallowR) {
+            driveRight(10);
+        }
+        while (lState == hardR) {
+            driveRight(15);
+        }
+        //if (lineData->status[3] == true && lineData->status[4] == true){
+
+        if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_3)) {
+            //driveForward(25);
+            driveLeftShallow(15,0);
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+        }
+        else {
+            driveForward(0);
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+        }
+    }
+    /*
+    while (INIT_STATE == 1) {
+    //if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_3)) {
+        HAL_Delay(100);
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+        HAL_Delay(100);
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+        Drive_Forward(0);
+    }
+    */
   }
   return 0;
   /* USER CODE END 3 */
-
 }
 
 /** System Clock Configuration
@@ -184,80 +251,6 @@ void SystemClock_Config(void)
 
   /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
-}
-
-/* ADC1 init function */
-static void MX_ADC1_Init(void)
-{
-
-  ADC_ChannelConfTypeDef sConfig;
-
-    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
-    */
-  hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
-  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc1.Init.ScanConvMode = DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
-  hadc1.Init.DiscontinuousConvMode = DISABLE;
-  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 1;
-  hadc1.Init.DMAContinuousRequests = DISABLE;
-  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
-    */
-  sConfig.Channel = ADC_CHANNEL_0;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-}
-
-/* ADC2 init function */
-static void MX_ADC2_Init(void)
-{
-
-  ADC_ChannelConfTypeDef sConfig;
-
-    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
-    */
-  hadc2.Instance = ADC2;
-  hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
-  hadc2.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc2.Init.ScanConvMode = DISABLE;
-  hadc2.Init.ContinuousConvMode = DISABLE;
-  hadc2.Init.DiscontinuousConvMode = DISABLE;
-  hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc2.Init.NbrOfConversion = 1;
-  hadc2.Init.DMAContinuousRequests = DISABLE;
-  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
-    */
-  sConfig.Channel = ADC_CHANNEL_1;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
 }
 
 /* TIM4 init function */
@@ -341,6 +334,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : INPUT_LINETEST1_Pin */
+  GPIO_InitStruct.Pin = INPUT_LINETEST1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(INPUT_LINETEST1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LD2_Pin */
   GPIO_InitStruct.Pin = LD2_Pin;

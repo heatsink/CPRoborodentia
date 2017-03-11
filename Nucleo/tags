@@ -5723,6 +5723,7 @@ DCTL	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t D
 DCTRL	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DCTRL;                 \/*!< SDIO data control register,     Address offset: 0x2C *\/$/;"	m	struct:__anon31
 DEACHINT	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DEACHINT;        \/*!< dedicated EP interrupt       838h *\/$/;"	m	struct:__anon39
 DEACHMSK	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DEACHMSK;        \/*!< dedicated EP msk             83Ch *\/$/;"	m	struct:__anon39
+DEFAULT_SPEED	Src/functions.h	/^#define DEFAULT_SPEED /;"	d
 DELTA_Q15	Drivers/CMSIS/Include/arm_math.h	/^#define DELTA_Q15 /;"	d
 DELTA_Q31	Drivers/CMSIS/Include/arm_math.h	/^#define DELTA_Q31 /;"	d
 DEMCR	Drivers/CMSIS/Include/core_cm3.h	/^  __IOM uint32_t DEMCR;                  \/*!< Offset: 0x00C (R\/W)  Debug Exception and Monitor Control Register *\/$/;"	m	struct:__anon149
@@ -8804,6 +8805,7 @@ FUNCTION3	Drivers/CMSIS/Include/core_cm4.h	/^  __IOM uint32_t FUNCTION3;        
 FUNCTION3	Drivers/CMSIS/Include/core_cm7.h	/^  __IOM uint32_t FUNCTION3;              \/*!< Offset: 0x058 (R\/W)  Function Register 3 *\/$/;"	m	struct:__anon183
 FUNCTION3	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t FUNCTION3;              \/*!< Offset: 0x058 (R\/W)  Function Register 3 *\/$/;"	m	struct:__anon215
 FUNCTIONS_H	Inc/functions.h	/^#define FUNCTIONS_H$/;"	d
+FUNCTIONS_H	Src/functions.h	/^#define FUNCTIONS_H$/;"	d
 FillZerobss	Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f446xx.s	/^FillZerobss:$/;"	l
 FillZerobss	SW4STM32/startup_stm32f446xx.s	/^FillZerobss:$/;"	l
 FlagStatus	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	/^} FlagStatus, ITStatus;$/;"	t	typeref:enum:__anon44
@@ -11511,6 +11513,7 @@ LDSPECS	Makefile	/^	LDSPECS = -specs=nosys.specs $/;"	m
 LIBDIR	Makefile	/^LIBDIR =$/;"	m
 LIBS	Makefile	/^LIBS = -lc -lm -lnosys$/;"	m
 LIFCR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t LIFCR;  \/*!< DMA low interrupt flag clear register,  Address offset: 0x08 *\/$/;"	m	struct:__anon14
+LINE_LOGIC_LEVEL	Src/functions.h	/^#define LINE_LOGIC_LEVEL /;"	d
 LISR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t LISR;   \/*!< DMA low interrupt status register,      Address offset: 0x00 *\/$/;"	m	struct:__anon14
 LOAD	Drivers/CMSIS/Include/core_cm0.h	/^  __IOM uint32_t LOAD;                   \/*!< Offset: 0x004 (R\/W)  SysTick Reload Value Register *\/$/;"	m	struct:__anon119
 LOAD	Drivers/CMSIS/Include/core_cm0plus.h	/^  __IOM uint32_t LOAD;                   \/*!< Offset: 0x004 (R\/W)  SysTick Reload Value Register *\/$/;"	m	struct:__anon130
@@ -11962,6 +11965,7 @@ MVFR1	Drivers/CMSIS/Include/core_cm7.h	/^  __IM  uint32_t MVFR1;                
 MVFR2	Drivers/CMSIS/Include/core_cm7.h	/^  __IM  uint32_t MVFR2;                  \/*!< Offset: 0x018 (R\/ )  Media and FP Feature Register 2 *\/$/;"	m	struct:__anon186
 MVFR2	Drivers/CMSIS/Include/core_cm7.h	/^  __IM  uint32_t MVFR2;                  \/*!< Offset: 0x248 (R\/ )  Media and VFP Feature Register 1 *\/$/;"	m	struct:__anon178
 MX_ADC1_Init	Src/main.c	/^static void MX_ADC1_Init(void)$/;"	f	file:
+MX_ADC2_Init	Src/main.c	/^static void MX_ADC2_Init(void)$/;"	f	file:
 MX_GPIO_Init	Src/main.c	/^static void MX_GPIO_Init(void)$/;"	f	file:
 MX_TIM4_Init	Src/main.c	/^static void MX_TIM4_Init(void)$/;"	f	file:
 MasterOutputTrigger	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h	/^  uint32_t  MasterOutputTrigger;   \/*!< Trigger output (TRGO) selection. $/;"	m	struct:__anon267
@@ -23056,8 +23060,8 @@ bitReverseFlag	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t bitReverseFlag;   
 bitReverseFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t bitReverseFlagR;                    \/**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. *\/$/;"	m	struct:__anon77
 bitReverseFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t bitReverseFlagR;                    \/**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. *\/$/;"	m	struct:__anon78
 bitReverseFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t bitReverseFlagR;                  \/**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. *\/$/;"	m	struct:__anon76
-bool	Src/functions.c	/^enum bool { false, true };$/;"	g	file:
-bool	Src/functions.c	/^typedef int bool;$/;"	t	file:
+bool	Src/functions.h	/^enum bool { false, true };$/;"	g
+bool	Src/functions.h	/^typedef int bool;$/;"	t
 clip_q31_to_q15	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q15_t clip_q31_to_q15($/;"	f
 clip_q31_to_q7	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q7_t clip_q31_to_q7($/;"	f
 clip_q63_to_q15	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q15_t clip_q63_to_q15($/;"	f
@@ -23065,7 +23069,7 @@ clip_q63_to_q31	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q31_t clip_
 energy	Drivers/CMSIS/Include/arm_math.h	/^    float32_t energy;     \/**< saves previous frame energy. *\/$/;"	m	struct:__anon102
 energy	Drivers/CMSIS/Include/arm_math.h	/^    q15_t energy;         \/**< saves previous frame energy. *\/$/;"	m	struct:__anon104
 energy	Drivers/CMSIS/Include/arm_math.h	/^    q31_t energy;         \/**< saves previous frame energy. *\/$/;"	m	struct:__anon103
-false	Src/functions.c	/^enum bool { false, true };$/;"	e	enum:bool	file:
+false	Src/functions.h	/^enum bool { false, true };$/;"	e	enum:bool
 fftLen	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t fftLen;                   \/**< length of the FFT. *\/$/;"	m	struct:__anon71
 fftLen	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t fftLen;                   \/**< length of the FFT. *\/$/;"	m	struct:__anon72
 fftLen	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t fftLen;                   \/**< length of the FFT. *\/$/;"	m	struct:__anon73
@@ -23085,6 +23089,7 @@ float64_t	Drivers/CMSIS/Include/arm_math.h	/^  typedef double float64_t;$/;"	t
 g_pfnVectors	Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f446xx.s	/^g_pfnVectors:$/;"	l
 g_pfnVectors	SW4STM32/startup_stm32f446xx.s	/^g_pfnVectors:$/;"	l
 hadc1	Src/main.c	/^ADC_HandleTypeDef hadc1;$/;"	v
+hadc2	Src/main.c	/^ADC_HandleTypeDef hadc2;$/;"	v
 hdma	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^  DMA_HandleTypeDef           *hdma[7];      \/*!< DMA Handlers array$/;"	m	struct:__anon265
 htim4	Src/main.c	/^TIM_HandleTypeDef htim4;$/;"	v
 ifftFlag	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlag;                  \/**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. *\/$/;"	m	struct:__anon71
@@ -23096,7 +23101,10 @@ ifftFlag	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlag;               
 ifftFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlagR;                          \/**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. *\/$/;"	m	struct:__anon77
 ifftFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlagR;                          \/**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. *\/$/;"	m	struct:__anon78
 ifftFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlagR;                        \/**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. *\/$/;"	m	struct:__anon76
-lineDetected	Src/functions.c	/^bool lineDetected(void) {$/;"	f
+initialize_ADC	Src/functions.c	/^void initialize_ADC(ADC_HandleTypeDef hadc) {$/;"	f
+lineDetected	Src/functions.c	/^bool lineDetected(ADC_HandleTypeDef hadc, uint16_t logicLevel) {$/;"	f
+lineFollowerCallback	Src/functions.c	/^void lineFollowerCallback(ADC_HandleTypeDef hadc1, ADC_HandleTypeDef hadc2, uint16_t logicLevel) {$/;"	f
+lineStatus	Src/functions.c	/^struct lineStatus {$/;"	s	file:
 main	Src/main.c	/^int main(void)$/;"	f
 maxDelay	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t maxDelay;            \/**< maximum offset specified by the pTapDelay array. *\/$/;"	m	struct:__anon105
 maxDelay	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t maxDelay;            \/**< maximum offset specified by the pTapDelay array. *\/$/;"	m	struct:__anon106
@@ -23324,7 +23332,7 @@ stateIndex	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t stateIndex;          
 stateIndex	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t stateIndex;          \/**< state buffer index.  Points to the oldest sample in the state buffer. *\/$/;"	m	struct:__anon106
 stateIndex	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t stateIndex;          \/**< state buffer index.  Points to the oldest sample in the state buffer. *\/$/;"	m	struct:__anon107
 stateIndex	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t stateIndex;          \/**< state buffer index.  Points to the oldest sample in the state buffer. *\/$/;"	m	struct:__anon108
-true	Src/functions.c	/^enum bool { false, true };$/;"	e	enum:bool	file:
+true	Src/functions.h	/^enum bool { false, true };$/;"	e	enum:bool
 twidCoefModifier	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t twidCoefModifier;         \/**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. *\/$/;"	m	struct:__anon71
 twidCoefModifier	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t twidCoefModifier;         \/**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. *\/$/;"	m	struct:__anon72
 twidCoefModifier	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t twidCoefModifier;       \/**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. *\/$/;"	m	struct:__anon67
@@ -23347,7 +23355,6 @@ u8	Drivers/CMSIS/Include/core_cm3.h	/^    __OM  uint8_t    u8;                 \
 u8	Drivers/CMSIS/Include/core_cm4.h	/^    __OM  uint8_t    u8;                 \/*!< Offset: 0x000 ( \/W)  ITM Stimulus Port 8-bit *\/$/;"	m	union:__anon162::__anon163
 u8	Drivers/CMSIS/Include/core_cm7.h	/^    __OM  uint8_t    u8;                 \/*!< Offset: 0x000 ( \/W)  ITM Stimulus Port 8-bit *\/$/;"	m	union:__anon181::__anon182
 u8	Drivers/CMSIS/Include/core_sc300.h	/^    __OM  uint8_t    u8;                 \/*!< Offset: 0x000 ( \/W)  ITM Stimulus Port 8-bit *\/$/;"	m	union:__anon213::__anon214
-updateLED	Src/functions.c	/^void updateLED(bool on) {$/;"	f
 uwTick	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c	/^__IO uint32_t uwTick;$/;"	v
 w	Drivers/CMSIS/Include/core_cm0.h	/^  uint32_t w;                            \/*!< Type      used for word access *\/$/;"	m	union:__anon109
 w	Drivers/CMSIS/Include/core_cm0.h	/^  uint32_t w;                            \/*!< Type      used for word access *\/$/;"	m	union:__anon111

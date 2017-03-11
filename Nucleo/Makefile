@@ -29,7 +29,6 @@ BUILD_DIR = build
 ########################################################
 C_SOURCES = \
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c \
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
@@ -80,7 +79,7 @@ C_INCLUDES += -IDrivers/CMSIS/Include
 # compile gcc flags
 WFLAGS = -Wall -fdata-sections -ffunction-sections -fmessage-length=0 -c
 ASFLAGS = -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp $(AS_DEFS) $(AS_INCLUDES) $(OPT) $(WFLAGS)
-CFLAGS = -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -fno-aggressive-loop-optimizations $(C_DEFS) $(C_INCLUDES) $(OPT) $(WFLAGS)
+CFLAGS = -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -fno-aggressive-loop-optimizations $(C_DEFS) $(C_INCLUDES) $(OPT) $(WFLAGS) -std=gnu99
 # Generate dependency information
 CFLAGS += -MD -MP -MF .dep/$(@F).d
 
