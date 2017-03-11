@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc91lkcC.s 			page 1
+ARM GAS  /tmp/ccREgcmv.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc91lkcC.s 			page 1
   58              		@ args = 0, pretend = 0, frame = 0
   59              		@ frame_needed = 0, uses_anonymous_args = 0
   60 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  /tmp/cc91lkcC.s 			page 2
+ARM GAS  /tmp/ccREgcmv.s 			page 2
 
 
   61 0002 0B4D     		ldr	r5, .L7
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc91lkcC.s 			page 1
  117 0034 00000000 		.word	motorTimer
  119              		.section	.text.Drive_Back,"ax",%progbits
  120              		.align	2
-ARM GAS  /tmp/cc91lkcC.s 			page 3
+ARM GAS  /tmp/ccREgcmv.s 			page 3
 
 
  121              		.global	Drive_Back
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc91lkcC.s 			page 1
  179              		.thumb_func
  181              	lineDetected:
  182              		@ args = 76, pretend = 16, frame = 72
-ARM GAS  /tmp/cc91lkcC.s 			page 4
+ARM GAS  /tmp/ccREgcmv.s 			page 4
 
 
  183              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc91lkcC.s 			page 1
  239 002e FFF7FEFF 		bl	lineDetected
  240 0032 90B1     		cbz	r0, .L22
  241 0034 2AAD     		add	r5, sp, #168
-ARM GAS  /tmp/cc91lkcC.s 			page 5
+ARM GAS  /tmp/ccREgcmv.s 			page 5
 
 
  242 0036 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc91lkcC.s 			page 1
  296              		@ sp needed
  297 00b6 BDE87040 		pop	{r4, r5, r6, lr}
  298 00ba 04B0     		add	sp, sp, #16
-ARM GAS  /tmp/cc91lkcC.s 			page 6
+ARM GAS  /tmp/ccREgcmv.s 			page 6
 
 
  299 00bc FFF7FEBF 		b	Drive_Forward
@@ -340,30 +340,30 @@ ARM GAS  /tmp/cc91lkcC.s 			page 1
  335              	.L37:
  336 0108 00000240 		.word	1073872896
  338              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-bran
-ARM GAS  /tmp/cc91lkcC.s 			page 7
+ARM GAS  /tmp/ccREgcmv.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 functions.c
-     /tmp/cc91lkcC.s:18     .text.Drive_Forward:00000000 $t
-     /tmp/cc91lkcC.s:23     .text.Drive_Forward:00000000 Drive_Forward
-     /tmp/cc91lkcC.s:48     .text.Drive_Forward:00000030 $d
-     /tmp/cc91lkcC.s:52     .text.Drive_Left:00000000 $t
-     /tmp/cc91lkcC.s:57     .text.Drive_Left:00000000 Drive_Left
-     /tmp/cc91lkcC.s:82     .text.Drive_Left:00000030 $d
-     /tmp/cc91lkcC.s:86     .text.Drive_Right:00000000 $t
-     /tmp/cc91lkcC.s:91     .text.Drive_Right:00000000 Drive_Right
-     /tmp/cc91lkcC.s:116    .text.Drive_Right:00000030 $d
-     /tmp/cc91lkcC.s:120    .text.Drive_Back:00000000 $t
-     /tmp/cc91lkcC.s:125    .text.Drive_Back:00000000 Drive_Back
-     /tmp/cc91lkcC.s:150    .text.Drive_Back:00000030 $d
-     /tmp/cc91lkcC.s:154    .text.initialize_ADC:00000000 $t
-     /tmp/cc91lkcC.s:159    .text.initialize_ADC:00000000 initialize_ADC
-     /tmp/cc91lkcC.s:176    .text.lineDetected:00000000 $t
-     /tmp/cc91lkcC.s:181    .text.lineDetected:00000000 lineDetected
-     /tmp/cc91lkcC.s:212    .text.lineFollowerCallback:00000000 $t
-     /tmp/cc91lkcC.s:217    .text.lineFollowerCallback:00000000 lineFollowerCallback
-     /tmp/cc91lkcC.s:336    .text.lineFollowerCallback:00000108 $d
+     /tmp/ccREgcmv.s:18     .text.Drive_Forward:00000000 $t
+     /tmp/ccREgcmv.s:23     .text.Drive_Forward:00000000 Drive_Forward
+     /tmp/ccREgcmv.s:48     .text.Drive_Forward:00000030 $d
+     /tmp/ccREgcmv.s:52     .text.Drive_Left:00000000 $t
+     /tmp/ccREgcmv.s:57     .text.Drive_Left:00000000 Drive_Left
+     /tmp/ccREgcmv.s:82     .text.Drive_Left:00000030 $d
+     /tmp/ccREgcmv.s:86     .text.Drive_Right:00000000 $t
+     /tmp/ccREgcmv.s:91     .text.Drive_Right:00000000 Drive_Right
+     /tmp/ccREgcmv.s:116    .text.Drive_Right:00000030 $d
+     /tmp/ccREgcmv.s:120    .text.Drive_Back:00000000 $t
+     /tmp/ccREgcmv.s:125    .text.Drive_Back:00000000 Drive_Back
+     /tmp/ccREgcmv.s:150    .text.Drive_Back:00000030 $d
+     /tmp/ccREgcmv.s:154    .text.initialize_ADC:00000000 $t
+     /tmp/ccREgcmv.s:159    .text.initialize_ADC:00000000 initialize_ADC
+     /tmp/ccREgcmv.s:176    .text.lineDetected:00000000 $t
+     /tmp/ccREgcmv.s:181    .text.lineDetected:00000000 lineDetected
+     /tmp/ccREgcmv.s:212    .text.lineFollowerCallback:00000000 $t
+     /tmp/ccREgcmv.s:217    .text.lineFollowerCallback:00000000 lineFollowerCallback
+     /tmp/ccREgcmv.s:336    .text.lineFollowerCallback:00000108 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
