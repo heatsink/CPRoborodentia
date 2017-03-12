@@ -4686,6 +4686,7 @@ COMP_STOP	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define C
 COMP_WINDOWMODE_DISABLED	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define COMP_WINDOWMODE_DISABLED /;"	d
 COMP_WINDOWMODE_ENABLE	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define COMP_WINDOWMODE_ENABLE /;"	d
 COMP_WINDOWMODE_ENABLED	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define COMP_WINDOWMODE_ENABLED /;"	d
+CONFIG_H	Src/config.h	/^#define CONFIG_H$/;"	d
 CONTROLLER_Q31_SHIFT	Drivers/CMSIS/Include/arm_math.h	/^#define CONTROLLER_Q31_SHIFT /;"	d
 CONTROL_FPCA_Msk	Drivers/CMSIS/Include/core_cm4.h	/^#define CONTROL_FPCA_Msk /;"	d
 CONTROL_FPCA_Msk	Drivers/CMSIS/Include/core_cm7.h	/^#define CONTROL_FPCA_Msk /;"	d
@@ -5540,6 +5541,7 @@ DCTL	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t D
 DCTRL	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DCTRL;                 \/*!< SDIO data control register,     Address offset: 0x2C *\/$/;"	m	struct:__anon31
 DEACHINT	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DEACHINT;        \/*!< dedicated EP interrupt       838h *\/$/;"	m	struct:__anon39
 DEACHMSK	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DEACHMSK;        \/*!< dedicated EP msk             83Ch *\/$/;"	m	struct:__anon39
+DEBUG_MODE	Src/main.c	/^uint8_t DEBUG_MODE = 1;$/;"	v
 DEFAULT_SPEED	Src/functions.h	/^#define DEFAULT_SPEED /;"	d
 DELTA_Q15	Drivers/CMSIS/Include/arm_math.h	/^#define DELTA_Q15 /;"	d
 DELTA_Q31	Drivers/CMSIS/Include/arm_math.h	/^#define DELTA_Q31 /;"	d
@@ -10638,8 +10640,6 @@ INDEX_MASK	Drivers/CMSIS/Include/arm_math.h	/^#define INDEX_MASK /;"	d
 INIT_STATE	Src/main.c	/^uint16_t INIT_STATE = 1;$/;"	v
 INJECTED_CHANNELS	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define INJECTED_CHANNELS /;"	d
 INJECTED_GROUP	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define INJECTED_GROUP /;"	d
-INPUT_LINETEST1_GPIO_Port	Inc/main.h	/^#define INPUT_LINETEST1_GPIO_Port /;"	d
-INPUT_LINETEST1_Pin	Inc/main.h	/^#define INPUT_LINETEST1_Pin /;"	d
 INPUT_SPACING	Drivers/CMSIS/Include/arm_math.h	/^#define INPUT_SPACING /;"	d
 INSTRUCTION_CACHE_ENABLE	Inc/stm32f4xx_hal_conf.h	/^#define  INSTRUCTION_CACHE_ENABLE /;"	d
 IOPAMP_INVERTINGINPUT_VM0	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define IOPAMP_INVERTINGINPUT_VM0 /;"	d
@@ -11262,6 +11262,38 @@ LPTIM_TRIGSAMPLETIME_8TRANSISTIONS	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32
 LPTIM_TRIGSAMPLETIME_8TRANSITION	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define LPTIM_TRIGSAMPLETIME_8TRANSITION /;"	d
 LPTIM_TRIGSAMPLETIME_DIRECTTRANSISTION	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define LPTIM_TRIGSAMPLETIME_DIRECTTRANSISTION /;"	d
 LPTR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t LPTR;     \/*!< QUADSPI Low Power Timeout register,                 Address offset: 0x30 *\/$/;"	m	struct:__anon33
+LS1	Src/config.h	/^#define LS1 /;"	d
+LS1NUM	Src/config.h	/^#define LS1NUM /;"	d
+LS1_GPIO_Port	Inc/main.h	/^#define LS1_GPIO_Port /;"	d
+LS1_Pin	Inc/main.h	/^#define LS1_Pin /;"	d
+LS2	Src/config.h	/^#define LS2 /;"	d
+LS2NUM	Src/config.h	/^#define LS2NUM /;"	d
+LS2_GPIO_Port	Inc/main.h	/^#define LS2_GPIO_Port /;"	d
+LS2_Pin	Inc/main.h	/^#define LS2_Pin /;"	d
+LS3	Src/config.h	/^#define LS3 /;"	d
+LS3NUM	Src/config.h	/^#define LS3NUM /;"	d
+LS3_GPIO_Port	Inc/main.h	/^#define LS3_GPIO_Port /;"	d
+LS3_Pin	Inc/main.h	/^#define LS3_Pin /;"	d
+LS4	Src/config.h	/^#define LS4 /;"	d
+LS4NUM	Src/config.h	/^#define LS4NUM /;"	d
+LS4_GPIO_Port	Inc/main.h	/^#define LS4_GPIO_Port /;"	d
+LS4_Pin	Inc/main.h	/^#define LS4_Pin /;"	d
+LS5	Src/config.h	/^#define LS5 /;"	d
+LS5NUM	Src/config.h	/^#define LS5NUM /;"	d
+LS5_GPIO_Port	Inc/main.h	/^#define LS5_GPIO_Port /;"	d
+LS5_Pin	Inc/main.h	/^#define LS5_Pin /;"	d
+LS6	Src/config.h	/^#define LS6 /;"	d
+LS6NUM	Src/config.h	/^#define LS6NUM /;"	d
+LS6_GPIO_Port	Inc/main.h	/^#define LS6_GPIO_Port /;"	d
+LS6_Pin	Inc/main.h	/^#define LS6_Pin /;"	d
+LS7	Src/config.h	/^#define LS7 /;"	d
+LS7NUM	Src/config.h	/^#define LS7NUM /;"	d
+LS7_GPIO_Port	Inc/main.h	/^#define LS7_GPIO_Port /;"	d
+LS7_Pin	Inc/main.h	/^#define LS7_Pin /;"	d
+LS8	Src/config.h	/^#define LS8 /;"	d
+LS8NUM	Src/config.h	/^#define LS8NUM /;"	d
+LS8_GPIO_Port	Inc/main.h	/^#define LS8_GPIO_Port /;"	d
+LS8_Pin	Inc/main.h	/^#define LS8_Pin /;"	d
 LSEBYP_BITNUMBER	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define LSEBYP_BITNUMBER /;"	d
 LSENSOR_COUNT	Src/functions.h	/^#define LSENSOR_COUNT /;"	d
 LSEON_BITNUMBER	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	/^#define LSEON_BITNUMBER /;"	d
@@ -17684,6 +17716,10 @@ TIM_IT_CC4	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_IT
 TIM_IT_COM	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_IT_COM /;"	d
 TIM_IT_TRIGGER	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_IT_TRIGGER /;"	d
 TIM_IT_UPDATE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_IT_UPDATE /;"	d
+TIM_LEFT_1_CH1_GPIO_Port	Inc/main.h	/^#define TIM_LEFT_1_CH1_GPIO_Port /;"	d
+TIM_LEFT_1_CH1_Pin	Inc/main.h	/^#define TIM_LEFT_1_CH1_Pin /;"	d
+TIM_LEFT_2_Ch4_GPIO_Port	Inc/main.h	/^#define TIM_LEFT_2_Ch4_GPIO_Port /;"	d
+TIM_LEFT_2_Ch4_Pin	Inc/main.h	/^#define TIM_LEFT_2_Ch4_Pin /;"	d
 TIM_LOCKLEVEL_1	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_LOCKLEVEL_1 /;"	d
 TIM_LOCKLEVEL_2	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_LOCKLEVEL_2 /;"	d
 TIM_LOCKLEVEL_3	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_LOCKLEVEL_3 /;"	d
@@ -17739,6 +17775,10 @@ TIM_RCR_REP_Msk	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^#defin
 TIM_RCR_REP_Pos	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^#define TIM_RCR_REP_Pos /;"	d
 TIM_RESET_CAPTUREPOLARITY	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_RESET_CAPTUREPOLARITY(/;"	d
 TIM_RESET_ICPRESCALERVALUE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_RESET_ICPRESCALERVALUE(/;"	d
+TIM_RIGHT_1_CH2_GPIO_Port	Inc/main.h	/^#define TIM_RIGHT_1_CH2_GPIO_Port /;"	d
+TIM_RIGHT_1_CH2_Pin	Inc/main.h	/^#define TIM_RIGHT_1_CH2_Pin /;"	d
+TIM_RIGHT_2_CH3_GPIO_Port	Inc/main.h	/^#define TIM_RIGHT_2_CH3_GPIO_Port /;"	d
+TIM_RIGHT_2_CH3_Pin	Inc/main.h	/^#define TIM_RIGHT_2_CH3_Pin /;"	d
 TIM_SET_CAPTUREPOLARITY	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_SET_CAPTUREPOLARITY(/;"	d
 TIM_SET_ICPRESCALERVALUE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_SET_ICPRESCALERVALUE(/;"	d
 TIM_SLAVEMODE_DISABLE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^#define TIM_SLAVEMODE_DISABLE /;"	d
@@ -22758,11 +22798,13 @@ clip_q31_to_q7	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q7_t clip_q3
 clip_q63_to_q15	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q15_t clip_q63_to_q15($/;"	f
 clip_q63_to_q31	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q31_t clip_q63_to_q31($/;"	f
 cont	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:
+drive	Src/functions.c	/^void drive(int lSpeed, int rSpeed) {$/;"	f
 driveBack	Src/functions.c	/^void driveBack(uint16_t speed){$/;"	f
 driveForward	Src/functions.c	/^void driveForward(uint16_t speed){$/;"	f
 driveLeft	Src/functions.c	/^void driveLeft(uint16_t speed){$/;"	f
-driveLeftShallow	Src/functions.c	/^void driveLeftShallow(uint16_t speedL, uint16_t speedR){$/;"	f
 driveRight	Src/functions.c	/^void driveRight(uint16_t speed){$/;"	f
+driveShallow	Src/functions.c	/^void driveShallow(uint16_t speedL, uint16_t speedR){$/;"	f
+driveShallowBack	Src/functions.c	/^void driveShallowBack(uint16_t speedL, uint16_t speedR){$/;"	f
 energy	Drivers/CMSIS/Include/arm_math.h	/^    float32_t energy;     \/**< saves previous frame energy. *\/$/;"	m	struct:__anon102
 energy	Drivers/CMSIS/Include/arm_math.h	/^    q15_t energy;         \/**< saves previous frame energy. *\/$/;"	m	struct:__anon104
 energy	Drivers/CMSIS/Include/arm_math.h	/^    q31_t energy;         \/**< saves previous frame energy. *\/$/;"	m	struct:__anon103
@@ -22783,6 +22825,7 @@ fftLenReal	Drivers/CMSIS/Include/arm_math.h	/^    uint32_t fftLenReal;          
 fftLenReal	Drivers/CMSIS/Include/arm_math.h	/^    uint32_t fftLenReal;                      \/**< length of the real FFT. *\/$/;"	m	struct:__anon76
 float32_t	Drivers/CMSIS/Include/arm_math.h	/^  typedef float float32_t;$/;"	t
 float64_t	Drivers/CMSIS/Include/arm_math.h	/^  typedef double float64_t;$/;"	t
+forwardLineFollowing	Src/functions.c	/^void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 g_pfnVectors	Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f446xx.s	/^g_pfnVectors:$/;"	l
 g_pfnVectors	SW4STM32/startup_stm32f446xx.s	/^g_pfnVectors:$/;"	l
 hardL	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:
@@ -22801,7 +22844,9 @@ ifftFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlagR;             
 initLineDataStruct	Src/functions.c	/^void initLineDataStruct(struct lineData *lineData) {$/;"	f
 initLineSensor	Src/functions.c	/^void initLineSensor(struct lineData *lineData, $/;"	f
 lState	Src/main.c	/^lineState lState = cont;$/;"	v
+leftBias	Src/functions.c	/^int leftBias(struct lineData *lineData) {$/;"	f
 lineData	Src/functions.h	/^struct lineData {$/;"	s
+lineOnCount	Src/functions.c	/^int lineOnCount(struct lineData *lineData) {$/;"	f
 lineState	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	g	file:
 lineState	Src/main.c	/^typedef int lineState;$/;"	t	file:
 main	Src/main.c	/^int main(void)$/;"	f
@@ -23023,6 +23068,7 @@ q63_t	Drivers/CMSIS/Include/arm_math.h	/^  typedef int64_t q63_t;$/;"	t
 q7_t	Drivers/CMSIS/Include/arm_math.h	/^  typedef int8_t q7_t;$/;"	t
 recipTable	Drivers/CMSIS/Include/arm_math.h	/^    q15_t *recipTable;    \/**< Points to the reciprocal initial value table. *\/$/;"	m	struct:__anon104
 recipTable	Drivers/CMSIS/Include/arm_math.h	/^    q31_t *recipTable;    \/**< points to the reciprocal initial value table. *\/$/;"	m	struct:__anon103
+rightBias	Src/functions.c	/^int rightBias(struct lineData *lineData) {$/;"	f
 sFIFOMailBox	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_FIFOMailBox_TypeDef    sFIFOMailBox[2];     \/*!< CAN FIFO MailBox,                    Address offset: 0x1B0 - 0x1CC *\/$/;"	m	struct:__anon7
 sFilterRegister	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_FilterRegister_TypeDef sFilterRegister[28]; \/*!< CAN Filter Register,                 Address offset: 0x240-0x31C   *\/$/;"	m	struct:__anon7
 sTxMailBox	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_TxMailBox_TypeDef      sTxMailBox[3];       \/*!< CAN Tx MailBox,                      Address offset: 0x180 - 0x1AC *\/$/;"	m	struct:__anon7

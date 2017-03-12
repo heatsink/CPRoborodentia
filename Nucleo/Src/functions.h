@@ -39,4 +39,5 @@ int lineOnCount(struct lineData *lineData);
 void drive(int lSpeed, int rSpeed);
 int leftBias(struct lineData *lineData);
 int rightBias(struct lineData *lineData);
+void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
 #endif

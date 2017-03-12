@@ -36,6 +36,42 @@ void *checked_realloc(void *pointer, size_t size) {
     return p;
 }
 
+void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias < *rBias) {
+        if (22-*lBias> 0 && 22-*lBias < 15) {
+            drive(32+*rBias, 15);
+        }
+        else if (22-*lBias < 0 && 22-*lBias > -15) {
+            drive(32+*rBias, -15);
+        }
+        else {
+            drive(32+*rBias, 22-*lBias);
+        }
+    }
+    else if (*lBias > *rBias) {
+        if (22-*rBias > 0 && 22-*rBias < 15) {
+            drive(15, 32+*lBias);
+        }
+        else if (22-*rBias < 0 && 22-*rBias > -15) {
+            drive(-15, 32+*lBias);
+        }
+        else {
+            drive(22-*rBias, 32+*lBias);
+        }
+    }
+    else {
+        drive(32, 32);
+    }
+}
+
 void initLineDataStruct(struct lineData *lineData) {
     for (int i = 0; i < LSENSOR_COUNT; i++) {
         lineData->pName[i] = NULL;

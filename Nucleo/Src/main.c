@@ -205,57 +205,42 @@ int main(void)
   }
   //Forward
   while (DEBUG_MODE == 1) {
+      int lBias = -15;
+      int rBias = -15;
       if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
           INIT_STATE = 0;
           HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
           driveForward(0);
           continue;
       }
-      int lBias = -15;
-      int rBias = -15;
       while (INIT_STATE == 0) {
           updateLineData(lineData);
-          if (lineOnCount(lineData) > 1) {
-              lBias = leftBias(lineData);
-              rBias = rightBias(lineData);
-          }
-          else {
-              lBias = lBias;
-              rBias = rBias;
-          }
-          if (lBias < rBias) {
-              if (22-lBias> 0 && 22-lBias < 15) {
-                  drive(32+rBias, 15);
-              }
-              else if (22-lBias < 0 && 22-lBias > -15) {
-                  drive(32+rBias, -15);
-              }
-              else {
-                  drive(32+rBias, 22-lBias);
-              }
-          }
-          else if (lBias > rBias) {
-              if (22-rBias > 0 && 22-rBias < 15) {
-                  drive(15, 32+lBias);
-              }
-              else if (22-rBias < 0 && 22-rBias > -15) {
-                  drive(-15, 32+lBias);
-              }
-              else {
-                  drive(22-rBias, 32+lBias);
-              }
-          }
-          else {
-              drive(32, 32);
-          }
-          if (lineOnCount(lineData) > 4) {
+          forwardLineFollowing(lineData, &lBias, &rBias);
+          if (lineOnCount(lineData) > 7) {
               INIT_STATE = 2;
               drive(0, 0);
-              exit(0);
           }
       }
       while (INIT_STATE == 2) {
-          driveRight(10);
+          updateLineData(lineData);
+          drive(100,-80);
+          //if (lineOnCount(lineData) == 2 && lineData->status[6] == true && lineData->status[7] == true) {
+          if (lineData->status[0] == false && lineData->status[1] == false && 
+                      lineData->status[2] == false && lineData->status[3] == false && 
+                      lineData->status[4] == false && lineData->status[5] == true && 
+                      lineData->status[6] == true && lineData->status[7] == true ) {
+              INIT_STATE = 3;
+              drive(0, 0);
+          }
+      }
+      while (INIT_STATE == 3) {
+          updateLineData(lineData);
+          forwardLineFollowing(lineData, &lBias, &rBias);
+          if (lineOnCount(lineData) > 7) {
+              INIT_STATE = 4;
+              drive(0, 0);
+          }
+
       }
   }
   
