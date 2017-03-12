@@ -93,6 +93,54 @@ int lineOnCount(struct lineData *lineData) {
     return onCount;
 }
 
+int leftBias(struct lineData *lineData) {
+    int bias = 0;
+    //int j = 32;
+    int j = 32;
+    //for (int i=0; i < 5; i++, j-=8) {
+    for (int i=0; i < 5; i++, j/=8) {
+        if (lineData->status[i] == true) {
+            bias+=j;
+        }
+    }
+    return bias;
+}
+
+int rightBias(struct lineData *lineData) {
+    int bias = 0;
+    int j = 8;
+    j=2;
+    //for (int i = 5; i <= LSENSOR_COUNT; i++, j+=8) {
+    for (int i = 5; i <= LSENSOR_COUNT; i++, j*=8) {
+        if (lineData->status[i] == true) {
+            bias+=j;
+        }
+    }
+    return bias;
+}
+
+void drive(int lSpeed, int rSpeed) {
+    if(lSpeed < 0) {
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
+        lSpeed*=-1;
+    }
+    else {
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
+    }
+    if (rSpeed < 0) {
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
+        rSpeed*=-1;
+    }
+    else {
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
+    }
+            
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_1, lSpeed); // Set new Pulse to Channel
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_2, rSpeed); // Set new Pulse to Channel
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, rSpeed); // Set new Pulse to Channel
+    __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, lSpeed); // Set new Pulse to Channel
+}
+
 void driveForward(uint16_t speed){
 //---Example for using Timer 13---------------------------
     // oldDutyCycle = __HAL_TIM_GET_AUTORELOAD(&htim13);         // Gets the Period set for PWm

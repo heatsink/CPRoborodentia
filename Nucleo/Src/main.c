@@ -36,6 +36,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "functions.h"
+#include "config.h"
 #include <stdlib.h>
 typedef int lineState;
 enum lineState { hardL, shallowL, cont, shallowR, hardR };
@@ -53,6 +54,7 @@ volatile TIM_HandleTypeDef * motorTimer = &htim4;
 uint16_t INIT_STATE = 1;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
+uint8_t DEBUG_MODE = 1;
 
 /* USER CODE END PV */
 
@@ -95,24 +97,20 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   struct lineData *lineData = checked_malloc(sizeof(struct lineData));
-  initLineSensor(lineData, GPIOA, GPIO_PIN_10,
-                           GPIOB, GPIO_PIN_3,
-                           GPIOB, GPIO_PIN_5,
-                           GPIOB, GPIO_PIN_4,
-                           GPIOB, GPIO_PIN_10,
-                           GPIOA, GPIO_PIN_8,
-                           GPIOA, GPIO_PIN_9,
-                           GPIOC, GPIO_PIN_7);
+  initLineSensor(lineData, LS1, LS1NUM,
+                           LS2, LS2NUM,
+                           LS3, LS3NUM,
+                           LS4, LS4NUM,
+                           LS5, LS5NUM,
+                           LS6, LS6NUM,
+                           LS7, LS7NUM,
+                           LS8, LS8NUM);
 
   // Start Timers after initialization
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
-  // Set Direction Pins
-  // // --Setting or Resetting changes Direction
-  //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);         // DIR Pin 1 for Motor Driver
-  //HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);         // DIR Pin 2 for Motor Driver
 
   /* USER CODE END 2 */
 
@@ -123,20 +121,10 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-  /*
-  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_3)) {
-    Drive_Forward(25);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
-  }
-  else {
-    INIT_STATE = 0;
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
-    Drive_Forward(0);
-  }
-  */
   // Update all the sensors
     //updateLineData(lineData);
     //updateIRData(IRData);
+  if (DEBUG_MODE == 0) {
     if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
         INIT_STATE = 0;
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
@@ -145,43 +133,40 @@ int main(void)
     }
     while (INIT_STATE == 0) {
         updateLineData(lineData);
-        if (lineData->status[7] == true && (lineData->status[3] == false && lineData->status[4] == false)) {
-            //lState = shallowR;
+        if (lineData->status[5] == true && (lineData->status[3] == true && lineData->status[4] == true)) {
             lState = shallowL;
         }
-        else if (lineData->status[0] == true && (lineData->status[3] == false && lineData->status[4] == false)) {
-            //lState = shallowL;
+        else if (lineData->status[2] == true && (lineData->status[3] == true && lineData->status[4] == true)) {
             lState = shallowR;
         }
-        else if (lineData->status[3] == true && lineData->status[4] == true) {
+        else if (lineData->status[3] == true && lineData->status[4] == true && lineData->status[2] == false && lineData->status[5] == false) {
             lState = cont;
         }
+        else if (lineData->status[7] == true) {
+            lState = hardL;
+        }
+        else if (lineData->status[0] == true) {
+            lState = hardR;
+        }
 
-        if (lState == shallowL) {
-            //driveShallow(10, 20);
+        if (lState == hardL) {
             driveShallowBack(10, 20);
+        }
+        else if (lState == shallowL) {
+            driveShallowBack(10, 15);
         }
         else if (lState == cont) {
             driveBack(10);
         }
         else if (lState == shallowR) {
-            //driveShallow(20, 10);
+            driveShallowBack(15, 10);
+        }
+        else if (lState == hardR) {
             driveShallowBack(20, 10);
         }
         if (lineOnCount(lineData) >= 6) {
             INIT_STATE = 2;
         }
-        /*
-
-        if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_7) == GPIO_PIN_SET) {
-            driveShallow(20, 10);
-            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
-        }
-        else {
-            driveForward(0);
-            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
-        }
-        */
     }
     while (INIT_STATE == 2) {
         updateLineData(lineData);
@@ -205,30 +190,75 @@ int main(void)
         }
 
         if (lState == shallowL) {
-            //driveShallow(10, 20);
             driveShallow(10, 20);
         }
         else if (lState == cont) {
             driveForward(10);
         }
         else if (lState == shallowR) {
-            //driveShallow(20, 10);
             driveShallow(20, 10);
         }
         if (lineOnCount(lineData) >= 6) {
             return 0;
         }
     }
-    /*
-    while (INIT_STATE == 1) {
-    //if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_3)) {
-        HAL_Delay(100);
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
-        HAL_Delay(100);
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
-        Drive_Forward(0);
-    }
-    */
+  }
+  //Forward
+  while (DEBUG_MODE == 1) {
+      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+          INIT_STATE = 0;
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+          driveForward(0);
+          continue;
+      }
+      int lBias = -15;
+      int rBias = -15;
+      while (INIT_STATE == 0) {
+          updateLineData(lineData);
+          if (lineOnCount(lineData) > 1) {
+              lBias = leftBias(lineData);
+              rBias = rightBias(lineData);
+          }
+          else {
+              lBias = lBias;
+              rBias = rBias;
+          }
+          if (lBias < rBias) {
+              if (22-lBias> 0 && 22-lBias < 15) {
+                  drive(32+rBias, 15);
+              }
+              else if (22-lBias < 0 && 22-lBias > -15) {
+                  drive(32+rBias, -15);
+              }
+              else {
+                  drive(32+rBias, 22-lBias);
+              }
+          }
+          else if (lBias > rBias) {
+              if (22-rBias > 0 && 22-rBias < 15) {
+                  drive(15, 32+lBias);
+              }
+              else if (22-rBias < 0 && 22-rBias > -15) {
+                  drive(-15, 32+lBias);
+              }
+              else {
+                  drive(22-rBias, 32+lBias);
+              }
+          }
+          else {
+              drive(32, 32);
+          }
+          if (lineOnCount(lineData) > 4) {
+              INIT_STATE = 2;
+              drive(0, 0);
+              exit(0);
+          }
+      }
+      while (INIT_STATE == 2) {
+          driveRight(10);
+      }
+  }
+  
   }
   return 0;
   /* USER CODE END 3 */
