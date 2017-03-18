@@ -224,11 +224,13 @@ int main(void)
       while (INIT_STATE == 2) {
           updateLineData(lineData);
           drive(100,-80);
-          //if (lineOnCount(lineData) == 2 && lineData->status[6] == true && lineData->status[7] == true) {
+          if (lineOnCount(lineData) == 2 && lineData->status[6] == true && lineData->status[7] == true) {
+          /*
           if (lineData->status[0] == false && lineData->status[1] == false && 
                       lineData->status[2] == false && lineData->status[3] == false && 
                       lineData->status[4] == false && lineData->status[5] == true && 
                       lineData->status[6] == true && lineData->status[7] == true ) {
+                      */
               INIT_STATE = 3;
               drive(0, 0);
           }
