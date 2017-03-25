@@ -3,6 +3,10 @@
 #define DEFAULT_SPEED 25
 #define LINE_LOGIC_LEVEL 3000
 #define LSENSOR_COUNT 8
+#define servoMinPeriod 100
+#define servoMaxPeriod 500
+//slope = (output_end - output_start) / (input_end - input_start)
+#define servoSlope (servoMaxPeriod-servoMinPeriod)/(180-0)
 typedef int bool;
 enum bool { false, true };
 struct lineData {
@@ -40,4 +44,5 @@ void drive(int lSpeed, int rSpeed);
 int leftBias(struct lineData *lineData);
 int rightBias(struct lineData *lineData);
 void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
+void turnServo(uint16_t angle);
 #endif

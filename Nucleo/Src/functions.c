@@ -3,6 +3,7 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 #include "functions.h"
+#include <math.h>
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -10,8 +11,7 @@
 extern uint16_t oldDutyCycle;
 extern uint16_t newDutyCycle;
 extern TIM_HandleTypeDef * motorTimer;
-
-
+extern TIM_HandleTypeDef * servoTimer;
 /*
  * Checks for a valid memory allocation before returning allocation
  */
@@ -242,6 +242,24 @@ void driveBack(uint16_t speed){
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speed); // Set new Pulse to Channel
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speed); // Set new Pulse to Channel
 }
+
+/*
+ * angle between 0 and 180
+ * Servo uses 50Hz signal
+ */
+void turnServo(uint16_t angle){
+    
+    if (angle > 180) {
+        angle = 180;
+    }
+    //slope = (output_end - output_start) / (input_end - input_start)
+    // servoSlope and minimum period defined in Header file 
+    //output = output_start + slope * (input - input_start)
+    int val = round(servoMinPeriod + servoSlope * angle); 
+
+    __HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_1, val);
+}
+
 /*
 void initialize_ADC(ADC_HandleTypeDef hadc) {
     HAL_ADC_Start(&hadc);

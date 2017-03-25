@@ -45,25 +45,29 @@ enum lineState { hardL, shallowL, cont, shallowR, hardR };
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim4;
+TIM_HandleTypeDef htim5;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 uint16_t oldDutyCycle;
 uint16_t newDutyCycle;
 volatile TIM_HandleTypeDef * motorTimer = &htim4;
+volatile TIM_HandleTypeDef * servoTimer = &htim5;
 uint16_t INIT_STATE = 1;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
-uint8_t DEBUG_MODE = 1;
-
+uint8_t DEBUG_MODE = 3; 
+uint8_t servoAngle = 90;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void Error_Handler(void);
 static void MX_GPIO_Init(void);
-static void MX_TIM4_Init(void);                                    
+static void MX_TIM4_Init(void);
+static void MX_TIM5_Init(void);                                    
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+                                
                                 
 
 /* USER CODE BEGIN PFP */
@@ -94,6 +98,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM4_Init();
+  MX_TIM5_Init();
 
   /* USER CODE BEGIN 2 */
   struct lineData *lineData = checked_malloc(sizeof(struct lineData));
@@ -111,6 +116,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+
+  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
 
   /* USER CODE END 2 */
 
@@ -245,6 +252,35 @@ int main(void)
 
       }
   }
+  while (DEBUG_MODE == 3) {
+      drive(0, 0);
+      turnServo(servoAngle);
+      HAL_Delay(16);
+      typedef int servoNum;
+      enum servoNum {inc, dec};
+      servoNum servoState = inc;
+      while (1){
+          if (servoState == inc) {
+              if (servoAngle < 180){
+                servoAngle++;
+              }
+              if (servoAngle == 180){
+                  servoState = dec;
+              }
+          }
+          if (servoState == dec) {
+              if (servoAngle > 0){
+                  servoAngle--;
+              }
+              if (servoAngle == 0){
+                  servoState = inc;
+              }
+          }
+          turnServo(servoAngle);
+          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
+      }
+      DEBUG_MODE = 3;
+  }
   
   }
   return 0;
@@ -365,6 +401,43 @@ static void MX_TIM4_Init(void)
   }
 
   HAL_TIM_MspPostInit(&htim4);
+
+}
+
+/* TIM5 init function */
+static void MX_TIM5_Init(void)
+{
+
+  TIM_MasterConfigTypeDef sMasterConfig;
+  TIM_OC_InitTypeDef sConfigOC;
+
+  htim5.Instance = TIM5;
+  htim5.Init.Prescaler = 360;
+  htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim5.Init.Period = 10000;
+  htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  if (HAL_TIM_PWM_Init(&htim5) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim5, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 300;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  if (HAL_TIM_PWM_ConfigChannel(&htim5, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  HAL_TIM_MspPostInit(&htim5);
 
 }
 
