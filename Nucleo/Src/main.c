@@ -55,6 +55,8 @@ uint16_t INIT_STATE = 1;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
 uint8_t DEBUG_MODE = 1;
+uint16_t timer = 0;
+uint16_t timer2 = 0;
 
 /* USER CODE END PV */
 
@@ -121,87 +123,25 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-  // Update all the sensors
-    //updateLineData(lineData);
-    //updateIRData(IRData);
-  if (DEBUG_MODE == 0) {
-    if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
-        INIT_STATE = 0;
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
-        driveForward(0);
-        continue;
-    }
-    while (INIT_STATE == 0) {
-        updateLineData(lineData);
-        if (lineData->status[5] == true && (lineData->status[3] == true && lineData->status[4] == true)) {
-            lState = shallowL;
-        }
-        else if (lineData->status[2] == true && (lineData->status[3] == true && lineData->status[4] == true)) {
-            lState = shallowR;
-        }
-        else if (lineData->status[3] == true && lineData->status[4] == true && lineData->status[2] == false && lineData->status[5] == false) {
-            lState = cont;
-        }
-        else if (lineData->status[7] == true) {
-            lState = hardL;
-        }
-        else if (lineData->status[0] == true) {
-            lState = hardR;
-        }
-
-        if (lState == hardL) {
-            driveShallowBack(10, 20);
-        }
-        else if (lState == shallowL) {
-            driveShallowBack(10, 15);
-        }
-        else if (lState == cont) {
-            driveBack(10);
-        }
-        else if (lState == shallowR) {
-            driveShallowBack(15, 10);
-        }
-        else if (lState == hardR) {
-            driveShallowBack(20, 10);
-        }
-        if (lineOnCount(lineData) >= 6) {
-            INIT_STATE = 2;
-        }
-    }
-    while (INIT_STATE == 2) {
-        updateLineData(lineData);
-        driveRight(20);
-        if (lineOnCount(lineData) <= 2) {
-            if (lineData->status[3] == true && lineData->status[4] == true) {
-                INIT_STATE = 3;
-            }
-        }
-    }
-    while (INIT_STATE == 3) {
-        updateLineData(lineData);
-        if (lineData->status[7] == true && (lineData->status[3] == false && lineData->status[4] == false)) {
-            lState = shallowR;
-        }
-        else if (lineData->status[0] == true && (lineData->status[3] == false && lineData->status[4] == false)) {
-            lState = shallowL;
-        }
-        else if (lineData->status[3] == true && lineData->status[4] == true) {
-            lState = cont;
-        }
-
-        if (lState == shallowL) {
-            driveShallow(10, 20);
-        }
-        else if (lState == cont) {
-            driveForward(10);
-        }
-        else if (lState == shallowR) {
-            driveShallow(20, 10);
-        }
-        if (lineOnCount(lineData) >= 6) {
-            return 0;
-        }
-    }
+  while (INIT_STATE == 0) {
+      int lBias = 15;
+      int rBias = 15;
+      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+          INIT_STATE = 0;
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+          driveForward(0);
+          continue;
+      }
+      while (INIT_STATE == 0) {
+          updateLineData(lineData);
+          forwardLineFollowing(lineData, &lBias, &rBias);
+          /*
+          if (lineOnCount(lineData) > 7) {
+              drive(0, 0);
+              INIT_STATE = 3;
+          }
+          */
+      }
   }
   //Forward
   while (DEBUG_MODE == 1) {
@@ -222,34 +162,87 @@ int main(void)
           }
       }
       while (INIT_STATE == 2) {
-          updateLineData(lineData);
-          drive(100,-80);
-          if (lineOnCount(lineData) == 2 && lineData->status[6] == true && lineData->status[7] == true) {
-          /*
-          if (lineData->status[0] == false && lineData->status[1] == false && 
-                      lineData->status[2] == false && lineData->status[3] == false && 
-                      lineData->status[4] == false && lineData->status[5] == true && 
-                      lineData->status[6] == true && lineData->status[7] == true ) {
-                      */
+          drive(15, 15);
+          timer++;
+          if (timer > 6500) {
+              timer = 0;
+              timer2++;
+          }
+          if (timer2 > 250) {
+              timer = 0;
+              timer2 = 0;
               INIT_STATE = 3;
               drive(0, 0);
           }
       }
       while (INIT_STATE == 3) {
           updateLineData(lineData);
-          forwardLineFollowing(lineData, &lBias, &rBias);
-          if (lineOnCount(lineData) > 7) {
+          drive(25, -25);
+          if (lineOnCount(lineData) == 2 && (lineData->status[0] == true && lineData->status[1] == true)) {
               INIT_STATE = 4;
+              drive(0, 0);
+          }
+      }
+      while (INIT_STATE == 4) {
+          updateLineData(lineData);
+          drive(25, -25);
+          if (lineOnCount(lineData) == 2 && (lineData->status[3] == true && lineData->status[4] == true)) {
+              INIT_STATE = 5;
+              drive(0, 0);
+          }
+      }
+      while (INIT_STATE == 5) {
+          updateLineData(lineData);
+          if (lineOnCount(lineData) > 6) {
+              drive(0, 0);
+              INIT_STATE = 6;
+              break;
+          }
+          else {
+              forwardLineFollowing(lineData, &lBias, &rBias);
+          }
+      }
+      while (INIT_STATE == 6) {
+          timer++;
+          drive(0, 0);
+          if (timer > 6500) {
+              timer = 0;
+              timer2++;
+          }
+          if (timer2 > 250) {
+              timer = 0;
+              timer2 = 0;
+              INIT_STATE = 7;
+              drive(0, 0);
+          }
+      }
+      while (INIT_STATE == 7) {
+          timer++;
+          drive(-15, -15);
+          if (timer > 6500) {
+              timer = 0;
+              timer2++;
+          }
+          if (timer2 > 175) {
+              timer = 0;
+              timer2 = 0;
+              INIT_STATE = 8;
               drive(0, 0);
           }
 
       }
+      while (INIT_STATE == 8) {
+          updateLineData(lineData);
+          backwardLineFollowing(lineData, &rBias, &lBias);
+          if (lineOnCount(lineData) > 7) {
+              drive(0, 0);
+              INIT_STATE = 9;
+          }
+      }
   }
-  
   }
   return 0;
   /* USER CODE END 3 */
-
 }
 
 /** System Clock Configuration
