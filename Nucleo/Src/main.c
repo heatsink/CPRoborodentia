@@ -151,6 +151,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  printf("HELLO");
   while (1)
   {
   /* USER CODE END WHILE */
@@ -160,7 +161,9 @@ int main(void)
     HAL_ADC_PollForConversion(&hadc1, 100);
     value = HAL_ADC_GetValue(&hadc1);
     HAL_Delay(100);
-    printf("ADC value is NOW: %4.2f\n\r", value);
+    //printf("ADC value is NOW: %4.2f\n\r", value);
+    printf("ADC value is NOW:");
+    //printf(value);
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
     HAL_Delay(value * 3);
     //lineFollowerCallback(hadc1, hadc2, LINE_LOGIC_LEVEL); // Attempt to follow a line

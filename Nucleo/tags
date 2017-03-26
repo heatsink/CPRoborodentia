@@ -10554,7 +10554,6 @@ HAINT	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t 
 HAINTMSK	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t HAINTMSK;         \/*!< Host All Channels Interrupt Mask     418h *\/$/;"	m	struct:__anon217
 HAL_ADCEx_InjectedConfigChannel	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c	/^HAL_StatusTypeDef HAL_ADCEx_InjectedConfigChannel(ADC_HandleTypeDef* hadc, ADC_InjectionConfTypeDef* sConfigInjected)$/;"	f
 HAL_ADCEx_InjectedConvCpltCallback	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c	/^__weak void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc)$/;"	f
-HAL_ADCEx_InjectedConvCpltCallback	Src/main.c	/^void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* hadc){$/;"	f
 HAL_ADCEx_InjectedGetValue	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c	/^uint32_t HAL_ADCEx_InjectedGetValue(ADC_HandleTypeDef* hadc, uint32_t InjectedRank)$/;"	f
 HAL_ADCEx_InjectedPollForConversion	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c	/^HAL_StatusTypeDef HAL_ADCEx_InjectedPollForConversion(ADC_HandleTypeDef* hadc, uint32_t Timeout)$/;"	f
 HAL_ADCEx_InjectedStart	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c	/^HAL_StatusTypeDef HAL_ADCEx_InjectedStart(ADC_HandleTypeDef* hadc)$/;"	f
@@ -10568,7 +10567,6 @@ HAL_ADCEx_MultiModeStop_DMA	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_e
 HAL_ADC_AnalogWDGConfig	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c	/^HAL_StatusTypeDef HAL_ADC_AnalogWDGConfig(ADC_HandleTypeDef* hadc, ADC_AnalogWDGConfTypeDef* AnalogWDGConfig)$/;"	f
 HAL_ADC_ConfigChannel	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c	/^HAL_StatusTypeDef HAL_ADC_ConfigChannel(ADC_HandleTypeDef* hadc, ADC_ChannelConfTypeDef* sConfig)$/;"	f
 HAL_ADC_ConvCpltCallback	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c	/^__weak void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)$/;"	f
-HAL_ADC_ConvCpltCallback	Src/main.c	/^void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){$/;"	f
 HAL_ADC_ConvHalfCpltCallback	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c	/^__weak void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)$/;"	f
 HAL_ADC_DeInit	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c	/^HAL_StatusTypeDef HAL_ADC_DeInit(ADC_HandleTypeDef* hadc)$/;"	f
 HAL_ADC_ERROR_DMA	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h	240;"	d
@@ -13191,6 +13189,8 @@ PSC	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t PS
 PSMAR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t PSMAR;    \/*!< QUADSPI Polling Status Match register,              Address offset: 0x28 *\/$/;"	m	struct:__anon208
 PSMKR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t PSMKR;    \/*!< QUADSPI Polling Status Mask register,               Address offset: 0x24 *\/$/;"	m	struct:__anon208
 PUPDR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t PUPDR;    \/*!< GPIO port pull-up\/pull-down register,  Address offset: 0x0C      *\/$/;"	m	struct:__anon196
+PUTCHAR_PROTOTYPE	Src/main.c	77;"	d	file:
+PUTCHAR_PROTOTYPE	Src/main.c	79;"	d	file:
 PVDE_BIT_NUMBER	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h	382;"	d
 PVDE_BitNumber	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1121;"	d
 PVDLevel	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h	/^  uint32_t PVDLevel;   \/*!< PVDLevel: Specifies the PVD detection level.$/;"	m	struct:__anon224
@@ -25797,6 +25797,7 @@ u8	Drivers/CMSIS/Include/core_cm4.h	/^    __OM  uint8_t    u8;                 \
 u8	Drivers/CMSIS/Include/core_cm7.h	/^    __OM  uint8_t    u8;                 \/*!< Offset: 0x000 ( \/W)  ITM Stimulus Port 8-bit *\/$/;"	m	union:__anon136::__anon137
 u8	Drivers/CMSIS/Include/core_sc300.h	/^    __OM  uint8_t    u8;                 \/*!< Offset: 0x000 ( \/W)  ITM Stimulus Port 8-bit *\/$/;"	m	union:__anon56::__anon57
 uwTick	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c	/^__IO uint32_t uwTick;$/;"	v
+value	Src/main.c	/^float value = .3;$/;"	v
 w	Drivers/CMSIS/Include/core_cm0.h	/^  uint32_t w;                            \/*!< Type      used for word access *\/$/;"	m	union:__anon143
 w	Drivers/CMSIS/Include/core_cm0.h	/^  uint32_t w;                            \/*!< Type      used for word access *\/$/;"	m	union:__anon145
 w	Drivers/CMSIS/Include/core_cm0.h	/^  uint32_t w;                            \/*!< Type      used for word access *\/$/;"	m	union:__anon147
