@@ -42,10 +42,13 @@ C_SOURCES = \
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
   Src/main.c \
   Src/functions.c \
   Src/stm32f4xx_hal_msp.c \
   Src/stm32f4xx_it.c \
+  Src/syscalls.c \
   Src/system_stm32f4xx.c  
 ASM_SOURCES = \
   SW4STM32/startup_stm32f446xx.s

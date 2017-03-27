@@ -717,6 +717,7 @@ void driveBack(uint16_t speed){
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_3, speed); // Set new Pulse to Channel
     __HAL_TIM_SET_COMPARE(motorTimer, TIM_CHANNEL_4, speed); // Set new Pulse to Channel
 }
+
 /*
 void initialize_ADC(ADC_HandleTypeDef hadc) {
     HAL_ADC_Start(&hadc);

@@ -44,7 +44,11 @@ enum lineState { hardL, shallowL, cont, shallowR, hardR };
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc1;
+
 TIM_HandleTypeDef htim4;
+
+UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -54,27 +58,39 @@ volatile TIM_HandleTypeDef * motorTimer = &htim4;
 uint16_t INIT_STATE = 1;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
-uint8_t DEBUG_MODE = 1;
+uint8_t DEBUG_MODE = 2;
 uint16_t timer = 0;
 uint16_t timer2 = 0;
-
+uint16_t IRValue = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void Error_Handler(void);
 static void MX_GPIO_Init(void);
-static void MX_TIM4_Init(void);                                    
+static void MX_TIM4_Init(void);
+static void MX_ADC1_Init(void);
+static void MX_USART2_UART_Init(void);
+                                    
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                                 
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
+#ifdef __GNUC__
+	#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+	#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
 
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-//MX_ADC_1_Init();
+PUTCHAR_PROTOTYPE {
+	/* Implementations of fputc */
+	HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xFFFF);
+	return ch;
+} 
 
 /* USER CODE END 0 */
 
@@ -96,6 +112,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM4_Init();
+  MX_ADC1_Init();
+  MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
   struct lineData *lineData = checked_malloc(sizeof(struct lineData));
@@ -118,6 +136,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  printf("\n\r");
+  printf("Greetings!\n\r");
+  printf("Starting the Nucleo Robot...\n\r");
+  printf("\n\r");
   while (1)
   {
   /* USER CODE END WHILE */
@@ -240,9 +262,22 @@ int main(void)
           }
       }
   }
+
+  while (DEBUG_MODE == 2) {
+      HAL_ADC_Start(IRADC);
+      HAL_ADC_PollForConversion(IRADC, 100);
+      IRValue = HAL_ADC_GetValue(IRADC);
+      HAL_Delay(100);
+      printf("ADC value is: %d \n\r", IRValue);
+	  //HAL_UART_Transmit(&huart2, bufftx, 10, 100);
+      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+  }
+
+
   }
   return 0;
   /* USER CODE END 3 */
+
 }
 
 /** System Clock Configuration
@@ -309,6 +344,44 @@ void SystemClock_Config(void)
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
+/* ADC1 init function */
+static void MX_ADC1_Init(void)
+{
+
+  ADC_ChannelConfTypeDef sConfig;
+
+    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
+    */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.DiscontinuousConvMode = ENABLE;
+  hadc1.Init.NbrOfDiscConversion = 1;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
 /* TIM4 init function */
 static void MX_TIM4_Init(void)
 {
@@ -358,6 +431,25 @@ static void MX_TIM4_Init(void)
   }
 
   HAL_TIM_MspPostInit(&htim4);
+
+}
+
+/* USART2 init function */
+static void MX_USART2_UART_Init(void)
+{
+
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
 
 }
 

@@ -18,4 +18,6 @@
 #define LS7NUM GPIO_PIN_9
 #define LS8NUM GPIO_PIN_7
 
+#define IRADC &hadc1
+
 #endif

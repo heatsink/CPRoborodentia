@@ -79,4 +79,5 @@ void stateTwelve(struct lineData *FLineData, struct lineData *BLineData, int *st
 void stateThirteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
 void stateFourteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
 void stateFifteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
+
 #endif

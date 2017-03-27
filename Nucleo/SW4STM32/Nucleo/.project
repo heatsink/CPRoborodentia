@@ -25,6 +25,18 @@
 		<nature>fr.ac6.mcu.ide.core.MCUProjectNature</nature>
 	</natures>
 	<linkedResources><link>
+			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c</location>
+		</link><link>
+			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c</location>
+		</link><link>
+			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc_ex.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c</location>
+		</link><link>
 			<name>Application/User/stm32f4xx_hal_msp.c</name>
 			<type>1</type>
 			<location>PARENT-2-PROJECT_LOC/Src/stm32f4xx_hal_msp.c</location>
