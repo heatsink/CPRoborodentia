@@ -83,6 +83,18 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 	#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
+void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef* AdcHandle){
+  // Catch injected callback / required for compiling?
+  printf("Reached Injected Callback");
+  /* Get the converted value of regular channel */
+  //IRValue = HAL_ADC_GetValue(AdcHandle);
+}
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle){
+  //printf("Reached ConvCplt Callback\n\r");
+  /* Get the converted value of regular channel */
+  IRValue = HAL_ADC_GetValue(AdcHandle);
+}
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -132,6 +144,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 
+  // Start ADC in continuous mode and update value in interrupts
+  HAL_ADC_Start_IT(IRADC);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -264,13 +278,21 @@ int main(void)
   }
 
   while (DEBUG_MODE == 2) {
-      HAL_ADC_Start(IRADC);
-      HAL_ADC_PollForConversion(IRADC, 100);
-      IRValue = HAL_ADC_GetValue(IRADC);
-      HAL_Delay(100);
+      /* 
+       * ADC value is updated via interrupts. 
+       * The ADC is started before the initial while loop using HAL_ADC_Start_IT,
+       * which sets ADC to run in continuous mode. The HAL_ADC_ConvCpltCallback
+       * is the implementations of the weak declaration, and is called from the
+       * interrupt handeler. EOC flag is also cleared automatically in interrupt handler.
+       */
       printf("ADC value is: %d \n\r", IRValue);
-	  //HAL_UART_Transmit(&huart2, bufftx, 10, 100);
+      HAL_Delay(100);
       HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
+      //Old method of getting ADC readings (using polling):
+      //HAL_ADC_Start(IRADC);
+      //HAL_ADC_PollForConversion(IRADC, 100);
+      //IRValue = HAL_ADC_GetValue(IRADC);
   }
 
 
@@ -353,12 +375,11 @@ static void MX_ADC1_Init(void)
     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
     */
   hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV8;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
-  hadc1.Init.DiscontinuousConvMode = ENABLE;
-  hadc1.Init.NbrOfDiscConversion = 1;
+  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;

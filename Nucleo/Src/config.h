@@ -19,5 +19,6 @@
 #define LS8NUM GPIO_PIN_7
 
 #define IRADC &hadc1
+#define UART &huart2
 
 #endif

@@ -374,6 +374,7 @@ ADC_INJECTED_RANK_2	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h	222;
 ADC_INJECTED_RANK_3	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h	223;"	d
 ADC_INJECTED_RANK_4	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h	224;"	d
 ADC_INJECTED_SOFTWARE_START	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h	213;"	d
+ADC_IRQHandler	Src/stm32f4xx_it.c	/^void ADC_IRQHandler(void)$/;"	f
 ADC_IRQn	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  ADC_IRQn                    = 18,     \/*!< ADC1, ADC2 and ADC3 global Interrupts                             *\/$/;"	e	enum:__anon176
 ADC_IS_ENABLE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h	622;"	d
 ADC_IS_SOFTWARE_START_INJECTED	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h	641;"	d
@@ -8900,6 +8901,7 @@ FlagStatus	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	/^} FlagStatus,
 Fmpi2c1ClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h	/^  uint32_t Fmpi2c1ClockSelection;  \/*!< Specifies FMPI2C1 Clock Source Selection. $/;"	m	struct:__anon245
 Fmpi2c1ClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h	/^  uint32_t Fmpi2c1ClockSelection;  \/*!< Specifies FMPI2C1 Clock Source Selection. $/;"	m	struct:__anon246
 Fmpi2c1ClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h	/^  uint32_t Fmpi2c1ClockSelection;  \/*!< Specifies FMPI2C1 Clock Source Selection. $/;"	m	struct:__anon248
+FreeRTOS	Src/syscalls.c	20;"	d	file:
 FunctionalState	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	/^} FunctionalState;$/;"	t	typeref:enum:__anon174
 GAHBCFG	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t GAHBCFG;              \/*!< Core AHB Configuration Register              008h *\/$/;"	m	struct:__anon213
 GCCFG	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t GCCFG;                \/*!< General Purpose IO Register                  038h *\/$/;"	m	struct:__anon213
@@ -11507,6 +11509,7 @@ IPSR_Type	Drivers/CMSIS/Include/core_cm4.h	/^} IPSR_Type;$/;"	t	typeref:union:__
 IPSR_Type	Drivers/CMSIS/Include/core_cm7.h	/^} IPSR_Type;$/;"	t	typeref:union:__anon126
 IPSR_Type	Drivers/CMSIS/Include/core_sc000.h	/^} IPSR_Type;$/;"	t	typeref:union:__anon33
 IPSR_Type	Drivers/CMSIS/Include/core_sc300.h	/^} IPSR_Type;$/;"	t	typeref:union:__anon46
+IRADC	Src/config.h	21;"	d
 IRDA_ONE_BIT_SAMPLE_DISABLED	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	498;"	d
 IRDA_ONE_BIT_SAMPLE_ENABLED	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	499;"	d
 IRQn_Type	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^} IRQn_Type;$/;"	t	typeref:enum:__anon176
@@ -12315,6 +12318,7 @@ MASK3	Drivers/CMSIS/Include/core_cm4.h	/^  __IOM uint32_t MASK3;                
 MASK3	Drivers/CMSIS/Include/core_cm7.h	/^  __IOM uint32_t MASK3;                  \/*!< Offset: 0x054 (R\/W)  Mask Register 3 *\/$/;"	m	struct:__anon138
 MASK3	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t MASK3;                  \/*!< Offset: 0x054 (R\/W)  Mask Register 3 *\/$/;"	m	struct:__anon58
 MAX_ETH_PAYLOAD	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	898;"	d
+MAX_STACK_SIZE	Src/syscalls.c	21;"	d	file:
 MCHDLYCR_BSCKSEL_BB	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c	102;"	d	file:
 MCHDLYCR_OFFSET	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c	100;"	d	file:
 MCO1_GPIO_PORT	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c	109;"	d	file:
@@ -13225,6 +13229,8 @@ PSC	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t PS
 PSMAR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t PSMAR;    \/*!< QUADSPI Polling Status Match register,              Address offset: 0x28 *\/$/;"	m	struct:__anon208
 PSMKR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t PSMKR;    \/*!< QUADSPI Polling Status Mask register,               Address offset: 0x24 *\/$/;"	m	struct:__anon208
 PUPDR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t PUPDR;    \/*!< GPIO port pull-up\/pull-down register,  Address offset: 0x0C      *\/$/;"	m	struct:__anon196
+PUTCHAR_PROTOTYPE	Src/main.c	81;"	d	file:
+PUTCHAR_PROTOTYPE	Src/main.c	83;"	d	file:
 PVDE_BIT_NUMBER	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h	382;"	d
 PVDE_BitNumber	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1121;"	d
 PVDLevel	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h	/^  uint32_t PVDLevel;   \/*!< PVDLevel: Specifies the PVD detection level.$/;"	m	struct:__anon224
@@ -25359,6 +25365,19 @@ __set_PSP	Drivers/CMSIS/Include/cmsis_armcc_V6.h	/^__attribute__((always_inline)
 __set_PSP	Drivers/CMSIS/Include/cmsis_gcc.h	/^__attribute__( ( always_inline ) ) __STATIC_INLINE void __set_PSP(uint32_t topOfProcStack)$/;"	f
 __set_PSPLIM	Drivers/CMSIS/Include/cmsis_armcc_V6.h	/^__attribute__((always_inline)) __STATIC_INLINE void __set_PSPLIM(uint32_t ProcStackPtrLimit)$/;"	f
 __weak	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h	129;"	d
+_close	Src/syscalls.c	/^int _close(int file)$/;"	f
+_execve	Src/syscalls.c	/^int _execve(char *name, char **argv, char **env)$/;"	f
+_exit	Src/syscalls.c	/^void _exit (int status)$/;"	f
+_fork	Src/syscalls.c	/^int _fork(void)$/;"	f
+_fstat	Src/syscalls.c	/^int _fstat(int file, struct stat *st)$/;"	f
+_getpid	Src/syscalls.c	/^int _getpid(void)$/;"	f
+_gettimeofday	Src/syscalls.c	/^int _gettimeofday (struct timeval * tp, struct timezone * tzp)$/;"	f
+_isatty	Src/syscalls.c	/^int _isatty(int file)$/;"	f
+_kill	Src/syscalls.c	/^int _kill(int pid, int sig)$/;"	f
+_link	Src/syscalls.c	/^int _link(char *old, char *new)$/;"	f
+_lseek	Src/syscalls.c	/^int _lseek(int file, int ptr, int dir)$/;"	f
+_open	Src/syscalls.c	/^int _open(char *path, int flags, ...)$/;"	f
+_read	Src/syscalls.c	/^int _read(int file, char *ptr, int len)$/;"	f
 _reserved0	Drivers/CMSIS/Include/core_cm0.h	/^    uint32_t _reserved0:15;              \/*!< bit:  9..23  Reserved *\/$/;"	m	struct:__anon147::__anon148
 _reserved0	Drivers/CMSIS/Include/core_cm0.h	/^    uint32_t _reserved0:1;               \/*!< bit:      0  Reserved *\/$/;"	m	struct:__anon149::__anon150
 _reserved0	Drivers/CMSIS/Include/core_cm0.h	/^    uint32_t _reserved0:23;              \/*!< bit:  9..31  Reserved *\/$/;"	m	struct:__anon145::__anon146
@@ -25396,6 +25415,12 @@ _reserved1	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t _reserved1:7;        
 _reserved1	Drivers/CMSIS/Include/core_sc000.h	/^    uint32_t _reserved1:30;              \/*!< bit:  2..31  Reserved *\/$/;"	m	struct:__anon37::__anon38
 _reserved1	Drivers/CMSIS/Include/core_sc000.h	/^    uint32_t _reserved1:3;               \/*!< bit: 25..27  Reserved *\/$/;"	m	struct:__anon35::__anon36
 _reserved1	Drivers/CMSIS/Include/core_sc300.h	/^    uint32_t _reserved1:30;              \/*!< bit:  2..31  Reserved *\/$/;"	m	struct:__anon50::__anon51
+_sbrk	Src/syscalls.c	/^caddr_t _sbrk(int incr)$/;"	f
+_stat	Src/syscalls.c	/^int _stat(char *file, struct stat *st)$/;"	f
+_times	Src/syscalls.c	/^int _times(struct tms *buf)$/;"	f
+_unlink	Src/syscalls.c	/^int _unlink(char *name)$/;"	f
+_wait	Src/syscalls.c	/^int _wait(int *status)$/;"	f
+_write	Src/syscalls.c	/^int _write(int file, char *ptr, int len)$/;"	f
 arm_bilinear_interp_f32	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE float32_t arm_bilinear_interp_f32($/;"	f
 arm_bilinear_interp_instance_f32	Drivers/CMSIS/Include/arm_math.h	/^  } arm_bilinear_interp_instance_f32;$/;"	t	typeref:struct:__anon78
 arm_bilinear_interp_instance_q15	Drivers/CMSIS/Include/arm_math.h	/^  } arm_bilinear_interp_instance_q15;$/;"	t	typeref:struct:__anon80
@@ -25599,6 +25624,7 @@ initButtonDataStruct	Src/functions.c	/^void initButtonDataStruct(struct buttonDa
 initButtons	Src/functions.c	/^void initButtons(struct buttonData *buttonData, $/;"	f
 initLineDataStruct	Src/functions.c	/^void initLineDataStruct(struct lineData *lineData) {$/;"	f
 initLineSensor	Src/functions.c	/^void initLineSensor(struct lineData *lineData, $/;"	f
+initialise_monitor_handles	Src/syscalls.c	/^void initialise_monitor_handles()$/;"	f
 lState	Src/main.c	/^lineState lState = cont;$/;"	v
 leftBias	Src/functions.c	/^int leftBias(struct lineData *lineData) {$/;"	f
 lineData	Src/functions.h	/^struct lineData {$/;"	s

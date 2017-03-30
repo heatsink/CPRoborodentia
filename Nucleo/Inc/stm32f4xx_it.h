@@ -46,6 +46,8 @@
 /* Exported functions ------------------------------------------------------- */
 
 void SysTick_Handler(void);
+void RCC_IRQHandler(void);
+void ADC_IRQHandler(void);
 void EXTI15_10_IRQHandler(void);
 
 #ifdef __cplusplus
