@@ -3,8 +3,10 @@
 #define DEFAULT_SPEED 25
 #define LINE_LOGIC_LEVEL 3000
 #define LSENSOR_COUNT 8
+//#define servoMinPeriod 500
+//#define servoMaxPeriod 1000
 #define servoMinPeriod 100
-#define servoMaxPeriod 500
+#define servoMaxPeriod 800
 //slope = (output_end - output_start) / (input_end - input_start)
 #define servoSlope (servoMaxPeriod-servoMinPeriod)/(180-0)
 typedef int bool;
