@@ -25177,6 +25177,7 @@ numTaps	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t numTaps;     \/**< numbe
 numTaps	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t numTaps;    \/**< number of coefficients in the filter. *\/$/;"	m	struct:__anon114
 numTaps	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t numTaps;    \/**< number of coefficients in the filter. *\/$/;"	m	struct:__anon115
 numTaps	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t numTaps;    \/**< number of coefficients in the filter. *\/$/;"	m	struct:__anon116
+offloadServo	Src/functions.c	/^void offloadServo(){$/;"	f
 oldDutyCycle	Src/main.c	/^uint16_t oldDutyCycle;$/;"	v
 onebyfftLen	Drivers/CMSIS/Include/arm_math.h	/^    float32_t onebyfftLen;             \/**< value of 1\/fftLen. *\/$/;"	m	struct:__anon86
 onebyfftLen	Drivers/CMSIS/Include/arm_math.h	/^    float32_t onebyfftLen;             \/**< value of 1\/fftLen. *\/$/;"	m	struct:__anon87
@@ -25325,10 +25326,10 @@ rightBias	Src/functions.c	/^int rightBias(struct lineData *lineData) {$/;"	f
 sFIFOMailBox	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_FIFOMailBox_TypeDef    sFIFOMailBox[2];     \/*!< CAN FIFO MailBox,                    Address offset: 0x1B0 - 0x1CC *\/$/;"	m	struct:__anon182
 sFilterRegister	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_FilterRegister_TypeDef sFilterRegister[28]; \/*!< CAN Filter Register,                 Address offset: 0x240-0x31C   *\/$/;"	m	struct:__anon182
 sTxMailBox	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_TxMailBox_TypeDef      sTxMailBox[3];       \/*!< CAN Tx MailBox,                      Address offset: 0x180 - 0x1AC *\/$/;"	m	struct:__anon182
-servoAngle	Src/main.c	/^uint8_t servoAngle = 90;$/;"	v
-servoMaxPeriod	Src/functions.h	7;"	d
-servoMinPeriod	Src/functions.h	6;"	d
-servoSlope	Src/functions.h	9;"	d
+servoAngle	Src/main.c	/^uint8_t servoAngle = 0;$/;"	v
+servoMaxPeriod	Src/functions.h	9;"	d
+servoMinPeriod	Src/functions.h	8;"	d
+servoSlope	Src/functions.h	11;"	d
 servoTimer	Src/main.c	/^volatile TIM_HandleTypeDef * servoTimer = &htim5;$/;"	v
 shallowL	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:
 shallowR	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:

@@ -47,4 +47,6 @@ int leftBias(struct lineData *lineData);
 int rightBias(struct lineData *lineData);
 void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
 void turnServo(uint16_t angle);
+void offloadServo();
+void turnRightServo();
 #endif

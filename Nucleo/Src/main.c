@@ -57,7 +57,7 @@ uint16_t INIT_STATE = 1;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
 uint8_t DEBUG_MODE = 3; 
-uint8_t servoAngle = 90;
+uint8_t servoAngle = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -252,19 +252,64 @@ int main(void)
 
       }
   }
+
   while (DEBUG_MODE == 3) {
+      offloadServo();
+      //turnRightServo();
+     /* 
       drive(0, 0);
-      turnServo(servoAngle);
+      turnServo(0);
       HAL_Delay(16);
       typedef int servoNum;
-      enum servoNum {inc, dec};
+      enum servoNum {inc, dec, fluc};
       servoNum servoState = inc;
+      int county = 0;
       while (1) {
           if (servoState == inc) {
-              if (servoAngle < 180){
+              if (servoAngle < 100){
                 servoAngle++;
               }
-              if (servoAngle == 180){
+              if (servoAngle == 100){
+                  servoState = fluc;
+              }
+          }
+          if (servoState == dec) {
+              if (servoAngle > 0){
+                  servoAngle--;
+              }
+              if (servoAngle == 0){
+                  servoState = inc;
+              }
+          }
+          if (servoState == fluc){
+              if (county == 3) {
+                  servoState = dec;
+                  county = 0;
+              }
+             
+              if (servoAngle > 40){
+                  servoAngle--;
+              }
+              else if(servoAngle <= 40){
+                  county++;
+                  servoState = inc;
+              }
+              else{
+                  servoState = dec;
+              }
+          }
+          turnServo(servoAngle);
+          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
+      } 
+
+      DEBUG_MODE = 3;
+     */ 
+      /*while (1) {
+          if (servoState == inc) {
+              if (servoAngle < 100){
+                servoAngle++;
+              }
+              if (servoAngle == 100){
                   servoState = dec;
               }
           }
@@ -278,14 +323,13 @@ int main(void)
           }
           turnServo(servoAngle);
           HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
-      }
-      DEBUG_MODE = 3;
-  }
+      }*/ 
   
-  }
+  } 
   return 0;
   /* USER CODE END 3 */
 
+ }
 }
 
 /** System Clock Configuration

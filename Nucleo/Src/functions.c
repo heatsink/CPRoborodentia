@@ -12,6 +12,7 @@ extern uint16_t oldDutyCycle;
 extern uint16_t newDutyCycle;
 extern TIM_HandleTypeDef * motorTimer;
 extern TIM_HandleTypeDef * servoTimer;
+extern uint8_t servoAngle;
 /*
  * Checks for a valid memory allocation before returning allocation
  */
@@ -259,6 +260,95 @@ void turnServo(uint16_t angle){
 
     __HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_1, val);
 }
+void offloadServo(){
+
+      drive(0, 0);
+      turnServo(0);
+      HAL_Delay(16);
+      typedef int servoNum;
+      enum servoNum {inc, dec, fluc};
+      servoNum servoState = inc;
+      int county = 0;
+      while (1) {
+          if (servoState == inc) {
+              if (servoAngle < 100){
+                servoAngle++;
+              }
+              if (servoAngle == 100){
+                  servoState = fluc;
+              }
+          }
+          if (servoState == dec) {
+              if (servoAngle > 0){
+                  servoAngle--;
+              }
+              if (servoAngle == 0){
+                  servoState = inc;
+              }
+          }
+          if (servoState == fluc){
+              if (county == 3) {
+                  servoState = dec;
+                  county = 0;
+              }
+             
+              if (servoAngle > 40){
+                  servoAngle--;
+              }
+              else if(servoAngle <= 40){
+                  county++;
+                  servoState = inc;
+              }
+              else{
+                  servoState = dec;
+              }
+          }
+          turnServo(servoAngle);
+          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
+      } 
+
+}
+void turnRightServo(){
+
+      drive(0, 0);
+      turnServo(0);
+      HAL_Delay(16);
+      typedef int servoNum;
+      enum servoNum {turnGrab, turnClosed,turnVert};
+      servoNum servoState = turnClosed;
+      while (1) {
+          if (servoState == turnGrab) {
+              if (servoAngle < 135){
+                servoAngle++;
+              }
+              if (servoAngle == 135){
+                  servoState = turnVert;
+              }
+          }
+          if (servoState == turnClosed) {
+              if (servoAngle > 0){
+                  servoAngle--;
+              }
+              if (servoAngle == 0){
+                  servoState = turnGrab;
+              }
+          }
+          if (servoState == turnVert){
+              if(servoAngle > 45){
+                  servoAngle--;
+              } 
+              if(servoAngle == 45){
+                  HAL_Delay(3000);
+                  servoState = turnClosed;
+              }
+          }
+          turnServo(servoAngle);
+          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
+      } 
+
+}
+
+
 
 /*
 void initialize_ADC(ADC_HandleTypeDef hadc) {
