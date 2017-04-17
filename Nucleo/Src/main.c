@@ -44,6 +44,10 @@ enum lineState { hardL, shallowL, cont, shallowR, hardR };
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc2;
+
+TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
 
@@ -57,7 +61,8 @@ uint16_t INIT_STATE = 1;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
 uint8_t servoAngle = 0;
-uint8_t DEBUG_MODE = 1;
+uint8_t DEBUG_MODE = 2;
+uint16_t increment = 0;
 uint16_t timer = 0;
 uint16_t timer2 = 0;
 
@@ -69,6 +74,10 @@ void Error_Handler(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM5_Init(void);                                    
+static void MX_TIM2_Init(void);
+static void MX_TIM3_Init(void);
+static void MX_ADC2_Init(void);
+
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
                                 
                                 
@@ -102,6 +111,9 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM4_Init();
   MX_TIM5_Init();
+  MX_TIM2_Init();
+  MX_TIM3_Init();
+  MX_ADC2_Init();
 
   /* USER CODE BEGIN 2 */
   struct lineData *lineData = checked_malloc(sizeof(struct lineData));
@@ -131,27 +143,7 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-  while (INIT_STATE == 0) {
-      int lBias = 15;
-      int rBias = 15;
-      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
-          INIT_STATE = 0;
-          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
-          driveForward(0);
-          continue;
-      }
-      while (INIT_STATE == 0) {
-          updateLineData(lineData);
-          forwardLineFollowing(lineData, &lBias, &rBias);
-          /*
-          if (lineOnCount(lineData) > 7) {
-              drive(0, 0);
-              INIT_STATE = 3;
-          }
-          */
-      }
-  }
-  //Forward
+  /*
   while (DEBUG_MODE == 1) {
       int lBias = -15;
       int rBias = -15;
@@ -248,84 +240,90 @@ int main(void)
           }
       }
   }
-
+  */
+  while (DEBUG_MODE == 2) {
+      int lBias = -15;
+      int rBias = -15;
+      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+          INIT_STATE = 0;
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+          drive(0,0);
+          continue;
+      }
+      while (INIT_STATE == 0) {
+          updateLineData(lineData);
+          forwardLineFollowing2(lineData, &lBias, &rBias);
+          if (lineOnCount(lineData) > 6) {
+              INIT_STATE = 1;
+              //drive(0, 0);
+          }
+      }
+      while (INIT_STATE == 1) {
+          //updateLineData(lineData);
+          //forwardLineWobble(lineData, &lBias, &rBias);
+          drive(20, 20);
+          HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
+          HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
+          if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10) == GPIO_PIN_RESET) {
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+              INIT_STATE = 2;
+          }
+          else {
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+          }
+      }
+      while (INIT_STATE == 2) {
+          drive(0, 0);
+          offloadServo();
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+          HAL_Delay(50);
+      }
+      /*
+        timer++;
+        if (increment < 85) {
+            drive(15+increment, 15+increment);
+        }
+        else {
+            drive(0, 0);
+        }
+        if (timer > 6500) {
+            timer = 0;
+            //timer2++;
+            increment++;
+        }
+        */
+        /*
+        if (timer2 > 175) {
+            timer = 0;
+            timer2 = 0;
+        }
+        */
+      /*
+      if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_2)) {
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+      }
+      else {
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+      }
+      */
+  }
   while (DEBUG_MODE == 3) {
-      offloadServo();
-      //turnRightServo();
-     /* 
       drive(0, 0);
-      turnServo(0);
-      HAL_Delay(16);
-      typedef int servoNum;
-      enum servoNum {inc, dec, fluc};
-      servoNum servoState = inc;
-      int county = 0;
-      while (1) {
-          if (servoState == inc) {
-              if (servoAngle < 100){
-                servoAngle++;
-              }
-              if (servoAngle == 100){
-                  servoState = fluc;
-              }
-          }
-          if (servoState == dec) {
-              if (servoAngle > 0){
-                  servoAngle--;
-              }
-              if (servoAngle == 0){
-                  servoState = inc;
-              }
-          }
-          if (servoState == fluc){
-              if (county == 3) {
-                  servoState = dec;
-                  county = 0;
-              }
-             
-              if (servoAngle > 40){
-                  servoAngle--;
-              }
-              else if(servoAngle <= 40){
-                  county++;
-                  servoState = inc;
-              }
-              else{
-                  servoState = dec;
-              }
-          }
-          turnServo(servoAngle);
-          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
-      } 
+      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
+      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
+      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10) == GPIO_PIN_RESET) {
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+      }
+      else {
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+      }
+    HAL_Delay(50);
 
-      DEBUG_MODE = 3;
-     */ 
-      /*while (1) {
-          if (servoState == inc) {
-              if (servoAngle < 100){
-                servoAngle++;
-              }
-              if (servoAngle == 100){
-                  servoState = dec;
-              }
-          }
-          if (servoState == dec) {
-              if (servoAngle > 0){
-                  servoAngle--;
-              }
-              if (servoAngle == 0){
-                  servoState = inc;
-              }
-          }
-          turnServo(servoAngle);
-          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
-      }*/ 
-  
-  } 
+  }
+  }
   return 0;
   /* USER CODE END 3 */
 
- }
 }
 
 /** System Clock Configuration
@@ -390,6 +388,113 @@ void SystemClock_Config(void)
 
   /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+}
+
+/* ADC2 init function */
+static void MX_ADC2_Init(void)
+{
+
+  ADC_ChannelConfTypeDef sConfig;
+
+    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
+    */
+  hadc2.Instance = ADC2;
+  hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc2.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc2.Init.ScanConvMode = DISABLE;
+  hadc2.Init.ContinuousConvMode = DISABLE;
+  hadc2.Init.DiscontinuousConvMode = DISABLE;
+  hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc2.Init.NbrOfConversion = 1;
+  hadc2.Init.DMAContinuousRequests = DISABLE;
+  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
+    */
+  sConfig.Channel = ADC_CHANNEL_9;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
+/* TIM2 init function */
+static void MX_TIM2_Init(void)
+{
+
+  TIM_Encoder_InitTypeDef sConfig;
+  TIM_MasterConfigTypeDef sMasterConfig;
+
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 0;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 0;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
+  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC1Filter = 0;
+  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC2Filter = 0;
+  if (HAL_TIM_Encoder_Init(&htim2, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+}
+
+/* TIM3 init function */
+static void MX_TIM3_Init(void)
+{
+
+  TIM_Encoder_InitTypeDef sConfig;
+  TIM_MasterConfigTypeDef sMasterConfig;
+
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 0;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 0;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
+  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC1Filter = 0;
+  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC2Filter = 0;
+  if (HAL_TIM_Encoder_Init(&htim3, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
 }
 
 /* TIM4 init function */
@@ -498,18 +603,38 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, DIR_1_LEFT_Pin|DIR_2_RIGHT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, DIR_1_LEFT_Pin|DIR_2_RIGHT_Pin|Front_Left_BTNC11_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Front_Right_BTND2_GPIO_Port, Front_Right_BTND2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LS2_CH6_Pin LS_2_CH5_Pin LS2_CH1_Pin LS2_CH2_Pin 
+                           LS1_CH7_Pin */
+  GPIO_InitStruct.Pin = LS2_CH6_Pin|LS_2_CH5_Pin|LS2_CH1_Pin|LS2_CH2_Pin 
+                          |LS1_CH7_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LS2_CH4_Pin LS_1_CH6_Pin LS1_CH8_Pin LS1_CH1_Pin 
+                           LS2_CH8_Pin LS2_CH7_Pin */
+  GPIO_InitStruct.Pin = LS2_CH4_Pin|LS_1_CH6_Pin|LS1_CH8_Pin|LS1_CH1_Pin 
+                          |LS2_CH8_Pin|LS2_CH7_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LD2_Pin */
   GPIO_InitStruct.Pin = LD2_Pin;
@@ -518,30 +643,39 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LS5_Pin LS2_Pin LS4_Pin LS3_Pin */
-  GPIO_InitStruct.Pin = LS5_Pin|LS2_Pin|LS4_Pin|LS3_Pin;
+  /*Configure GPIO pins : LS2_CH3_Pin LS1_CH5_Pin LS1_CH2_Pin LS1_CH4_Pin 
+                           LS1_CH3_Pin */
+  GPIO_InitStruct.Pin = LS2_CH3_Pin|LS1_CH5_Pin|LS1_CH2_Pin|LS1_CH4_Pin 
+                          |LS1_CH3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LS7_Pin */
-  GPIO_InitStruct.Pin = LS7_Pin;
+  /*Configure GPIO pin : PB2 */
+  GPIO_InitStruct.Pin = GPIO_PIN_2;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(LS7_GPIO_Port, &GPIO_InitStruct);
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DIR_1_LEFT_Pin DIR_2_RIGHT_Pin */
-  GPIO_InitStruct.Pin = DIR_1_LEFT_Pin|DIR_2_RIGHT_Pin;
+  /*Configure GPIO pins : DIR_1_LEFT_Pin DIR_2_RIGHT_Pin Front_Left_BTNC11_Pin */
+  GPIO_InitStruct.Pin = DIR_1_LEFT_Pin|DIR_2_RIGHT_Pin|Front_Left_BTNC11_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LS6_Pin LS8_Pin LS1_Pin */
-  GPIO_InitStruct.Pin = LS6_Pin|LS8_Pin|LS1_Pin;
+  /*Configure GPIO pins : Front_Left_BTN_Pin Front_Right_BTN_Pin */
+  GPIO_InitStruct.Pin = Front_Left_BTN_Pin|Front_Right_BTN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Front_Right_BTND2_Pin */
+  GPIO_InitStruct.Pin = Front_Right_BTND2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(Front_Right_BTND2_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);

@@ -310,8 +310,7 @@ void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
     }
 }
 
-/*
-void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
+void forwardLineWobble(struct lineData *lineData, int *lBias, int *rBias) {
     if (lineOnCount(lineData) > 1) {
         *lBias = leftBias(lineData);
         *rBias = rightBias(lineData);
@@ -321,32 +320,68 @@ void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
         *rBias = *rBias;
     }
     if (*lBias < *rBias) {
-        if (22-*lBias> 0 && 22-*lBias < 20) {
-            drive(-32-*rBias, -20);
+        if (22-*lBias> 0 && 22-*lBias < 15) {
+            drive(32+*rBias, 15);
         }
-        else if (22-*lBias < 0 && 22-*lBias > -20) {
-            drive(-32-*rBias, 20);
+        else if (22-*lBias < 0 && 22-*lBias > -15) {
+            drive(32+*rBias, -15);
         }
         else {
-            drive(-32-*rBias, -22+*lBias);
+            drive(32+*rBias, 22-*lBias);
         }
     }
     else if (*lBias > *rBias) {
-        if (22-*rBias > 0 && 22-*rBias < 20) {
-            drive(-20, -32-*lBias);
+        if (22-*rBias > 0 && 22-*rBias < 15) {
+            drive(15, 32+*lBias);
         }
-        else if (22-*rBias < 0 && 22-*rBias > -20) {
-            drive(20, -32-*lBias);
+        else if (22-*rBias < 0 && 22-*rBias > -15) {
+            drive(-15, 32+*lBias);
         }
         else {
-            drive(-22+*rBias, -32-*lBias);
+            drive(22-*rBias, 32+*lBias);
         }
     }
     else {
-        drive(-32, -32);
+        drive(32, 32);
     }
 }
-*/
+
+void forwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias < *rBias) {
+        if (DEFAULT_THRESHHOLD-*lBias> 0 && DEFAULT_THRESHHOLD-*lBias < 15) {
+            drive(DEFAULT_SPEED+*rBias, 15);
+        }
+        else if (DEFAULT_THRESHHOLD-*lBias < 0 && DEFAULT_THRESHHOLD-*lBias > -15) {
+            drive(DEFAULT_SPEED+*rBias, -15);
+        }
+        else {
+            drive(DEFAULT_SPEED+*rBias, DEFAULT_THRESHHOLD-*lBias);
+        }
+    }
+    else if (*lBias > *rBias) {
+        if (DEFAULT_THRESHHOLD-*rBias > 0 && DEFAULT_THRESHHOLD-*rBias < 15) {
+            drive(15, DEFAULT_SPEED+*lBias);
+        }
+        else if (DEFAULT_THRESHHOLD-*rBias < 0 && DEFAULT_THRESHHOLD-*rBias > -15) {
+            drive(-15, DEFAULT_SPEED+*lBias);
+        }
+        else {
+            drive(DEFAULT_THRESHHOLD-*rBias, DEFAULT_SPEED+*lBias);
+        }
+    }
+    else {
+        drive(DEFAULT_SPEED, DEFAULT_SPEED);
+    }
+}
+
 
 void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
     if (lineOnCount(lineData) > 1) {
@@ -365,149 +400,6 @@ void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
     }
     drive(-42+*rBias, -42+*lBias);
 }
-
-/*
-void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
-    if (lineOnCount(lineData) > 1) {
-        *lBias = leftBias(lineData);
-        *rBias = rightBias(lineData);
-    }
-    else {
-        *lBias = *lBias;
-        *rBias = *rBias;
-    }
-    if (*lBias < *rBias) {
-        if (22-*lBias> 0 && 22-*lBias < 15) {
-            drive(-32-*rBias, -15);
-        }
-        else if (22-*lBias < 0 && 22-*lBias > -15) {
-            drive(-32-*rBias, 15);
-        }
-        else {
-            drive(-32-*rBias, -22+*lBias);
-        }
-    }
-    else if (*lBias > *rBias) {
-        if (22-*rBias > 0 && 22-*rBias < 15) {
-            drive(-15, -32-*lBias);
-        }
-        else if (22-*rBias < 0 && 22-*rBias > -15) {
-            drive(15, -32-*lBias);
-        }
-        else {
-            drive(-22+*rBias, -32-*lBias);
-        }
-    }
-    else {
-        drive(-32, -32);
-    }
-}
-*/
-
-/*
-void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
-    if (lineOnCount(lineData) > 1) {
-        *lBias = leftBias(lineData);
-        *rBias = rightBias(lineData);
-    }
-    else {
-        *lBias = *lBias;
-        *rBias = *rBias;
-    }
-    if (*lBias > *rBias) {
-        if (-22+*lBias < 0 && -22+*lBias > -15) {
-            drive(-32-*rBias, -15);
-        }
-        else if (-22+*lBias > 0 && -22+*lBias < 15) {
-            drive(-32-*rBias, 15);
-        }
-        else {
-            drive(-32-*rBias, -22+*lBias);
-        }
-    }
-    else if (*lBias < *rBias) {
-        if (-22+*rBias < 0 && -22+*rBias > 15) {
-            drive(-15, -32-*lBias);
-        }
-        else if (-22+*rBias > 0 && -22+*rBias < 15) {
-            drive(15, -32-*lBias);
-        }
-        else {
-            drive(-22+*rBias, -32-*lBias);
-        }
-    }
-    else {
-        drive(-32, -32);
-    }
-}
-*/
-
-/*
-void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
-    if (lineOnCount(lineData) > 1) {
-        *lBias = leftBias(lineData);
-        *rBias = rightBias(lineData);
-    }
-    else {
-        *lBias = *lBias;
-        *rBias = *rBias;
-    }
-    if (*lBias < *rBias) {
-        drive(-15-*rBias, -15);
-            drive(-32-*rBias, -22+*lBias);
-    }
-    else if (*lBias > *rBias) {
-        drive(-15, -15-*lBias);
-    }
-    else {
-        drive(-32, -32);
-    }
-}
-*/
-
-/*
-void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
-    if (lineOnCount(lineData) > 1) {
-        *lBias = leftBias(lineData);
-        *rBias = rightBias(lineData);
-    }
-    else {
-        *lBias = *lBias;
-        *rBias = *rBias;
-    }
-    if (*lBias > 0) {
-        *lBias = *lBias*-1;
-    }
-    if (*rBias > 0) {
-        *rBias = *rBias*-1;
-    }
-    if (*lBias < *rBias) {
-        if (22-*lBias> 0 && 22-*lBias < 15) {
-            drive(-32+*rBias, -15);
-        }
-        else if (22-*lBias < 0 && 22-*lBias > -15) {
-            drive(-32+*rBias, 15);
-        }
-        else {
-            drive(-32+*rBias, -22-*lBias);
-        }
-    }
-    else if (*lBias > *rBias) {
-        if (22-*rBias > 0 && 22-*rBias < 15) {
-            drive(-15, -32+*lBias);
-        }
-        else if (22-*rBias < 0 && 22-*rBias > -15) {
-            drive(15, -32+*lBias);
-        }
-        else {
-            drive(-22-*rBias, -32+*lBias);
-        }
-    }
-    else {
-        drive(-32, -32);
-    }
-}
-*/
 
 void initLineDataStruct(struct lineData *lineData) {
     for (int i = 0; i < LSENSOR_COUNT; i++) {
@@ -607,10 +499,10 @@ int lineOnCount(struct lineData *lineData) {
 
 int leftBias(struct lineData *lineData) {
     int bias = 0;
-    //int j = 32;
     int j = 32;
-    //for (int i=0; i < 5; i++, j-=8) {
+    //int j = 7;
     for (int i=0; i < 5; i++, j/=8) {
+    //for (int i=0; i < 5; i++, j--) {
         if (lineData->status[i] == true) {
             bias+=j;
         }
@@ -620,9 +512,9 @@ int leftBias(struct lineData *lineData) {
 
 int rightBias(struct lineData *lineData) {
     int bias = 0;
-    int j = 8;
-    j=2;
-    //for (int i = 5; i <= LSENSOR_COUNT; i++, j+=8) {
+    //int j = 8;
+    int j=2;
+    //for (int i = 5; i <= LSENSOR_COUNT; i++, j++) {
     for (int i = 5; i <= LSENSOR_COUNT; i++, j*=8) {
         if (lineData->status[i] == true) {
             bias+=j;
@@ -630,6 +522,29 @@ int rightBias(struct lineData *lineData) {
     }
     return bias;
 }
+
+int leftBiasWobble(struct lineData *lineData) {
+    int bias = 0;
+    int j = 7;
+    for (int i=0; i < 5; i++, j--) {
+        if (lineData->status[i] == true) {
+            bias+=j;
+        }
+    }
+    return bias;
+}
+
+int rightBiasWobble(struct lineData *lineData) {
+    int bias = 0;
+    int j = 4;
+    for (int i = 5; i <= LSENSOR_COUNT; i++, j++) {
+        if (lineData->status[i] == true) {
+            bias+=j;
+        }
+    }
+    return bias;
+}
+
 
 void drive(int lSpeed, int rSpeed) {
     if(lSpeed < 0) {

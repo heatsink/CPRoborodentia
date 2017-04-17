@@ -1,6 +1,9 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
-#define DEFAULT_SPEED 25
+#define DEFAULT_THRESHHOLD 22
+#define DEFAULT_SPEED 60
+#define WOBBLE_THRESHHOLD 22
+#define WOBBLE_SPEED 35
 #define LINE_LOGIC_LEVEL 3000
 #define LSENSOR_COUNT 8
 //#define servoMinPeriod 500
@@ -60,10 +63,14 @@ int lineOnCount(struct lineData *lineData);
 void drive(int lSpeed, int rSpeed);
 int leftBias(struct lineData *lineData);
 int rightBias(struct lineData *lineData);
+int leftBiasWobble(struct lineData *lineData);
+int rightBiasWobble(struct lineData *lineData);
 void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
 void turnServo(uint16_t angle);
 void offloadServo();
 void turnRightServo();
+void forwardLineWobble(struct lineData *lineData, int *lBias, int *rBias);
+void forwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias);
 void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
 void turnRight90(struct lineData *FLineData, int *state);
 void turnLeft90(struct lineData *FLineData, int *state);
