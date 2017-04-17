@@ -62,6 +62,8 @@ uint8_t DEBUG_MODE = 2;
 uint16_t increment = 0;
 uint16_t timer = 0;
 uint16_t timer2 = 0;
+int lBias = -15;
+int rBias = -15;
 
 /* USER CODE END PV */
 
@@ -234,8 +236,6 @@ int main(void)
   }
   */
   while (DEBUG_MODE == 2) {
-      int lBias = -15;
-      int rBias = -15;
       if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
           INIT_STATE = 0;
           HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
@@ -247,13 +247,16 @@ int main(void)
           forwardLineFollowing2(lineData, &lBias, &rBias);
           if (lineOnCount(lineData) > 6) {
               INIT_STATE = 1;
-              //drive(0, 0);
+              drive(0, 0);
+              HAL_Delay(500);
           }
       }
       while (INIT_STATE == 1) {
-          //updateLineData(lineData);
+          updateLineData(lineData);
           //forwardLineWobble(lineData, &lBias, &rBias);
-          drive(20, 20);
+          forwardLineFollowing(lineData, &lBias, &rBias);
+          //drive(20, 20);
+
           HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
           HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
           if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10) == GPIO_PIN_RESET) {
@@ -266,7 +269,14 @@ int main(void)
       }
       while (INIT_STATE == 2) {
           drive(0, 0);
-          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+          HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
+          HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
+          if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10) == GPIO_PIN_RESET) {
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
+          }
+          else {
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
+          }
           HAL_Delay(50);
       }
       /*
@@ -298,6 +308,7 @@ int main(void)
       }
       */
   }
+  /*
   while (DEBUG_MODE == 3) {
       drive(0, 0);
       HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
@@ -311,6 +322,7 @@ int main(void)
     HAL_Delay(50);
 
   }
+  */
   }
   return 0;
   /* USER CODE END 3 */
