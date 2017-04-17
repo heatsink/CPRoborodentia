@@ -69,6 +69,8 @@ void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
 void turnServo(uint16_t angle);
 void offloadServo();
 void turnRightServo();
+void turnLeftServo();
+void holdServo();
 void forwardLineWobble(struct lineData *lineData, int *lBias, int *rBias);
 void forwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias);
 void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
