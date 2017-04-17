@@ -37,6 +37,243 @@ void *checked_realloc(void *pointer, size_t size) {
     return p;
 }
 
+void stateInit(struct lineData *lineData, int *state) {
+    if (*state == 0) {
+    }
+}
+
+/*
+ * State 1
+ * Normal F_Linesense until front buttons are pressed
+ * TODO: Ensure button code & button data update is complete
+ */
+void stateOne(struct lineData *FLineData, struct buttonData *buttonData, int *state) {
+    int lBias = -15;
+    int rBias = -15;
+    while (*state == 1) {
+        // Normal forward line following
+        updateLineData(FLineData);
+        updateButtonData(buttonData);
+        forwardLineFollowing(FLineData, &lBias, &rBias);
+        // Front buttons are pressed
+        if (buttonOnCount(buttonData) >= 2) {
+            *state = 2;
+            break;
+        }
+    }
+}
+
+/*
+ * TODO: Function to turn a specific servo and wait as long as necessary
+ * until the turn is complete
+ */
+void turnRingServoCC(int wait, int *state) {
+    // Turn the servo
+    // Wait for a timer
+    *state = 3;
+}
+
+void stateTwo(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    while (*state == 2) {
+        // Turn ring and wait 2 seconds
+        turnRingServoCC(2, state); // This function updates state
+    }
+}
+
+void stateThree(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    int lBias = 15;
+    int rBias = 15;
+    while (*state == 3) {
+        updateLineData(BLineData);
+        backwardLineFollowing(BLineData, &lBias, &rBias);
+        // 6-8 black points detected
+        if (lineOnCount(BLineData) > 6) {
+            *state = 4;
+        }
+    }
+}
+
+/*
+ * Turns right 90 degree starting when the back of the line sensor hits the intersection
+ */
+void turnRight90(struct lineData *FLineData, int *state) {
+    uint16_t timer = 0;
+    uint16_t timer2 = 0;
+    while (timer2 < 175) {
+        timer++;
+        drive(-15, -15);
+        if (timer > 6500) {
+            timer = 0;
+            timer2++;
+        }
+    }
+    drive(0, 0);
+    updateLineData(FLineData);
+    drive(25, -25);
+    if (lineOnCount(FLineData) == 2 && (FLineData->status[0] == true && FLineData->status[1] == true)) {
+        drive(0, 0);
+        *state = 5;
+    }
+
+}
+
+void stateFour(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    turnRight90(FLineData, state); // This function updates state
+}
+
+void stateFive(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    int lBias = -15;
+    int rBias = -15;
+    while (*state == 5) {
+        updateLineData(FLineData);
+        forwardLineFollowing(FLineData, &lBias, &rBias);
+        if (lineOnCount(FLineData) == 0) {
+            *state = 6;
+            break;
+        }
+    }
+}
+
+void stateSix(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    while (*state == 6) {
+        drive(20, 20);
+        if (lineOnCount(FLineData) > 1 && lineOnCount(FLineData) < 3) {
+            *state = 7;
+            break;
+        }
+    }
+}
+
+void stateSeven(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    int lBias = -15;
+    int rBias = -15;
+    while (*state == 7) {
+        updateLineData(FLineData);
+        forwardLineFollowing(FLineData, &lBias, &rBias);
+        if (lineOnCount(BLineData) > 6) {
+            *state = 8;
+            break;
+        }
+    }
+}
+
+/*
+ * TODO: Create Special Wobbly Drive Forward Code Here
+ * TODO: IR Logic
+ */
+void stateEight(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    int lBias = 15;
+    int rBias = 15;
+    while (*state == 8) {
+        updateLineData(FLineData);
+        forwardLineFollowing(FLineData, &lBias, &rBias);
+        // if IR Data Triggered { 
+        *state = 9;
+        // }
+    }
+}
+
+/*
+ * TODO: Servo Code to turn servo CW
+ * TODO: Timer delay
+ */
+void turnRingServoCW(int wait, int *state) {
+    // Turn the servo
+    // Wait for a timer
+    *state = 10;
+}
+
+void stateNine(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    turnRingServoCW(5, state); // Function modifies the state
+}
+
+void stateTen(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    int lBias = 15;
+    int rBias = 15;
+    while (*state == 10) {
+        updateLineData(BLineData);
+        backwardLineFollowing(BLineData, &lBias, &rBias);
+        if (lineOnCount(BLineData) < 1) {
+            *state = 11;
+            break;
+        }
+    }
+}
+
+void stateEleven(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    while (*state == 11) {
+        drive(-20, -20);
+        if (lineOnCount(BLineData) > 0 && lineOnCount(BLineData) < 3) {
+            *state = 12;
+            break;
+        }
+    }
+}
+
+void stateTwelve(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    int lBias = 15;
+    int rBias = 15;
+    while (*state == 12) {
+        updateLineData(BLineData);
+        backwardLineFollowing(BLineData, &lBias, &rBias);
+        if (lineOnCount(BLineData) > 6) {
+            *state = 13;
+            break;
+        }
+    }
+}
+
+/*
+ * Turns right 90 degree starting when the back of the line sensor hits the intersection
+ */
+void turnLeft90(struct lineData *FLineData, int *state) {
+    uint16_t timer = 0;
+    uint16_t timer2 = 0;
+    while (timer2 < 175) {
+        timer++;
+        drive(-15, -15);
+        if (timer > 6500) {
+            timer = 0;
+            timer2++;
+        }
+    }
+    drive(0, 0);
+    updateLineData(FLineData);
+    drive(-25, 25);
+    if (lineOnCount(FLineData) == 2 && (FLineData->status[0] == true && FLineData->status[1] == true)) {
+        drive(0, 0);
+        *state = 14;
+    }
+}
+
+void stateThirteen(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    turnLeft90(FLineData, state); // This function modified state
+}
+
+void stateFourteen(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    int lBias = -15;
+    int rBias = -15;
+    while (*state == 14) {
+        updateLineData(FLineData);
+        forwardLineFollowing(FLineData, &lBias, &rBias);
+        if (lineOnCount(FLineData) > 6) {
+            *state = 15;
+            break;
+        }
+    }
+}
+
+/*
+ * TODO: Drive forward for a set interval to get past the full line
+ * This is supposed to use an iteration of "Drive Forward"
+ */
+void stateFifteen(struct lineData *FLineData, struct lineData *BLineData, int *state) {
+    while (*state == 15) {
+        drive(20, 20);
+        *state = 1;
+    }
+}
+
 void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
     if (lineOnCount(lineData) > 1) {
         *lBias = leftBias(lineData);
@@ -72,6 +309,205 @@ void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
         drive(32, 32);
     }
 }
+
+/*
+void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias < *rBias) {
+        if (22-*lBias> 0 && 22-*lBias < 20) {
+            drive(-32-*rBias, -20);
+        }
+        else if (22-*lBias < 0 && 22-*lBias > -20) {
+            drive(-32-*rBias, 20);
+        }
+        else {
+            drive(-32-*rBias, -22+*lBias);
+        }
+    }
+    else if (*lBias > *rBias) {
+        if (22-*rBias > 0 && 22-*rBias < 20) {
+            drive(-20, -32-*lBias);
+        }
+        else if (22-*rBias < 0 && 22-*rBias > -20) {
+            drive(20, -32-*lBias);
+        }
+        else {
+            drive(-22+*rBias, -32-*lBias);
+        }
+    }
+    else {
+        drive(-32, -32);
+    }
+}
+*/
+
+void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (-42+*rBias > -10) {
+        *rBias = 30;
+    }
+    if (-42+*lBias > -10) {
+        *lBias = 30;
+    }
+    drive(-42+*rBias, -42+*lBias);
+}
+
+/*
+void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias < *rBias) {
+        if (22-*lBias> 0 && 22-*lBias < 15) {
+            drive(-32-*rBias, -15);
+        }
+        else if (22-*lBias < 0 && 22-*lBias > -15) {
+            drive(-32-*rBias, 15);
+        }
+        else {
+            drive(-32-*rBias, -22+*lBias);
+        }
+    }
+    else if (*lBias > *rBias) {
+        if (22-*rBias > 0 && 22-*rBias < 15) {
+            drive(-15, -32-*lBias);
+        }
+        else if (22-*rBias < 0 && 22-*rBias > -15) {
+            drive(15, -32-*lBias);
+        }
+        else {
+            drive(-22+*rBias, -32-*lBias);
+        }
+    }
+    else {
+        drive(-32, -32);
+    }
+}
+*/
+
+/*
+void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias > *rBias) {
+        if (-22+*lBias < 0 && -22+*lBias > -15) {
+            drive(-32-*rBias, -15);
+        }
+        else if (-22+*lBias > 0 && -22+*lBias < 15) {
+            drive(-32-*rBias, 15);
+        }
+        else {
+            drive(-32-*rBias, -22+*lBias);
+        }
+    }
+    else if (*lBias < *rBias) {
+        if (-22+*rBias < 0 && -22+*rBias > 15) {
+            drive(-15, -32-*lBias);
+        }
+        else if (-22+*rBias > 0 && -22+*rBias < 15) {
+            drive(15, -32-*lBias);
+        }
+        else {
+            drive(-22+*rBias, -32-*lBias);
+        }
+    }
+    else {
+        drive(-32, -32);
+    }
+}
+*/
+
+/*
+void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias < *rBias) {
+        drive(-15-*rBias, -15);
+            drive(-32-*rBias, -22+*lBias);
+    }
+    else if (*lBias > *rBias) {
+        drive(-15, -15-*lBias);
+    }
+    else {
+        drive(-32, -32);
+    }
+}
+*/
+
+/*
+void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias > 0) {
+        *lBias = *lBias*-1;
+    }
+    if (*rBias > 0) {
+        *rBias = *rBias*-1;
+    }
+    if (*lBias < *rBias) {
+        if (22-*lBias> 0 && 22-*lBias < 15) {
+            drive(-32+*rBias, -15);
+        }
+        else if (22-*lBias < 0 && 22-*lBias > -15) {
+            drive(-32+*rBias, 15);
+        }
+        else {
+            drive(-32+*rBias, -22-*lBias);
+        }
+    }
+    else if (*lBias > *rBias) {
+        if (22-*rBias > 0 && 22-*rBias < 15) {
+            drive(-15, -32+*lBias);
+        }
+        else if (22-*rBias < 0 && 22-*rBias > -15) {
+            drive(15, -32+*lBias);
+        }
+        else {
+            drive(-22-*rBias, -32+*lBias);
+        }
+    }
+    else {
+        drive(-32, -32);
+    }
+}
+*/
 
 void initLineDataStruct(struct lineData *lineData) {
     for (int i = 0; i < LSENSOR_COUNT; i++) {
@@ -109,6 +545,24 @@ void initLineSensor(struct lineData *lineData,
     lineData->pNum[6] = pNum7;
     lineData->pNum[7] = pNum8;
 }
+void initButtonDataStruct(struct buttonData *buttonData) {
+    for (int i = 0; i < BSENSOR_COUNT; i++) {
+        buttonData->pName[i] = NULL;
+        buttonData->status[i] = 0;
+        buttonData->status[i] = false;
+    }
+}
+
+void initButtons(struct buttonData *buttonData, 
+       GPIO_TypeDef *pName1, uint16_t pNum1,
+       GPIO_TypeDef *pName2, uint16_t pNum2
+        ) {
+    initButtonDataStruct(buttonData);
+    buttonData->pName[0] = pName1;
+    buttonData->pName[1] = pName2;
+    buttonData->pNum[0] = pNum1;
+    buttonData->pNum[1] = pNum2;
+}
 
 void updateLineData(struct lineData *lineData) {
     for (int i = 0; i < LSENSOR_COUNT; i++) {
@@ -119,6 +573,27 @@ void updateLineData(struct lineData *lineData) {
         lineData->status[i] = false;
     }
 }
+
+void updateButtonData(struct buttonData *buttonData) {
+    for (int i = 0; i < BSENSOR_COUNT; i++) {
+        if (HAL_GPIO_ReadPin(buttonData->pName[i], (uint16_t) buttonData->pNum[i]) == GPIO_PIN_SET) {
+            buttonData->status[i] = true;
+            continue;
+        }
+        buttonData->status[i] = false;
+    }
+}
+
+int buttonOnCount(struct buttonData *buttonData) {
+    int onCount = 0;
+    for (int i = 0; i < BSENSOR_COUNT; i++) {
+        if (buttonData->status[i] == true) {
+            onCount++;
+        }
+    }
+    return onCount;
+}
+
 
 int lineOnCount(struct lineData *lineData) {
     int onCount = 0;

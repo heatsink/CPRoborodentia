@@ -9,11 +9,18 @@
 #define servoMaxPeriod 800
 //slope = (output_end - output_start) / (input_end - input_start)
 #define servoSlope (servoMaxPeriod-servoMinPeriod)/(180-0)
+#define BSENSOR_COUNT 2
 typedef int bool;
 enum bool { false, true };
 struct lineData {
     GPIO_TypeDef *pName[LSENSOR_COUNT];
     uint16_t pNum[LSENSOR_COUNT];
+    bool status[LSENSOR_COUNT];
+};
+
+struct buttonData {
+    GPIO_TypeDef *pName[BSENSOR_COUNT];
+    uint16_t pNum[BSENSOR_COUNT];
     bool status[LSENSOR_COUNT];
 };
 void driveForward(uint16_t speed);
@@ -40,6 +47,14 @@ void initLineSensor(struct lineData *lineData,
        GPIO_TypeDef *pName7, uint16_t pNum7,
        GPIO_TypeDef *pName8, uint16_t pNum8
         );
+int buttonOnCount(struct buttonData *buttonData);
+void initButtonDataStruct(struct buttonData *buttonData);
+void initButtons(struct buttonData *buttonData, 
+       GPIO_TypeDef *pName1, uint16_t pNum1,
+       GPIO_TypeDef *pName2, uint16_t pNum2
+        );
+
+void updateButtonData(struct buttonData *buttonData);
 void updateLineData(struct lineData *lineData);
 int lineOnCount(struct lineData *lineData);
 void drive(int lSpeed, int rSpeed);
@@ -49,4 +64,28 @@ void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
 void turnServo(uint16_t angle);
 void offloadServo();
 void turnRightServo();
+void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
+void turnRight90(struct lineData *FLineData, int *state);
+void turnLeft90(struct lineData *FLineData, int *state);
+void turnRingServoCC(int wait, int *state);
+void turnRingServoCW(int wait, int *state);
+
+/*
+ * The Final FSM
+ */
+void stateOne(struct lineData *FLineData, struct buttonData *buttonData, int *state);
+void stateTwo(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateThree(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateFour(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateFive(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateSix(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateSeven(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateEight(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateNine(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateTen(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateEleven(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateTwelve(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateThirteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateFourteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
+void stateFifteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
 #endif
