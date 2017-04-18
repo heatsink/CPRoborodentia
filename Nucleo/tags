@@ -995,11 +995,15 @@ BRE_BIT_NUMBER	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h	300;"	d
 BRE_BitNumber	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1129;"	d
 BRR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t BRR;        \/*!< USART Baud rate register,                Address offset: 0x08 *\/$/;"	m	struct:__anon262
 BSCKSEL_BIT_NUMBER	Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c	101;"	d	file:
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 BSENSOR_COUNT	Src/functions.h	15;"	d
 =======
 BSENSOR_COUNT	Src/functions.h	10;"	d
 >>>>>>> .merge_file_RpMTRf
+=======
+BSENSOR_COUNT	Src/functions.h	10;"	d
+>>>>>>> .merge_file_lR1Du6
 BSRR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t BSRR;     \/*!< GPIO port bit set\/reset register,      Address offset: 0x18      *\/$/;"	m	struct:__anon247
 BTCR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t BTCR[8];    \/*!< NOR\/PSRAM chip-select control register(BCR) and chip-select timing register(BTR), Address offset: 0x00-1C *\/$/;"	m	struct:__anon243
 BTR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t              BTR;                 \/*!< CAN bit timing register,             Address offset: 0x1C          *\/$/;"	m	struct:__anon233
@@ -5755,11 +5759,15 @@ DCTRL	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t 
 DEACHINT	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DEACHINT;        \/*!< dedicated EP interrupt       838h *\/$/;"	m	struct:__anon265
 DEACHMSK	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t DEACHMSK;        \/*!< dedicated EP msk             83Ch *\/$/;"	m	struct:__anon265
 DEBUG_MODE	Src/main.c	/^uint8_t DEBUG_MODE = 2;$/;"	v
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 DEFAULT_SPEED	Src/functions.h	4;"	d
 =======
 DEFAULT_SPEED	Src/functions.h	5;"	d
 >>>>>>> .merge_file_RpMTRf
+=======
+DEFAULT_SPEED	Src/functions.h	5;"	d
+>>>>>>> .merge_file_lR1Du6
 DEFAULT_THRESHHOLD	Src/functions.h	3;"	d
 DELTA_Q15	Drivers/CMSIS/Include/arm_math.h	331;"	d
 DELTA_Q31	Drivers/CMSIS/Include/arm_math.h	330;"	d
@@ -12115,11 +12123,15 @@ LDSPECS	Makefile	/^	LDSPECS = -specs=nosys.specs $/;"	m
 LIBDIR	Makefile	/^LIBDIR =$/;"	m
 LIBS	Makefile	/^LIBS = -lc -lm -lnosys$/;"	m
 LIFCR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t LIFCR;  \/*!< DMA low interrupt flag clear register,  Address offset: 0x08 *\/$/;"	m	struct:__anon240
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 LINE_LOGIC_LEVEL	Src/functions.h	7;"	d
 =======
 LINE_LOGIC_LEVEL	Src/functions.h	8;"	d
 >>>>>>> .merge_file_RpMTRf
+=======
+LINE_LOGIC_LEVEL	Src/functions.h	8;"	d
+>>>>>>> .merge_file_lR1Du6
 LINE_SENSE_F	Src/main.c	/^uint16_t LINE_SENSE_F = 1;$/;"	v
 LISR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t LISR;   \/*!< DMA low interrupt status register,      Address offset: 0x00 *\/$/;"	m	struct:__anon240
 LOAD	Drivers/CMSIS/Include/core_cm0.h	/^  __IOM uint32_t LOAD;                   \/*!< Offset: 0x004 (R\/W)  SysTick Reload Value Register *\/$/;"	m	struct:__anon99
@@ -12206,11 +12218,15 @@ LS7NUM	Src/config.h	18;"	d
 LS8	Src/config.h	11;"	d
 LS8NUM	Src/config.h	19;"	d
 LSEBYP_BITNUMBER	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	2699;"	d
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 LSENSOR_COUNT	Src/functions.h	8;"	d
 =======
 LSENSOR_COUNT	Src/functions.h	9;"	d
 >>>>>>> .merge_file_RpMTRf
+=======
+LSENSOR_COUNT	Src/functions.h	9;"	d
+>>>>>>> .merge_file_lR1Du6
 LSEON_BITNUMBER	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	2698;"	d
 LSEON_BitNumber	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	2697;"	d
 LSEState	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h	/^  uint32_t LSEState;             \/*!< The new state of the LSE.$/;"	m	struct:__anon38
@@ -12634,6 +12650,7 @@ MVFR2	Drivers/CMSIS/Include/core_cm7.h	/^  __IM  uint32_t MVFR2;                
 MVFR2	Drivers/CMSIS/Include/core_cm7.h	/^  __IM  uint32_t MVFR2;                  \/*!< Offset: 0x248 (R\/ )  Media and VFP Feature Register 1 *\/$/;"	m	struct:__anon189
 MX_ADC2_Init	Src/main.c	/^static void MX_ADC2_Init(void)$/;"	f	file:
 MX_GPIO_Init	Src/main.c	/^static void MX_GPIO_Init(void)$/;"	f	file:
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 MX_TIM3_Init	Src/main.c	/^static void MX_TIM3_Init(void)$/;"	f	file:
 MX_TIM4_Init	Src/main.c	/^static void MX_TIM4_Init(void)$/;"	f	file:
@@ -12643,6 +12660,11 @@ MX_TIM2_Init	Src/main.c	/^static void MX_TIM2_Init(void)$/;"	f	file:
 MX_TIM3_Init	Src/main.c	/^static void MX_TIM3_Init(void)$/;"	f	file:
 MX_TIM4_Init	Src/main.c	/^static void MX_TIM4_Init(void)$/;"	f	file:
 >>>>>>> .merge_file_RpMTRf
+=======
+MX_TIM2_Init	Src/main.c	/^static void MX_TIM2_Init(void)$/;"	f	file:
+MX_TIM3_Init	Src/main.c	/^static void MX_TIM3_Init(void)$/;"	f	file:
+MX_TIM4_Init	Src/main.c	/^static void MX_TIM4_Init(void)$/;"	f	file:
+>>>>>>> .merge_file_lR1Du6
 MasterOutputTrigger	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h	/^  uint32_t  MasterOutputTrigger;   \/*!< Trigger output (TRGO) selection. $/;"	m	struct:__anon45
 MasterSlaveMode	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h	/^  uint32_t  MasterSlaveMode;       \/*!< Master\/slave mode selection. $/;"	m	struct:__anon45
 MemBurst	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h	/^  uint32_t MemBurst;             \/*!< Specifies the Burst transfer configuration for the memory transfers. $/;"	m	struct:__anon29
@@ -20855,6 +20877,7 @@ VTOR	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t VTOR;                
 VoltageForErase	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h	/^  __IO uint8_t                VoltageForErase;    \/*Internal variable to provide voltage range selected by user in IT context*\/$/;"	m	struct:__anon3
 VoltageRange	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h	/^  uint32_t VoltageRange;\/*!< The device voltage range which defines the erase parallelism$/;"	m	struct:__anon34
 WFLAGS	Makefile	/^WFLAGS = -Wall -fdata-sections -ffunction-sections -fmessage-length=0 -c$/;"	m
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 WOBBLE_SPEED	Src/functions.h	6;"	d
 WOBBLE_THRESHHOLD	Src/functions.h	5;"	d
@@ -20862,6 +20885,10 @@ WOBBLE_THRESHHOLD	Src/functions.h	5;"	d
 WOBBLE_SPEED	Src/functions.h	7;"	d
 WOBBLE_THRESHHOLD	Src/functions.h	6;"	d
 >>>>>>> .merge_file_RpMTRf
+=======
+WOBBLE_SPEED	Src/functions.h	7;"	d
+WOBBLE_THRESHHOLD	Src/functions.h	6;"	d
+>>>>>>> .merge_file_lR1Du6
 WPR	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t WPR;     \/*!< RTC write protection register,                            Address offset: 0x24 *\/$/;"	m	struct:__anon254
 WRITE_REG	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	238;"	d
 WRPAREA_BANK1_AREAA	Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	310;"	d
@@ -25460,6 +25487,7 @@ hadc2	Src/main.c	/^ADC_HandleTypeDef hadc2;$/;"	v
 hardL	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:
 hardR	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:
 hdma	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	/^  DMA_HandleTypeDef           *hdma[7];      \/*!< DMA Handlers array$/;"	m	struct:__anon14
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 htim3	Src/main.c	/^TIM_HandleTypeDef htim3;$/;"	v
 htim4	Src/main.c	/^TIM_HandleTypeDef htim4;$/;"	v
@@ -25469,6 +25497,11 @@ htim2	Src/main.c	/^TIM_HandleTypeDef htim2;$/;"	v
 htim3	Src/main.c	/^TIM_HandleTypeDef htim3;$/;"	v
 htim4	Src/main.c	/^TIM_HandleTypeDef htim4;$/;"	v
 >>>>>>> .merge_file_RpMTRf
+=======
+htim2	Src/main.c	/^TIM_HandleTypeDef htim2;$/;"	v
+htim3	Src/main.c	/^TIM_HandleTypeDef htim3;$/;"	v
+htim4	Src/main.c	/^TIM_HandleTypeDef htim4;$/;"	v
+>>>>>>> .merge_file_lR1Du6
 ifftFlag	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlag;                  \/**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. *\/$/;"	m	struct:__anon124
 ifftFlag	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlag;                  \/**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. *\/$/;"	m	struct:__anon125
 ifftFlag	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t ifftFlag;                \/**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. *\/$/;"	m	struct:__anon120
@@ -25565,10 +25598,13 @@ numTaps	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t numTaps;     \/**< numbe
 numTaps	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t numTaps;    \/**< number of coefficients in the filter. *\/$/;"	m	struct:__anon152
 numTaps	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t numTaps;    \/**< number of coefficients in the filter. *\/$/;"	m	struct:__anon153
 numTaps	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t numTaps;    \/**< number of coefficients in the filter. *\/$/;"	m	struct:__anon154
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 offloadServo	Src/functions.c	/^void offloadServo(){$/;"	f
 =======
 >>>>>>> .merge_file_RpMTRf
+=======
+>>>>>>> .merge_file_lR1Du6
 oldDutyCycle	Src/main.c	/^uint16_t oldDutyCycle;$/;"	v
 onebyfftLen	Drivers/CMSIS/Include/arm_math.h	/^    float32_t onebyfftLen;             \/**< value of 1\/fftLen. *\/$/;"	m	struct:__anon124
 onebyfftLen	Drivers/CMSIS/Include/arm_math.h	/^    float32_t onebyfftLen;             \/**< value of 1\/fftLen. *\/$/;"	m	struct:__anon125
@@ -25720,6 +25756,7 @@ rightBiasWobble	Src/functions.c	/^int rightBiasWobble(struct lineData *lineData)
 sFIFOMailBox	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_FIFOMailBox_TypeDef    sFIFOMailBox[2];     \/*!< CAN FIFO MailBox,                    Address offset: 0x1B0 - 0x1CC *\/$/;"	m	struct:__anon233
 sFilterRegister	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_FilterRegister_TypeDef sFilterRegister[28]; \/*!< CAN Filter Register,                 Address offset: 0x240-0x31C   *\/$/;"	m	struct:__anon233
 sTxMailBox	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_TxMailBox_TypeDef      sTxMailBox[3];       \/*!< CAN Tx MailBox,                      Address offset: 0x180 - 0x1AC *\/$/;"	m	struct:__anon233
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 servoAngle	Src/main.c	/^uint8_t servoAngle = 0;$/;"	v
 servoMaxPeriod	Src/functions.h	12;"	d
@@ -25728,6 +25765,8 @@ servoSlope	Src/functions.h	14;"	d
 servoTimer	Src/main.c	/^volatile TIM_HandleTypeDef * servoTimer = &htim5;$/;"	v
 =======
 >>>>>>> .merge_file_RpMTRf
+=======
+>>>>>>> .merge_file_lR1Du6
 shallowL	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:
 shallowR	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:
 state	Drivers/CMSIS/Include/arm_math.h	/^    float32_t state[3];    \/**< The state array of length 3. *\/$/;"	m	struct:__anon114
@@ -25760,6 +25799,7 @@ timer2	Src/main.c	/^uint16_t timer2 = 0;$/;"	v
 true	Src/functions.h	/^enum bool { false, true };$/;"	e	enum:bool
 turnLeft90	Src/functions.c	/^void turnLeft90(struct lineData *FLineData, int *state) {$/;"	f
 turnRight90	Src/functions.c	/^void turnRight90(struct lineData *FLineData, int *state) {$/;"	f
+<<<<<<< .merge_file_hvDBG3
 <<<<<<< .merge_file_De8xJg
 turnRightServo	Src/functions.c	/^void turnRightServo(){$/;"	f
 turnRingServoCC	Src/functions.c	/^void turnRingServoCC(int wait, int *state) {$/;"	f
@@ -25769,6 +25809,10 @@ turnServo	Src/functions.c	/^void turnServo(uint16_t angle){$/;"	f
 turnRingServoCC	Src/functions.c	/^void turnRingServoCC(int wait, int *state) {$/;"	f
 turnRingServoCW	Src/functions.c	/^void turnRingServoCW(int wait, int *state) {$/;"	f
 >>>>>>> .merge_file_RpMTRf
+=======
+turnRingServoCC	Src/functions.c	/^void turnRingServoCC(int wait, int *state) {$/;"	f
+turnRingServoCW	Src/functions.c	/^void turnRingServoCW(int wait, int *state) {$/;"	f
+>>>>>>> .merge_file_lR1Du6
 twidCoefModifier	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t twidCoefModifier;         \/**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. *\/$/;"	m	struct:__anon124
 twidCoefModifier	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t twidCoefModifier;         \/**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. *\/$/;"	m	struct:__anon125
 twidCoefModifier	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t twidCoefModifier;       \/**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. *\/$/;"	m	struct:__anon120

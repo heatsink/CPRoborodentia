@@ -365,9 +365,7 @@ int main(void)
       while (INIT_STATE == 1) {
           updateLineData(lineData);
           forwardLineWobble(lineData, &lBias, &rBias);
-          //drive(20, 20);
-          //forwardLineWobble(lineData, &lBias, &rBias);
-
+          forwardLineFollowing(lineData, &lBias, &rBias);
           HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
           HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
           if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10) == GPIO_PIN_RESET) {
