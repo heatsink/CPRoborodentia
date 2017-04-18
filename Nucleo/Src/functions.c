@@ -13,6 +13,8 @@ extern uint16_t newDutyCycle;
 extern TIM_HandleTypeDef * motorTimer;
 extern TIM_HandleTypeDef * servoTimer;
 extern uint8_t servoAngle;
+extern uint8_t servoRightAngle;
+extern uint8_t servoLeftAngle;
 /*
  * Checks for a valid memory allocation before returning allocation
  */
@@ -782,8 +784,7 @@ void offloadServo(){
           HAL_Delay(8);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
       } 
 }
-void turnRightServo(){
-
+void loadServo(){
       drive(0, 0);
       turnServo(0);
       HAL_Delay(16);
@@ -792,34 +793,117 @@ void turnRightServo(){
       servoNum servoState = turnClosed;
       while (1) {
           if (servoState == turnGrab) {
-              if (servoAngle < 135){
-                servoAngle++;
+              if (servoLeftAngle > 25 && servoRightAngle < 135){
+                servoLeftAngle--;
+                servoRightAngle++;
               }
-              if (servoAngle == 135){
+              if (servoLeftAngle <= 45 && servoRightAngle >= 135){
                   servoState = turnVert;
               }
           }
-          if (servoState == turnClosed) {
-              if (servoAngle > 0){
-                  servoAngle--;
+          else if (servoState == turnClosed) {
+              if (servoLeftAngle < 180 && servoRightAngle > 0){
+                  servoLeftAngle++;
+                  servoRightAngle--;
               }
-              if (servoAngle == 0){
+              if (servoLeftAngle >= 180 && servoRightAngle <= 0){
                   servoState = turnGrab;
               }
           }
-          if (servoState == turnVert){
-              if(servoAngle > 45){
-                  servoAngle--;
+          else if (servoState == turnVert){
+              if(servoLeftAngle < 135 && servoRightAngle > 45){
+                  servoLeftAngle++;
+                  servoRightAngle--;
               } 
-              if(servoAngle == 45){
+              if(servoLeftAngle >= 135 && servoRightAngle <= 45){
                   HAL_Delay(3000);
                   servoState = turnClosed;
               }
           }
-          turnServo(servoAngle);
+          else{
+             servoLeftAngle = 0;
+             servoRightAngle = 180;
+          }
+          turnLeftServo(servoLeftAngle);
+          turnServo(servoRightAngle);
           HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
       } 
+}
+void turnRightServo(uint16_t angle){
+    
+    if (angle > 180) {
+        angle = 180;
+    }
+    //slope = (output_end - output_start) / (input_end - input_start)
+    // servoSlope and minimum period defined in Header file 
+    //output = output_start + slope * (input - input_start)
+    int val = round(servoMinPeriod + servoSlope * angle); 
 
+    __HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_1, val);
+>>>>>>> ServoLoadCode
+}
+void turnLeftServo(uint16_t angle){
+    
+    if (angle > 180) {
+        angle = 180;
+    }
+    //slope = (output_end - output_start) / (input_end - input_start)
+    // servoSlope and minimum period defined in Header file 
+    //output = output_start + slope * (input - input_start)
+    int val = round(servoMinPeriod + servoSlope * angle); 
+
+    __HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_1, val);
+}
+/*
+void turnRightServo(){
+      drive(0, 0);
+      turnServo(0);
+      HAL_Delay(16);
+      typedef int servoNum;
+      enum servoNum {turnGrab, turnClosed,turnVert};
+      servoNum servoState = turnClosed;
+      while (1) {
+          if (servoState == turnGrab) {
+              if (servoRightAngle < 135){
+                servoRightAngle++;
+              }
+              if (servoRightAngle == 135){
+                  servoState = turnVert;
+              }
+          }
+          if (servoState == turnClosed) {
+              if (servoRightAngle > 0){
+                  servoRightAngle--;
+              }
+              if (servoRightAngle == 0){
+                  servoState = turnGrab;
+              }
+          }
+          if (servoState == turnVert){
+              if(servoRightAngle > 45){
+                  servoRightAngle--;
+              } 
+              if(servoRightAngle == 45){
+                  HAL_Delay(3000);
+                  servoState = turnClosed;
+              }
+          }
+          turnServo(servoRightAngle);
+          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
+      } 
+}
+*/
+
+void holdServo(){
+      drive(0, 0);
+      turnServo(0);
+      HAL_Delay(16);
+      typedef int servoNum;
+      enum servoNum {turnGrab, turnClosed,turnVert};
+      servoNum servoState = turnClosed;
+      while (1) {
+          servoAngle = servoAngle;
+      }
 }
 
 void passiveTimer() {
