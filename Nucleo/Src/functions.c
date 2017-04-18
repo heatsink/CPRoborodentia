@@ -579,8 +579,8 @@ int leftBias(struct lineData *lineData) {
     int bias = 0;
     int j = 32;
     //int j = 7;
-    for (int i=0; i < 5; i++, j/=8) {
-    //for (int i=0; i < 5; i++, j--) {
+    for (int i=0; i < 4; i++, j/=8) {
+    //for (int i=0; i < 4; i++, j--) {
         if (lineData->status[i] == true) {
             bias+=j;
         }
@@ -590,9 +590,10 @@ int leftBias(struct lineData *lineData) {
 
 int rightBias(struct lineData *lineData) {
     int bias = 0;
-    //int j = 8;
-    int j=2;
+    int j = 2;
+    //int j=2;
     //for (int i = 5; i <= LSENSOR_COUNT; i++, j++) {
+    //for (int i = 4; i <= LSENSOR_COUNT; i++, j+=8) {
     for (int i = 5; i <= LSENSOR_COUNT; i++, j*=8) {
         if (lineData->status[i] == true) {
             bias+=j;
