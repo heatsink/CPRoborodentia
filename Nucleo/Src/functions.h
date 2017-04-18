@@ -69,10 +69,8 @@ int leftBiasWobble(struct lineData *lineData);
 int rightBiasWobble(struct lineData *lineData);
 void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
 void forwardLineFollowingSlow(struct lineData *lineData, int *lBias, int *rBias);
-void turnServo(uint16_t angle);
+void turnServo(uint8_t angle);
 void offloadServo();
-void turnRightServo();
-void turnLeftServo();
 void holdServo();
 void forwardLineWobble(struct lineData *lineData, int *lBias, int *rBias);
 void forwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias);
@@ -84,6 +82,9 @@ void turnRingServoCW(int wait, int *state);
 void passiveTimer();
 
 void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias);
+void turnRightServo(uint8_t angle);
+void turnLeftServo(uint8_t angle);
+void loadServo();
 
 /*
  * The Final FSM
