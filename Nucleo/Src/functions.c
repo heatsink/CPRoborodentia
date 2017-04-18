@@ -732,12 +732,17 @@ void offloadServo(){
 
       drive(0, 0);
       turnServo(0);
-      HAL_Delay(16);
+      //HAL_Delay(16);
+      HAL_Delay(8);
       typedef int servoNum;
       enum servoNum {inc, dec, fluc};
       servoNum servoState = inc;
       int county = 0;
+      int cycles = 0;
       while (1) {
+          if (cycles > 1) {
+              break;
+          }
           if (servoState == inc) {
               if (servoAngle < 100){
                 servoAngle++;
@@ -751,6 +756,7 @@ void offloadServo(){
                   servoAngle--;
               }
               if (servoAngle == 0){
+                  cycles++;
                   servoState = inc;
               }
           }
@@ -772,7 +778,7 @@ void offloadServo(){
               }
           }
           turnServo(servoAngle);
-          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
+          HAL_Delay(8);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
       } 
 }
 void turnRightServo(){
@@ -813,6 +819,10 @@ void turnRightServo(){
           HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
       } 
 
+}
+
+void passiveTimer() {
+  __HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_1, 0);
 }
 
 

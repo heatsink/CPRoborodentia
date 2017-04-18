@@ -79,6 +79,7 @@ void turnRight90(struct lineData *FLineData, int *state);
 void turnLeft90(struct lineData *FLineData, int *state);
 void turnRingServoCC(int wait, int *state);
 void turnRingServoCW(int wait, int *state);
+void passiveTimer();
 
 void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias);
 
@@ -101,3 +102,4 @@ void stateThirteen(struct lineData *FLineData, struct lineData *BLineData, int *
 void stateFourteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
 void stateFifteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
 #endif
+

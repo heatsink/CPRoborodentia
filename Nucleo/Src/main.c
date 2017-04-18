@@ -130,6 +130,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
+  passiveTimer();
 
   /* USER CODE END 2 */
 
@@ -141,13 +142,14 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
   while (DEBUG_MODE == 1) {
+      passiveTimer();
       int lBias = -15;
       int rBias = -15;
       if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
           INIT_STATE = 0;
           HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
           drive(0,0);
-          turnServo(0);
+          //turnServo(0);
           continue;
       }
       while (INIT_STATE == 0) {
@@ -160,7 +162,7 @@ int main(void)
               HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED On
               INIT_STATE = 1;
               drive(0, 0);
-              turnServo(0);
+              //turnServo(0);
               break;
           }
           else {
@@ -171,13 +173,13 @@ int main(void)
       while (INIT_STATE == 1) {
           HAL_Delay(1500);
           INIT_STATE = 2;
-          turnServo(0);
+          //turnServo(0);
           break;
       }
       while (INIT_STATE == 2) {
           drive(-100, -100);
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) > 6) {
               INIT_STATE = 3;
               drive(0, 0);
@@ -187,7 +189,7 @@ int main(void)
       while (INIT_STATE == 3) {
           drive(-100, -100);
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) < 4) {
               INIT_STATE = 4;
               drive(0, 0);
@@ -197,7 +199,7 @@ int main(void)
       while (INIT_STATE == 4) {
           drive(-100, -100);
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) > 6) {
               INIT_STATE = 5;
               drive(0, 0);
@@ -207,7 +209,7 @@ int main(void)
       while (INIT_STATE == 5) {
           timer++;
           drive(80, 80);
-          turnServo(0);
+          //turnServo(0);
           if (timer > 6500) {
               timer = 0;
               timer2++;
@@ -221,7 +223,7 @@ int main(void)
       }
       while (INIT_STATE == 6) {
           drive(-40, 40);
-          turnServo(0);
+          //turnServo(0);
           updateLineData(lineData);
           if (lineOnCount(lineData) <= 1) {
               INIT_STATE = 7;
@@ -232,7 +234,7 @@ int main(void)
       while (INIT_STATE == 7) {
           drive(-40, 40);
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) == 2 && lineData->status[2] == true && lineData->status[3] == true) {
               INIT_STATE = 8;
               drive(0, 0);
@@ -242,14 +244,14 @@ int main(void)
       while (INIT_STATE == 8) {
           updateLineData(lineData);
           forwardLineFollowing2(lineData, &lBias, &rBias);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) > 6) {
               INIT_STATE = 9;
           }
       }
       while (INIT_STATE == 9) {
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           //forwardLineWobble(lineData, &lBias, &rBias);
           forwardLineFollowing2(lineData, &lBias, &rBias);
           //drive(20, 20);
@@ -272,15 +274,13 @@ int main(void)
       }
       */
       while (INIT_STATE == 10) {
-          HAL_Delay(1500);
+          offloadServo();
           INIT_STATE = 11;
-          turnServo(0);
-          break;
       }
       while (INIT_STATE == 11) {
           drive(-100, -100);
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) > 6) {
               INIT_STATE = 12;
               drive(0, 0);
@@ -290,7 +290,7 @@ int main(void)
       while (INIT_STATE == 12) {
           drive(-100, -100);
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) < 4) {
               INIT_STATE = 13;
               drive(0, 0);
@@ -300,7 +300,7 @@ int main(void)
       while (INIT_STATE == 13) {
           drive(-100, -100);
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) > 6) {
               INIT_STATE = 14;
               drive(0, 0);
@@ -310,7 +310,7 @@ int main(void)
       while (INIT_STATE == 14) {
           timer++;
           drive(80, 80);
-          turnServo(0);
+          //turnServo(0);
           if (timer > 6500) {
               timer = 0;
               timer2++;
@@ -324,7 +324,7 @@ int main(void)
       }
       while (INIT_STATE == 15) {
           drive(40, -40);
-          turnServo(0);
+          //turnServo(0);
           updateLineData(lineData);
           if (lineOnCount(lineData) <= 1) {
               INIT_STATE = 1;
@@ -335,7 +335,7 @@ int main(void)
       while (INIT_STATE == 16) {
           drive(40, -40);
           updateLineData(lineData);
-          turnServo(0);
+          //turnServo(0);
           if (lineOnCount(lineData) == 2 && lineData->status[6] == true && lineData->status[7] == true) {
               INIT_STATE = 0;
               drive(0, 0);
