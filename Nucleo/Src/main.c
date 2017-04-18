@@ -60,6 +60,8 @@ uint16_t INIT_STATE = 1;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
 uint8_t servoAngle = 0;
+uint8_t servoLeftAngle = 0;
+uint8_t servoRightAngle = 0;
 uint8_t DEBUG_MODE = 1;
 uint16_t increment = 0;
 uint16_t timer = 0;
@@ -132,6 +134,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_2);
+  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_3);
   passiveTimer();
 
   /* USER CODE END 2 */
@@ -173,7 +177,8 @@ int main(void)
 
       }
       while (INIT_STATE == 1) {
-          HAL_Delay(1500);
+          //HAL_Delay(1500);
+          loadServo();
           INIT_STATE = 2;
           //turnServo(0);
           break;
