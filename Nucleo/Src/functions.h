@@ -4,6 +4,8 @@
 #define DEFAULT_SPEED 60
 #define WOBBLE_THRESHHOLD 22
 #define WOBBLE_SPEED 35
+#define SLOW_THRESHHOLD 22
+#define SLOW_SPEED 32
 #define LINE_LOGIC_LEVEL 3000
 #define LSENSOR_COUNT 8
 //#define servoMinPeriod 500
@@ -66,6 +68,7 @@ int rightBias(struct lineData *lineData);
 int leftBiasWobble(struct lineData *lineData);
 int rightBiasWobble(struct lineData *lineData);
 void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
+void forwardLineFollowingSlow(struct lineData *lineData, int *lBias, int *rBias);
 void turnServo(uint16_t angle);
 void offloadServo();
 void turnRightServo();
@@ -76,6 +79,8 @@ void turnRight90(struct lineData *FLineData, int *state);
 void turnLeft90(struct lineData *FLineData, int *state);
 void turnRingServoCC(int wait, int *state);
 void turnRingServoCW(int wait, int *state);
+
+void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias);
 
 /*
  * The Final FSM

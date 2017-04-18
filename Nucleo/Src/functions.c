@@ -283,30 +283,35 @@ void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
         *lBias = *lBias;
         *rBias = *rBias;
     }
-    if (*lBias < *rBias) {
-        if (22-*lBias> 0 && 22-*lBias < 15) {
-            drive(32+*rBias, 15);
-        }
-        else if (22-*lBias < 0 && 22-*lBias > -15) {
-            drive(32+*rBias, -15);
-        }
-        else {
-            drive(32+*rBias, 22-*lBias);
-        }
-    }
-    else if (*lBias > *rBias) {
-        if (22-*rBias > 0 && 22-*rBias < 15) {
-            drive(15, 32+*lBias);
-        }
-        else if (22-*rBias < 0 && 22-*rBias > -15) {
-            drive(-15, 32+*lBias);
-        }
-        else {
-            drive(22-*rBias, 32+*lBias);
-        }
-    }
-    else {
+    if (lineOnCount(lineData) > 6) {
         drive(32, 32);
+    }
+        else {
+        if (*lBias < *rBias) {
+            if (22-*lBias> 0 && 22-*lBias < 15) {
+                drive(32+*rBias, 15);
+            }
+            else if (22-*lBias < 0 && 22-*lBias > -15) {
+                drive(32+*rBias, -15);
+            }
+            else {
+                drive(32+*rBias, 22-*lBias);
+            }
+        }
+        else if (*lBias > *rBias) {
+            if (22-*rBias > 0 && 22-*rBias < 15) {
+                drive(15, 32+*lBias);
+            }
+            else if (22-*rBias < 0 && 22-*rBias > -15) {
+                drive(-15, 32+*lBias);
+            }
+            else {
+                drive(22-*rBias, 32+*lBias);
+            }
+        }
+        else {
+            drive(32, 32);
+        }
     }
 }
 
@@ -381,6 +386,79 @@ void forwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {
         drive(DEFAULT_SPEED, DEFAULT_SPEED);
     }
 }
+
+void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias) {
+    int lCount = lineOnCount(lineData);
+    /*
+    if (lCount == 2 && lineData->status[3] == true && lineData->status[4] == true) {
+        drive(10, 10);
+    }
+    */
+    /*
+    else if (lCount == 3 && lineData->status[2] && lineData->status[3] && lineData->status[4]) {
+        drive(12, 20);
+    }
+    else if (lCount == 3 && lineData->status[3] && lineData->status[4] && lineData->status[5]) {
+        drive(20, 12);
+    }
+    */
+    if (lCount > 4) {
+        drive(12, 12);
+    }
+    else if (leftBias(lineData) > rightBias(lineData)) {
+        drive(0, 12);
+    }
+    else if (leftBias(lineData) < rightBias(lineData)) {
+        drive(12, 0);
+    }
+    else {
+        drive(12, 12);
+    }
+}
+
+void forwardLineFollowingSlow(struct lineData *lineData, int *lBias, int *rBias) {
+    int lCount = lineOnCount(lineData);
+    //if (lineOnCount(lineData) > 1) {
+    if (lCount > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (lCount > 5) {
+        drive(15, 15);
+    }
+    else {
+        if (*lBias < *rBias) {
+            if (SLOW_THRESHHOLD-*lBias> 0 && SLOW_THRESHHOLD-*lBias < 15) {
+                drive(SLOW_SPEED+*rBias, 15);
+            }
+            else if (SLOW_THRESHHOLD-*lBias < 0 && SLOW_THRESHHOLD-*lBias > -15) {
+                drive(SLOW_SPEED+*rBias, -15);
+            }
+            else {
+                drive(SLOW_SPEED+*rBias, SLOW_THRESHHOLD-*lBias);
+            }
+        }
+        else if (*lBias > *rBias) {
+            if (SLOW_THRESHHOLD-*rBias > 0 && SLOW_THRESHHOLD-*rBias < 15) {
+                drive(15, SLOW_SPEED+*lBias);
+            }
+            else if (SLOW_THRESHHOLD-*rBias < 0 && SLOW_THRESHHOLD-*rBias > -15) {
+                drive(-15, SLOW_SPEED+*lBias);
+            }
+            else {
+                drive(SLOW_THRESHHOLD-*rBias, SLOW_SPEED+*lBias);
+            }
+        }
+        else {
+            drive(SLOW_SPEED, SLOW_SPEED);
+        }
+    }
+}
+
 
 
 void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
@@ -696,7 +774,6 @@ void offloadServo(){
           turnServo(servoAngle);
           HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
       } 
-
 }
 void turnRightServo(){
 
