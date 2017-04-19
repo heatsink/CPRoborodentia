@@ -177,8 +177,8 @@ int main(void)
 
       }
       while (INIT_STATE == 1) {
-          //HAL_Delay(1500);
-          loadServo();
+          HAL_Delay(1500);
+          //loadServo();
           INIT_STATE = 2;
           //turnServo(0);
           break;
@@ -274,12 +274,6 @@ int main(void)
               HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
           }
       }
-      /*
-      while (INIT_STATE == 10) {
-          offloadServo();
-          //drive(0, 0);
-      }
-      */
       while (INIT_STATE == 10) {
           offloadServo();
           INIT_STATE = 11;
@@ -343,13 +337,12 @@ int main(void)
           drive(40, -40);
           updateLineData(lineData);
           //turnServo(0);
-          if (lineOnCount(lineData) == 2 && lineData->status[6] == true && lineData->status[7] == true) {
+          if (lineOnCount(lineData) == 2 && lineData->status[5] == true && lineData->status[6] == true) {
               INIT_STATE = 0;
               drive(0, 0);
               break;
           }
       }
-
   }
   while (DEBUG_MODE == 2) {
       if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {

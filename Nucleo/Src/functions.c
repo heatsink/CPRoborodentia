@@ -318,6 +318,43 @@ void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
     }
 }
 
+void forwardLineFollowingVariant(struct lineData *lineData, int *lBias, int *rBias, int max, int threshhold) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias < *rBias) {
+        if (threshhold-*lBias> 0 && threshhold-*lBias < 15) {
+            drive(max+*rBias, 15);
+        }
+        else if (threshhold-*lBias < 0 && threshhold-*lBias > -15) {
+            drive(max+*rBias, -15);
+        }
+        else {
+            drive(max+*rBias, threshhold-*lBias);
+        }
+    }
+    else if (*lBias > *rBias) {
+        if (threshhold-*rBias > 0 && threshhold-*rBias < 15) {
+            drive(15, max+*lBias);
+        }
+        else if (threshhold-*rBias < 0 && threshhold-*rBias > -15) {
+            drive(-15, max+*lBias);
+        }
+        else {
+            drive(threshhold-*rBias, max+*lBias);
+        }
+    }
+    else {
+        drive(max, max);
+    }
+}
+
+
 void forwardLineWobble(struct lineData *lineData, int *lBias, int *rBias) {
     if (lineOnCount(lineData) > 1) {
         *lBias = leftBias(lineData);

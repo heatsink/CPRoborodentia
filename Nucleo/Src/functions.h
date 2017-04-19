@@ -80,6 +80,7 @@ void turnLeft90(struct lineData *FLineData, int *state);
 void turnRingServoCC(int wait, int *state);
 void turnRingServoCW(int wait, int *state);
 void passiveTimer();
+void forwardLineFollowingVariant(struct lineData *lineData, int *lBias, int *rBias, int max, int threshhold);
 
 void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias);
 void turnRightServo(uint8_t angle);
