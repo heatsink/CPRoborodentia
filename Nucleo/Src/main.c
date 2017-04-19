@@ -126,6 +126,16 @@ int main(void)
                            LS6, LS6NUM,
                            LS7, LS7NUM,
                            LS8, LS8NUM);
+  struct lineData *lineData_2 = checked_malloc(sizeof(struct lineData));
+  initLineSensor(lineData_2 , LS1_2, LS1NUM_2,
+                           LS2_2, LS2NUM_2,
+                           LS3_2, LS3NUM_2,
+                           LS4_2, LS4NUM_2,
+                           LS5_2, LS5NUM_2,
+                           LS6_2, LS6NUM_2,
+                           LS7_2, LS7NUM_2,
+                           LS8_2, LS8NUM_2);
+
 
   // Start Timers after initialization
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
