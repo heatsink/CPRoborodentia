@@ -41,6 +41,9 @@
 typedef int lineState;
 enum lineState { hardL, shallowL, cont, shallowR, hardR };
 
+typedef int strategy;
+enum lineState { default_strategy, bump_strategy, test1, test2, test3 };
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -63,6 +66,7 @@ uint8_t servoAngle = 0;
 uint8_t servoLeftAngle = 0;
 uint8_t servoRightAngle = 0;
 uint8_t DEBUG_MODE = 1;
+uint8_t STRATEGY = 1;
 uint16_t increment = 0;
 uint16_t timer = 0;
 uint16_t timer2 = 0;
@@ -127,15 +131,14 @@ int main(void)
                            LS7, LS7NUM,
                            LS8, LS8NUM);
   struct lineData *lineData_2 = checked_malloc(sizeof(struct lineData));
-  initLineSensor(lineData_2 , LS1_2, LS1NUM_2,
-                           LS2_2, LS2NUM_2,
-                           LS3_2, LS3NUM_2,
-                           LS4_2, LS4NUM_2,
-                           LS5_2, LS5NUM_2,
-                           LS6_2, LS6NUM_2,
-                           LS7_2, LS7NUM_2,
-                           LS8_2, LS8NUM_2);
-
+  initLineSensor(lineData_2, LS1_2, LS1NUM_2,
+                             LS2_2, LS2NUM_2,
+                             LS3_2, LS3NUM_2,
+                             LS4_2, LS4NUM_2,
+                             LS5_2, LS5NUM_2,
+                             LS6_2, LS6NUM_2,
+                             LS7_2, LS7NUM_2,
+                             LS8_2, LS8NUM_2);
 
   // Start Timers after initialization
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
@@ -168,6 +171,7 @@ int main(void)
           //turnServo(0);
           continue;
       }
+      // Begin Driving Forward when button is pressed
       while (INIT_STATE == 0) {
           updateLineData(lineData);
           //forwardLineFollowingPrecise(lineData, &lBias, &rBias);
@@ -186,6 +190,7 @@ int main(void)
           }
 
       }
+      // Turn servo arms to secure rings
       while (INIT_STATE == 1) {
           HAL_Delay(1500);
           //loadServo();
@@ -193,6 +198,8 @@ int main(void)
           //turnServo(0);
           break;
       }
+
+      // Drive back to first line
       while (INIT_STATE == 2) {
           drive(-100, -100);
           updateLineData(lineData);
@@ -203,6 +210,7 @@ int main(void)
               break;
           }
       }
+      // Drive back, handle a normal line
       while (INIT_STATE == 3) {
           drive(-100, -100);
           updateLineData(lineData);
@@ -213,6 +221,7 @@ int main(void)
               break;
           }
       }
+      // Drive back to second line
       while (INIT_STATE == 4) {
           drive(-100, -100);
           updateLineData(lineData);
@@ -223,6 +232,7 @@ int main(void)
               break;
           }
       }
+      // Drive forward slightly to prepare to turn
       while (INIT_STATE == 5) {
           timer++;
           drive(80, 80);
@@ -238,6 +248,7 @@ int main(void)
               drive(0, 0);
           }
       }
+      // Begin turning until line sensor is pretty of a line
       while (INIT_STATE == 6) {
           drive(-40, 40);
           //turnServo(0);
@@ -248,6 +259,7 @@ int main(void)
               break;
           }
       }
+      // Continue turning until line sensor is back on the line
       while (INIT_STATE == 7) {
           drive(-40, 40);
           updateLineData(lineData);
@@ -258,6 +270,7 @@ int main(void)
               break;
           }
       }
+      // Drive forward toward scoring peg fast until we hit the first black line
       while (INIT_STATE == 8) {
           updateLineData(lineData);
           forwardLineFollowing2(lineData, &lBias, &rBias);
@@ -266,6 +279,7 @@ int main(void)
               INIT_STATE = 9;
           }
       }
+      // Continue slowly until front of the robot touches the wall
       while (INIT_STATE == 9) {
           updateLineData(lineData);
           //turnServo(0);
@@ -284,10 +298,12 @@ int main(void)
               HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
           }
       }
+      // Turn tower servo to lift and release rings onto the peg
       while (INIT_STATE == 10) {
           offloadServo();
           INIT_STATE = 11;
       }
+      // Drive back until the first black line is reached
       while (INIT_STATE == 11) {
           drive(-100, -100);
           updateLineData(lineData);
@@ -298,6 +314,7 @@ int main(void)
               break;
           }
       }
+      // Drive back, handle getting back on a line
       while (INIT_STATE == 12) {
           drive(-100, -100);
           updateLineData(lineData);
@@ -308,6 +325,7 @@ int main(void)
               break;
           }
       }
+      // Drive back until we see another black line
       while (INIT_STATE == 13) {
           drive(-100, -100);
           updateLineData(lineData);
@@ -318,6 +336,7 @@ int main(void)
               break;
           }
       }
+      // Drive forward slightly to prepare for a turn
       while (INIT_STATE == 14) {
           timer++;
           drive(80, 80);
@@ -333,16 +352,18 @@ int main(void)
               drive(0, 0);
           }
       }
+      // Turn right until off the line
       while (INIT_STATE == 15) {
           drive(40, -40);
           //turnServo(0);
           updateLineData(lineData);
           if (lineOnCount(lineData) <= 1) {
-              INIT_STATE = 1;
+              INIT_STATE = 16;
               drive(0, 0);
               break;
           }
       }
+      // Turn right until back on the line
       while (INIT_STATE == 16) {
           drive(40, -40);
           updateLineData(lineData);
@@ -353,6 +374,7 @@ int main(void)
               break;
           }
       }
+      // Restart process
   }
   while (DEBUG_MODE == 2) {
       if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
