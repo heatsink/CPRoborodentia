@@ -713,9 +713,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LS2_CH4_Pin LS_2_CH5_Pin LS2_CH8_Pin LS2_CH7_Pin 
-                           Control_BTN_Pin LS1_CH7_Pin */
+                           LS1_CH7_Pin */
   GPIO_InitStruct.Pin = LS2_CH4_Pin|LS_2_CH5_Pin|LS2_CH8_Pin|LS2_CH7_Pin 
-                          |Control_BTN_Pin|LS1_CH7_Pin;
+                          |LS1_CH7_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
@@ -726,6 +726,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : Control_BTN_Pin Front_Left_BTN_Pin Front_Right_BTN_Pin */
+  GPIO_InitStruct.Pin = Control_BTN_Pin|Front_Left_BTN_Pin|Front_Right_BTN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LS2_CH6_Pin LS1_CH5_Pin LS1_CH2_Pin LS1_CH4_Pin 
                            LS1_CH3_Pin */
@@ -755,12 +761,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : Front_Left_BTN_Pin Front_Right_BTN_Pin */
-  GPIO_InitStruct.Pin = Front_Left_BTN_Pin|Front_Right_BTN_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Front_Right_BTND2_Pin */
   GPIO_InitStruct.Pin = Front_Right_BTND2_Pin;
