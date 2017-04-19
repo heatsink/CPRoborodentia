@@ -762,6 +762,9 @@ void turnServo(uint8_t angle){
     if (angle > 180) {
         angle = 180;
     }
+    if (angle < 0) {
+        angle = 0;
+    }
     //slope = (output_end - output_start) / (input_end - input_start)
     // servoSlope and minimum period defined in Header file 
     //output = output_start + slope * (input - input_start)
@@ -841,6 +844,9 @@ void turnRightServo(uint8_t angle){
     if (angle > 180) {
         angle = 180;
     }
+    if (angle < 0) {
+        angle = 0;
+    }
     //slope = (output_end - output_start) / (input_end - input_start)
     // servoSlope and minimum period defined in Header file 
     //output = output_start + slope * (input - input_start)
@@ -852,6 +858,9 @@ void turnLeftServo(uint8_t angle){
     
     if (angle > 180) {
         angle = 180;
+    }
+    if (angle < 0) {
+        angle = 0;
     }
     //slope = (output_end - output_start) / (input_end - input_start)
     // servoSlope and minimum period defined in Header file 
