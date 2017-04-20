@@ -1,0 +1,91 @@
+Configuration	Nucleo
+STM32CubeMX 	4.19.0
+Date	04/20/2017
+MCU	STM32F446RETx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+ADC2	IN9	ADC2_IN9	PB1
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM3	Encoder Mode	TIM3_CH1	PA6
+TIM3	Encoder Mode	TIM3_CH2	PA7
+TIM4	PWM Generation CH1	TIM4_CH1	PB6
+TIM4	PWM Generation CH2	TIM4_CH2	PB7
+TIM4	PWM Generation CH3	TIM4_CH3	PB8
+TIM4	PWM Generation CH4	TIM4_CH4	PB9
+TIM5	PWM Generation CH1	TIM5_CH1	PA0-WKUP
+TIM5	PWM Generation CH2	TIM5_CH2	PA1
+TIM5	PWM Generation CH3	TIM5_CH3	PA2
+TIM12	PWM Generation CH1	TIM12_CH1	PB14
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+2	PC13	GPIO_EXTI13	B1 [Blue PushButton]
+3	PC14-OSC32_IN	GPIO_Input	LS2 CH4
+4	PC15-OSC32_OUT	GPIO_Input	LS 2 CH5
+6	PH1-OSC_OUT	RCC_OSC_OUT	
+8	PC0	GPIO_Input	LS2 CH8
+9	PC1	GPIO_Input	LS2 CH7
+14	PA0-WKUP	TIM5_CH1	
+15	PA1	TIM5_CH2	
+16	PA2	TIM5_CH3	
+21	PA5	GPIO_Output	LD2 [Green Led]
+22	PA6	TIM3_CH1	
+23	PA7	TIM3_CH2	
+25	PC5	GPIO_Input	Control (IN) BTN
+26	PB0	GPIO_Input	LS2 CH6
+27	PB1	ADC2_IN9	
+28	PB2	GPIO_Input	
+29	PB10	GPIO_Input	LS1 CH5
+35	PB14	TIM12_CH1	Possible Arm Timer
+37	PC6	GPIO_Output	Control (OUT) BTN
+38	PC7	GPIO_Input	LS1 CH7
+39	PC8	GPIO_Output	DIR_1_LEFT
+40	PC9	GPIO_Output	DIR_2_RIGHT
+41	PA8	GPIO_Input	LS 1 CH6
+42	PA9	GPIO_Input	LS1 CH8
+43	PA10	GPIO_Input	LS1 CH1
+46	PA13	GPIO_Input	LS2 CH1
+49	PA14	GPIO_Input	LS2 CH2
+50	PA15	GPIO_Input	LS2 CH3
+51	PC10	GPIO_Input	Front Left (IN) BTN
+52	PC11	GPIO_Output	Front Left (OUT) BTN
+53	PC12	GPIO_Input	Front Right (IN) BTN
+54	PD2	GPIO_Output	Front Right (OUT) BTN
+55	PB3	GPIO_Input	LS1 CH2
+56	PB4	GPIO_Input	LS1 CH4
+57	PB5	GPIO_Input	LS1 CH3
+58	PB6	TIM4_CH1	TIM_LEFT_1_CH1
+59	PB7	TIM4_CH2	TIM_RIGHT_1_CH2
+61	PB8	TIM4_CH3	TIM_RIGHT_2_CH3
+62	PB9	TIM4_CH4	TIM_LEFT_2_Ch4
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : Nucleo
+Project Folder : /Users/Sean/Workspace/CPRoborodentia/Nucleo
+Toolchain / IDE : SW4STM32
+Firmware Package Name and Version : STM32Cube FW_F4 V1.14.0
+
+
+Code Generation Settings : 
+STM32Cube Firmware Library Package : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : Balanced Size/Speed
+
+
+
+
+
+
