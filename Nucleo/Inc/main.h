@@ -59,6 +59,8 @@
 #define LS2_CH6_GPIO_Port GPIOB
 #define LS1_CH5_Pin GPIO_PIN_10
 #define LS1_CH5_GPIO_Port GPIOB
+#define Possible_Arm_Timer_Pin GPIO_PIN_14
+#define Possible_Arm_Timer_GPIO_Port GPIOB
 #define Control_BTNC6_Pin GPIO_PIN_6
 #define Control_BTNC6_GPIO_Port GPIOC
 #define LS1_CH7_Pin GPIO_PIN_7

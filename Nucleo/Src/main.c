@@ -52,6 +52,7 @@ ADC_HandleTypeDef hadc2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
+TIM_HandleTypeDef htim12;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -82,8 +83,10 @@ static void MX_TIM4_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_TIM12_Init(void);
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+                                
                                 
                                 
 
@@ -118,6 +121,7 @@ int main(void)
   MX_TIM5_Init();
   MX_ADC2_Init();
   MX_TIM3_Init();
+  MX_TIM12_Init();
 
   /* USER CODE BEGIN 2 */
   struct lineData *lineData = checked_malloc(sizeof(struct lineData));
@@ -160,7 +164,6 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-      drive(0, 0);
 
   /* USER CODE BEGIN 3 */
   while (STRATEGY == 1) {
@@ -724,12 +727,42 @@ static void MX_TIM5_Init(void)
     Error_Handler();
   }
 
+  sConfigOC.Pulse = 0;
   if (HAL_TIM_PWM_ConfigChannel(&htim5, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
   }
 
   HAL_TIM_MspPostInit(&htim5);
+
+}
+
+/* TIM12 init function */
+static void MX_TIM12_Init(void)
+{
+
+  TIM_OC_InitTypeDef sConfigOC;
+
+  htim12.Instance = TIM12;
+  htim12.Init.Prescaler = 0;
+  htim12.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim12.Init.Period = 0;
+  htim12.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  if (HAL_TIM_PWM_Init(&htim12) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 0;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  if (HAL_TIM_PWM_ConfigChannel(&htim12, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  HAL_TIM_MspPostInit(&htim12);
 
 }
 
