@@ -481,8 +481,18 @@ int main(void)
       //HAL_Delay(3000);
       //turnLeftServo(90);
       
-      offloadServo();
-      HAL_Delay(50);
+      drive(0, 0);
+      /*
+      turnLeftServo(75);
+      turnRightServo(75); // 0, 0 locked
+      turnServo(90);
+      */
+
+      turnRightServo(0); // 0, 0 locked
+      turnLeftServo(180);
+      turnServo(0);
+      //offloadServo();
+      //HAL_Delay(50);
 
   }
   /*
