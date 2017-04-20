@@ -477,12 +477,12 @@ int main(void)
       */
   }
   while (STRATEGY == test2) {
+      drive(0, 0);
       //turnLeftServo(50);
       //HAL_Delay(3000);
       //turnLeftServo(90);
       
       /*
-      drive(0, 0);
       turnLeftServo(75);
       turnRightServo(75); // 0, 0 locked
       turnServo(90);
