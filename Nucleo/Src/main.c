@@ -473,6 +473,7 @@ int main(void)
       //turnLeftServo(90);
       
       offloadServo();
+      HAL_Delay(50);
 
   }
   /*
