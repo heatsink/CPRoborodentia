@@ -60,11 +60,15 @@ uint16_t oldDutyCycle;
 uint16_t newDutyCycle;
 volatile TIM_HandleTypeDef * motorTimer = &htim4;
 volatile TIM_HandleTypeDef * servoTimer = &htim5;
+volatile TIM_HandleTypeDef * servoTimer2 = &htim12;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
 uint8_t servoAngle = 0;
 uint8_t servoLeftAngle = 0;
 uint8_t servoRightAngle = 0;
+uint8_t testServoAngle= 0;
+
+
 uint8_t DEBUG_MODE = 1;
 uint8_t STRATEGY = test2;
 uint16_t increment = 0;
@@ -154,6 +158,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_3);
+
+  HAL_TIM_PWM_Start(&htim12, TIM_CHANNEL_1);
   passiveTimer();
   int INIT_STATE = 99;
 
