@@ -482,15 +482,36 @@ int main(void)
       //turnLeftServo(90);
       
       drive(0, 0);
-      /*
       turnLeftServo(75);
       turnRightServo(75); // 0, 0 locked
       turnServo(90);
+
+      /*
+      turnServo(0);
+      turnLeftServo(180);
+      turnRightServo(0); // 0, 0 locked
       */
 
-      turnRightServo(0); // 0, 0 locked
-      turnLeftServo(180);
-      turnServo(0);
+      /*
+      while (servoAngle != 0 && servoLeftAngle != 180 && servoRightAngle != 0) {
+          turnServo(0);
+          turnLeftServo(180);
+          turnRightServo(0); // 0, 0 locked
+      }
+      HAL_Delay(3000);
+      while (servoAngle != 90 && servoLeftAngle != 75 && servoRightAngle != 75) {
+          turnServo(90);
+          turnLeftServo(75);
+          turnRightServo(75); // 0, 0 locked
+      }
+      */
+
+      /*
+    uint8_t servoAngle = 0;
+    uint8_t servoLeftAngle = 0;
+    uint8_t servoRightAngle = 0;
+      HAL_Delay(32);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
+      */
       //offloadServo();
       //HAL_Delay(50);
 
