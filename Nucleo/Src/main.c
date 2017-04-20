@@ -481,16 +481,16 @@ int main(void)
       //HAL_Delay(3000);
       //turnLeftServo(90);
       
+      /*
       drive(0, 0);
       turnLeftServo(75);
       turnRightServo(75); // 0, 0 locked
       turnServo(90);
+      */
 
-      /*
       turnServo(0);
       turnLeftServo(180);
       turnRightServo(0); // 0, 0 locked
-      */
 
       /*
       while (servoAngle != 0 && servoLeftAngle != 180 && servoRightAngle != 0) {
