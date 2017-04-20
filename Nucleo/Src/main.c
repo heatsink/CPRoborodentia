@@ -42,7 +42,7 @@ typedef int lineState;
 enum lineState { hardL, shallowL, cont, shallowR, hardR };
 
 typedef int strategy;
-enum lineState { default_strategy, bump_strategy, test1, test2, test3 };
+enum strategy { default_strategy, bump_strategy, test1, test2, test3 };
 
 /* USER CODE END Includes */
 
@@ -59,14 +59,13 @@ uint16_t oldDutyCycle;
 uint16_t newDutyCycle;
 volatile TIM_HandleTypeDef * motorTimer = &htim4;
 volatile TIM_HandleTypeDef * servoTimer = &htim5;
-uint16_t INIT_STATE = 1;
 uint16_t LINE_SENSE_F = 1;
 lineState lState = cont;
 uint8_t servoAngle = 0;
 uint8_t servoLeftAngle = 0;
 uint8_t servoRightAngle = 0;
 uint8_t DEBUG_MODE = 1;
-uint8_t STRATEGY = 1;
+uint8_t STRATEGY = test2;
 uint16_t increment = 0;
 uint16_t timer = 0;
 uint16_t timer2 = 0;
@@ -130,6 +129,7 @@ int main(void)
                            LS6, LS6NUM,
                            LS7, LS7NUM,
                            LS8, LS8NUM);
+  /*
   struct lineData *lineData_2 = checked_malloc(sizeof(struct lineData));
   initLineSensor(lineData_2, LS1_2, LS1NUM_2,
                              LS2_2, LS2NUM_2,
@@ -139,6 +139,7 @@ int main(void)
                              LS6_2, LS6NUM_2,
                              LS7_2, LS7NUM_2,
                              LS8_2, LS8NUM_2);
+                             */
 
   // Start Timers after initialization
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
@@ -150,6 +151,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_3);
   passiveTimer();
+  int INIT_STATE = 99;
 
   /* USER CODE END 2 */
 
@@ -158,18 +160,23 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
+      drive(0, 0);
 
   /* USER CODE BEGIN 3 */
-  while (DEBUG_MODE == 1) {
+  while (STRATEGY == 1) {
       passiveTimer();
       int lBias = -15;
       int rBias = -15;
-      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
-          INIT_STATE = 0;
-          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
-          drive(0,0);
-          //turnServo(0);
-          continue;
+      drive(0, 0);
+      while (INIT_STATE == 99) {
+        if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+            INIT_STATE = 0;
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+            drive(0,0);
+            //turnServo(0);
+            continue;
+          }
+
       }
       // Begin Driving Forward when button is pressed
       while (INIT_STATE == 0) {
@@ -215,7 +222,7 @@ int main(void)
           drive(-100, -100);
           updateLineData(lineData);
           //turnServo(0);
-          if (lineOnCount(lineData) < 4) {
+          if (lineOnCount(lineData) < 3) {
               INIT_STATE = 4;
               drive(0, 0);
               break;
@@ -235,13 +242,13 @@ int main(void)
       // Drive forward slightly to prepare to turn
       while (INIT_STATE == 5) {
           timer++;
-          drive(80, 80);
+          drive(40, 40);
           //turnServo(0);
           if (timer > 6500) {
               timer = 0;
               timer2++;
           }
-          if (timer2 > 75) { // 125 275
+          if (timer2 > 125) { // 125 275
               timer = 0;
               timer2 = 0;
               INIT_STATE = 6;
@@ -264,7 +271,8 @@ int main(void)
           drive(-40, 40);
           updateLineData(lineData);
           //turnServo(0);
-          if (lineOnCount(lineData) == 2 && lineData->status[2] == true && lineData->status[3] == true) {
+          if (lineData->status[2] == true && lineData->status[3] == true) {
+          //if (lineData->status[2] == true && lineData->status[3] == true) {
               INIT_STATE = 8;
               drive(0, 0);
               break;
@@ -284,7 +292,8 @@ int main(void)
           updateLineData(lineData);
           //turnServo(0);
           //forwardLineWobble(lineData, &lBias, &rBias);
-          forwardLineFollowing2(lineData, &lBias, &rBias);
+          //forwardLineFollowing(lineData, &lBias, &rBias);
+          drive(12, 12);
           //drive(20, 20);
           HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
           HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
@@ -300,12 +309,15 @@ int main(void)
       }
       // Turn tower servo to lift and release rings onto the peg
       while (INIT_STATE == 10) {
-          offloadServo();
+          HAL_Delay(3000);
+          //offloadServo();
           INIT_STATE = 11;
       }
       // Drive back until the first black line is reached
       while (INIT_STATE == 11) {
-          drive(-100, -100);
+          //drive(-100, -100);
+          //backwardLineFollowing(lineData);
+          backwardLineFollowing(lineData, &lBias, &rBias);
           updateLineData(lineData);
           //turnServo(0);
           if (lineOnCount(lineData) > 6) {
@@ -316,10 +328,11 @@ int main(void)
       }
       // Drive back, handle getting back on a line
       while (INIT_STATE == 12) {
-          drive(-100, -100);
+          //drive(-100, -100);
+          backwardLineFollowing(lineData, &lBias, &rBias);
           updateLineData(lineData);
           //turnServo(0);
-          if (lineOnCount(lineData) < 4) {
+          if (lineOnCount(lineData) < 3) {
               INIT_STATE = 13;
               drive(0, 0);
               break;
@@ -327,7 +340,8 @@ int main(void)
       }
       // Drive back until we see another black line
       while (INIT_STATE == 13) {
-          drive(-100, -100);
+          //drive(-100, -100);
+          backwardLineFollowing(lineData, &lBias, &rBias);
           updateLineData(lineData);
           //turnServo(0);
           if (lineOnCount(lineData) > 6) {
@@ -339,13 +353,13 @@ int main(void)
       // Drive forward slightly to prepare for a turn
       while (INIT_STATE == 14) {
           timer++;
-          drive(80, 80);
+          drive(40, 40);
           //turnServo(0);
           if (timer > 6500) {
               timer = 0;
               timer2++;
           }
-          if (timer2 > 75) { // 125 275
+          if (timer2 > 50) { // 125 275
               timer = 0;
               timer2 = 0;
               INIT_STATE = 15;
@@ -357,7 +371,7 @@ int main(void)
           drive(40, -40);
           //turnServo(0);
           updateLineData(lineData);
-          if (lineOnCount(lineData) <= 1) {
+          if (lineOnCount(lineData) == 0) {
               INIT_STATE = 16;
               drive(0, 0);
               break;
@@ -368,15 +382,15 @@ int main(void)
           drive(40, -40);
           updateLineData(lineData);
           //turnServo(0);
-          if (lineOnCount(lineData) == 2 && lineData->status[5] == true && lineData->status[6] == true) {
+          if (lineData->status[5] == true && lineData->status[6] == true) {
               INIT_STATE = 0;
               drive(0, 0);
-              break;
+              //break;
           }
       }
-      // Restart process
+
   }
-  while (DEBUG_MODE == 2) {
+  while (STRATEGY == 2) {
       if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
           INIT_STATE = 0;
           HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
@@ -452,6 +466,14 @@ int main(void)
           HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED Off
       }
       */
+  }
+  while (STRATEGY == test2) {
+      //turnLeftServo(50);
+      //HAL_Delay(3000);
+      //turnLeftServo(90);
+      
+      offloadServo();
+
   }
   /*
   while (DEBUG_MODE == 3) {

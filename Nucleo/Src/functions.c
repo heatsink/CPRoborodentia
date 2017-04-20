@@ -13,7 +13,6 @@ extern uint16_t newDutyCycle;
 extern TIM_HandleTypeDef * motorTimer;
 extern TIM_HandleTypeDef * servoTimer;
 extern uint8_t servoAngle;
-//extern uint8_t servoRightAngle;
 extern uint8_t servoRightAngle;
 extern uint8_t servoLeftAngle;
 /*
@@ -840,7 +839,6 @@ void offloadServo(){
       }
 }
 void turnRightServo(uint8_t angle){
-    
     if (angle > 180) {
         angle = 180;
     }
