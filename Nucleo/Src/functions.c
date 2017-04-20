@@ -12,9 +12,11 @@ extern uint16_t oldDutyCycle;
 extern uint16_t newDutyCycle;
 extern TIM_HandleTypeDef * motorTimer;
 extern TIM_HandleTypeDef * servoTimer;
+extern TIM_HandleTypeDef * servoTimer2;
 extern uint8_t servoAngle;
 extern uint8_t servoRightAngle;
 extern uint8_t servoLeftAngle;
+extern uint8_t testServoAngle;
 /*
  * Checks for a valid memory allocation before returning allocation
  */
@@ -772,7 +774,6 @@ void turnServo(uint8_t angle){
     __HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_1, val);
 }
 void offloadServo(){
-
       drive(0, 0);
       turnServo(0);
       //HAL_Delay(16);
@@ -786,7 +787,7 @@ void offloadServo(){
                   servoLeftAngle++;
                   servoRightAngle--;
           turnLeftServo(servoLeftAngle);
-          turnRightServo(servoRightAngle);
+          //turnRightServo(servoRightAngle);
           HAL_Delay(8);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
       }
       while (1) {
@@ -850,7 +851,8 @@ void turnRightServo(uint8_t angle){
     //output = output_start + slope * (input - input_start)
     int val = round(servoMinPeriod + servoSlope * angle); 
 
-    __HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_3, val);
+    //__HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_3, val);
+    __HAL_TIM_SET_COMPARE(servoTimer2, TIM_CHANNEL_1, val);
 }
 void turnLeftServo(uint8_t angle){
     
