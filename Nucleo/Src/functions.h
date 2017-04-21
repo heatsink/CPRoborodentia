@@ -1,7 +1,7 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 #define DEFAULT_THRESHHOLD 22
-#define DEFAULT_SPEED 60
+#define DEFAULT_SPEED 35
 #define WOBBLE_THRESHHOLD 22
 #define WOBBLE_SPEED 35
 #define SLOW_THRESHHOLD 22
@@ -105,5 +105,7 @@ void stateTwelve(struct lineData *FLineData, struct lineData *BLineData, int *st
 void stateThirteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
 void stateFourteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
 void stateFifteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
+
+void backwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias);
 #endif
 

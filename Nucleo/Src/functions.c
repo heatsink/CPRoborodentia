@@ -428,6 +428,81 @@ void forwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {
     }
 }
 
+void backwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias < *rBias) {
+        if (DEFAULT_THRESHHOLD-*lBias> 0 && DEFAULT_THRESHHOLD-*lBias < 15) {
+            drive(-1*(DEFAULT_SPEED+*rBias), -15);
+        }
+        else if (DEFAULT_THRESHHOLD-*lBias < 0 && DEFAULT_THRESHHOLD-*lBias > -15) {
+            drive(-1*(DEFAULT_SPEED+*rBias), 15);
+        }
+        else {
+            drive(-1*(DEFAULT_SPEED+*rBias), -1*(DEFAULT_THRESHHOLD-*lBias));
+        }
+    }
+    else if (*lBias > *rBias) {
+        if (DEFAULT_THRESHHOLD-*rBias > 0 && DEFAULT_THRESHHOLD-*rBias < 15) {
+            drive(-15, -1*(DEFAULT_SPEED+*lBias));
+        }
+        else if (DEFAULT_THRESHHOLD-*rBias < 0 && DEFAULT_THRESHHOLD-*rBias > -15) {
+            drive(15, -1*(DEFAULT_SPEED+*lBias));
+        }
+        else {
+            drive(-1*(DEFAULT_THRESHHOLD-*rBias), -1*(DEFAULT_SPEED+*lBias));
+        }
+    }
+    else {
+        drive(-1*DEFAULT_SPEED, -1*DEFAULT_SPEED);
+    }
+}
+
+/*
+void forwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {
+    if (lineOnCount(lineData) > 1) {
+        *lBias = leftBias(lineData);
+        *rBias = rightBias(lineData);
+    }
+    else {
+        *lBias = *lBias;
+        *rBias = *rBias;
+    }
+    if (*lBias < *rBias) {
+        if (DEFAULT_THRESHHOLD-*lBias> 0 && DEFAULT_THRESHHOLD-*lBias < 15) {
+            drive(DEFAULT_SPEED+*rBias, 15);
+        }
+        else if (DEFAULT_THRESHHOLD-*lBias < 0 && DEFAULT_THRESHHOLD-*lBias > -15) {
+            drive(DEFAULT_SPEED+*rBias, -15);
+        }
+        else {
+            drive(DEFAULT_SPEED+*rBias, DEFAULT_THRESHHOLD-*lBias);
+        }
+    }
+    else if (*lBias > *rBias) {
+        if (DEFAULT_THRESHHOLD-*rBias > 0 && DEFAULT_THRESHHOLD-*rBias < 15) {
+            drive(15, DEFAULT_SPEED+*lBias);
+        }
+        else if (DEFAULT_THRESHHOLD-*rBias < 0 && DEFAULT_THRESHHOLD-*rBias > -15) {
+            drive(-15, DEFAULT_SPEED+*lBias);
+        }
+        else {
+            drive(DEFAULT_THRESHHOLD-*rBias, DEFAULT_SPEED+*lBias);
+        }
+    }
+    else {
+        drive(DEFAULT_SPEED, DEFAULT_SPEED);
+    }
+}
+*/
+
+
 void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias) {
     int lCount = lineOnCount(lineData);
     /*
@@ -504,8 +579,10 @@ void forwardLineFollowingSlow(struct lineData *lineData, int *lBias, int *rBias)
 
 void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
     if (lineOnCount(lineData) > 1) {
-        *lBias = leftBias(lineData);
-        *rBias = rightBias(lineData);
+        *lBias = rightBias(lineData);
+        *rBias = leftBias(lineData);
+        //*lBias = leftBias(lineData);
+        //*rBias = rightBias(lineData);
     }
     else {
         *lBias = *lBias;
