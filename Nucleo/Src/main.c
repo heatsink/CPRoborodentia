@@ -159,6 +159,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_3);
 
   HAL_TIM_PWM_Start(&htim12, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim12, TIM_CHANNEL_2);
   passiveTimer();
 
   int INIT_STATE = 99;
@@ -541,15 +542,31 @@ while (STRATEGY == bump) {
     }
   }
   while (STRATEGY ==  test5) {
+      drive(0, 0);
       turnServo(0);
       turnLeftServo(159);
       turnRightServo(15);
+      turnArmServo(130);
       HAL_Delay(250);
 
+      // turnArmServo 130 to flip the flag
+      // 0 to reset
+
       while (1) {
+          if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+              INIT_STATE = 0;
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+              drive(0,0);
+              continue;
+          }
+          while (INIT_STATE == 0) {
+              drive(0, 0);
+              turnArmServo(0);
+          }
+
           // Close Arms
-          updateLineData(lineData);
-          lineFollowingPreciseSpeed(lineData, &lBias, &rBias, -1, 20);
+          //updateLineData(lineData);
+          //lineFollowingPreciseSpeed(lineData, &lBias, &rBias, -1, 20);
           /*
           drive(0, 0);
           turnLeftServo(174); // Locked
@@ -567,6 +584,7 @@ while (STRATEGY == bump) {
       turnServo(0);
       turnLeftServo(159);
       turnRightServo(15);
+      turnArmServo(130);
       HAL_Delay(250);
 
       if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
@@ -576,22 +594,35 @@ while (STRATEGY == bump) {
           continue;
       }
       while (INIT_STATE == 0) {
+          turnArmServo(0);
+          /*
           turnLeftServo(159);
           turnRightServo(15);
+          */
+          turnLeftServo(154);
+          turnRightServo(20);
           turnServo(0);
           drive(0, 0);
           driveBackToDump(lineData_2, &lBias, &rBias);
           secureRings();
           forwardToCenter(lineData, &lBias, &rBias);
+          forwardToFlag(lineData, &lBias, &rBias);
+          driveBackToFullLine(lineData_2, &lBias, &rBias);
+          bruteForceMovePastLineBackwards(lineData, &lBias, &rBias);
+          navigateLeftTurn(lineData, &lBias, &rBias);
+          bruteForceTurnLeft90(lineData, &lBias, &rBias);
           navigateLeftTurn(lineData_2, &lBias, &rBias);
           driveBackToFullLine(lineData_2, &lBias, &rBias);
+          //lineFollowingPreciseSpeed(lineData, &lBias, &rBias, 1, 25);
           bruteForceForward(lineData, &lBias, &rBias);
           bruteForceTurn(lineData, &lBias, &rBias);
           bruteForceBackward(lineData, &lBias, &rBias);
           dumpRings();
           findALineForward(lineData, &lBias, &rBias);
           forwardToCenter(lineData, &lBias, &rBias);
-          navigateRightTurn(lineData_2, &lBias, &rBias);
+          bruteForceMovePastLine(lineData, &lBias, &rBias);
+          bruteForceTurnRight90(lineData_2, &lBias, &rBias);
+          HAL_Delay(100);
           continue;
           //secureRings();
           exit(0);

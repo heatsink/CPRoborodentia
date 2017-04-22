@@ -70,6 +70,7 @@ int rightBiasWobble(struct lineData *lineData);
 void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias);
 void forwardLineFollowingSlow(struct lineData *lineData, int *lBias, int *rBias);
 void turnServo(uint8_t angle);
+void turnArmServo(uint8_t angle);
 void offloadServo();
 void holdServo();
 void forwardLineWobble(struct lineData *lineData, int *lBias, int *rBias);
@@ -116,6 +117,7 @@ void orientSlowly(struct lineData *lineData, int *lBias, int *rBias);
 void driveFast(struct lineData *lineData, int *lBias, int *rBias);
 void backToCenter(struct lineData *lineData, int *lBias, int *rBias);
 void forwardToCenter(struct lineData *lineData, int *lBias, int *rBias);
+void forwardToFlag(struct lineData *lineData, int *lBias, int *rBias);
 void drivePastLine(struct lineData *lineData, int *lBias, int *rBias);
 void navigateLeftTurn(struct lineData *lineData, int *lBias, int *rBias);
 void navigateRightTurn(struct lineData *lineData, int *lBias, int *rBias);
@@ -131,5 +133,9 @@ void findALineForward(struct lineData *lineData, int *lBias, int *rBias);
 
 void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias);
 void lineFollowingPreciseSpeed(struct lineData *lineData, int *lBias, int *rBias, int direction, int speed);
+void bruteForceMovePastLine(struct lineData *lineData, int *lBias, int *rBias);
+void bruteForceMovePastLineBackwards(struct lineData *lineData, int *lBias, int *rBias);
+void bruteForceTurnLeft90(struct lineData *lineData, int *lBias, int *rBias);
+void bruteForceTurnRight90(struct lineData *lineData, int *lBias, int *rBias);
 #endif
 
