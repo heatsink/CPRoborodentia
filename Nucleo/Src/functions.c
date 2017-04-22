@@ -1097,7 +1097,7 @@ void secureRings() {
 
     turnLeftServo(174); // Locked
     turnRightServo(5); // Locked
-    HAL_Delay(1000);
+    HAL_Delay(500);
 }
 void collectRings() {
     turnServo(0); // Down
@@ -1203,6 +1203,22 @@ void bruteForceTurnRight90(struct lineData *lineData, int *lBias, int *rBias) {
     drive(0, 0);
 }
 
+void bruteForceTurnLeft90Longer(struct lineData *lineData, int *lBias, int *rBias) {
+    // Drive forward slightly to prepare to turn
+    int timer = 0;
+    int timer2 = 0;
+    while (timer2 < 500) {
+        timer++;
+        drive(-20, 20);
+        if (timer > 6500) {
+            timer = 0;
+            timer2++;
+        }
+    }
+    timer = 0;
+    timer2 = 0;
+    drive(0, 0);
+}
 
 
 
@@ -1211,7 +1227,7 @@ void driveBackToFullLine(struct lineData *lineData, int *lBias, int *rBias) {
         updateLineData(lineData);
         //forwardLineFollowingPrecise(lineData, lBias, rBias);
         //lineFollowingPrecise(lineData, lBias, rBias, -1);
-        lineFollowingPreciseSpeed(lineData, lBias, rBias, -1, 30);
+        lineFollowingPreciseSpeed(lineData, lBias, rBias, -1, 20);
         if (lineOnCount(lineData) > 4) {
             drive(0, 0);
             break;
@@ -1319,7 +1335,7 @@ void forwardToFlag(struct lineData *lineData, int *lBias, int *rBias) {
     */
     while (1) {
         //drive(-15, -20);
-        lineFollowingPreciseSpeed(lineData, lBias, rBias, 1, 25);
+        lineFollowingPreciseSpeed(lineData, lBias, rBias, 1, 40);
         HAL_Delay(5);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
         HAL_Delay(5);
@@ -1395,6 +1411,24 @@ void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias) {
     timer2 = 0;
     drive(0, 0);
 }
+
+void bruteForceForwardShort(struct lineData *lineData, int *lBias, int *rBias) {
+    // Drive forward slightly to prepare to turn
+    int timer = 0;
+    int timer2 = 0;
+    while (timer2 < 125) {
+        timer++;
+        drive(30, 30);
+        if (timer > 6500) {
+            timer = 0;
+            timer2++;
+        }
+    }
+    timer = 0;
+    timer2 = 0;
+    drive(0, 0);
+}
+
 
 
 void findALineForward(struct lineData *lineData, int *lBias, int *rBias) {

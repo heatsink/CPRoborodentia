@@ -77,6 +77,7 @@ uint16_t timer = 0;
 uint16_t timer2 = 0;
 int lBias = -15;
 int rBias = -15;
+int roundCount = 0;
 
 /* USER CODE END PV */
 
@@ -604,14 +605,23 @@ while (STRATEGY == bump) {
           turnServo(0);
           drive(0, 0);
           driveBackToDump(lineData_2, &lBias, &rBias);
-          secureRings();
-          forwardToCenter(lineData, &lBias, &rBias);
-          forwardToFlag(lineData, &lBias, &rBias);
-          driveBackToFullLine(lineData_2, &lBias, &rBias);
-          bruteForceMovePastLineBackwards(lineData, &lBias, &rBias);
-          //navigateLeftTurn(lineData, &lBias, &rBias); // Took this out
-          bruteForceTurnLeft90(lineData, &lBias, &rBias);
-          navigateLeftTurn(lineData_2, &lBias, &rBias);
+          secureRings(); // Decreased HAL Delay from 1000 to 500
+          if (roundCount == 0) {
+              forwardToCenter(lineData, &lBias, &rBias);
+              bruteForceForwardShort(lineData, &lBias, &rBias);
+              bruteForceTurnLeft90(lineData, &lBias, &rBias);
+              //navigateLeftTurn(lineData_2, &lBias, &rBias);
+          }
+          else {
+              forwardToCenter(lineData, &lBias, &rBias);
+              forwardToFlag(lineData, &lBias, &rBias); // Increased speed from 25 to 40
+              driveBackToFullLine(lineData_2, &lBias, &rBias); // Increased speed from 30 to 40
+              bruteForceMovePastLineBackwards(lineData, &lBias, &rBias);
+              //navigateLeftTurn(lineData, &lBias, &rBias); // Took this out
+              bruteForceTurnLeft90Longer(lineData, &lBias, &rBias);
+//void bruteForceTurnLeft90Longer(struct lineData *lineData, int *lBias, int *rBias);
+              //navigateLeftTurn(lineData_2, &lBias, &rBias);
+          }
           driveBackToFullLine(lineData_2, &lBias, &rBias);
           //lineFollowingPreciseSpeed(lineData, &lBias, &rBias, 1, 25);
           bruteForceForward(lineData, &lBias, &rBias); // Changing from 300 to 275
@@ -624,6 +634,7 @@ while (STRATEGY == bump) {
           bruteForceTurnRight90(lineData_2, &lBias, &rBias); // Changed this to 175 from 425
           navigateRightTurn(lineData_2, &lBias, &rBias); // Added this
           HAL_Delay(100);
+          roundCount++;
           continue;
           //secureRings();
           exit(0);

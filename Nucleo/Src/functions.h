@@ -82,6 +82,8 @@ void turnRingServoCC(int wait, int *state);
 void turnRingServoCW(int wait, int *state);
 void passiveTimer();
 void forwardLineFollowingVariant(struct lineData *lineData, int *lBias, int *rBias, int max, int threshhold);
+void bruteForceForwardShort(struct lineData *lineData, int *lBias, int *rBias);
+void bruteForceTurnLeft90Longer(struct lineData *lineData, int *lBias, int *rBias);
 
 void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias);
 void lineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias, int direction);
