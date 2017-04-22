@@ -1050,7 +1050,7 @@ void lineFollowerCallback(ADC_HandleTypeDef hadc1, ADC_HandleTypeDef hadc2, uint
 }
 */
 void dumpRings() {
-    turnServo(65);
+    turnServo(70);
     turnLeftServo(159);
     turnRightServo(15);
     HAL_Delay(750);
@@ -1237,7 +1237,7 @@ void bruteForceBackward(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn
     int timer = 0;
     int timer2 = 0;
-    while (timer2 < 425) {
+    while (timer2 < 485) {
         timer++;
         drive(-30, -30);
         if (timer > 6500) {
@@ -1271,7 +1271,7 @@ void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias) {
 void findALineForward(struct lineData *lineData, int *lBias, int *rBias) {
     while (1) {
         updateLineData(lineData);
-        drive(70, 45);
+        drive(55, 45);
         //lineFollowingPrecise(lineData, lBias, rBias, 1);
         if(lineOnCount(lineData) >= 1) {
             HAL_Delay(25);
@@ -1307,7 +1307,7 @@ void navigateLeftTurn(struct lineData *lineData, int *lBias, int *rBias) {
             break;
         }
     }
-    HAL_Delay(50);
+    HAL_Delay(25);
     while (1) {
         drive(-20, 30);
         updateLineData(lineData);
