@@ -8903,14 +8903,14 @@ FlagStatus	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	/^} FlagStatus,
 Fmpi2c1ClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h	/^  uint32_t Fmpi2c1ClockSelection;  \/*!< Specifies FMPI2C1 Clock Source Selection. $/;"	m	struct:__anon18
 Fmpi2c1ClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h	/^  uint32_t Fmpi2c1ClockSelection;  \/*!< Specifies FMPI2C1 Clock Source Selection. $/;"	m	struct:__anon19
 Fmpi2c1ClockSelection	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h	/^  uint32_t Fmpi2c1ClockSelection;  \/*!< Specifies FMPI2C1 Clock Source Selection. $/;"	m	struct:__anon21
-Front_Left_BTNC11_GPIO_Port	Inc/main.h	87;"	d
-Front_Left_BTNC11_Pin	Inc/main.h	86;"	d
-Front_Left_BTN_GPIO_Port	Inc/main.h	85;"	d
-Front_Left_BTN_Pin	Inc/main.h	84;"	d
-Front_Right_BTND2_GPIO_Port	Inc/main.h	91;"	d
-Front_Right_BTND2_Pin	Inc/main.h	90;"	d
-Front_Right_BTN_GPIO_Port	Inc/main.h	89;"	d
-Front_Right_BTN_Pin	Inc/main.h	88;"	d
+Front_Left_BTNC11_GPIO_Port	Inc/main.h	91;"	d
+Front_Left_BTNC11_Pin	Inc/main.h	90;"	d
+Front_Left_BTN_GPIO_Port	Inc/main.h	89;"	d
+Front_Left_BTN_Pin	Inc/main.h	88;"	d
+Front_Right_BTND2_GPIO_Port	Inc/main.h	95;"	d
+Front_Right_BTND2_Pin	Inc/main.h	94;"	d
+Front_Right_BTN_GPIO_Port	Inc/main.h	93;"	d
+Front_Right_BTN_Pin	Inc/main.h	92;"	d
 FunctionalState	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	/^} FunctionalState;$/;"	t	typeref:enum:__anon225
 GAHBCFG	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t GAHBCFG;              \/*!< Core AHB Configuration Register              008h *\/$/;"	m	struct:__anon264
 GCCFG	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t GCCFG;                \/*!< General Purpose IO Register                  038h *\/$/;"	m	struct:__anon264
@@ -12158,12 +12158,12 @@ LS1NUM_2	Src/config.h	29;"	d
 LS1_2	Src/config.h	21;"	d
 LS1_CH1_GPIO_Port	Inc/main.h	77;"	d
 LS1_CH1_Pin	Inc/main.h	76;"	d
-LS1_CH2_GPIO_Port	Inc/main.h	93;"	d
-LS1_CH2_Pin	Inc/main.h	92;"	d
-LS1_CH3_GPIO_Port	Inc/main.h	97;"	d
-LS1_CH3_Pin	Inc/main.h	96;"	d
-LS1_CH4_GPIO_Port	Inc/main.h	95;"	d
-LS1_CH4_Pin	Inc/main.h	94;"	d
+LS1_CH2_GPIO_Port	Inc/main.h	97;"	d
+LS1_CH2_Pin	Inc/main.h	96;"	d
+LS1_CH3_GPIO_Port	Inc/main.h	101;"	d
+LS1_CH3_Pin	Inc/main.h	100;"	d
+LS1_CH4_GPIO_Port	Inc/main.h	99;"	d
+LS1_CH4_Pin	Inc/main.h	98;"	d
 LS1_CH5_GPIO_Port	Inc/main.h	61;"	d
 LS1_CH5_Pin	Inc/main.h	60;"	d
 LS1_CH7_GPIO_Port	Inc/main.h	67;"	d
@@ -12174,12 +12174,12 @@ LS2	Src/config.h	5;"	d
 LS2NUM	Src/config.h	13;"	d
 LS2NUM_2	Src/config.h	30;"	d
 LS2_2	Src/config.h	22;"	d
-LS2_CH1_GPIO_Port	Inc/main.h	79;"	d
-LS2_CH1_Pin	Inc/main.h	78;"	d
-LS2_CH2_GPIO_Port	Inc/main.h	81;"	d
-LS2_CH2_Pin	Inc/main.h	80;"	d
-LS2_CH3_GPIO_Port	Inc/main.h	83;"	d
-LS2_CH3_Pin	Inc/main.h	82;"	d
+LS2_CH1_GPIO_Port	Inc/main.h	83;"	d
+LS2_CH1_Pin	Inc/main.h	82;"	d
+LS2_CH2_GPIO_Port	Inc/main.h	85;"	d
+LS2_CH2_Pin	Inc/main.h	84;"	d
+LS2_CH3_GPIO_Port	Inc/main.h	87;"	d
+LS2_CH3_Pin	Inc/main.h	86;"	d
 LS2_CH4_GPIO_Port	Inc/main.h	47;"	d
 LS2_CH4_Pin	Inc/main.h	46;"	d
 LS2_CH6_GPIO_Port	Inc/main.h	59;"	d
@@ -12793,6 +12793,10 @@ NbrOfDiscConversion	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h	/^  uin
 Nby2	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t Nby2;                       \/**< half of the length of the DCT4. *\/$/;"	m	struct:__anon133
 Nby2	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t Nby2;                       \/**< half of the length of the DCT4. *\/$/;"	m	struct:__anon134
 Nby2	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t Nby2;                       \/**< half of the length of the DCT4. *\/$/;"	m	struct:__anon135
+New_B1A12_GPIO_Port	Inc/main.h	81;"	d
+New_B1A12_Pin	Inc/main.h	80;"	d
+New_B1_GPIO_Port	Inc/main.h	79;"	d
+New_B1_Pin	Inc/main.h	78;"	d
 NonMaskableInt_IRQn	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  NonMaskableInt_IRQn         = -14,    \/*!< 2 Non Maskable Interrupt                                          *\/$/;"	e	enum:__anon227
 Number	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h	/^  uint8_t                Number;                \/*!< Specifies the number of the region to protect. $/;"	m	struct:__anon1
 OAR1	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t OAR1;        \/*!< FMPI2C Own address 1 register,        Address offset: 0x08 *\/$/;"	m	struct:__anon250
@@ -18819,10 +18823,10 @@ TIM_IT_CC4	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	495;"	d
 TIM_IT_COM	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	496;"	d
 TIM_IT_TRIGGER	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	497;"	d
 TIM_IT_UPDATE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	491;"	d
-TIM_LEFT_1_CH1_GPIO_Port	Inc/main.h	99;"	d
-TIM_LEFT_1_CH1_Pin	Inc/main.h	98;"	d
-TIM_LEFT_2_Ch4_GPIO_Port	Inc/main.h	105;"	d
-TIM_LEFT_2_Ch4_Pin	Inc/main.h	104;"	d
+TIM_LEFT_1_CH1_GPIO_Port	Inc/main.h	103;"	d
+TIM_LEFT_1_CH1_Pin	Inc/main.h	102;"	d
+TIM_LEFT_2_Ch4_GPIO_Port	Inc/main.h	109;"	d
+TIM_LEFT_2_Ch4_Pin	Inc/main.h	108;"	d
 TIM_LOCKLEVEL_1	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	652;"	d
 TIM_LOCKLEVEL_2	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	653;"	d
 TIM_LOCKLEVEL_3	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	654;"	d
@@ -18878,10 +18882,10 @@ TIM_RCR_REP_Msk	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	13550;"	
 TIM_RCR_REP_Pos	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	13549;"	d
 TIM_RESET_CAPTUREPOLARITY	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	941;"	d
 TIM_RESET_ICPRESCALERVALUE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	929;"	d
-TIM_RIGHT_1_CH2_GPIO_Port	Inc/main.h	101;"	d
-TIM_RIGHT_1_CH2_Pin	Inc/main.h	100;"	d
-TIM_RIGHT_2_CH3_GPIO_Port	Inc/main.h	103;"	d
-TIM_RIGHT_2_CH3_Pin	Inc/main.h	102;"	d
+TIM_RIGHT_1_CH2_GPIO_Port	Inc/main.h	105;"	d
+TIM_RIGHT_1_CH2_Pin	Inc/main.h	104;"	d
+TIM_RIGHT_2_CH3_GPIO_Port	Inc/main.h	107;"	d
+TIM_RIGHT_2_CH3_Pin	Inc/main.h	106;"	d
 TIM_SET_CAPTUREPOLARITY	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	935;"	d
 TIM_SET_ICPRESCALERVALUE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	923;"	d
 TIM_SLAVEMODE_DISABLE	Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h	703;"	d
@@ -25507,6 +25511,7 @@ leftBias	Src/functions.c	/^int leftBias(struct lineData *lineData) {$/;"	f
 leftBiasWobble	Src/functions.c	/^int leftBiasWobble(struct lineData *lineData) {$/;"	f
 lineData	Src/functions.h	/^struct lineData {$/;"	s
 lineFollowingPrecise	Src/functions.c	/^void lineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias, int direction) {$/;"	f
+lineFollowingPreciseSpeed	Src/functions.c	/^void lineFollowingPreciseSpeed(struct lineData *lineData, int *lBias, int *rBias, int direction, int speed) {$/;"	f
 lineOnCount	Src/functions.c	/^int lineOnCount(struct lineData *lineData) {$/;"	f
 lineState	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	g	file:
 lineState	Src/main.c	/^typedef int lineState;$/;"	t	file:

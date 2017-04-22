@@ -70,8 +70,8 @@ uint8_t testServoAngle= 0;
 
 
 uint8_t DEBUG_MODE = 1;
-//uint8_t STRATEGY = backwards;
 uint8_t STRATEGY = emergency;
+//uint8_t STRATEGY = test5;
 uint16_t increment = 0;
 uint16_t timer = 0;
 uint16_t timer2 = 0;
@@ -160,6 +160,7 @@ int main(void)
 
   HAL_TIM_PWM_Start(&htim12, TIM_CHANNEL_1);
   passiveTimer();
+
   int INIT_STATE = 99;
 
   /* USER CODE END 2 */
@@ -540,19 +541,63 @@ while (STRATEGY == bump) {
     }
   }
   while (STRATEGY ==  test5) {
+      turnServo(0);
+      turnLeftServo(159);
+      turnRightServo(15);
+      HAL_Delay(250);
+
       while (1) {
           // Close Arms
+          updateLineData(lineData);
+          lineFollowingPreciseSpeed(lineData, &lBias, &rBias, -1, 20);
           /*
           drive(0, 0);
           turnLeftServo(174); // Locked
           turnRightServo(5); // Locked
           */
           // Open Arms
+          /*
           turnLeftServo(159);
           turnRightServo(15);
+          */
       }
   }
   while (STRATEGY == emergency) {
+      drive(0, 0);
+      turnServo(0);
+      turnLeftServo(159);
+      turnRightServo(15);
+      HAL_Delay(250);
+
+      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+          INIT_STATE = 0;
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+          drive(0,0);
+          continue;
+      }
+      while (INIT_STATE == 0) {
+          turnLeftServo(159);
+          turnRightServo(15);
+          turnServo(0);
+          drive(0, 0);
+          driveBackToDump(lineData_2, &lBias, &rBias);
+          secureRings();
+          forwardToCenter(lineData, &lBias, &rBias);
+          navigateLeftTurn(lineData_2, &lBias, &rBias);
+          driveBackToFullLine(lineData_2, &lBias, &rBias);
+          bruteForceForward(lineData, &lBias, &rBias);
+          bruteForceTurn(lineData, &lBias, &rBias);
+          bruteForceBackward(lineData, &lBias, &rBias);
+          dumpRings();
+          findALineForward(lineData, &lBias, &rBias);
+          forwardToCenter(lineData, &lBias, &rBias);
+          navigateRightTurn(lineData_2, &lBias, &rBias);
+          continue;
+          //secureRings();
+          exit(0);
+      }
+
+      /*
       driveBackToDump(lineData_2, &lBias, &rBias);
       secureRings();
       forwardToCenter(lineData, &lBias, &rBias);
@@ -565,8 +610,16 @@ while (STRATEGY == bump) {
       findALineForward(lineData, &lBias, &rBias);
       forwardToCenter(lineData, &lBias, &rBias);
       navigateRightTurn(lineData, &lBias, &rBias);
+      */
       //driveBackToDump(lineData_2, &lBias, &rBias);
-      continue;
+      /*
+      secureRings();
+      bruteForceForward(lineData, &lBias, &rBias);
+      bruteForceTurn(lineData, &lBias, &rBias);
+      bruteForceBackward(lineData, &lBias, &rBias);
+      */
+      //drive(0, 0);
+      exit(0);
   }
 
   }

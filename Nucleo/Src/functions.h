@@ -130,5 +130,6 @@ void bruteForceBackward(struct lineData *lineData, int *lBias, int *rBias);
 void findALineForward(struct lineData *lineData, int *lBias, int *rBias);
 
 void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias);
+void lineFollowingPreciseSpeed(struct lineData *lineData, int *lBias, int *rBias, int direction, int speed);
 #endif
 

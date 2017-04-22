@@ -494,20 +494,51 @@ void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBi
 }
 
 void lineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias, int direction) {
+    updateLineData(lineData);
     int lCount = lineOnCount(lineData);
     if (lCount > 4) {
-        drive(direction*20, direction*20);
+        drive(direction*40, direction*40);
     }
     else if (leftBias(lineData) > rightBias(lineData)) {
-        drive(0, direction*20);
+        drive(0, direction*40);
     }
     else if (leftBias(lineData) < rightBias(lineData)) {
-        drive(direction*20, 0);
+        drive(direction*40, 0);
     }
     else {
-        drive(direction*20, direction*20);
+        drive(direction*40, direction*40);
     }
 }
+
+void lineFollowingPreciseSpeed(struct lineData *lineData, int *lBias, int *rBias, int direction, int speed) {
+    updateLineData(lineData);
+    int lCount = lineOnCount(lineData);
+    /*if (lCount == 0) {
+        drive(direction*(*lBias), direction*(*rBias));
+    }
+    */
+    if (lCount > 4) {
+        drive(direction*speed, direction*speed);
+        //*lBias = speed;
+        //*rBias = speed;
+    }
+    else if (leftBias(lineData) > rightBias(lineData)) {
+        drive(0, direction*speed);
+        //*lBias = speed;
+        //*rBias = 0;
+    }
+    else if (leftBias(lineData) < rightBias(lineData)) {
+        drive(direction*speed, 0);
+        //*lBias = 0;
+        //*rBias = speed;
+    }
+    else {
+        drive(direction*speed, direction*speed);
+        //*lBias = speed;
+        //*rBias = speed;
+    }
+}
+
 
 
 void forwardLineFollowingSlow(struct lineData *lineData, int *lBias, int *rBias) {
@@ -631,7 +662,7 @@ void initButtons(struct buttonData *buttonData,
 void updateLineData(struct lineData *lineData) {
     for (int i = 0; i < LSENSOR_COUNT; i++) {
         if (HAL_GPIO_ReadPin(lineData->pName[i], (uint16_t) lineData->pNum[i]) == GPIO_PIN_SET) {
-            HAL_Delay(1);
+            HAL_Delay(2);
             lineData->status[i] = true;
             continue;
         }
@@ -1019,7 +1050,7 @@ void lineFollowerCallback(ADC_HandleTypeDef hadc1, ADC_HandleTypeDef hadc2, uint
 }
 */
 void dumpRings() {
-    turnServo(55);
+    turnServo(65);
     turnLeftServo(159);
     turnRightServo(15);
     HAL_Delay(750);
@@ -1091,8 +1122,9 @@ void driveBackToFullLine(struct lineData *lineData, int *lBias, int *rBias) {
     while (1) {
         updateLineData(lineData);
         //forwardLineFollowingPrecise(lineData, lBias, rBias);
-        lineFollowingPrecise(lineData, lBias, rBias, -1);
-        if (lineOnCount(lineData) > 6) {
+        //lineFollowingPrecise(lineData, lBias, rBias, -1);
+        lineFollowingPreciseSpeed(lineData, lBias, rBias, -1, 30);
+        if (lineOnCount(lineData) > 4) {
             drive(0, 0);
             break;
         }
@@ -1103,13 +1135,15 @@ void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias) {
     while (state == 1) {
         updateLineData(lineData);
         //forwardLineFollowingPrecise(lineData, lBias, rBias);
-        lineFollowingPrecise(lineData, lBias, rBias, -1);
-        if (lineOnCount(lineData) > 6) {
+        //lineFollowingPrecise(lineData, lBias, rBias, -1);
+        lineFollowingPreciseSpeed(lineData, lBias, rBias, -1, 25);
+        if (lineOnCount(lineData) > 4) {
             state = 2;
         }
     }
     while (state == 2) {
-        drive(-15, -15);
+        drive(-15, -20);
+        //lineFollowingPreciseSpeed(lineData, lBias, rBias, -1, 12);
         HAL_Delay(5);
         HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
         HAL_Delay(5);
@@ -1120,11 +1154,15 @@ void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias) {
         GPIO_PinState right = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10);
         HAL_Delay(5);
         //if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10) == GPIO_PIN_RESET) {
-        if (left == GPIO_PIN_RESET && right == GPIO_PIN_RESET) {
+        if (left == GPIO_PIN_RESET || right == GPIO_PIN_RESET) {
+           HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
            state = 3;
            drive(0, 0);
            HAL_Delay(50);
            break;
+        }
+        else {
+            HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
         }
     }
 }
@@ -1168,8 +1206,9 @@ void forwardToCenter(struct lineData *lineData, int *lBias, int *rBias) {
     while (1) {
         //drive(-20, -20);
         updateLineData(lineData);
-        lineFollowingPrecise(lineData, lBias, rBias, 1);
-        if(lineOnCount(lineData) > 4) {
+        //lineFollowingPrecise(lineData, lBias, rBias, 1);
+        lineFollowingPreciseSpeed(lineData, lBias, rBias, 1, 30);
+        if(lineOnCount(lineData) > 5) {
             HAL_Delay(25);
             break;
         }
@@ -1180,7 +1219,7 @@ void bruteForceTurn(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn
     int timer = 0;
     int timer2 = 0;
-    while (timer2 < 225) {
+    while (timer2 < 275) {
         timer++;
         drive(-30, 20);
         if (timer > 6500) {
@@ -1198,7 +1237,7 @@ void bruteForceBackward(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn
     int timer = 0;
     int timer2 = 0;
-    while (timer2 < 175) {
+    while (timer2 < 425) {
         timer++;
         drive(-30, -30);
         if (timer > 6500) {
@@ -1215,7 +1254,7 @@ void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn
     int timer = 0;
     int timer2 = 0;
-    while (timer2 < 175) {
+    while (timer2 < 300) {
         timer++;
         drive(30, 30);
         if (timer > 6500) {
@@ -1232,7 +1271,8 @@ void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias) {
 void findALineForward(struct lineData *lineData, int *lBias, int *rBias) {
     while (1) {
         updateLineData(lineData);
-        lineFollowingPrecise(lineData, lBias, rBias, 1);
+        drive(70, 45);
+        //lineFollowingPrecise(lineData, lBias, rBias, 1);
         if(lineOnCount(lineData) >= 1) {
             HAL_Delay(25);
             break;
@@ -1260,17 +1300,18 @@ void drivePastLine(struct lineData *lineData, int *lBias, int *rBias) {
 
 void navigateLeftTurn(struct lineData *lineData, int *lBias, int *rBias) {
     while (1) {
-        drive(-30, 20);
+        drive(-20, 30);
         updateLineData(lineData);
-        if (lineOnCount(lineData) <= 1) {
+        if (lineOnCount(lineData) == 0) {
             drive(0, 0);
             break;
         }
     }
+    HAL_Delay(50);
     while (1) {
-        drive(-30, 20);
+        drive(-20, 30);
         updateLineData(lineData);
-        if (lineData->status[2] == true && lineData->status[3] == true) {
+        if (lineData->status[1] == true && lineData->status[2] == true) {
             drive(0, 0);
             break;
         }
@@ -1281,7 +1322,7 @@ void navigateLeftTurnBackwards(struct lineData *lineData, int *lBias, int *rBias
     while (1) {
         drive(30, -20);
         updateLineData(lineData);
-        if (lineOnCount(lineData) <= 1) {
+        if (lineOnCount(lineData) == 0) {
             drive(0, 0);
             break;
         }
@@ -1299,15 +1340,16 @@ void navigateLeftTurnBackwards(struct lineData *lineData, int *lBias, int *rBias
 
 void navigateRightTurn(struct lineData *lineData, int *lBias, int *rBias) {
     while (1) {
-        drive(20, -30);
+        drive(30, -20);
         updateLineData(lineData);
         if (lineOnCount(lineData) == 0) {
             drive(0, 0);
             break;
         }
     }
+    HAL_Delay(50);
     while (1) {
-        drive(20, -30);
+        drive(30, -20);
         updateLineData(lineData);
         if (lineData->status[5] == true && lineData->status[6] == true) {
             drive(0, 0);
