@@ -609,19 +609,20 @@ while (STRATEGY == bump) {
           forwardToFlag(lineData, &lBias, &rBias);
           driveBackToFullLine(lineData_2, &lBias, &rBias);
           bruteForceMovePastLineBackwards(lineData, &lBias, &rBias);
-          navigateLeftTurn(lineData, &lBias, &rBias);
+          //navigateLeftTurn(lineData, &lBias, &rBias); // Took this out
           bruteForceTurnLeft90(lineData, &lBias, &rBias);
           navigateLeftTurn(lineData_2, &lBias, &rBias);
           driveBackToFullLine(lineData_2, &lBias, &rBias);
           //lineFollowingPreciseSpeed(lineData, &lBias, &rBias, 1, 25);
-          bruteForceForward(lineData, &lBias, &rBias);
+          bruteForceForward(lineData, &lBias, &rBias); // Changing from 300 to 275
           bruteForceTurn(lineData, &lBias, &rBias);
           bruteForceBackward(lineData, &lBias, &rBias);
           dumpRings();
           findALineForward(lineData, &lBias, &rBias);
           forwardToCenter(lineData, &lBias, &rBias);
-          bruteForceMovePastLine(lineData, &lBias, &rBias);
-          bruteForceTurnRight90(lineData_2, &lBias, &rBias);
+          //bruteForceMovePastLine(lineData, &lBias, &rBias);
+          bruteForceTurnRight90(lineData_2, &lBias, &rBias); // Changed this to 175 from 425
+          navigateRightTurn(lineData_2, &lBias, &rBias); // Added this
           HAL_Delay(100);
           continue;
           //secureRings();

@@ -1172,7 +1172,7 @@ void bruteForceTurnLeft90(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn
     int timer = 0;
     int timer2 = 0;
-    while (timer2 < 175) {
+    while (timer2 < 425) {
         timer++;
         drive(-20, 20);
         if (timer > 6500) {
@@ -1189,6 +1189,7 @@ void bruteForceTurnRight90(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn
     int timer = 0;
     int timer2 = 0;
+    //while (timer2 < 425) {
     while (timer2 < 425) {
         timer++;
         drive(20, -20);
@@ -1382,7 +1383,7 @@ void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn
     int timer = 0;
     int timer2 = 0;
-    while (timer2 < 300) {
+    while (timer2 < 275) {
         timer++;
         drive(30, 30);
         if (timer > 6500) {
