@@ -75,6 +75,10 @@
 #define LS1_CH8_GPIO_Port GPIOA
 #define LS1_CH1_Pin GPIO_PIN_10
 #define LS1_CH1_GPIO_Port GPIOA
+#define New_B1_Pin GPIO_PIN_11
+#define New_B1_GPIO_Port GPIOA
+#define New_B1A12_Pin GPIO_PIN_12
+#define New_B1A12_GPIO_Port GPIOA
 #define LS2_CH1_Pin GPIO_PIN_13
 #define LS2_CH1_GPIO_Port GPIOA
 #define LS2_CH2_Pin GPIO_PIN_14
