@@ -1038,6 +1038,11 @@ void secureRings() {
     turnRightServo(0); // Locked
     HAL_Delay(1500);
 }
+void collectRings() {
+    turnServo(0); // Down
+    turnLeftServo(0); // Locked
+    turnRightServo(0); // Locked
+}
 
 void driveToDump(struct lineData *lineData, int *lBias, int *rBias) {
     int state = 1;

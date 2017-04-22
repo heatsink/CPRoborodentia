@@ -110,6 +110,7 @@ void stateFifteen(struct lineData *FLineData, struct lineData *BLineData, int *s
 void backwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias);
 void dumpRings();
 void secureRings();
+void collectRings();
 void driveToDump(struct lineData *lineData, int *lBias, int *rBias);
 void orientSlowly(struct lineData *lineData, int *lBias, int *rBias);
 void driveFast(struct lineData *lineData, int *lBias, int *rBias);
