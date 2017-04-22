@@ -464,45 +464,6 @@ void backwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {
     }
 }
 
-/*
-void forwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {
-    if (lineOnCount(lineData) > 1) {
-        *lBias = leftBias(lineData);
-        *rBias = rightBias(lineData);
-    }
-    else {
-        *lBias = *lBias;
-        *rBias = *rBias;
-    }
-    if (*lBias < *rBias) {
-        if (DEFAULT_THRESHHOLD-*lBias> 0 && DEFAULT_THRESHHOLD-*lBias < 15) {
-            drive(DEFAULT_SPEED+*rBias, 15);
-        }
-        else if (DEFAULT_THRESHHOLD-*lBias < 0 && DEFAULT_THRESHHOLD-*lBias > -15) {
-            drive(DEFAULT_SPEED+*rBias, -15);
-        }
-        else {
-            drive(DEFAULT_SPEED+*rBias, DEFAULT_THRESHHOLD-*lBias);
-        }
-    }
-    else if (*lBias > *rBias) {
-        if (DEFAULT_THRESHHOLD-*rBias > 0 && DEFAULT_THRESHHOLD-*rBias < 15) {
-            drive(15, DEFAULT_SPEED+*lBias);
-        }
-        else if (DEFAULT_THRESHHOLD-*rBias < 0 && DEFAULT_THRESHHOLD-*rBias > -15) {
-            drive(-15, DEFAULT_SPEED+*lBias);
-        }
-        else {
-            drive(DEFAULT_THRESHHOLD-*rBias, DEFAULT_SPEED+*lBias);
-        }
-    }
-    else {
-        drive(DEFAULT_SPEED, DEFAULT_SPEED);
-    }
-}
-*/
-
-
 void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias) {
     int lCount = lineOnCount(lineData);
     /*
@@ -519,18 +480,35 @@ void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBi
     }
     */
     if (lCount > 4) {
-        drive(12, 12);
+        drive(20, 20);
     }
     else if (leftBias(lineData) > rightBias(lineData)) {
-        drive(0, 12);
+        drive(0, 20);
     }
     else if (leftBias(lineData) < rightBias(lineData)) {
-        drive(12, 0);
+        drive(20, 0);
     }
     else {
-        drive(12, 12);
+        drive(20, 20);
     }
 }
+
+void lineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias, int direction) {
+    int lCount = lineOnCount(lineData);
+    if (lCount > 4) {
+        drive(direction*20, direction*20);
+    }
+    else if (leftBias(lineData) > rightBias(lineData)) {
+        drive(0, direction*20);
+    }
+    else if (leftBias(lineData) < rightBias(lineData)) {
+        drive(direction*20, 0);
+    }
+    else {
+        drive(direction*20, direction*20);
+    }
+}
+
 
 void forwardLineFollowingSlow(struct lineData *lineData, int *lBias, int *rBias) {
     int lCount = lineOnCount(lineData);
@@ -581,8 +559,6 @@ void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {
     if (lineOnCount(lineData) > 1) {
         *lBias = rightBias(lineData);
         *rBias = leftBias(lineData);
-        //*lBias = leftBias(lineData);
-        //*rBias = rightBias(lineData);
     }
     else {
         *lBias = *lBias;
@@ -655,6 +631,7 @@ void initButtons(struct buttonData *buttonData,
 void updateLineData(struct lineData *lineData) {
     for (int i = 0; i < LSENSOR_COUNT; i++) {
         if (HAL_GPIO_ReadPin(lineData->pName[i], (uint16_t) lineData->pNum[i]) == GPIO_PIN_SET) {
+            HAL_Delay(1);
             lineData->status[i] = true;
             continue;
         }
@@ -712,7 +689,7 @@ int rightBias(struct lineData *lineData) {
     //int j=2;
     //for (int i = 5; i <= LSENSOR_COUNT; i++, j++) {
     //for (int i = 4; i <= LSENSOR_COUNT; i++, j+=8) {
-    for (int i = 5; i <= LSENSOR_COUNT; i++, j*=8) {
+    for (int i = 4; i <= LSENSOR_COUNT; i++, j*=8) {
         if (lineData->status[i] == true) {
             bias+=j;
         }
@@ -999,45 +976,6 @@ void loadServo(){
           HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
       //}
 }
-/*
-void turnRightServo(){
-      drive(0, 0);
-      turnServo(0);
-      HAL_Delay(16);
-      typedef int servoNum;
-      enum servoNum {turnGrab, turnClosed,turnVert};
-      servoNum servoState = turnClosed;
-      while (1) {
-          if (servoState == turnGrab) {
-              if (servoRightAngle < 135){
-                servoRightAngle++;
-              }
-              if (servoRightAngle == 135){
-                  servoState = turnVert;
-              }
-          }
-          if (servoState == turnClosed) {
-              if (servoRightAngle > 0){
-                  servoRightAngle--;
-              }
-              if (servoRightAngle == 0){
-                  servoState = turnGrab;
-              }
-          }
-          if (servoState == turnVert){
-              if(servoRightAngle > 45){
-                  servoRightAngle--;
-              } 
-              if(servoRightAngle == 45){
-                  HAL_Delay(3000);
-                  servoState = turnClosed;
-              }
-          }
-          turnServo(servoRightAngle);
-          HAL_Delay(16);  //180 deg * 16ms/deg = 2.88 sec to complete sweep
-      } 
-}
-*/
 
 void passiveTimer() {
   __HAL_TIM_SET_COMPARE(servoTimer, TIM_CHANNEL_1, 0);
@@ -1080,3 +1018,302 @@ void lineFollowerCallback(ADC_HandleTypeDef hadc1, ADC_HandleTypeDef hadc2, uint
 
 }
 */
+void dumpRings() {
+    turnServo(10);
+    turnLeftServo(75); // Unlocked
+    turnRightServo(75); // Unlocked
+    //HAL_Delay(500);
+    for (int i = 0; i < 4; i++) {
+        turnServo(50);
+        HAL_Delay(750);
+        turnServo(10);
+        HAL_Delay(750);
+    }
+    drive(0, 0);
+}
+
+void secureRings() {
+    turnServo(0); // Down
+    turnLeftServo(180); // Locked
+    turnRightServo(0); // Locked
+    HAL_Delay(1500);
+}
+
+void driveToDump(struct lineData *lineData, int *lBias, int *rBias) {
+    int state = 1;
+    while (state == 1) {
+        updateLineData(lineData);
+        forwardLineFollowingPrecise(lineData, lBias, rBias);
+        if (lineOnCount(lineData) > 6) {
+            state = 2;
+        }
+    }
+    while (state == 2) {
+        drive(25, 30);
+        HAL_Delay(5);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
+        HAL_Delay(5);
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
+        HAL_Delay(5);
+        GPIO_PinState left = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12);
+        HAL_Delay(5);
+        GPIO_PinState right = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10);
+        HAL_Delay(5);
+        //if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10) == GPIO_PIN_RESET) {
+        if (left == GPIO_PIN_RESET && right == GPIO_PIN_RESET) {
+           state = 3;
+           drive(0, 0);
+           HAL_Delay(50);
+           break;
+        }
+    }
+}
+
+void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias) {
+    int state = 1;
+    while (state == 1) {
+        updateLineData(lineData);
+        //forwardLineFollowingPrecise(lineData, lBias, rBias);
+        lineFollowingPrecise(lineData, lBias, rBias, -1);
+        if (lineOnCount(lineData) > 6) {
+            state = 2;
+        }
+    }
+    while (state == 2) {
+        drive(25, 30);
+        HAL_Delay(5);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
+        HAL_Delay(5);
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_RESET); // LED On
+        HAL_Delay(5);
+        GPIO_PinState left = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12);
+        HAL_Delay(5);
+        GPIO_PinState right = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10);
+        HAL_Delay(5);
+        //if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_12) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_10) == GPIO_PIN_RESET) {
+        if (left == GPIO_PIN_RESET && right == GPIO_PIN_RESET) {
+           state = 3;
+           drive(0, 0);
+           HAL_Delay(50);
+           break;
+        }
+    }
+}
+
+
+void driveToLine(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        updateLineData(lineData);
+        forwardLineFollowingPrecise(lineData, lBias, rBias);
+        if (lineOnCount(lineData) > 6) {
+            drive(0, 0);
+            break;
+        }
+    }
+}
+
+void driveBackToLine(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        updateLineData(lineData);
+        lineFollowingPrecise(lineData, lBias, rBias, -1);
+        if (lineOnCount(lineData) > 6) {
+            drive(0, 0);
+            break;
+        }
+    }
+}
+
+void backToCenter(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        //drive(-20, -20);
+        updateLineData(lineData);
+        lineFollowingPrecise(lineData, lBias, rBias, -1);
+        if(lineOnCount(lineData) > 4) {
+            HAL_Delay(25);
+            break;
+        }
+    }
+    /*
+    while (1) {
+        //drive(-20, -20);
+        updateLineData(lineData);
+        lineFollowingPrecise(lineData, lBias, rBias, -1);
+        if(lineOnCount(lineData) < 4) {
+            HAL_Delay(25);
+            break;
+        }
+    }
+    while (1) {
+        //drive(-22, -20);
+        lineFollowingPrecise(lineData, lBias, rBias, -1);
+        updateLineData(lineData);
+        if(lineOnCount(lineData) > 6) {
+            HAL_Delay(25);
+            break;
+        }
+    }
+    */
+}
+
+void forwardToCenter(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        //drive(-20, -20);
+        updateLineData(lineData);
+        lineFollowingPrecise(lineData, lBias, rBias, 1);
+        if(lineOnCount(lineData) > 4) {
+            HAL_Delay(25);
+            break;
+        }
+    }
+    /*
+    while (1) {
+        //drive(-20, -20);
+        updateLineData(lineData);
+        lineFollowingPrecise(lineData, lBias, rBias, -1);
+        if(lineOnCount(lineData) < 4) {
+            HAL_Delay(25);
+            break;
+        }
+    }
+    while (1) {
+        //drive(-22, -20);
+        lineFollowingPrecise(lineData, lBias, rBias, -1);
+        updateLineData(lineData);
+        if(lineOnCount(lineData) > 6) {
+            HAL_Delay(25);
+            break;
+        }
+    }
+    */
+}
+
+
+void drivePastLine(struct lineData *lineData, int *lBias, int *rBias) {
+    // Drive forward slightly to prepare to turn
+    int timer = 0;
+    int timer2 = 0;
+    while (timer2 < 175) {
+        timer++;
+        drive(20, 20);
+        if (timer > 6500) {
+            timer = 0;
+            timer2++;
+        }
+    }
+    timer = 0;
+    timer2 = 0;
+    drive(0, 0);
+}
+
+void navigateLeftTurn(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        drive(-30, 20);
+        updateLineData(lineData);
+        if (lineOnCount(lineData) <= 1) {
+            drive(0, 0);
+            break;
+        }
+    }
+    while (1) {
+        drive(-30, 20);
+        updateLineData(lineData);
+        if (lineData->status[2] == true && lineData->status[3] == true) {
+            drive(0, 0);
+            break;
+        }
+    }
+}
+
+void navigateRightTurn(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        drive(20, -30);
+        updateLineData(lineData);
+        if (lineOnCount(lineData) == 0) {
+            drive(0, 0);
+            break;
+        }
+    }
+    while (1) {
+        drive(20, -30);
+        updateLineData(lineData);
+        if (lineData->status[5] == true && lineData->status[6] == true) {
+            drive(0, 0);
+            break;
+        }
+    }
+}
+
+
+void orientSlowly(struct lineData *lineData, int *lBias, int *rBias) {
+    int timer = 0;
+    int timer2 = 0;
+    while (timer2 < 175) {
+        timer++;
+        updateLineData(lineData);
+        forwardLineFollowingPrecise(lineData, lBias, rBias);
+        if (timer > 6500) {
+           timer = 0;
+           timer2++;
+        }
+    }
+    timer = 0;
+    timer2 = 0;
+    drive(0, 0);
+}
+
+void driveFast(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        drive(100, 100);
+        updateLineData(lineData);
+        if(lineOnCount(lineData) > 4) {
+            //break;
+        }
+    }
+    /*
+    while (1) {
+        drive(50, 50);
+        updateLineData(lineData);
+        int line = lineOnCount(lineData);
+        if (line >= 0 && line<= 2) {
+            break;
+        }
+    }
+    while (1) {
+        drive(50, 50);
+        updateLineData(lineData);
+        if(lineOnCount(lineData) > 4) {
+            break;
+        }
+    }
+    drive(0, 0);
+    */
+    /*
+    while (lineOnCount(lineData) > 5) {
+        updateLineData(lineData);
+        drive(50, 50);
+    }
+    while (lineOnCount(lineData) < 6) {
+        updateLineData(lineData);
+        drive(50, 50);
+    }
+    drive(0, 0);
+    */
+    /*
+    int timer = 0;
+    int timer2 = 0;
+    while (timer2 < 125) {
+        timer++;
+        updateLineData(lineData);
+        forwardLineFollowingPrecise(lineData, lBias, rBias);
+        if (timer > 6500) {
+           timer = 0;
+           timer2++;
+        }
+    }
+    timer = 0;
+    timer2 = 0;
+    drive(0, 0);
+    */
+}
+
+

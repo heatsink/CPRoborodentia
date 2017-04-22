@@ -25392,6 +25392,7 @@ b	Drivers/CMSIS/Include/core_sc300.h	/^  } b;                                   
 b	Drivers/CMSIS/Include/core_sc300.h	/^  } b;                                   \/*!< Structure used for bit  access *\/$/;"	m	union:__anon164	typeref:struct:__anon164::__anon165
 b	Drivers/CMSIS/Include/core_sc300.h	/^  } b;                                   \/*!< Structure used for bit  access *\/$/;"	m	union:__anon166	typeref:struct:__anon166::__anon167
 b	Drivers/CMSIS/Include/core_sc300.h	/^  } b;                                   \/*!< Structure used for bit  access *\/$/;"	m	union:__anon168	typeref:struct:__anon168::__anon169
+backToCenter	Src/functions.c	/^void backToCenter(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 backwardLineFollowing	Src/functions.c	/^void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 backwardLineFollowing2	Src/functions.c	/^void backwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 bitRevFactor	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t bitRevFactor;             \/**< bit reversal modifier that supports different size FFTs with the same bit reversal table. *\/$/;"	m	struct:__anon124
@@ -25427,11 +25428,16 @@ cont	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"
 default_strategy	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3 };$/;"	e	enum:strategy	file:
 drive	Src/functions.c	/^void drive(int lSpeed, int rSpeed) {$/;"	f
 driveBack	Src/functions.c	/^void driveBack(uint16_t speed){$/;"	f
+driveFast	Src/functions.c	/^void driveFast(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 driveForward	Src/functions.c	/^void driveForward(uint16_t speed){$/;"	f
 driveLeft	Src/functions.c	/^void driveLeft(uint16_t speed){$/;"	f
+drivePastLine	Src/functions.c	/^void drivePastLine(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 driveRight	Src/functions.c	/^void driveRight(uint16_t speed){$/;"	f
 driveShallow	Src/functions.c	/^void driveShallow(uint16_t speedL, uint16_t speedR){$/;"	f
 driveShallowBack	Src/functions.c	/^void driveShallowBack(uint16_t speedL, uint16_t speedR){$/;"	f
+driveToDump	Src/functions.c	/^void driveToDump(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+driveToLine	Src/functions.c	/^void driveToLine(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+dumpRings	Src/functions.c	/^void dumpRings() {$/;"	f
 energy	Drivers/CMSIS/Include/arm_math.h	/^    float32_t energy;     \/**< saves previous frame energy. *\/$/;"	m	struct:__anon155
 energy	Drivers/CMSIS/Include/arm_math.h	/^    q15_t energy;         \/**< saves previous frame energy. *\/$/;"	m	struct:__anon157
 energy	Drivers/CMSIS/Include/arm_math.h	/^    q31_t energy;         \/**< saves previous frame energy. *\/$/;"	m	struct:__anon156
@@ -25487,6 +25493,7 @@ lState	Src/main.c	/^lineState lState = cont;$/;"	v
 leftBias	Src/functions.c	/^int leftBias(struct lineData *lineData) {$/;"	f
 leftBiasWobble	Src/functions.c	/^int leftBiasWobble(struct lineData *lineData) {$/;"	f
 lineData	Src/functions.h	/^struct lineData {$/;"	s
+lineFollowingPrecise	Src/functions.c	/^void lineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias, int direction) {$/;"	f
 lineOnCount	Src/functions.c	/^int lineOnCount(struct lineData *lineData) {$/;"	f
 lineState	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	g	file:
 lineState	Src/main.c	/^typedef int lineState;$/;"	t	file:
@@ -25516,6 +25523,8 @@ nPRIV	Drivers/CMSIS/Include/core_cm4.h	/^    uint32_t nPRIV:1;                  
 nPRIV	Drivers/CMSIS/Include/core_cm7.h	/^    uint32_t nPRIV:1;                    \/*!< bit:      0  Execution privilege in Thread mode *\/$/;"	m	struct:__anon186::__anon187
 nPRIV	Drivers/CMSIS/Include/core_sc300.h	/^    uint32_t nPRIV:1;                    \/*!< bit:      0  Execution privilege in Thread mode *\/$/;"	m	struct:__anon168::__anon169
 nValues	Drivers/CMSIS/Include/arm_math.h	/^    uint32_t nValues;           \/**< nValues *\/$/;"	m	struct:__anon115
+navigateLeftTurn	Src/functions.c	/^void navigateLeftTurn(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+navigateRightTurn	Src/functions.c	/^void navigateRightTurn(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 newDutyCycle	Src/main.c	/^uint16_t newDutyCycle;$/;"	v
 normalize	Drivers/CMSIS/Include/arm_math.h	/^    float32_t normalize;                 \/**< normalizing factor. *\/$/;"	m	struct:__anon133
 normalize	Drivers/CMSIS/Include/arm_math.h	/^    q15_t normalize;                     \/**< normalizing factor. *\/$/;"	m	struct:__anon135
@@ -25570,6 +25579,7 @@ offloadServo	Src/functions.c	/^void offloadServo(){$/;"	f
 oldDutyCycle	Src/main.c	/^uint16_t oldDutyCycle;$/;"	v
 onebyfftLen	Drivers/CMSIS/Include/arm_math.h	/^    float32_t onebyfftLen;             \/**< value of 1\/fftLen. *\/$/;"	m	struct:__anon124
 onebyfftLen	Drivers/CMSIS/Include/arm_math.h	/^    float32_t onebyfftLen;             \/**< value of 1\/fftLen. *\/$/;"	m	struct:__anon125
+orientSlowly	Src/functions.c	/^void orientSlowly(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 pBitRevTable	Drivers/CMSIS/Include/arm_math.h	/^    const uint16_t *pBitRevTable;      \/**< points to the bit reversal table. *\/$/;"	m	struct:__anon126
 pBitRevTable	Drivers/CMSIS/Include/arm_math.h	/^    const uint16_t *pBitRevTable;      \/**< points to the bit reversal table. *\/$/;"	m	struct:__anon127
 pBitRevTable	Drivers/CMSIS/Include/arm_math.h	/^    const uint16_t *pBitRevTable;      \/**< points to the bit reversal table. *\/$/;"	m	struct:__anon128
@@ -25720,6 +25730,7 @@ rightBiasWobble	Src/functions.c	/^int rightBiasWobble(struct lineData *lineData)
 sFIFOMailBox	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_FIFOMailBox_TypeDef    sFIFOMailBox[2];     \/*!< CAN FIFO MailBox,                    Address offset: 0x1B0 - 0x1CC *\/$/;"	m	struct:__anon233
 sFilterRegister	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_FilterRegister_TypeDef sFilterRegister[28]; \/*!< CAN Filter Register,                 Address offset: 0x240-0x31C   *\/$/;"	m	struct:__anon233
 sTxMailBox	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  CAN_TxMailBox_TypeDef      sTxMailBox[3];       \/*!< CAN Tx MailBox,                      Address offset: 0x180 - 0x1AC *\/$/;"	m	struct:__anon233
+secureRings	Src/functions.c	/^void secureRings() {$/;"	f
 servoAngle	Src/main.c	/^uint8_t servoAngle = 0;$/;"	v
 servoLeftAngle	Src/main.c	/^uint8_t servoLeftAngle = 0;$/;"	v
 servoMaxPeriod	Src/functions.h	14;"	d

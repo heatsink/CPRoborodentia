@@ -83,6 +83,7 @@ void passiveTimer();
 void forwardLineFollowingVariant(struct lineData *lineData, int *lBias, int *rBias, int max, int threshhold);
 
 void forwardLineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias);
+void lineFollowingPrecise(struct lineData *lineData, int *lBias, int *rBias, int direction);
 void turnRightServo(uint8_t angle);
 void turnLeftServo(uint8_t angle);
 void loadServo();
@@ -107,5 +108,18 @@ void stateFourteen(struct lineData *FLineData, struct lineData *BLineData, int *
 void stateFifteen(struct lineData *FLineData, struct lineData *BLineData, int *state);
 
 void backwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias);
+void dumpRings();
+void secureRings();
+void driveToDump(struct lineData *lineData, int *lBias, int *rBias);
+void orientSlowly(struct lineData *lineData, int *lBias, int *rBias);
+void driveFast(struct lineData *lineData, int *lBias, int *rBias);
+void backToCenter(struct lineData *lineData, int *lBias, int *rBias);
+void forwardToCenter(struct lineData *lineData, int *lBias, int *rBias);
+void drivePastLine(struct lineData *lineData, int *lBias, int *rBias);
+void navigateLeftTurn(struct lineData *lineData, int *lBias, int *rBias);
+void navigateRightTurn(struct lineData *lineData, int *lBias, int *rBias);
+void driveToLine(struct lineData *lineData, int *lBias, int *rBias);
+void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias);
+void driveBackToLine(struct lineData *lineData, int *lBias, int *rBias);
 #endif
 
