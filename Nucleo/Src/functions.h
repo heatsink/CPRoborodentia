@@ -121,5 +121,6 @@ void navigateRightTurn(struct lineData *lineData, int *lBias, int *rBias);
 void driveToLine(struct lineData *lineData, int *lBias, int *rBias);
 void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias);
 void driveBackToLine(struct lineData *lineData, int *lBias, int *rBias);
+void navigateLeftTurnBackwards(struct lineData *lineData, int *lBias, int *rBias);
 #endif
 

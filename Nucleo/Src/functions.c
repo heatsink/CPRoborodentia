@@ -1080,7 +1080,7 @@ void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias) {
         }
     }
     while (state == 2) {
-        drive(25, 30);
+        drive(-15, -15);
         HAL_Delay(5);
         HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET); // LED On
         HAL_Delay(5);
@@ -1133,26 +1133,6 @@ void backToCenter(struct lineData *lineData, int *lBias, int *rBias) {
             break;
         }
     }
-    /*
-    while (1) {
-        //drive(-20, -20);
-        updateLineData(lineData);
-        lineFollowingPrecise(lineData, lBias, rBias, -1);
-        if(lineOnCount(lineData) < 4) {
-            HAL_Delay(25);
-            break;
-        }
-    }
-    while (1) {
-        //drive(-22, -20);
-        lineFollowingPrecise(lineData, lBias, rBias, -1);
-        updateLineData(lineData);
-        if(lineOnCount(lineData) > 6) {
-            HAL_Delay(25);
-            break;
-        }
-    }
-    */
 }
 
 void forwardToCenter(struct lineData *lineData, int *lBias, int *rBias) {
@@ -1165,28 +1145,7 @@ void forwardToCenter(struct lineData *lineData, int *lBias, int *rBias) {
             break;
         }
     }
-    /*
-    while (1) {
-        //drive(-20, -20);
-        updateLineData(lineData);
-        lineFollowingPrecise(lineData, lBias, rBias, -1);
-        if(lineOnCount(lineData) < 4) {
-            HAL_Delay(25);
-            break;
-        }
-    }
-    while (1) {
-        //drive(-22, -20);
-        lineFollowingPrecise(lineData, lBias, rBias, -1);
-        updateLineData(lineData);
-        if(lineOnCount(lineData) > 6) {
-            HAL_Delay(25);
-            break;
-        }
-    }
-    */
 }
-
 
 void drivePastLine(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn
@@ -1223,6 +1182,26 @@ void navigateLeftTurn(struct lineData *lineData, int *lBias, int *rBias) {
         }
     }
 }
+
+void navigateLeftTurnBackwards(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        drive(30, -20);
+        updateLineData(lineData);
+        if (lineOnCount(lineData) <= 1) {
+            drive(0, 0);
+            break;
+        }
+    }
+    while (1) {
+        drive(30, -20);
+        updateLineData(lineData);
+        if (lineData->status[2] == true && lineData->status[3] == true) {
+            drive(0, 0);
+            break;
+        }
+    }
+}
+
 
 void navigateRightTurn(struct lineData *lineData, int *lBias, int *rBias) {
     while (1) {

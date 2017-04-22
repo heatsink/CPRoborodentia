@@ -479,6 +479,31 @@ int main(void)
       turnServo(10);
       turnLeftServo(75); // Unlocked
       turnRightServo(75); // Unlocked
+      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+          INIT_STATE = 0;
+          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
+          drive(0,0);
+          continue;
+      }
+      while (INIT_STATE == 0) {
+          // Go to scoring peg
+          driveBackToDump(lineData, &lBias, &rBias);
+          secureRings();
+          forwardToCenter(lineData, &lBias, &rBias);
+          navigateLeftTurn(lineData_2, &lBias, &rBias);
+          driveBackToDump(lineData_2, &lBias, &rBias);
+          dumpRings();
+          forwardToCenter(lineData, &lBias, &rBias);
+          navigateRightTurn(lineData, &lBias, &rBias);
+          //driveBackToLine(lineData, &lBias, &rBias);
+          exit(0);
+      }
+}
+while (STRATEGY == test4) {
+
+      turnServo(10);
+      turnLeftServo(75); // Unlocked
+      turnRightServo(75); // Unlocked
 
       if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
           INIT_STATE = 0;
@@ -490,28 +515,6 @@ int main(void)
           updateLineData(lineData_2);
           //backwardLineFollowing2(lineData_2, &lBias, &rBias);
           lineFollowingPrecise(lineData_2, &lBias, &rBias, -1);
-      }
-}
-while (STRATEGY == test4) {
-      turnServo(10);
-      turnLeftServo(75); // Unlocked
-      turnRightServo(75); // Unlocked
-      if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
-          INIT_STATE = 0;
-          HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); // LED Off
-          drive(0,0);
-          continue;
-      }
-      while (INIT_STATE == 0) {
-          secureRings();
-          forwardToCenter(lineData, &lBias, &rBias);
-          navigateRightTurn(lineData_2, &lBias, &rBias);
-          driveBackToDump(lineData_2, &lBias, &rBias);
-          dumpRings();
-          forwardToCenter(lineData, &lBias, &rBias);
-          navigateLeftTurn(lineData_2, &lBias, &rBias);
-          driveBackToLine(lineData_2, &lBias, &rBias);
-          exit(0);
       }
   }
 
