@@ -123,5 +123,12 @@ void driveToLine(struct lineData *lineData, int *lBias, int *rBias);
 void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias);
 void driveBackToLine(struct lineData *lineData, int *lBias, int *rBias);
 void navigateLeftTurnBackwards(struct lineData *lineData, int *lBias, int *rBias);
+
+void driveBackToFullLine(struct lineData *lineData, int *lBias, int *rBias);
+void bruteForceTurn(struct lineData *lineData, int *lBias, int *rBias);
+void bruteForceBackward(struct lineData *lineData, int *lBias, int *rBias);
+void findALineForward(struct lineData *lineData, int *lBias, int *rBias);
+
+void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias);
 #endif
 

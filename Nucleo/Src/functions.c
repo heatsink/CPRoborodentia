@@ -1019,24 +1019,37 @@ void lineFollowerCallback(ADC_HandleTypeDef hadc1, ADC_HandleTypeDef hadc2, uint
 }
 */
 void dumpRings() {
+    turnServo(55);
+    turnLeftServo(159);
+    turnRightServo(15);
+    HAL_Delay(750);
+    /*
     turnServo(10);
     turnLeftServo(75); // Unlocked
     turnRightServo(75); // Unlocked
+    */
     //HAL_Delay(500);
+    /*
     for (int i = 0; i < 4; i++) {
         turnServo(50);
         HAL_Delay(750);
         turnServo(10);
         HAL_Delay(750);
     }
+    */
     drive(0, 0);
 }
 
 void secureRings() {
     turnServo(0); // Down
+    /*
     turnLeftServo(180); // Locked
     turnRightServo(0); // Locked
-    HAL_Delay(1500);
+    */
+
+    turnLeftServo(174); // Locked
+    turnRightServo(5); // Locked
+    HAL_Delay(1000);
 }
 void collectRings() {
     turnServo(0); // Down
@@ -1074,6 +1087,17 @@ void driveToDump(struct lineData *lineData, int *lBias, int *rBias) {
     }
 }
 
+void driveBackToFullLine(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        updateLineData(lineData);
+        //forwardLineFollowingPrecise(lineData, lBias, rBias);
+        lineFollowingPrecise(lineData, lBias, rBias, -1);
+        if (lineOnCount(lineData) > 6) {
+            drive(0, 0);
+            break;
+        }
+    }
+}
 void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias) {
     int state = 1;
     while (state == 1) {
@@ -1151,6 +1175,71 @@ void forwardToCenter(struct lineData *lineData, int *lBias, int *rBias) {
         }
     }
 }
+
+void bruteForceTurn(struct lineData *lineData, int *lBias, int *rBias) {
+    // Drive forward slightly to prepare to turn
+    int timer = 0;
+    int timer2 = 0;
+    while (timer2 < 225) {
+        timer++;
+        drive(-30, 20);
+        if (timer > 6500) {
+            timer = 0;
+            timer2++;
+        }
+    }
+    timer = 0;
+    timer2 = 0;
+    drive(0, 0);
+
+}
+
+void bruteForceBackward(struct lineData *lineData, int *lBias, int *rBias) {
+    // Drive forward slightly to prepare to turn
+    int timer = 0;
+    int timer2 = 0;
+    while (timer2 < 175) {
+        timer++;
+        drive(-30, -30);
+        if (timer > 6500) {
+            timer = 0;
+            timer2++;
+        }
+    }
+    timer = 0;
+    timer2 = 0;
+    drive(0, 0);
+}
+
+void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias) {
+    // Drive forward slightly to prepare to turn
+    int timer = 0;
+    int timer2 = 0;
+    while (timer2 < 175) {
+        timer++;
+        drive(30, 30);
+        if (timer > 6500) {
+            timer = 0;
+            timer2++;
+        }
+    }
+    timer = 0;
+    timer2 = 0;
+    drive(0, 0);
+}
+
+
+void findALineForward(struct lineData *lineData, int *lBias, int *rBias) {
+    while (1) {
+        updateLineData(lineData);
+        lineFollowingPrecise(lineData, lBias, rBias, 1);
+        if(lineOnCount(lineData) >= 1) {
+            HAL_Delay(25);
+            break;
+        }
+    }
+}
+
 
 void drivePastLine(struct lineData *lineData, int *lBias, int *rBias) {
     // Drive forward slightly to prepare to turn

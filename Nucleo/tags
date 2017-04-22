@@ -17673,7 +17673,7 @@ STIR	Drivers/CMSIS/Include/core_cm7.h	/^  __OM  uint32_t STIR;                  
 STIR	Drivers/CMSIS/Include/core_cm7.h	/^  __OM  uint32_t STIR;                   \/*!< Offset: 0xE00 ( \/W)  Software Trigger Interrupt Register *\/$/;"	m	struct:__anon188
 STIR	Drivers/CMSIS/Include/core_sc300.h	/^  __OM  uint32_t STIR;                   \/*!< Offset: 0xE00 ( \/W)  Software Trigger Interrupt Register *\/$/;"	m	struct:__anon170
 STM32F4	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	71;"	d
-STRATEGY	Src/main.c	/^uint8_t STRATEGY = test2;$/;"	v
+STRATEGY	Src/main.c	/^uint8_t STRATEGY = emergency;$/;"	v
 SUCCESS	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h	/^  SUCCESS = !ERROR$/;"	e	enum:__anon226
 SVCall_IRQn	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  SVCall_IRQn                 = -5,     \/*!< 11 Cortex-M4 SV Call Interrupt                                    *\/$/;"	e	enum:__anon227
 SWIER	Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h	/^  __IO uint32_t SWIER;  \/*!< EXTI Software interrupt event register,  Address offset: 0x10 *\/$/;"	m	struct:__anon241
@@ -25395,6 +25395,7 @@ b	Drivers/CMSIS/Include/core_sc300.h	/^  } b;                                   
 backToCenter	Src/functions.c	/^void backToCenter(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 backwardLineFollowing	Src/functions.c	/^void backwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 backwardLineFollowing2	Src/functions.c	/^void backwardLineFollowing2(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+backwards	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
 bitRevFactor	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t bitRevFactor;             \/**< bit reversal modifier that supports different size FFTs with the same bit reversal table. *\/$/;"	m	struct:__anon124
 bitRevFactor	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t bitRevFactor;             \/**< bit reversal modifier that supports different size FFTs with the same bit reversal table. *\/$/;"	m	struct:__anon125
 bitRevFactor	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t bitRevFactor;           \/**< bit reversal modifier that supports different size FFTs with the same bit reversal table. *\/$/;"	m	struct:__anon120
@@ -25415,7 +25416,11 @@ bitReverseFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t bitReverseFlagR; 
 bitReverseFlagR	Drivers/CMSIS/Include/arm_math.h	/^    uint8_t bitReverseFlagR;                  \/**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. *\/$/;"	m	struct:__anon129
 bool	Src/functions.h	/^enum bool { false, true };$/;"	g
 bool	Src/functions.h	/^typedef int bool;$/;"	t
-bump_strategy	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4};$/;"	e	enum:strategy	file:
+bruteForceBackward	Src/functions.c	/^void bruteForceBackward(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+bruteForceForward	Src/functions.c	/^void bruteForceForward(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+bruteForceTurn	Src/functions.c	/^void bruteForceTurn(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+bump	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
+bump_strategy	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
 buttonData	Src/functions.h	/^struct buttonData {$/;"	s
 buttonOnCount	Src/functions.c	/^int buttonOnCount(struct buttonData *buttonData) {$/;"	f
 checked_malloc	Src/functions.c	/^void *checked_malloc(size_t size) {$/;"	f
@@ -25424,11 +25429,13 @@ clip_q31_to_q15	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q15_t clip_
 clip_q31_to_q7	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q7_t clip_q31_to_q7($/;"	f
 clip_q63_to_q15	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q15_t clip_q63_to_q15($/;"	f
 clip_q63_to_q31	Drivers/CMSIS/Include/arm_math.h	/^  static __INLINE q31_t clip_q63_to_q31($/;"	f
+collectRings	Src/functions.c	/^void collectRings() {$/;"	f
 cont	Src/main.c	/^enum lineState { hardL, shallowL, cont, shallowR, hardR };$/;"	e	enum:lineState	file:
-default_strategy	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4};$/;"	e	enum:strategy	file:
+default_strategy	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
 drive	Src/functions.c	/^void drive(int lSpeed, int rSpeed) {$/;"	f
 driveBack	Src/functions.c	/^void driveBack(uint16_t speed){$/;"	f
 driveBackToDump	Src/functions.c	/^void driveBackToDump(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+driveBackToFullLine	Src/functions.c	/^void driveBackToFullLine(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 driveBackToLine	Src/functions.c	/^void driveBackToLine(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 driveFast	Src/functions.c	/^void driveFast(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 driveForward	Src/functions.c	/^void driveForward(uint16_t speed){$/;"	f
@@ -25440,6 +25447,7 @@ driveShallowBack	Src/functions.c	/^void driveShallowBack(uint16_t speedL, uint16
 driveToDump	Src/functions.c	/^void driveToDump(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 driveToLine	Src/functions.c	/^void driveToLine(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 dumpRings	Src/functions.c	/^void dumpRings() {$/;"	f
+emergency	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
 energy	Drivers/CMSIS/Include/arm_math.h	/^    float32_t energy;     \/**< saves previous frame energy. *\/$/;"	m	struct:__anon155
 energy	Drivers/CMSIS/Include/arm_math.h	/^    q15_t energy;         \/**< saves previous frame energy. *\/$/;"	m	struct:__anon157
 energy	Drivers/CMSIS/Include/arm_math.h	/^    q31_t energy;         \/**< saves previous frame energy. *\/$/;"	m	struct:__anon156
@@ -25458,6 +25466,7 @@ fftLenRFFT	Drivers/CMSIS/Include/arm_math.h	/^    uint16_t fftLenRFFT;          
 fftLenReal	Drivers/CMSIS/Include/arm_math.h	/^    uint32_t fftLenReal;                        \/**< length of the real FFT. *\/$/;"	m	struct:__anon130
 fftLenReal	Drivers/CMSIS/Include/arm_math.h	/^    uint32_t fftLenReal;                        \/**< length of the real FFT. *\/$/;"	m	struct:__anon131
 fftLenReal	Drivers/CMSIS/Include/arm_math.h	/^    uint32_t fftLenReal;                      \/**< length of the real FFT. *\/$/;"	m	struct:__anon129
+findALineForward	Src/functions.c	/^void findALineForward(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 float32_t	Drivers/CMSIS/Include/arm_math.h	/^  typedef float float32_t;$/;"	t
 float64_t	Drivers/CMSIS/Include/arm_math.h	/^  typedef double float64_t;$/;"	t
 forwardLineFollowing	Src/functions.c	/^void forwardLineFollowing(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
@@ -25467,6 +25476,7 @@ forwardLineFollowingSlow	Src/functions.c	/^void forwardLineFollowingSlow(struct 
 forwardLineFollowingVariant	Src/functions.c	/^void forwardLineFollowingVariant(struct lineData *lineData, int *lBias, int *rBias, int max, int threshhold) {$/;"	f
 forwardLineWobble	Src/functions.c	/^void forwardLineWobble(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
 forwardToCenter	Src/functions.c	/^void forwardToCenter(struct lineData *lineData, int *lBias, int *rBias) {$/;"	f
+forwards	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
 g_pfnVectors	Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f446xx.s	/^g_pfnVectors:$/;"	l
 g_pfnVectors	SW4STM32/startup_stm32f446xx.s	/^g_pfnVectors:$/;"	l
 hadc2	Src/main.c	/^ADC_HandleTypeDef hadc2;$/;"	v
@@ -25770,12 +25780,13 @@ stateTwelve	Src/functions.c	/^void stateTwelve(struct lineData *FLineData, struc
 stateTwo	Src/functions.c	/^void stateTwo(struct lineData *FLineData, struct lineData *BLineData, int *state) {$/;"	f
 status	Src/functions.h	/^    bool status[LSENSOR_COUNT];$/;"	m	struct:buttonData
 status	Src/functions.h	/^    bool status[LSENSOR_COUNT];$/;"	m	struct:lineData
-strategy	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4};$/;"	g	file:
+strategy	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	g	file:
 strategy	Src/main.c	/^typedef int strategy;$/;"	t	file:
-test1	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4};$/;"	e	enum:strategy	file:
-test2	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4};$/;"	e	enum:strategy	file:
-test3	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4};$/;"	e	enum:strategy	file:
-test4	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4};$/;"	e	enum:strategy	file:
+test1	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
+test2	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
+test3	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
+test4	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
+test5	Src/main.c	/^enum strategy { default_strategy, bump_strategy, test1, test2, test3, test4, bump, forwards, backwards, test5, emergency};$/;"	e	enum:strategy	file:
 testServoAngle	Src/main.c	/^uint8_t testServoAngle= 0;$/;"	v
 timer	Src/main.c	/^uint16_t timer = 0;$/;"	v
 timer2	Src/main.c	/^uint16_t timer2 = 0;$/;"	v
