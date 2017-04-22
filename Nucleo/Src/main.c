@@ -883,6 +883,12 @@ static void MX_TIM12_Init(void)
     Error_Handler();
   }
 
+  sConfigOC.Pulse = 0;
+  if (HAL_TIM_PWM_ConfigChannel(&htim12, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
   HAL_TIM_MspPostInit(&htim12);
 
 }
